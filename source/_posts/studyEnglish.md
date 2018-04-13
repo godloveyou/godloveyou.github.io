@@ -33,6 +33,7 @@ Sometimes we act, not for ourselves, but because we believe plainly and simply i
 有时我们行动不是为了自己，而是单纯相信那是正确的事
 
 解析
+	* myself 复数-> ourselves
 	* act (for)  (为了)行动/代表
 	* believe plainly and simply  单纯的相信
 	* plainly明显地、简单地、朴素地
