@@ -1,7 +1,11 @@
 ---
 title: Mysql主从复制原理及步骤
-tags: 数据库
-categories: Mysql
+categories:
+- DataBase
+
+tags:
+- Mysql
+- 主从复制
 ---
 
 ## Mysql主从复制的原理

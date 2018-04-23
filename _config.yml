@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Rhys'Blog
+title: David's Blog
 subtitle: 
-description:
+description: 你要保守你心,胜过保守一切,因为一生的果效，是由心发出的
 keywords: 个人博客,技术博客
-author: Rhys
-language: zh-CN
+author: David
+language: zh-Hans
 timezone:
 
 # URL
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: jacman
+theme: next
 stylus:
   compress: true
 
