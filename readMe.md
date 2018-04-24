@@ -13,3 +13,7 @@
 
 	* 使用git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为dev）；
 	* 在本地新拷贝的CrazyMilk.github.io文件夹下通过Git bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。
+	
+
+3. 博客使用了NeXT主题参考文档
+http://theme-next.iissnan.com/getting-started.html
