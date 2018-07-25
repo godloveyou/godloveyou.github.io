@@ -21,5 +21,12 @@
 http://theme-next.iissnan.com/getting-started.html
 
 
+4. 常用指令
 git checkout dev; 切换到dev分支
 git branch;  查看当前分支
+
+
+hexo g #等价于 hexo generate
+hexo s #等价于 hexo server
+
+
