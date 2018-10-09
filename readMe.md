@@ -12,8 +12,11 @@
 当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：
 
 	* 使用git clone git@github.com:godloveyou/godloveyou.github.io.git拷贝仓库（默认分支为dev）；
+	* 丛github更新最新的next主题到theme/next下面
+	* 丛博客文章目录中找到next主题配置的博客文章,替换刚刚下载的next主题的配置文件
+	
 	* 在本地新拷贝的godloveyou.github.io文件夹下通过Git bash依次执行下列指令：
-	    npm install hexo、npm install、npm install hexo-deployer-git
+	    cnpm install hexo、cnpm install、cnpm install hexo-deployer-git
 	    （记得，不需要hexo init这条指令）。
 	
    (国内一般使用淘宝的镜像，因为npm实在是太慢了)
