@@ -76,9 +76,14 @@ jenkins相关目录释义：
 
 1.启动 
 ```
-方法1: java -jar /usr/lib/jenkins/jenkins.war --httpPort=8899（首次启动建议用这种方法,初始密码会打印到控制台文件中）
+方法1: java -jar /usr/lib/jenkins/jenkins.war --httpPort=8090
 方法2： service jenkins start
 方法3: systemctl start jenkins
+```
+浏览器访问 http://localhost:8090 输入初始密码即可
+初始密码路径位于 
+```
+/var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 2.停止
