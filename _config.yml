@@ -88,5 +88,6 @@ stylus:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:godloveyou/GodLoveYou.github.io.git
-  branch: master
+  repo: 
+        github: git@github.com:godloveyou/GodLoveYou.github.io.git,master
+        coding: git@git.coding.net:china_geek/china_geek.coding.me.git,master

@@ -82,8 +82,33 @@ https://blog.csdn.net/weixin_41004350/article/details/78492500
 ### 8. 安装MYSQL(5.7) 数据库
 
 参考博客: https://www.cnblogs.com/freely/p/8087885.html
+
+添加用户,授权用户
+
+https://www.cnblogs.com/xujishou/p/6306765.html
+
 配置文件 vim /etc/my.cnf
 注意更改端口号为13306 需要加入防火墙
+
+
+
+Mysql授权失败错误问题
+
+执行命令: grant all on *.* to hospital@'%'
+
+授权只能访问某库
+
+grant all privileges on ky.*  to  hospital@'%' identified by 'Fv6jl#cxhd3&0vx8'
+
+执行完要刷新权限  flush privileges;
+
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+
+https://www.cnblogs.com/ivictor/p/5142809.html
+
+
+
+
 
 ### 9. 防火墙配置及管理
 CentOS7使用firewalld打开关闭防火墙与端口
