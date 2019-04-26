@@ -90,3 +90,4 @@ deploy:
   type: git
   repo: 
         github: git@github.com:godloveyou/GodLoveYou.github.io.git,master
+        tencent: git@git.dev.tencent.com:zkrui2008/zkrui2008.coding.me.git,master
