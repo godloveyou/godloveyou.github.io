@@ -2,7 +2,7 @@
 title: cron表达式详解
 categories: java
 tags:
-- cron
+- 定时任务
 ---
 　
 　　　Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7个域，每一个域代表一个含义，Cron有如下两种语法格式：
