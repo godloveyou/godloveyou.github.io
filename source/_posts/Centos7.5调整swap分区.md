@@ -13,7 +13,10 @@ tags:
 
 使用dd命令创建/home/swap这么一个分区文件。文件的大小是2048000  个block，一般情况下1个block为1K，所以这里空间是2G。
 
+```language
 dd if=/dev/zero of=/var/swapfile bs=1024 count=2048000  //添加交换文件并设置其大小为2G
+```
+
 
 ![](https://img-blog.csdn.net/20180627095255111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70) 
 
@@ -25,13 +28,18 @@ mkswap /var/swapfile
 
 3.挂载并激活分区： 
 
+```
 swapon /var/swapfile
+```
 
 ![](https://img-blog.csdn.net/20180627095340170?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 4 赋权限 
 
+```language
 chmod -R 0600 /var/swapfile
+
+```
 
 现在再用free -m命令查看一下内存和swap分区大小，就发现增加了2G的空间了。
 
@@ -41,4 +49,7 @@ chmod -R 0600 /var/swapfile
 vi /etc/fstab 
 在fstab文件末尾追加如下内容后:wq!保存即可： 
 
+```language
 /var/swapfile swap swap defaults 0 0
+```
+
