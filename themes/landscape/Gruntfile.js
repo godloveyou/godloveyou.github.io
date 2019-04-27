@@ -14,6 +14,7 @@ module.exports = function(grunt){
         }
       }
     },
+    
     copy: {
       fontawesome: {
         expand: true,
