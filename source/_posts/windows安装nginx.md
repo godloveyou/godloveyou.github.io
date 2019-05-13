@@ -4,16 +4,15 @@ categories: windows
 tags:
 - NGINX
 ---
-# Windows安装nginx
 
-## 1. 下载 [download](http://nginx.org/en/download.html) 
+## 1. 官方下载NGINX [download](http://nginx.org/en/download.html) 
 
 ## 2.解压运行
 
 ```
  cd c:\
- unzip nginx-1.15.12.zip
- cd nginx-1.15.12
+ unzip nginx-1.12.2.zip
+ cd nginx-1.12.2
  start nginx
 ```
 
@@ -23,7 +22,7 @@ tags:
 命令行运行  `tasklist` 可以看到nginx的两个进程
 
 ```language
-C:\nginx-1.15.12>tasklist /fi "imagename eq nginx.exe"
+C:\nginx-1.12.2>tasklist /fi "imagename eq nginx.exe"
 
  Image Name           PID Session Name     Session#    Mem Usage
 =============== ======== ============== ========== ============
