@@ -1,9 +1,9 @@
 ---
-title:  IDEA快捷键设置
+title:  IDEA快捷键
 categories: 开发工具
 
-tags: IDEA
-- 
+tags: 
+- IDEA
 ---
 
 ## Ctrl
