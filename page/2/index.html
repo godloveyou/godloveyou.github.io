@@ -295,6 +295,1312 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CentOs定时任务Crontab的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/CentOs定时任务Crontab的使用/" itemprop="url">CentOs定时任务Crontab的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:22:22+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index">
+                    <span itemprop="name">LINUX</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/CentOs定时任务Crontab的使用/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/CentOs定时任务Crontab的使用/" class="cy_cmt_count" data-xid="2019/08/07/CentOs定时任务Crontab的使用/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p> Linux 下通过crontab来执行定时任务,当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。</p>
+</blockquote>
+<h2 id="linux任务调度的工作主要分为以下两类："><a href="#linux任务调度的工作主要分为以下两类：" class="headerlink" title="linux任务调度的工作主要分为以下两类："></a>linux任务调度的工作主要分为以下两类：</h2><ul>
+<li>1、系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存</li>
+<li>2、个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>crontab [ -u user ] file<br>或<br>crontab [ -u user ] { -l | -r | -e }</p>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><ul>
+<li><p>-u user：用来设定某个用户的crontab服务,这个前提是你必须要有其权限(比如说是 root)才能够指定他人的时程表。如果不使用 -u user 的话，就是表示设定自己的时程表。</p>
+</li>
+<li><p>file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab</p>
+</li>
+<li><p>-e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。</p>
+</li>
+<li><p>-l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。</p>
+</li>
+<li><p>-r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件.</p>
+</li>
+</ul>
+<h2 id="crontab的文件格式"><a href="#crontab的文件格式" class="headerlink" title="crontab的文件格式"></a>crontab的文件格式</h2><p><img src="http://blog.sjjtcloud.com/blog/20190806/6dVEtGXqD2FO.png?imageslim" alt="mark"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/07/CentOs定时任务Crontab的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试4/" itemprop="url">java面试系列问题(4)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/面试4/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/面试4/" class="cy_cmt_count" data-xid="2019/08/07/面试4/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、Java基础</p>
+<p>为什么JVM调优经常会将-Xms和-Xmx参数设置成一样；</p>
+<p>Java线程池的核心属性以及处理流程；</p>
+<p>Java内存模型，方法区存什么；</p>
+<p>CMS垃圾回收过程；</p>
+<p>Full GC次数太多了，如何优化；</p>
+<p>直接内存如何管理的；</p>
+<p>Java线程池的几个参数的意义和实现机制；</p>
+<p>Java线程池使用无界任务队列和有界任务队列的优劣对比；</p>
+<p>CountDownLatch和CyclicBarrier的区别；</p>
+<p>Java中有哪些同步方案（重量级锁、显式锁、并发容器、并发同步器、CAS、volatile、AQS等）</p>
+<p>如果你的项目出现了内存泄露，怎么监控这个问题呢；</p>
+<p>标记清除和标记整理的区别和优缺点，为何标记整理会发生stop the world；</p>
+<p>线程池，如何根据CPU的核数来设计线程大小，如果是计算机密集型的呢，如果是IO密集型的呢？</p>
+<p>让你设计一个cache如何设计；</p>
+<p>String中hashcode是怎么实现的；</p>
+<p>JDK中哪些实现了单例模式？</p>
+<p>多个线程同时读写，读线程的数量远远⼤于写线程，你认为应该如何解决并发的问题？你会选择加什么样的锁？</p>
+<p>线程池内的线程如果全部忙，提交⼀个新的任务，会发⽣什么？队列全部塞满了之后，还是忙，再提交会发⽣什么？</p>
+<p>synchronized关键字锁住的是什么东西？在字节码中是怎么表示的？在内存中的对象上表现为什么？</p>
+<p>wait/notify/notifyAll⽅法需不需要被包含在synchronized块中？这是为什么？</p>
+<p>ExecutorService你一般是怎么⽤的？是每个Service放一个还是个项目放一个？有什么好处？</p>
+<p>二、数据库</p>
+<p>InnoDB的插入缓冲和两次写的概率和意义；</p>
+<p>如果建了⼀个单列索引，查询的时候查出2列，会⽤到这个单列索引吗？（会用到）</p>
+<p>如果建了⼀个包含多个列的索引，查询的时候只⽤了第⼀列，能不能⽤上这个索引？查三列呢？</p>
+<p>接上题，如果where条件后⾯带有⼀个 i + 5 &lt; 100 会使⽤到这个索引吗？</p>
+<p>like %aaa%会使⽤索引吗? like aaa%呢?</p>
+<p>drop、truncate、delete的区别？</p>
+<p>平时你们是怎么监控数据库的? 慢SQL是怎么排查的？（慢查询日志）</p>
+<p>你们数据库是否⽀持emoji表情，如果不⽀持，如何操作?选择什么编码方式？如果支持一个表情占几个字节?(utf8mb4)；</p>
+<p>如果查询很慢，你会想到的第⼀个⽅式是什么？（数据库索引）</p>
+<p>三、Linux基础</p>
+<p>Linux下可以在/proc目录下可以查看CPU的核心数等；cat /proc/下边会有很多系统内核信息可供显示； </p>
+<p>说一下栈的内存是怎么分配的；</p>
+<p>Linux各个目录有了解过吗？/etc、/bin、/dev、/lib、/sbin这些常见的目录主要作用是什么？</p>
+<p>说一下栈帧的内存是怎么分配的；</p>
+<p>Linux下排查某个死循环的线程；</p>
+<p>动态链接和静态链接的区别；</p>
+<p>进程的内存分布；</p>
+<p>如何查找一个进程打开所有的文件；</p>
+<p>说一下常使用的协议及其对应的端口；</p>
+<p>为什么会有内核态，保护模式你知道吗?</p>
+<p>文件是怎么在磁盘上存储的？</p>
+<p>有了进程为何还要线程呢，不同进程和线程他们之间有什么不同。（进程是资源管理的最小单位，线程是程序执行的最小单位。在操作系统设计上，从进程演化出线程，最主要的目的就是更好的支持SMP以及减小（进程/线程）上下文切换开销。）</p>
+<p>InnoDB聚集索引B+树叶子节点和磁盘什么顺序相同;</p>
+<p>文件系统，进程管理和调度，内存管理机制、虚地址保护模式；</p>
+<p>四、网络基础</p>
+<p>HTTP1.0和HTTP1.1的区别；</p>
+<p>DHCP如何实现分配IP的； 发现阶段（DHCP客户端在网络中广播发送DHCP DISCOVER请求报文，发现DHCP服务器，请求IP地址租约）、提供阶段（DHCP服务器通过DHCP OFFER报文向DHCP客户端提供IP地址预分配）、选择阶段（DHCP客户端通过DHCP REQUEST报文确认选择第一个DHCP服务器为它提供IP地址自动分配服务）和确认阶段（被选择的DHCP服务器通过DHCP ACK报文把在DHCP OFFER报文中准备的IP地址租约给对应DHCP客户端）。</p>
+<p>OSI七层模型，每层都说下自己的理解和知道的，说的越多越好；</p>
+<p>五、框架相关</p>
+<p>Servlet如何保证单例模式,可不可以编程多例的哪？</p>
+<p>Dubbo请求流程以及原理；</p>
+<p>Spring框架如何实现事务的；</p>
+<p>如果一个接⼝有2个不同的实现, 那么怎么来Autowire一个指定的实现？(可以使用Qualifier注解限定要注入的Bean，也可以使用Qualifier和Autowire注解指定要获取的bean，也可以使用Resource注解的name属性指定要获取的Bean)</p>
+<p>Spring框架中需要引用哪些jar包，以及这些jar包的用途；</p>
+<p>Spring Boot没有放到web容器⾥为什么能跑HTTP服务？</p>
+<p>Spring中循环注入是什么意思，可不可以解决，如何解决；</p>
+<p>Spring的声明式事务 @Transaction注解⼀般写在什么位置? 抛出了异常会⾃动回滚吗？有没有办法控制不触发回滚?</p>
+<p>MyBatis怎么防止SQL注入；</p>
+<p>Tomcat本身的参数你⼀般会怎么调整？</p>
+<p>了解哪几种序列化协议？如何选择合适的序列化协议；</p>
+<p>Redis渐进式rehash过程？</p>
+<p>比如我有个电商平台，做每日订单的异常检测，服务端代码应该写；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试3/" itemprop="url">java面试系列问题(3)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/面试3/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/面试3/" class="cy_cmt_count" data-xid="2019/08/07/面试3/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、基础题</p>
+<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
+<p>写出一个必然会产生死锁的伪代码；</p>
+<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
+<p>toString()方法什么情况下需要重写；</p>
+<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
+<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
+<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
+<p>Java 8流式迭代的好处？</p>
+<p>项目中用到的JDK的哪些特性？</p>
+<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
+<p>Spring的bean的创建时机？依赖注入的时机？</p>
+<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
+<p>CopyOnWriteArrayList是什么；</p>
+<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
+<p>如何调试多线程的程序；</p>
+<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
+<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
+<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
+<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
+<p>二、网络基础</p>
+<p>HTTP、TCP、UDP的区别和联系；</p>
+<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
+<p>TCP和UDP各用了底层什么协议；</p>
+<p>单个UDP报文最大容量；</p>
+<p>单个TCP报文最大容量；</p>
+<p>TCP报头格式、UDP报头格式；</p>
+<p>Server遭遇SYN Flood应当怎么处理；</p>
+<p>Web开发中如何防范XSS？</p>
+<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
+<p>三、操作系统</p>
+<p>为什么要内存对齐；</p>
+<p>为什么会有大端小端，htol这一类函数的作用；</p>
+<p>top显示出来的系统信息都是什么含义；（重要！）</p>
+<p>Linux地址空间，怎么样进行寻址的；</p>
+<p>Linux如何查找目录或者文件的；</p>
+<p>四、分布式其他</p>
+<p>分库与分表带来的分布式困境与应对之策；</p>
+<p>Solr如何实现全天24小时索引更新；</p>
+<p>五、Redis</p>
+<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
+<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
+<p>Redis复制的过程;</p>
+<p>Redis队列应用场景；</p>
+<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
+<p>六、系统设计开放性题目</p>
+<p>秒杀系统设计，超卖怎么搞;</p>
+<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
+<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
+<p>基于数组实现一个循环阻塞队列；</p>
+<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
+<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
+<p>七、大数据量问题（后边会有专题单独讨论）</p>
+<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
+<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
+<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
+<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
+<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
+<p>八、逻辑思维题</p>
+<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
+<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
+<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
+<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试2/" itemprop="url">java面试系列问题(2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/面试2/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/面试2/" class="cy_cmt_count" data-xid="2019/08/07/面试2/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、Java相关</p>
+<p>Arraylist与LinkedList默认空间是多少；</p>
+<p>Arraylist与LinkedList区别与各自的优势List 和 Map 区别；</p>
+<p>谈谈HashMap，哈希表解决hash冲突的方法；</p>
+<p>为什么要重写hashcode()和equals()以及他们之间的区别与关系；</p>
+<p>Object的hashcode()是怎么计算的？</p>
+<p>若hashcode方法永远返回1或者一个常量会产生什么结果？</p>
+<p>Java Collections和Arrays的sort方法默认的排序方法是什么；</p>
+<p>引用计数法与GC Root可达性分析法区别；</p>
+<p>浅拷贝和深拷贝的区别；</p>
+<p>String s=”abc”和String s=new String(“abc”)区别；</p>
+<p>HashSet方法里面的hashcode存在哪，如果重写equals不重写hashcode会怎么样？</p>
+<p>反射的作用与实现原理；</p>
+<p>Java中的回调机制；</p>
+<p>模板方法模式；</p>
+<p>开闭原则说一下；</p>
+<p>发布/订阅使用场景；</p>
+<p>KMP算法（一种改进的字符串匹配算法）；</p>
+<p>JMM里边的原子性、可见性、有序性是如何体现出来的，JMM中内存屏障是什么意思，</p>
+<p>二、多线程</p>
+<p>AtomicInteger底层实现原理；</p>
+<p>synchronized与ReentraLock哪个是公平锁；</p>
+<p>CAS机制会出现什么问题；</p>
+<p>用过并发包下边的哪些类；</p>
+<p>一个线程连着调用start两次会出现什么情况？</p>
+<p>wait方法能不能被重写，wait能不能被中断；</p>
+<p>线程池的实现？四种线程池？重要参数及原理？任务拒接策略有哪几种？</p>
+<p>线程状态以及API怎么操作会发生这种转换；</p>
+<p>常用的避免死锁方法；</p>
+<p>三、JVM</p>
+<p>Minor GC与Full GC分别在什么时候发生？什么时候触发Full GC;</p>
+<p>GC收集器有哪些？CMS收集器与G1收集器的特点。</p>
+<p>Java在什么时候会出现内存泄漏；</p>
+<p>Java中的大对象如何进行存储；</p>
+<p>rt.jar被什么类加载器加载，什么时间加载；</p>
+<p>自己写的类被什么加载，什么时间加载；</p>
+<p>自己写的两个不同的类是被同一个类加载器加载的吗？为什么？</p>
+<p>为什么新生代内存需要有两个Survivor区？</p>
+<p>几种常用的内存调试工具：jmap、jstack、jconsole；</p>
+<p>类加载的五个过程：加载、验证、准备、解析、初始化；</p>
+<p>G1停顿吗，CMS回收步骤，CMS为什么会停顿，停顿时间；</p>
+<p>栈主要存的数据是什么，堆呢？</p>
+<p>堆分为哪几块，比如说新生代老生代，那么新生代又分为什么？</p>
+<p>软引用和弱引用的使用场景（软引用可以实现缓存，弱引用可以用来在回调函数中防止内存泄露）；</p>
+<p>四、数据库</p>
+<p>数据库索引，什么是全文索引，全文索引中的倒排索引是什么原理；</p>
+<p>数据库最佳左前缀原则是什么？</p>
+<p>数据库的三大范式；</p>
+<p>悲观锁和乐观锁的原理和应用场景；</p>
+<p>左连接、右连接、内连接、外连接、交叉连接、笛卡儿积等；</p>
+<p>一般情况下数据库宕机了如何进行恢复（什么是Write Ahead Log机制，什么是Double Write机制，什么是Check Point）；</p>
+<p>什么是redo日志、什么是undo日志；</p>
+<p>数据库中的隔离性是怎样实现的；原子性、一致性、持久性又是如何实现的；</p>
+<p>什么是组合索引，组合索引什么时候会失效；</p>
+<p>关系型数据库和非关系型数据库区别；</p>
+<p>数据库死锁如何解决；</p>
+<p>MySQL并发情况下怎么解决（通过事务、隔离级别、锁）；</p>
+<p>MySQL中的MVCC机制是什么意思，根据具体场景，MVCC是否有问题；</p>
+<p>MySQL数据库的隔离级别，以及如何解决幻读；</p>
+<p>五、缓存服务器</p>
+<p>Redis中zSet跳跃表问题；</p>
+<p>Redis的set的应用场合？</p>
+<p>Redis高级特性了解吗？</p>
+<p>Redis的pipeline有什么用处？</p>
+<p>Redis集群宕机如何处理，怎么样进行数据的迁移；</p>
+<p>Redis的集群方案；</p>
+<p>Redis原子操作怎么用比较好；</p>
+<p>Redis过期策略是怎么实现的呢？</p>
+<p>六、SSM相关</p>
+<p>Spring中@Autowired和@Resource注解的区别？</p>
+<p>Spring声明一个 bean 如何对其进行个性化定制；</p>
+<p>MyBatis有什么优势；</p>
+<p>MyBatis如何做事务管理；</p>
+<p>七、操作系统</p>
+<p>Linux静态链接和动态链接；</p>
+<p>什么是IO多路复用模型（select、poll、epoll）；</p>
+<p>Linux中的grep管道用处？Linux的常用命令？</p>
+<p>操作系统中虚拟地址、逻辑地址、线性地址、物理地址的概念及区别；</p>
+<p>内存的页面置换算法；</p>
+<p>内存的页面置换算法；</p>
+<p>进程调度算法，操作系统是如何调度进程的；</p>
+<p>父子进程、孤儿进程、僵死进程等概念；</p>
+<p>fork进程时的操作；</p>
+<p>kill用法，某个进程杀不掉的原因（僵死进程；进入内核态，忽略kill信号）；</p>
+<p>系统管理命令（如查看内存使用、网络情况）；</p>
+<p>find命令、awk使用；</p>
+<p>Linux下排查某个死循环的线程；</p>
+<p>八、网络相关</p>
+<p>数据链路层是做什么的?</p>
+<p>数据链路层的流量控制？</p>
+<p>网络模型的分层、IP和Mac地址在那个层、TCP和HTTP分别在那个层；</p>
+<p>TCP滑动窗口；</p>
+<p>TCP为什么可靠；</p>
+<p>TCP的同传，拆包与组装包是什么意思；</p>
+<p>Https和Http有什么区别；</p>
+<p>Http 为什么是无状态的；</p>
+<p>TCP三次握手，为什么不是三次，为什么不是四次；</p>
+<p>TCP的拥塞控制、流量控制详细说明？</p>
+<p>Http1.0和Http2.0的区别；</p>
+<p>两个不同ip地址的计算机之间如何通信；</p>
+<p>地址解析协议ARP；</p>
+<p>OSI七层模型分别对应着五层模型的哪一部分；</p>
+<p>TCP三次握手数据丢失了怎么办？那如果后面又找到了呢？</p>
+<p>九、分布式相关</p>
+<p>消息队列使用的场景介绍和作用（应用耦合、异步消息、流量削锋等）；</p>
+<p>如何解决消息队列丢失消息和重复消费问题；</p>
+<p>Kafka使用过吗，什么是幂等性？怎么保证一致性，持久化怎么做，分区partition的理解，LEO是什么意思，如何保证多个partition之间数据一致性的（ISR机制），为什么Kafka可以这么快（基于磁盘的顺序读写）；</p>
+<p>异步队列怎么实现；</p>
+<p>你项目的并发是多少？怎么解决高并发问题？单机情况下Tomcat的并发大概是多少，MySQL的并发大致是多少？</p>
+<p>什么是C10K问题；</p>
+<p>高并发情况下怎么办；</p>
+<p>分布式理论，什么是CAP理论，什么是Base理论，什么是Paxos理论；</p>
+<p>分布式协议的选举算法；</p>
+<p>说一下你对微服务的理解，与SOA的区别；</p>
+<p>Dubbo的基本原理，RPC，支持哪些通信方式，服务的调用过程；</p>
+<p>Dubbo如果有一个服务挂掉了怎么办；</p>
+<p>分布式事务，操作两个表不在一个库，如何保证一致性。</p>
+<p>分布式系统中，每台机器如何产生一个唯一的随机值；</p>
+<p>系统的量级、pv、uv等；</p>
+<p>什么是Hash一致性算法？分布式缓存的一致性，服务器如何扩容（哈希环）；</p>
+<p>正向代理、反向代理；</p>
+<p>什么是客户端负载均衡策略、什么是服务器端负载均衡策略；</p>
+<p>如何优化Tomcat，常见的优化方式有哪些；</p>
+<p>Nginx的Master和Worker，Nginx是如何处理请求的；</p>
+<p>十、系统设计相关</p>
+<p>如何防止表单重复提交（Token令牌环等方式）；</p>
+<p>有一个url白名单，需要使用正则表达式进行过滤，但是url量级很大，大概亿级，那么如何优化正则表达式？如何优化亿级的url匹配呢？</p>
+<p>常见的Nginx负载均衡策略；已有两台Nginx服务器了，倘若这时候再增加一台服务器，采用什么负载均衡算法比较好？</p>
+<p>扫描二维码登录的过程解析；</p>
+<p>如何设计一个生成唯一UUID的算法？</p>
+<p>实现一个负载均衡的算法，服务器资源分配为70%、20%、10%；</p>
+<p>有三个线程T1 T2 T3，如何保证他们按顺序执行；</p>
+<p>三个线程循环输出ABCABCABC….</p>
+<p>十一、安全相关</p>
+<p>什么是XSS攻击，XSS攻击的一般表现形式有哪些？如何防止XSS攻击；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试1/" itemprop="url">java面试系列问题(1)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/面试1/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/面试1/" class="cy_cmt_count" data-xid="2019/08/07/面试1/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-final-finally-finalize-的区别"><a href="#1-final-finally-finalize-的区别" class="headerlink" title="1. final, finally, finalize 的区别"></a>1. final, finally, finalize 的区别</h3><p> final它是java中的一个关键字和修饰符,用于声明属性,方法，类，分别标书修饰的属性不可变,方法不可覆盖,类不可继承  </p>
+<p> finally是异常处理语句结构的一部分，表示总是执行,使用 finally 可以维护对象的内部状态，并可以清理非内存资源 </p>
+<p> finallize这个方法是Object类的一个方法，因此所有类都继承了它,当垃圾收集器确定某个对象不再被引用时，会调用该方法做清理工作,如果想要执行自定义的清理工作，可以在子类中覆盖该方法.</p>
+<hr>
+<h3 id="2-Exception、Error、运行时异常与一般异常有何异同"><a href="#2-Exception、Error、运行时异常与一般异常有何异同" class="headerlink" title="2. Exception、Error、运行时异常与一般异常有何异同"></a>2. Exception、Error、运行时异常与一般异常有何异同</h3><p><a href="https://blog.csdn.net/m0_37531231/article/details/79502778(参考)" target="_blank" rel="noopener">https://blog.csdn.net/m0_37531231/article/details/79502778(参考)</a><br><img src="http://pam1kb0ai.bkt.clouddn.com/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png" alt="Java异常类层次结构图"></p>
+<p>Error层次结构描述了java运行时系统的内部错误和资源耗尽错误。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题</p>
+<p>Exceprion这个层次结构又分解为连个分支：一个分支派生于RuntimeException；另一个分支包含其他异常。划分两个分支的规则是：由程序错误导致的异常属于RuntimeException；而程序本身没有没有问题，但由于像I/O错误这类异常导致的异常属于其他异常  </p>
+<h3 id="3-请写出5种常见到的runtime-exception"><a href="#3-请写出5种常见到的runtime-exception" class="headerlink" title="3. 请写出5种常见到的runtime exception"></a>3. 请写出5种常见到的runtime exception</h3><p>NullpointerExection IndexOutOfBoundsException NumberFormatException FileNotFoundException EofException</p>
+<h3 id="4-int-和-Integer-有什么区别，Integer的值缓存范围"><a href="#4-int-和-Integer-有什么区别，Integer的值缓存范围" class="headerlink" title="4. int 和 Integer 有什么区别，Integer的值缓存范围"></a>4. int 和 Integer 有什么区别，Integer的值缓存范围</h3><p>int是java中基本数据类型，Integer是对象类型,它是int的包装类<br>java对于-128到127之间的数，会进行缓存</p>
+<h3 id="5-包装类，装箱和拆箱"><a href="#5-包装类，装箱和拆箱" class="headerlink" title="5.包装类，装箱和拆箱"></a>5.包装类，装箱和拆箱</h3><p>Java中的基本类型功能简单，不具备对象的特性，为了使基本类型具备对象的特性，所以出现了包装类，就可以像操作对象一样操作基本类型数据  </p>
+<p>装箱就是 自动将基本数据类型转换为包装器类型；拆箱就是  自动将包装器类型转换为基本数据类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java5之前如果要定义一个值为10的Integer对象 必须这样定义 Integer i = new Integer(10)</span><br><span class="line">Integer i = 10;  //装箱</span><br><span class="line">int n = i;   //拆箱</span><br></pre></td></tr></table></figure>
+<h3 id="6-String、StringBuilder、StringBuffer"><a href="#6-String、StringBuilder、StringBuffer" class="headerlink" title="6.String、StringBuilder、StringBuffer"></a>6.String、StringBuilder、StringBuffer</h3><p>1.执行速度StringBuilder &gt; StringBuffer &gt; String</p>
+<ol start="2">
+<li>操作少量数据用String, 单线程下操作大量字符串数据用StringBuilder, 多线程下操作大量数据用StringBuffer</li>
+</ol>
+<h3 id="7-重载和重写的区别"><a href="#7-重载和重写的区别" class="headerlink" title="7.重载和重写的区别"></a>7.重载和重写的区别</h3><p>重载(Overload):<br>方法名称相同, 参数个数或类型不同，可以有不同的返回类型,可以有不同的访问修饰符,可以抛出不同的异常.  </p>
+<p>重写(Override):<br>参数列表与被重写的方法相同，返回类型与被重写的方法一致，访问修饰符要大于被重写方法的修饰符  </p>
+<h3 id="8-抽象类和接口有什么区别"><a href="#8-抽象类和接口有什么区别" class="headerlink" title="8.抽象类和接口有什么区别"></a>8.抽象类和接口有什么区别</h3><p>1.抽象类可以有默认的方法实现,接口完全是抽象的不存在方法实现<br>2.抽象类可以有构造器, 接口没有构造器<br>3.抽象类的修饰符可以是public,protected,default; 接口默认都是public,不能使用其他修饰符<br>4.抽象类比接口速度更快，因为接口需要寻找它的实现类<br>5.抽象类可以继承1个类并可以实现多个接口， 接口只能实现接口 不能继承接口</p>
+<h3 id="9-说说反射的用途及实现"><a href="#9-说说反射的用途及实现" class="headerlink" title="9.说说反射的用途及实现"></a>9.说说反射的用途及实现</h3><p>反射是java的特征之一, 通过反射我们可以在程序运行时获知程序的每个属性和方法<br>用途:<br>    反射最重要的用途就是开发各种通用框架<br>    很多框架（比如 Spring）都是配置化的（比如通过 XML文件配置 JavaBean，Action之类的），为了保证框架的通用性，他们可能根据配置文件加载不同的对象或类，调用不同的方法，这个时候就必须用到反射——运行时动态加载需要加载的对象。<br>举一个例子，在运用Struts 2框架的开发中我们一般会在struts.xml里去配置Action，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;action name=&quot;login&quot; class=&quot;org.ScZyhSoft.test.action.SimpleLoginAction&quot;  method=&quot;execute&quot;&gt;  </span><br><span class="line">   &lt;result&gt;/shop/shop-index.jsp&lt;/result&gt;  </span><br><span class="line">   &lt;result name=&quot;error&quot;&gt;login.jsp&lt;/result&gt;  </span><br><span class="line">&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<p>配置文件与Action建立了一种映射关系，当View层发出请求时，请求会被StrutsPrepareAndExecuteFilter拦截，然后StrutsPrepareAndExecuteFilter会去动态地创建Action实例。<br>——比如我们请求login.action，那么StrutsPrepareAndExecuteFilter就会去解析struts.xml文件，检索action中name为login的Action，并根据class属性创建SimpleLoginAction实例，并用invoke方法来调用execute方法，这个过程离不开反射。<br>对与框架开发人员来说，反射虽小但作用非常大，它是各种容器实现的核心。而对于一般的开发者来说，不深入框架开发则用反射用的就会少一点，不过了解一下框架的底层机制有助于丰富自己的编程思想，也是很有益的。</p>
+<h3 id="10-说说自定义注解的场景及实现"><a href="#10-说说自定义注解的场景及实现" class="headerlink" title="10.说说自定义注解的场景及实现"></a>10.说说自定义注解的场景及实现</h3><p>场景：日志管理，缓存处理，权限验证等<br>实现：在需要验证的地方增加一个切面，通过反射获取方法所包含的注解，比如包含自定义的注解，就进行相应的功能处理</p>
+<h3 id="11-HTTP请求的GET与POST方式的区别"><a href="#11-HTTP请求的GET与POST方式的区别" class="headerlink" title="11.HTTP请求的GET与POST方式的区别"></a>11.HTTP请求的GET与POST方式的区别</h3><p>GET请求：请求参数会被拼接到URL后,可以拼接的长度受限制，而且如果有敏感信息 相对是不安全的<br>POST请求: 为了克服GET请求的限制，post传递参数会被放入请求体中，可以发送的参数数目不受限制，因为外部不可见，因此相对安全</p>
+<h3 id="12-Session与Cookie区别"><a href="#12-Session与Cookie区别" class="headerlink" title="12.Session与Cookie区别"></a>12.Session与Cookie区别</h3><p>session是基于服务端的会话管理，用于跟踪用户状态 这个数据可以保存在内存中，数据库中或者集群中<br>cookie是基于客户端的会话管理,数据保存在客户端中</p>
+<h3 id="13-列出自己常用的JDK包"><a href="#13-列出自己常用的JDK包" class="headerlink" title="13.列出自己常用的JDK包"></a>13.列出自己常用的JDK包</h3><p>java.util.<em> java.io.</em></p>
+<h3 id="14-MVC设计思想"><a href="#14-MVC设计思想" class="headerlink" title="14.MVC设计思想"></a>14.MVC设计思想</h3><p>MODEL模型用来封装业务逻辑，<br>VIEW 视图用来实现表示逻辑，<br>Controller 控制器用来协调模型与视图(视图要通过控制器来调用模型，模型返回的处理结果也要先交给控制器，由控制器来选择合适的视图来显示 处理结果)。<br>这种设计思想 可以使各个层之间相互独立 又能相互协作，可以是业务逻辑与我们表现层视图进行解耦，有利于分工合作及快速开发</p>
+<h3 id="15-equals与-的区别"><a href="#15-equals与-的区别" class="headerlink" title="15.equals与==的区别"></a>15.equals与==的区别</h3><p>equals和==的第一个区别就是  他们一个是方法，一个是运算符，它们比较的都是物理地址 而不是值得比较<br>Java 语言里的 equals方法其实是交给开发者去覆写的，让开发者自己去定义满足什么条件的两个Object是equal的</p>
+<p>由于String对象中重写了equals方法 当物理地址不同时，会进一步比较值，所以比较字符串时我们是用equals方法<br>如果我们要重写一个对象比如Student的equals方法，必须要同时重写equals() 和hashcode()方法,因为只重写equals方法是无法改变hashcode值的 而比较时首先比较的就是hashcode，所以我们通常是在编辑器中 右键-&gt;source-&gt;generate hashcode() and equals() 来实现。</p>
+<h3 id="16-什么是Java序列化和反序列化，如何实现Java序列化？或者请解释Serializable-接口的作用"><a href="#16-什么是Java序列化和反序列化，如何实现Java序列化？或者请解释Serializable-接口的作用" class="headerlink" title="16.什么是Java序列化和反序列化，如何实现Java序列化？或者请解释Serializable 接口的作用"></a>16.什么是Java序列化和反序列化，如何实现Java序列化？或者请解释Serializable 接口的作用</h3><ul>
+<li>序列化：把对象转换为字节序列的过程</li>
+<li><p>反序列化: 把字节序列转化为对象的过程<br>对象序列化用途：<br>1.将对象字节序列永久保存在硬盘上 通常保存在一个文件中<br>2.在网络上传送对象的字节序列</p>
+</li>
+<li><p>java.io.ObjectOutputStream代表对象输出流，它的writeObject(Object obj)方法可对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。</p>
+</li>
+<li>java.io.ObjectInputStream代表对象输入流，它的readObject()方法从一个源输入流中读取字节序列，再把它们反序列化为一个对象，并将其返回。 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ObjectOutputStream oo = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"E:/Person.txt"</span>))); </span><br><span class="line">oo.writeObject(person); </span><br><span class="line">System.out.println(<span class="string">"Person对象序列化成功！"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="17-Object类中常见的方法，为什么wait-notify会放在Object里边？"><a href="#17-Object类中常见的方法，为什么wait-notify会放在Object里边？" class="headerlink" title="17.Object类中常见的方法，为什么wait  notify会放在Object里边？"></a>17.Object类中常见的方法，为什么wait  notify会放在Object里边？</h3><p>简单说：因为synchronized中的这把锁可以是任意对象，所以任意对象都可以调用wait()和notify()；所以wait和notify属于Object。</p>
+<p>专业说：因为这些方法在操作同步线程时，都必须要标识它们操作线程的锁，只有同一个锁上的被等待线程，可以被同一个锁上的notify唤醒，不可以对不同锁中的线程进行唤醒。<br>也就是说，等待和唤醒必须是同一个锁。而锁可以是任意对象，所以可以被任意对象调用的方法是定义在object类中。</p>
+<h3 id="18-Java的平台无关性如何体现出来的"><a href="#18-Java的平台无关性如何体现出来的" class="headerlink" title="18.Java的平台无关性如何体现出来的"></a>18.Java的平台无关性如何体现出来的</h3><ul>
+<li>Java程序则编译为字节码。字节码本身不能运行，因为它不是原生代码。字节码只能够在Java虚拟机（JVM）上运行</li>
+<li>JVM是一个原生应用程序，它负责解释字节码。通过使用JVM可用在众多的平台上（这也就是Java可以做到平台无关性的原因），Sun公司将Java变成了跨平台的语言。如下图模型，完全相同的字节码可以在已经开发了JVM的任何操作系统上运行<br><img src="http://pam1kb0ai.bkt.clouddn.com/java%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%B7%A8%E5%B9%B3%E5%8F%B0.jpg" alt="java跨平台原理"></li>
+</ul>
+<h3 id="19-JDK和JRE的区别"><a href="#19-JDK和JRE的区别" class="headerlink" title="19.JDK和JRE的区别"></a>19.JDK和JRE的区别</h3><ul>
+<li>JDK（Java Development Kit）JDK是整个JAVA的核心，包括了Java运行环境JRE（Java Runtime Envirnment）、一堆Java工具（javac/java/jdb等）和Java基础的类库</li>
+<li>Java Runtime Environment（JRE）他就是java运行环境 并不是一个开发环境，所以没有包含任何开发工具</li>
+</ul>
+<h3 id="20-Java-8有哪些新特性"><a href="#20-Java-8有哪些新特性" class="headerlink" title="20.Java 8有哪些新特性"></a>20.Java 8有哪些新特性</h3><ul>
+<li>Lambda表达式和函数式接口,它允许我们将函数当成参数传递给某个方法</li>
+<li>接口的默认方法（default修饰)</li>
+</ul>
+<h3 id="21-Java常见集合"><a href="#21-Java常见集合" class="headerlink" title="21.Java常见集合"></a>21.Java常见集合</h3><p>ArrayList,LinkedList,HashMap,HashTable,Set,HashSet,TreeSet</p>
+<h3 id="22-List-和-Set-区别"><a href="#22-List-和-Set-区别" class="headerlink" title="22.List 和 Set 区别"></a>22.List 和 Set 区别</h3><ul>
+<li>1.List,Set都实现了Collection接口</li>
+<li>2.List它是一个有序的集合输出顺序就是插入顺序，可以允许插入重复对象，可以插入null元素，常用的实现有ArrayList,LinkedList,Vector</li>
+<li>3.Set 是一一个无序的容器(存入和取出顺序不一定一致)，不允许插入重复对象,常用实现HashSet,LinkedHashSet,TreeSet</li>
+</ul>
+<h3 id="23-HashSet如何保证数据唯一性？"><a href="#23-HashSet如何保证数据唯一性？" class="headerlink" title="23.HashSet如何保证数据唯一性？"></a>23.HashSet如何保证数据唯一性？</h3><p>HashSet底层数据接口是哈希表,怎样保证数据唯一性呢？它是通过HashCode和equals来完成的，<br>如果元素的Hashcode值相同,才会判断equals是否为true,如果hashcode值不同，不会调用equals方法</p>
+<p>在java的集合中，判断两个对象是否相等的规则是:<br>判断两个对象的hashCode否相等</p>
+<ol>
+<li>如果相等 就认为两个对象不相等，完毕</li>
+<li>如果不相等，调用对象的equals()方法判断是否相等，如果不相等，认为两个对象也不相等</li>
+</ol>
+<p>为什么要通过hashCode()和equlas()两条规则呢?<br> 因为hashCode()相等时 equlas()也可能不相等，String,Double类都重写了hashCode()方法和equlas()方法，我们自己定义的对象也可以重写hashCode()和equlas()方法</p>
+<h3 id="24-List-和-Map-区别"><a href="#24-List-和-Map-区别" class="headerlink" title="24.List 和 Map 区别"></a>24.List 和 Map 区别</h3><p>List是有顺序的集合，Map是通过键值对存取的容器,Key和Value一一对应<br>Set,List都继承自Collection接口,List接口有三个实现类：ArrayList，Vector，LinkedList<br>HashMap,HashTable实现了  Map&lt;E,V&gt;接口</p>
+<h3 id="25-Arraylist-与-LinkedList-区别"><a href="#25-Arraylist-与-LinkedList-区别" class="headerlink" title="25.Arraylist 与 LinkedList 区别"></a>25.Arraylist 与 LinkedList 区别</h3><p>ArrayList,LinkedList是List接口的两个实现类，他们都实现了List接口的方法,只是实现的方式不同</p>
+<p>ArrayList它是以数组的方式来实现的,数组的特性是可以使用索引的方式来快速定位对象的位置,因此对于快速的随机取得对象的需求,使用ArrayList实现执行效率上会比较好<br>LinkedList是采用链表的方式来实现List接口的,它本身有自己特定的方法，如: addFirst(),addLast(),getFirst(),removeFirst()等. 由于是采用链表实现的,因此在进行insert和remove动作时在效率上要比ArrayList要好得多!适合用来实现Stack(堆栈)与Queue(队列),前者先进后出，后者是先进先出.</p>
+<h3 id="26-在删除可插入对象的动作时，为什么ArrayList的效率会比较低呢"><a href="#26-在删除可插入对象的动作时，为什么ArrayList的效率会比较低呢" class="headerlink" title="26.在删除可插入对象的动作时，为什么ArrayList的效率会比较低呢?"></a>26.在删除可插入对象的动作时，为什么ArrayList的效率会比较低呢?</h3><p>ArrayList是使用数组实现的,若要从数组中删除或插入某一个对象，需要移动后段的数组元素，从而会重新调整索引顺序,调整索引顺序会消耗一定的时间，所以速度上就会比LinkedList要慢许多. 相反,LinkedList是使用链表实现的,若要从链表中删除或插入某一个对象,只需要改变前后对象的引用即可</p>
+<h3 id="27-ArrayList-与-Vector-区别"><a href="#27-ArrayList-与-Vector-区别" class="headerlink" title="27.ArrayList 与 Vector 区别"></a>27.ArrayList 与 Vector 区别</h3><p>List接口有三个实现类：ArrayList，Vector，LinkedList<br>1） Vector的方法都是同步的(Synchronized),是线程安全的(thread-safe)，而ArrayList的方法不是，由于线程的同步必然要影响性能，因此,ArrayList的性能比Vector好。<br>2） 当Vector或ArrayList中的元素超过它的初始大小时,Vector会将它的容量翻倍,而ArrayList只增加50%的大小，这样,ArrayList就有利于节约内存空间。</p>
+<h3 id="28-HashMap-和-Hashtable-的区别"><a href="#28-HashMap-和-Hashtable-的区别" class="headerlink" title="28.HashMap 和 Hashtable 的区别"></a>28.HashMap 和 Hashtable 的区别</h3><p>1)HashMap线程不安全，HashTable线程安全，HashMap性能要好一点儿<br>2)HashMap中key和value可以为null, HashTable中key和value都不能为null</p>
+<h3 id="29-HashSet-和-HashMap-区别"><a href="#29-HashSet-和-HashMap-区别" class="headerlink" title="29.HashSet 和 HashMap 区别"></a>29.HashSet 和 HashMap 区别</h3><p>1) HashSet实现了Set接口，它不允许集合中出现重复元素。当我们提到HashSet时，第一件事就是在将对象存储在 HashSet之前，要确保重写hashCode（）方法和equals（）方法，这样才能比较对象的值是否相等，确保集合中没有 储存相同的对象<br>2) HashMap实现了Map接口 Map接口对键值对进行映射。HashMap中根据key来计算hashcode, HashSet中使用成员对象来计算HashCode,对于两个对象来说hashCode值可能相同，因此如果两个对象hashcode相同的情况下会继续调用equals()方法<br>判断对象的相等性，相等返回true,否则返回false.</p>
+<h3 id="30-HashMap-和-ConcurrentHashMap-的区别"><a href="#30-HashMap-和-ConcurrentHashMap-的区别" class="headerlink" title="30. HashMap 和 ConcurrentHashMap 的区别"></a>30. HashMap 和 ConcurrentHashMap 的区别</h3><p>1) ConcurrentHashMap是线程安全的 具体是怎么实现线程安全的呢，肯定不可能是每个方法加synchronized，那样就变成了HashTable。它引入了一个“分段锁”的概念，具体可以理解为把一个大的Map拆分成N个小的HashTable，根据key.hashCode()来决定把key放到哪个HashTable中</p>
+<p>2）在ConcurrentHashMap中，就是把Map分成了N个Segment，put和get的时候，都是现根据key.hashCode()算出放到哪个Segment中</p>
+<h3 id="31-Java中native方法使用场景？"><a href="#31-Java中native方法使用场景？" class="headerlink" title="31.Java中native方法使用场景？"></a>31.Java中native方法使用场景？</h3><p>1）在方法中调用一些不是由java语言写的代码。</p>
+<p>2）在方法中用java语言直接操纵计算机硬件。</p>
+<hr>
+<h3 id="33-JVM运行时内存区域划分"><a href="#33-JVM运行时内存区域划分" class="headerlink" title="33.JVM运行时内存区域划分"></a>33.JVM运行时内存区域划分</h3><p><img src="http://pam1kb0ai.bkt.clouddn.com/jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="jvm内存划分"></p>
+<p>1.程序计数器（线程私有）<br>程序计数器 通常占用很小的一块儿内存, 它用于存放当前线程执行的字节码的行号指示器<br>为什么需要程序计数器呢？因为java虚拟机中多线程是通过线程不断切换获得CPU执行时间进行的，为了处理器切换线程时能够回到之前所执行的位置, 每个线程都要有一个程序计数器,记录当前线程执行的字节码位置,所以是线程私有的.</p>
+<p>2.java虚拟机栈(线程私有)<br>虚拟机栈描述的是Java 方法执行的内存模型：每个方法被执 行的时候都会同时创建一个栈帧（Stack Frame ①）用于存储局部变量表、操作栈、动态链接、方法出口等信息。<br>每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
+<ul>
+<li>注意：1.局部变量表存放了编译期可知的各种基本数据类型（boolean、byte、char、short、int、float、long、double）、对象引用</li>
+<li>两种异常<br>1.StackOverflowError 如果线程申请的栈深度大于虚拟机允许的栈深度时，抛出这个错误<br>2.OutOfMemoryError 当虚拟机栈扩展时 无法申请到足够的内存 就会抛出这个错误.</li>
+</ul>
+<p>3.本地方法栈 (Native Method Stacks) 线程私有<br>本地方法栈与虚拟机栈所发挥的作用是非常相似的,区别就是 虚拟机栈为执行的java方法服务，而本地方法栈为虚拟机使用到的Native方法(本地方法)服务</p>
+<p>4.java堆（线程共享）<br>Java 堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的 唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存<br>主要用来存放对象实例和数组，它是垃圾收集器管理的主要区域</p>
+<p>5.方法区（非堆内存）Non-heap（线程共享）<br>用于存储被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据<br>根据Java 虚拟机规范的规定，当方法区无法满足内存分配需求时，将抛出OutOfMemoryError 异常</p>
+<p>运行时常量池<br>运行时常量池是方法区的一部分，主要存储编译期生成的各种字面量和符号引用</p>
+<h3 id="JVM如何设置参数"><a href="#JVM如何设置参数" class="headerlink" title="JVM如何设置参数"></a>JVM如何设置参数</h3><p>Linux下 在catalina.sh中设置如下参数<br>JAVA_OPTS=”-Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m”  </p>
+<ul>
+<li>Xms                jvm初始分配的堆内存大小</li>
+<li>Xmx                jvm最大允许分配的堆内存，按需分配</li>
+<li>XX:PermSize    jvm初始分配的非堆内存大小</li>
+<li>XX:MaxPermSize jvm最大允许分配的非堆内存</li>
+</ul>
+<h3 id="34-常见的设计模式"><a href="#34-常见的设计模式" class="headerlink" title="34.常见的设计模式"></a>34.常见的设计模式</h3><h3 id="35-设计模式的的六大原则及其含义"><a href="#35-设计模式的的六大原则及其含义" class="headerlink" title="35.设计模式的的六大原则及其含义"></a>35.设计模式的的六大原则及其含义</h3><p>（参考: <a href="https://www.cnblogs.com/dolphin0520/p/3919839.html）" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3919839.html）</a></p>
+<ol>
+<li><p>单一职责原则<br> 单一职责原则告诉我们：一个类不能太“累”！在软件系统中，一个类（大到模块，小到方法）承担的职责越多，它被复用的可能性就越小，而且一个类承担的职责过多，就相当于将这些职责耦合在一起，当其中一个职责变化时，可能会影响其他职责的运作，因此要将这些职责进行分离，将不同的职责封装在不同的类中，即将不同的变化原因封装在不同的类中，如果多个职责总是同时发生改变则可将它们封装在同一类中  </p>
+</li>
+<li><p>开闭原则<br> 一个软件实体应当对扩展开放，对修改关闭。即软件实体应尽量在不修改原有代码的情况下进行扩展</p>
+</li>
+<li><p>里氏替换原则<br> 里氏代换原则是实现开闭原则的重要方式之一，由于使用基类对象的地方都可以使用子类对象，因此在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象</p>
+</li>
+<li><p>依赖倒置原则<br> 抽象不应该依赖于细节，细节应当依赖于抽象。换言之，要针对接口编程，而不是针对实现编程</p>
+</li>
+<li><p>接口隔离原则<br> 使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口</p>
+</li>
+<li><p>迪米特原则<br> 一个软件实体应当尽可能少地与其他实体发生相互作用<br>  如果一个系统符合迪米特法则，那么当其中某一个模块发生修改时，就会尽量少地影响其他模块，扩展会相对容易，这是对软件实体之间通信的限制，迪米特法则要求限制软件实体之间通信的宽度和深度。迪米特法则可降低系统的耦合度，使类与类之间保持松散的耦合关系。</p>
+</li>
+</ol>
+<h3 id="36-常见的单例模式以及各种实现方式的优缺点，哪一种最好，手写常见的单利模式"><a href="#36-常见的单例模式以及各种实现方式的优缺点，哪一种最好，手写常见的单利模式" class="headerlink" title="36.常见的单例模式以及各种实现方式的优缺点，哪一种最好，手写常见的单利模式"></a>36.常见的单例模式以及各种实现方式的优缺点，哪一种最好，手写常见的单利模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">   	private static final Singleton singleton = new Singleton();</span><br><span class="line">   	private Singleton()&#123;&#125;</span><br><span class="line">   	public static synchronized Singleton getInstance()&#123;</span><br><span class="line">      	 return singleton;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="37-什么是长连接和短连接"><a href="#37-什么是长连接和短连接" class="headerlink" title="37.什么是长连接和短连接"></a>37.什么是长连接和短连接</h3><ol>
+<li><p>HTTP的长连接和短连接本质上是TCP长连接和短连接。HTTP属于应用层协议，在传输层使用TCP协议，在网络层使用IP协议。 IP协议主要解决网络路由和寻址问题，TCP协议主要解决如何在IP层之上可靠地传递数据包，使得网络上接收端收到发送端所发出的所有包，并且顺序与发送顺序一致。TCP协议是可靠的、面向连接的</p>
+</li>
+<li><p>在HTTP/1.0中默认使用短连接。也就是说，客户端和服务器每进行一次HTTP操作，就建立一次连接，任务结束就中断连接。</p>
+</li>
+<li><p>而从HTTP/1.1起，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头加入这行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，客户端再次访问这个服务器时，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。实现长连接需要客户端和服务端都支持长连接。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 38.三次握手和四次挥手、为什么挥手需要四次</span><br><span class="line">参考博文: https://blog.csdn.net/qzcsu/article/details/72861891</span><br><span class="line"></span><br><span class="line">![Tcp三次握手示意图](http://pam1kb0ai.bkt.clouddn.com/tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png)</span><br><span class="line"></span><br><span class="line">第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</span><br><span class="line"></span><br><span class="line">第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</span><br><span class="line"></span><br><span class="line">第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</span><br><span class="line"></span><br><span class="line">完成三次握手，客户端与服务器开始传送数据，在上述过程中，还有一些重要的概念：</span><br><span class="line"></span><br><span class="line">未连接队列</span><br><span class="line"></span><br><span class="line">在三次握手协议中，服务器维护一个未连接队列，该队列为每个客户端的SYN包（syn=j）开设一个条目，该条目表明服务器已收到SYN包，并向客户发出确认，正在等待客户的确认包。这些条目所标识的连接在服务器处于SYN_RECV状态，当服务器收到客户的确认包时，删除该条目，服务器进入ESTABLISHED状态。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; 问题1：为什么TCP客户端最后还要发送一次确认呢？ </span><br><span class="line"></span><br><span class="line">&gt; 一句话，主要防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误。如果使用的是两次握手建立连接，假设有这样一种场景，客户端发送了第一个请求连接并且没有丢失，只是因为在网络结点中滞留的时间太长了，由于TCP的客户端迟迟没有收到确认报文，以为服务器没有收到，此时重新向服务器发送这条报文，此后客户端和服务器经过两次握手完成连接，传输数据，然后关闭连接。此时此前滞留的那一次请求连接，网络通畅了到达了服务器，这个报文本该是失效的，但是，两次握手的机制将会让客户端和服务器再次建立连接，这将导致不必要的错误和资源的浪费。</span><br><span class="line">&gt; 如果采用的是三次握手，就算是那一次失效的报文传送过来了，服务端接受到了那条失效报文并且回复了确认报文，但是客户端不会再次发出确认。由于服务器收不到确认，就知道客户端并没有请求连接</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">### TCP四次挥手</span><br><span class="line">![四次挥手](http://pam1kb0ai.bkt.clouddn.com/tcp%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png)</span><br><span class="line">&gt;数据传输完毕后，双方都可释放连接。最开始的时候，客户端和服务器都是处于ESTABLISHED状态，然后客户端主动关闭，服务器被动关闭。</span><br><span class="line"></span><br><span class="line">对于一个已经建立的连接，TCP使用改进的三次握手来释放连接（使用一个带有FIN附加标记的报文段）。TCP关闭连接的步骤如下：</span><br><span class="line"></span><br><span class="line">第一步，当主机A的应用程序通知TCP数据已经发送完毕时，TCP向主机B发送一个带有FIN附加标记的报文段（FIN表示英文finish）。</span><br><span class="line"></span><br><span class="line">第二步，主机B收到这个FIN报文段之后，并不立即用FIN报文段回复主机A，而是先向主机A发送一个确认序号ACK，同时通知自己相应的应用程序：对方要求关闭连接（先发送ACK的目的是为了防止在这段时间内，对方重传FIN报文段）。</span><br><span class="line"></span><br><span class="line">第三步，主机B的应用程序告诉TCP：我要彻底的关闭连接，TCP向主机A送一个FIN报文段。</span><br><span class="line"></span><br><span class="line">第四步，主机A收到这个FIN报文段后，向主机B发送一个ACK表示连接彻底释放。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 为什么连接的时候是三次握手，关闭的时候却是四次握手？</span><br><span class="line"></span><br><span class="line">答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&quot;你发的FIN报文我收到了&quot;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、数据存储和消息队列</span><br><span class="line"></span><br><span class="line">### 39.MySQL 索引使用的注意事项</span><br><span class="line"> &gt; 索引只是提高效率的一个方式，如果mysql有大数据量的表，就要花时间研究建立最优的索引，或优化查询语句</span><br><span class="line"></span><br><span class="line">1. 索引不会包含有NULL的列  </span><br><span class="line">只要列中包含有NULL值，都将不会被包含在索引中，复合索引中只要有一列含有NULL值，那么这一列对于此符合索引就是无效的)</span><br><span class="line"></span><br><span class="line">2. 索引列排序  </span><br><span class="line">mysql查询只使用一个索引，因此如果where子句中已经使用了索引的话，那么order by中的列是不会使用索引的。因此数据库默认排序可以符合要求的情况下不要使用排序操作，尽量不要包含多个列的排序，如果需要最好给这些列建复合索引</span><br><span class="line"></span><br><span class="line">3. like语句操作  </span><br><span class="line">一般情况下不鼓励使用like操作，如果非使用不可，注意正确的使用方式。like ‘%aaa%’不会使用索引，而like ‘aaa%’可以使用索引。</span><br><span class="line"></span><br><span class="line">4. 不要在列上进行运算</span><br><span class="line"></span><br><span class="line">5. 不使用NOT IN 、&lt;&gt;、！=操作，但&lt;,&lt;=，=，&gt;,&gt;=,BETWEEN,IN是可以用到索引的</span><br><span class="line"></span><br><span class="line">6. 索引要建立在经常进行select操作的字段上</span><br><span class="line"></span><br><span class="line">7. 索引要建立在值比较唯一的字段上</span><br><span class="line"></span><br><span class="line">8. 对于那些定义为text、image和bit数据类型的列不应该增加索引。因为这些列的数据量要么相当大，要么取值很少 </span><br><span class="line"></span><br><span class="line">9. 在where和join中出现的列需要建立索引</span><br><span class="line"></span><br><span class="line">10. where的查询条件里有不等号(where column != …),mysql将无法使用索引</span><br><span class="line"></span><br><span class="line">11. 如果where查询条件里使用了函数(如：where DAY(column)=…),mysql将无法使用索引 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 40.索引类型 及如何创建索引，删除搜索引  </span><br><span class="line"></span><br><span class="line">索引类型:</span><br><span class="line"></span><br><span class="line">	* UNIQUE(唯一索引) 不可出现相同的值,可以有null值</span><br><span class="line">	* INDEX(普通索引) 可以出现相同的值</span><br><span class="line">	* PROMARY KEY(主键索引) 不允许出现相同的值</span><br><span class="line">	* fulltext index(全文索引) 可以针对值中的某个单词，但效率不高</span><br><span class="line">	* 组合索引: 实质上是是将多个字段建到一个索引里，列值的组合必须唯一</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">创建索引:</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>创建表时同时创建索引</p>
+<p> CREATE INDEX index_name ON table_name(username(length));<br>2.创建表后创建索<br> //唯一索引<br> alter table table_name add unique (column_list);</p>
+<p> //主键索引<br> alter table table_name add primary key (column_list);        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">删除索引:</span><br></pre></td></tr></table></figure>
+<p> drop index index_name on table_name;<br> alter table table_name drop index index_name;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 40.DDL、DML、DCL分别指什么?</span><br><span class="line">* DDL:数据定义语言 DDL用来创建数据库中的各种对象-----表、视图  </span><br><span class="line">* DML:数据操纵语言 用于insert,update,delete</span><br><span class="line">* DCL:数据库控制语言 用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 41.数据库的几大范式</span><br><span class="line">  第一范式: 每一列属性都是不可再分的属性值，确保每一列的原子性  </span><br><span class="line">   </span><br><span class="line">  第二范式: 每一行的数据只能与其中一列相关，即一行数据只做一件事。只要数据列中出现数据重复，就要把表拆分开来</span><br><span class="line">  </span><br><span class="line">  第三范式: 数据不能存在传递关系，即每个属性都跟主键有直接关系而不是间接关系。像：a--&gt;b--&gt;c  属性之间含有这样的关系，是不符合第三范式的。</span><br><span class="line"> </span><br><span class="line">  总结：三大范式只是一般设计数据库的基本理念，可以建立冗余较小、结构合理的数据库。如果有特殊情况，当然要特殊对待，数据库设计最重要的是看需求跟性能，需求&gt;性能&gt;表结构。所以不能一味的去追求范式建立数据库   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 42.说说分库与分表设计</span><br><span class="line">&gt;分库分表基本思想:Sharding的基本思想就要把一个数据库切分成多个部分放到不同的数据库(server)上，从而缓解单一数据库的性能问题。</span><br><span class="line">不太严格的讲，对于海量数据的数据库，如果是因为表多而数据多，这时候适合使用垂直切分，即把关系紧密（比如同一模块）的表</span><br><span class="line">切分出来放在一个server上。如果表并不多，但每张表的数据非常多，这时候适合水平切分，</span><br><span class="line">即把表的数据按某种规则（比如按ID散列）切分到多个数据库(server)上。当然，现实中更多是这两种情况混杂在一起，</span><br><span class="line">这时候需要根据实际情况做出选择，也可能会综合使用垂直与水平切分，</span><br><span class="line">从而将原有数据库切分成类似矩阵一样可以无限扩充的数据库(server)阵列。</span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">### 43.说说 SQL 优化之道</span><br><span class="line">1.对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。	</span><br><span class="line">	</span><br><span class="line">2.应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</span><br><span class="line">    `select id from t where num is null	` </span><br><span class="line">  可以在num上设置默认值0，确保表中num列没有null值，然后这样查询： 	</span><br><span class="line">    `select id from t where num=0	`</span><br><span class="line">	</span><br><span class="line">3.应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。	</span><br><span class="line">	</span><br><span class="line">4.应尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：	</span><br><span class="line">    ```select id from t where num=10 or num=20```	</span><br><span class="line">可以这样查询：	</span><br><span class="line">    ```select id from t where num=10```	</span><br><span class="line">union all	</span><br><span class="line">    ```select id from t where num=20```	</span><br><span class="line">	</span><br><span class="line">5.in 和 not in 也要慎用，否则会导致全表扫描，如：	</span><br><span class="line">    ```select id from t where num in(1,2,3)```	</span><br><span class="line">对于连续的数值，能用 between 就不要用 in 了：	</span><br><span class="line">    ```select id from t where num between 1 and 3```	</span><br><span class="line">	</span><br><span class="line">6.下面的查询也将导致全表扫描：	</span><br><span class="line">    ```select id from t where name like &apos;%abc%&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<p>7.应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>    <figure class="highlight plain"><figcaption><span>id from t where num/2</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">应改为:	</span><br><span class="line">    ```select id from t where num=100*2</span><br></pre></td></tr></table></figure></p>
+<p>8.应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：<br>    <code>select id from t where substring(name,1,3)=&#39;abc&#39;</code> –name以abc开头的id<br>应改为:<br>    <code>select id from t where name like &#39;abc%&#39;</code>    </p>
+<p>9.不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。    </p>
+<p>10.在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，<br>否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致。    </p>
+<p>11.不要写一些没有意义的查询，如需要生成一个空表结构：<br>    <code>select col1,col2 into #t from t where 1=0</code><br>这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：<br>    <code>create table #t(...)</code></p>
+<p>12.很多时候用 exists 代替 in 是一个好的选择：<br>    <code>select num from a where num in(select num from b)</code><br>用下面的语句替换：<br>    <code>select num from a where exists(select 1 from b where num=a.num)</code>    </p>
+<p>13.并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，<br>如一表中有字段sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。    </p>
+<p>14.索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，<br>因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。<br>一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。    </p>
+<p>15.尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。<br>这是因为引擎在处理查询和连接时会逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。    </p>
+<p>16.尽可能的使用 varchar 代替 char ，因为首先变长字段存储空间小，可以节省存储空间，<br>其次对于查询来说，在一个相对较小的字段内搜索，在一个相对较小的字段内搜索效率显效率显然要高些。    </p>
+<p>17.任何地方都不要使用 select <em> from t ，用具体的字段列表代替“</em>”，不要返回用不到的任何字段。    </p>
+<p>18.避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+<p>19.临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。    </p>
+<p>20.在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，<br>以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</p>
+<p>21.如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。    </p>
+<p>22.尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。    </p>
+<p>23.使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</p>
+<p>24.与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。<br>在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</p>
+<p>25.尽量避免大事务操作，提高系统并发能力。</p>
+<p>26.尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</p>
+<h3 id="44-MySQL遇到的死锁问题、如何排查与解决"><a href="#44-MySQL遇到的死锁问题、如何排查与解决" class="headerlink" title="44.MySQL遇到的死锁问题、如何排查与解决"></a>44.MySQL遇到的死锁问题、如何排查与解决</h3><p>在数据库中有两种基本的锁类型：排它锁（Exclusive Locks，即X锁）和共享锁（Share Locks，即S锁）。当数据对象被加上排它锁时，其他的事务不能对它读取和修改。<br>加了共享锁的数据对象可以被其他事务读取，但不能修改。数据库利用这两 种基本的锁类型来对数据库的事务进行并发控制。<br>死锁的第一种情况</p>
+<p>一个用户A 访问表A(锁住了表A),然后又访问表B；另一个用户B 访问表B(锁住了表B)，然后企图访问表A；这时用户A由于用户B已经锁住表B，它必须等待用户B释放表B才能继续，同样用户B要等用户A释放表A才能继续，这就死锁就产生了。</p>
+<p>解决方法：</p>
+<p>这种死锁比较常见，是由于程序的BUG产生的，除了调整的程序的逻辑没有其它的办法。仔细分析程序的逻辑，对于数据库的多表操作时，尽量按照相同的顺序进 行处理，尽量避免同时锁定两个资源，如操作A和B两张表时，总是按先A后B的顺序处理， 必须同时锁定两个资源时，要保证在任何时刻都应该按照相同的顺序来锁定资源。</p>
+<p>死锁的第二种情况</p>
+<p>用户A查询一条纪录，然后修改该条纪录；这时用户B修改该条纪录，这时用户A的事务里锁的性质由查询的共享锁企图上升到独占锁，而用户B里的独占锁由于A 有共享锁存在所以必须等A释放掉共享锁，而A由于B的独占锁而无法上升的独占锁也就不可能释放共享锁，于是出现了死锁。这种死锁比较隐蔽，但在稍大点的项 目中经常发生。如在某项目中，页面上的按钮点击后，没有使按钮立刻失效，使得用户会多次快速点击同一按钮，这样同一段代码对数据库同一条记录进行多次操 作，很容易就出现这种死锁的情况。</p>
+<p>解决方法：</p>
+<p>1、对于按钮等控件，点击后使其立刻失效，不让用户重复点击，避免对同时对同一条记录操作。<br>2、使用乐观锁进行控制。乐观锁大多是基于数据版本（Version）记录机制实现。即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是 通过为数据库表增加一个“version”字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数 据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。乐观锁机制避免了长事务中的数据 库加锁开销（用户A和用户B操作过程中，都没有对数据库数据加锁），大大提升了大并发量下的系统整体性能表现。Hibernate 在其数据访问引擎中内置了乐观锁实现。需要注意的是，由于乐观锁机制是在我们的系统中实现，来自外部系统的用户更新操作不受我们系统的控制，因此可能会造 成脏数据被更新到数据库中。<br>3、使用悲观锁进行控制。悲观锁大多数情况下依靠数据库的锁机制实现，如Oracle的Select … for update语句，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对长事务而言，这样的开销往往无法承受。如一个金融系统， 当某个操作员读取用户的数据，并在读出的用户数据的基础上进行修改时（如更改用户账户余额），如果采用悲观锁机制，也就意味着整个操作过程中（从操作员读 出数据、开始修改直至提交修改结果的全过程，甚至还包括操作员中途去煮咖啡的时间），数据库记录始终处于加锁状态，可以想见，如果面对成百上千个并发，这 样的情况将导致灾难性的后果。所以，采用悲观锁进行控制时一定要考虑清楚。</p>
+<p>死锁的第三种情况</p>
+<p>如果在事务中执行了一条不满足条件的update语句，则执行全表扫描，把行级锁上升为表级锁，多个这样的事务执行后，就很容易产生死锁和阻塞。类似的情 况还有当表中的数据量非常庞大而索引建的过少或不合适的时候，使得经常发生全表扫描，最终应用系统会越来越慢，最终发生阻塞或死锁。</p>
+<p>解决方法：<br>SQL语句中不要使用太复杂的关联多表的查询；使用“执行计划”对SQL语句进行分析，对于有全表扫描的SQL语句，建立相应的索引进行优化。</p>
+<p>5．小结<br>总体上来说，产生内存溢出与锁表都是由于代码写的不好造成的，因此提高代码的质量是最根本的解决办法。有的人认为先把功能实现，<br>有BUG时再在测试阶段进 行修正，这种想法是错误的。正如一件产品的质量是在生产制造的过程中决定的，而不是质量检测时决定的，<br>软件的质量在设计与编码阶段就已经决定了，测试只是 对软件质量的一个验证，因为测试不可能找出软件中所有的BUG。</p>
+<h3 id="45-存储引擎的-InnoDB与MyISAM区别，优缺点，使用场景"><a href="#45-存储引擎的-InnoDB与MyISAM区别，优缺点，使用场景" class="headerlink" title="45.存储引擎的 InnoDB与MyISAM区别，优缺点，使用场景"></a>45.存储引擎的 InnoDB与MyISAM区别，优缺点，使用场景</h3><p>主要区别:</p>
+<pre><code>* 1.MyISAM是非事务安全型的，而InnoDB是事务安全型的。
+* 2.MyISAM是表级锁，而InnoDB是行级锁
+* 3.MyISAM支持全文类型索引，而InnoDB不支持全文索引
+</code></pre><p>MyISAM适合：(1)做很多count 的计算；(2)插入不频繁，查询非常频繁；(3)没有事务。<br>InnoDB适合：(1)可靠性要求比较高，或者要求事务；(2)表更新和查询都相当的频繁，并且行锁定的机会比较大的情况</p>
+<h3 id="46-limit-20000-加载很慢怎么解决"><a href="#46-limit-20000-加载很慢怎么解决" class="headerlink" title="46.limit 20000 加载很慢怎么解决"></a>46.limit 20000 加载很慢怎么解决</h3><pre><code>`select * from table limit m,n`
+</code></pre><p>其中m是指记录开始的index，表示每次开始的索引。默认从0开始，表示第一条记录<br>n是指从第m+1条开始，取n条。 如：<br><code>select * from tablename limit 2,4</code>即取出第3条至第6条，4条记录</p>
+<p>解决方法:<br>当一个数据库表过于庞大，LIMIT offset, length中的offset值过大，则SQL查询语句会非常缓慢，<br>你需增加order by，并且order by字段需要建立索引</p>
+<h3 id="47-常见的几种分布式ID的设计方案"><a href="#47-常见的几种分布式ID的设计方案" class="headerlink" title="47.常见的几种分布式ID的设计方案"></a>47.常见的几种分布式ID的设计方案</h3><p>生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略</p>
+<h3 id="48-如何选择合适的分布式主键方案"><a href="#48-如何选择合适的分布式主键方案" class="headerlink" title="48.如何选择合适的分布式主键方案"></a>48.如何选择合适的分布式主键方案</h3><ol>
+<li>数据库自增ID<br>数据库自增长序列或字段，最常见的方式。由数据库维护，数据库唯一。</li>
+</ol>
+<p>优点：<br>简单，代码方便，性能可以接受。<br>数字ID天然排序，对分页或者需要排序的结果很有帮助。<br>缺点：<br>不同数据库语法和实现不同，数据库迁移的时候或多数据库版本支持的时候需要处理。<br>在单个数据库或读写分离或一主多从的情况下，只有一个主库可以生成。有单点故障的风险。<br>在性能达不到要求的情况下，比较难于扩展。<br>如果遇见多个系统需要合并或者涉及到数据迁移会相当痛苦。<br>分表分库的时候会有麻烦。<br>优化方案：<br>针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。<br>比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。</p>
+<ol start="2">
+<li>UUID<br>常见的方式,128位。可以利用数据库也可以利用程序生成，一般来说全球唯一。</li>
+</ol>
+<p>优点：<br>简单，代码方便。<br>全球唯一，在遇见数据迁移，系统数据合并，或者数据库变更等情况下，可以从容应对。<br>缺点：<br>没有排序，无法保证趋势递增。<br>UUID往往是使用字符串存储，查询的效率比较低。<br>存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。<br>传输数据量大 不可读。</p>
+<p>优化方案：<br><em>为了解决UUID不可读，可以使用UUID to Int64的方法</em></p>
+<ol start="3">
+<li>GUID<br>GUID：是微软对UUID这个标准的实现。UUID还有其它各种实现，不止GUID一种。优缺点同UUID。</li>
+</ol>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="49-Redis-有哪些数据类型，可参考《Redis常见的5种不同的数据类型详解》"><a href="#49-Redis-有哪些数据类型，可参考《Redis常见的5种不同的数据类型详解》" class="headerlink" title="49.Redis 有哪些数据类型，可参考《Redis常见的5种不同的数据类型详解》"></a>49.Redis 有哪些数据类型，可参考《Redis常见的5种不同的数据类型详解》</h3><h3 id="50-Redis-内部结构"><a href="#50-Redis-内部结构" class="headerlink" title="50.Redis 内部结构"></a>50.Redis 内部结构</h3><h3 id="51-Redis-使用场景"><a href="#51-Redis-使用场景" class="headerlink" title="51.Redis 使用场景"></a>51.Redis 使用场景</h3><h3 id="52-Redis-集群方案与实现"><a href="#52-Redis-集群方案与实现" class="headerlink" title="52.Redis 集群方案与实现"></a>52.Redis 集群方案与实现</h3><h3 id="53-Redis-为什么是单线程的？"><a href="#53-Redis-为什么是单线程的？" class="headerlink" title="53.Redis 为什么是单线程的？"></a>53.Redis 为什么是单线程的？</h3><h3 id="54-缓存雪崩、缓存穿透、缓存预热、缓存更新、缓存降级"><a href="#54-缓存雪崩、缓存穿透、缓存预热、缓存更新、缓存降级" class="headerlink" title="54.缓存雪崩、缓存穿透、缓存预热、缓存更新、缓存降级"></a>54.缓存雪崩、缓存穿透、缓存预热、缓存更新、缓存降级</h3><h3 id="55-使用缓存的合理性问题"><a href="#55-使用缓存的合理性问题" class="headerlink" title="55.使用缓存的合理性问题"></a>55.使用缓存的合理性问题</h3><h3 id="56-Redis常见的回收策略"><a href="#56-Redis常见的回收策略" class="headerlink" title="56.Redis常见的回收策略"></a>56.Redis常见的回收策略</h3><h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><h3 id="56-消息队列的使用场景"><a href="#56-消息队列的使用场景" class="headerlink" title="56.消息队列的使用场景"></a>56.消息队列的使用场景</h3><h3 id="57-消息的重发补偿解决思路"><a href="#57-消息的重发补偿解决思路" class="headerlink" title="57.消息的重发补偿解决思路"></a>57.消息的重发补偿解决思路</h3><h3 id="58-消息的幂等性解决思路"><a href="#58-消息的幂等性解决思路" class="headerlink" title="58.消息的幂等性解决思路"></a>58.消息的幂等性解决思路</h3><h3 id="59-消息的堆积解决思路"><a href="#59-消息的堆积解决思路" class="headerlink" title="59.消息的堆积解决思路"></a>59.消息的堆积解决思路</h3><h3 id="60-自己如何实现消息队列"><a href="#60-自己如何实现消息队列" class="headerlink" title="60.自己如何实现消息队列"></a>60.自己如何实现消息队列</h3><h3 id="61-如何保证消息的有序性"><a href="#61-如何保证消息的有序性" class="headerlink" title="61.如何保证消息的有序性"></a>61.如何保证消息的有序性</h3><h2 id="SSM-Servlet"><a href="#SSM-Servlet" class="headerlink" title="SSM/Servlet"></a>SSM/Servlet</h2><h3 id="62-Servlet的生命周期"><a href="#62-Servlet的生命周期" class="headerlink" title="62.Servlet的生命周期"></a>62.Servlet的生命周期</h3><p>在Servlet产生到消亡的过程中，有三个生命周期函数，初始化方法init(),<br>处理客户请求的方法service(),终止方法destroy()</p>
+<ul>
+<li><p>init()<br>  在一个Servlet的生命周期中，init方法只会被执行一次，之后无论用户执行多少次请求，都不会在调用该方法。 </p>
+<pre><code>关于init方法的执行时机，有两种方式可选，一般的是在服务器启动后第一个用户请求改Servlet是调用，你也可以设置该Servlet在服务器启动后自动执行。 
+</code></pre><p>init方法负责简单的创建或者加载一些数据，这些数据将用于该Servlet的整个生命周期中</p>
+</li>
+<li><p>service方法</p>
+<pre><code>当一个客户请求改Servlet时，实际的处理工作全部有service方法来完成，service方法用来处理客户端的请求，并生成格式化数据返回给客户端。 
+每一次请求服务器都会开启一个新的线程并执行一次service方法，service根据客户端的请求类型，调用doGet、doPost等方法。 
+service是由web容器来调用的，我们无需对service具体内容做任何处理，service会自动的根据客户端的请求类型去调用doGet、doPost等方法，所以我们只需要做好doGet、doPost方法的实现就可以了。
+</code></pre></li>
+<li><p>destroy方法</p>
+<pre><code>该方法在整个生命周期中，也是只会被调用一次，在Servlet对象被销毁是调用，在servlet中，我们可以做一些资源的释放等操作，执行destory方法之后的servlet对象，会等待jvm虚拟机的垃圾回收机制择时回收。
+</code></pre></li>
+</ul>
+<h3 id="63-转发与重定向的区别"><a href="#63-转发与重定向的区别" class="headerlink" title="63.转发与重定向的区别"></a>63.转发与重定向的区别</h3><p>在servlet中转发的语句为：<br>    <code>request.getRequestDispatcher(&quot;xxx.jsp&quot;).forward(request,response);</code></p>
+<p>在servlet中重定向的语句为：<br>    <code>request.sendRedirect(&quot;xxx.jsp&quot;);</code></p>
+<p>转发的过程：<br>客户端浏览器发送请求，web服务器接收请求再进行在内部跳转，什么意思呢，也就是说，跳转只能在自己所在的web容器下的url，而不能跳转出去其他的url。</p>
+<p>重定向的过程：<br>客户端发送请求，web服务器接收该请求后发送302状态码响应并且发送新的一个地址（location）给客户端浏览器，客户端接收到302则自动再发送一个新的请求，而这个请求就是新的location，既然是客户端发送的一个请求，就对web容器的request没关系了，它可以任意跳转到所有location。\<br>其实它们最本质的区别就是，转发只需要一次的请求，仅仅是一次客户端的request，而重定向则需要两次请求，一次是客户端request，服务器响应后返回302给客户端浏览器，再由客户端浏览器再发一次请求。</p>
+<h3 id="64-BeanFactory-和-ApplicationContext-有什么区别"><a href="#64-BeanFactory-和-ApplicationContext-有什么区别" class="headerlink" title="64.BeanFactory 和 ApplicationContext 有什么区别"></a>64.BeanFactory 和 ApplicationContext 有什么区别</h3><p>BeanFactory：<br>是spring中比较原始的Factory,是Spring里面最低层的接口，提供了最简单的容器的功能，<br>只提供了实例化对象和拿对象的功能；原始的BeanFactory无法支持spring的许多插件，<br>如AOP功能、Web应用等</p>
+<p>ApplicationContext：<br>应用上下文，继承BeanFactory接口，它是Spring的一各更高级的容器，提供了更多的有用的功能；<br><code>ApplicationContext ctx = new 
+    ClassPathXmlAppliationContext(&quot;applicationContext.xml&quot;);</code><br>1) 国际化（MessageSource）</p>
+<p>2) 访问资源，如URL和文件（ResourceLoader）</p>
+<p>3) 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层  </p>
+<p>4) 消息发送、响应机制（ApplicationEventPublisher）</p>
+<p>5) AOP（拦截器）</p>
+<p>两者区别:<br>BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，<br>才对该Bean进行加载实例化，这样，我们就不能发现一些存在的Spring的配置问题。<br>而ApplicationContext则相反，它是在容器启动时，一次性创建了所有的Bean。<br>这样，在容器启动时，我们就可以发现Spring中存在的配置错误。 </p>
+<h3 id="65-Spring-Bean-的生命周期"><a href="#65-Spring-Bean-的生命周期" class="headerlink" title="65.Spring Bean 的生命周期"></a>65.Spring Bean 的生命周期</h3><h3 id="66-Spring-IOC-如何实现"><a href="#66-Spring-IOC-如何实现" class="headerlink" title="66.Spring IOC 如何实现"></a>66.Spring IOC 如何实现</h3><h3 id="Spring中Bean的作用域，默认的是哪一个"><a href="#Spring中Bean的作用域，默认的是哪一个" class="headerlink" title="Spring中Bean的作用域，默认的是哪一个"></a>Spring中Bean的作用域，默认的是哪一个</h3><p>说说 Spring AOP、Spring AOP 实现原理</p>
+<p>动态代理（CGLib 与 JDK）、优缺点、性能对比、如何选择</p>
+<p>Spring 事务实现方式、事务的传播机制、默认的事务类别</p>
+<p>Spring 事务底层原理</p>
+<p>Spring事务失效（事务嵌套），JDK动态代理给Spring事务埋下的坑，可参考《JDK动态代理给Spring事务埋下的坑！》</p>
+<p>如何自定义注解实现功能</p>
+<p>Spring MVC 运行流程</p>
+<p>Spring MVC 启动流程</p>
+<p>Spring 的单例实现原理</p>
+<p>Spring 框架中用到了哪些设计模式</p>
+<p>Spring 其他产品（Srping Boot、Spring Cloud、Spring Secuirity、Spring Data、Spring AMQP 等）</p>
+<p>有没有用到Spring Boot，Spring Boot的认识、原理</p>
+<p>MyBatis的原理</p>
+<p>可参考《为什么会有Spring》</p>
+<p>可参考《为什么会有Spring AOP》</p>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><p>Session 分布式方案</p>
+<p>Session 分布式处理</p>
+<p>分布式锁的应用场景、分布式锁的产生原因、基本概念</p>
+<p>分布是锁的常见解决方案</p>
+<p>分布式事务的常见解决方案</p>
+<p>集群与负载均衡的算法与实现</p>
+<p>说说分库与分表设计，可参考《数据库分库分表策略的具体实现方案》</p>
+<p>分库与分表带来的分布式困境与应对之策</p>
+<p>4.3、Dubbo</p>
+<p>什么是Dubbo，可参考《Dubbo入门》</p>
+<p>什么是RPC、如何实现RPC、RPC 的实现原理，可参考《基于HTTP的RPC实现》</p>
+<p>Dubbo中的SPI是什么概念</p>
+<p>Dubbo的基本原理、执行流程</p>
+<p>五、微服务</p>
+<p>5.1、微服务</p>
+<p>前后端分离是如何做的？</p>
+<p>微服务哪些框架</p>
+<p>Spring Could的常见组件有哪些？可参考《Spring Cloud概述》</p>
+<p>领域驱动有了解吗？什么是领域驱动模型？充血模型、贫血模型</p>
+<h3 id="JWT有了解吗，什么是JWT，可参考《前后端分离利器之JWT》"><a href="#JWT有了解吗，什么是JWT，可参考《前后端分离利器之JWT》" class="headerlink" title="JWT有了解吗，什么是JWT，可参考《前后端分离利器之JWT》"></a>JWT有了解吗，什么是JWT，可参考《前后端分离利器之JWT》</h3><p><a href="https://blog.csdn.net/bntx2jsqfehy7/article/details/79224042" target="_blank" rel="noopener">https://blog.csdn.net/bntx2jsqfehy7/article/details/79224042</a></p>
+<p>你怎么理解 RESTful</p>
+<p>说说如何设计一个良好的 API</p>
+<p>如何理解 RESTful API 的幂等性</p>
+<p>如何保证接口的幂等性</p>
+<p>微服务的优缺点，可参考《微服务批判》</p>
+<p>微服务与 SOA 的区别</p>
+<p>如何拆分服务、水平分割、垂直分割</p>
+<p>如何应对微服务的链式调用异常</p>
+<p>如何快速追踪与定位问题</p>
+<p>如何保证微服务的安全、认证</p>
+<p>5.2、安全问题<br>如何防范常见的Web攻击、如何方式SQL注入</p>
+<p>服务端通信安全攻防</p>
+<p>HTTPS原理剖析、降级攻击、HTTP与HTTPS的对比</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/阿里云常用文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1096,884 +2402,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/乡愁/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/乡愁/" itemprop="url">乡愁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/乡愁/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/乡愁/" class="cy_cmt_count" data-xid="2019/08/07/乡愁/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有家的地方没有工作，有工作的地方没有家，他乡容不了灵魂，故乡安置不了肉身。从此便有了漂泊，有了远方,有了乡愁,有了无尽的牵挂</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/" itemprop="url">使用nginx做反代时遇到413 Request Entity Too Large的解决方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/" class="cy_cmt_count" data-xid="2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong><a href="https://www.cnblogs.com/jiaoyiping/p/5638096.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiaoyiping/p/5638096.html</a></strong></p>
-<p><a href="https://blog.csdn.net/qq_36949907/article/details/79182363" target="_blank" rel="noopener">https://blog.csdn.net/qq_36949907/article/details/79182363</a></p>
-<p><a href="https://www.cnblogs.com/wanghx-0713/p/8080571.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghx-0713/p/8080571.html</a><br>Mysql时间差函数<br>SELECT TIMESTAMPDIFF(MONTH,’2009-10-01’,’2009-09-01’);<br>interval可是：<br>SECOND 秒 SECONDS<br>MINUTE 分钟 MINUTES<br>HOUR 时间 HOURS<br>DAY 天 DAYS<br>MONTH 月 MONTHS<br>YEAR 年 YEARS</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/使用FastJson全局处理返回值中nulll值问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/使用FastJson全局处理返回值中nulll值问题/" itemprop="url">阿里FastJson如何处理返回值中nulll值问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/fastJson/" itemprop="url" rel="index">
-                    <span itemprop="name">fastJson</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/使用FastJson全局处理返回值中nulll值问题/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/使用FastJson全局处理返回值中nulll值问题/" class="cy_cmt_count" data-xid="2019/08/07/使用FastJson全局处理返回值中nulll值问题/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>springBoot项目,全局处理策略</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class HttpMessageConverterConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public HttpMessageConverters fastJsonHttpMessageConverters() &#123;</span><br><span class="line">        //1、定义一个convert转换消息的对象</span><br><span class="line">        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();</span><br><span class="line"></span><br><span class="line">        //2、添加fastjson的配置信息</span><br><span class="line">        FastJsonConfig fastJsonConfig = new FastJsonConfig();</span><br><span class="line"></span><br><span class="line">        SerializerFeature[] serializerFeatures = new SerializerFeature[]&#123;</span><br><span class="line">                //    输出key是包含双引号</span><br><span class="line">				// SerializerFeature.QuoteFieldNames,</span><br><span class="line">                //    是否输出为null的字段,若为null 则显示该字段</span><br><span class="line">				// SerializerFeature.WriteMapNullValue,</span><br><span class="line">                //    数值字段如果为null，则输出为0</span><br><span class="line">                SerializerFeature.WriteNullNumberAsZero,</span><br><span class="line">                //     List字段如果为null,输出为[],而非null</span><br><span class="line">                SerializerFeature.WriteNullListAsEmpty,</span><br><span class="line">                //    字符类型字段如果为null,输出为&quot;&quot;,而非null</span><br><span class="line">                SerializerFeature.WriteNullStringAsEmpty,</span><br><span class="line">                //    Boolean字段如果为null,输出为false,而非null</span><br><span class="line">                SerializerFeature.WriteNullBooleanAsFalse,</span><br><span class="line">                //    Date的日期转换器</span><br><span class="line">                SerializerFeature.WriteDateUseDateFormat,</span><br><span class="line">                //    循环引用</span><br><span class="line">                SerializerFeature.DisableCircularReferenceDetect,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        fastJsonConfig.setSerializerFeatures(serializerFeatures);</span><br><span class="line">        fastJsonConfig.setCharset(Charset.forName(&quot;UTF-8&quot;));</span><br><span class="line"></span><br><span class="line">        //3、在convert中添加配置信息</span><br><span class="line">        fastConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line"></span><br><span class="line">        //4、将convert添加到converters中</span><br><span class="line">        HttpMessageConverter&lt;?&gt; converter = fastConverter;</span><br><span class="line"></span><br><span class="line">        return new HttpMessageConverters(converter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>作为工具方法 单独使用JSON.toJsonString转换对象为json字符串时用法</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SerializerFeature[] serializerFeatures = new SerializerFeature[]&#123;</span><br><span class="line">						//    输出key是包含双引号</span><br><span class="line">						//SerializerFeature.QuoteFieldNames,</span><br><span class="line">						//    是否输出为null的字段,若为null 则显示该字段</span><br><span class="line">						//SerializerFeature.WriteMapNullValue,</span><br><span class="line">						//    数值字段如果为null，则输出为0</span><br><span class="line">						SerializerFeature.WriteNullNumberAsZero,</span><br><span class="line">						//     List字段如果为null,输出为[],而非null</span><br><span class="line">						SerializerFeature.WriteNullListAsEmpty,</span><br><span class="line">						//    字符类型字段如果为null,输出为&quot;&quot;,而非null</span><br><span class="line">						SerializerFeature.WriteNullStringAsEmpty,</span><br><span class="line">						//    Boolean字段如果为null,输出为false,而非null</span><br><span class="line">						SerializerFeature.WriteNullBooleanAsFalse,</span><br><span class="line">						//    Date的日期转换器</span><br><span class="line">						SerializerFeature.WriteDateUseDateFormat,</span><br><span class="line">						//    循环引用</span><br><span class="line">					SerializerFeature.DisableCircularReferenceDetect&#125;;</span><br><span class="line"></span><br><span class="line">					//重点在这里,这种设计真的挺灵活的</span><br><span class="line">String content = JSON.toJSONString(body,serializerFeatures);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/windows安装nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/windows安装nginx/" itemprop="url">windows安装Nginx</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/windows安装nginx/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/windows安装nginx/" class="cy_cmt_count" data-xid="2019/08/07/windows安装nginx/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-官方下载NGINX-download"><a href="#1-官方下载NGINX-download" class="headerlink" title="1. 官方下载NGINX download"></a>1. 官方下载NGINX <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">download</a></h2><h2 id="2-解压运行"><a href="#2-解压运行" class="headerlink" title="2.解压运行"></a>2.解压运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd c:\</span><br><span class="line">unzip nginx-1.12.2.zip</span><br><span class="line">cd nginx-1.12.2</span><br><span class="line">start nginx</span><br></pre></td></tr></table></figure>
-<h2 id="3-命令行查看"><a href="#3-命令行查看" class="headerlink" title="3. 命令行查看"></a>3. 命令行查看</h2><p>命令行运行  <code>tasklist</code> 可以看到nginx的两个进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">C:\nginx-1.12.2&gt;tasklist /fi &quot;imagename eq nginx.exe&quot;</span><br><span class="line"></span><br><span class="line"> Image Name           PID Session Name     Session#    Mem Usage</span><br><span class="line">=============== ======== ============== ========== ============</span><br><span class="line"> nginx.exe            652 Console                 0      2 780 K</span><br><span class="line"> nginx.exe           1332 Console                 0      3 112 K</span><br></pre></td></tr></table></figure>
-<p>有两个进程,一个进程是master进程 另一个是worker进程, 如果进程没有启动成功，可以查看日志文件 <code>logs\error.log</code></p>
-<p>Nginx常用命令</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>Model</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>start nginx</td>
-<td>启动</td>
-</tr>
-<tr>
-<td>nginx -s stop</td>
-<td>迅速退出</td>
-</tr>
-<tr>
-<td>nginx -s quit</td>
-<td>优雅的退出</td>
-</tr>
-<tr>
-<td>nginx -s reload</td>
-<td>修改配置文件后重载</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/为什么要前后端分离/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/为什么要前后端分离/" itemprop="url">Javaweb项目为什么要前后端分离？为什么要解耦（转载）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/为什么要前后端分离/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/为什么要前后端分离/" class="cy_cmt_count" data-xid="2019/08/07/为什么要前后端分离/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-</blockquote>
-<p>前后端分离已成为互联网项目开发的业界标准使用方式，通过nginx+tomcat的方式（也可以中间加一个nodejs）有效的进行解耦，<br>并且前后端分离会为以后的大型分布式架构、弹性计算架构、微服务架构、多端化服务（多种客户端，例如：浏览器，车载终端，安卓，IOS等等）打下坚实的基础。<br>这个步骤是系统架构从猿进化成人的必经之路。</p>
-<ul>
-<li>核心思想是前端html页面通过ajax调用后端的restuful api接口并使用json数据进行交互。</li>
-</ul>
-<p>（<br>名词解释：<br>在互联网架构中，<br>web服务器：一般指像nginx，apache这类的服务器，他们一般只能解析静态资源。<br>应用服务器：一般指像tomcat，jetty，resin这类的服务器可以解析动态资源也可以解析静态资源，但解析静态资源的能力没有web服务器好。</p>
-<p>一般都是只有web服务器才能被外网访问，应用服务器只能内网访问。<br>）<br>术业有专攻（开发人员分离）</p>
-<p>以前的JavaWeb项目大多数都是java程序员又当爹又当妈，又搞前端（ajax/jquery/js/html/css等等），又搞后端（java/mysql/oracle等等）。</p>
-<p>随着时代的发展，渐渐的许多大中小公司开始把前后端的界限分的越来越明确，前端工程师只管前端的事情，后端工程师只管后端的事情。<br>正所谓术业有专攻，一个人如果什么都会，那么他毕竟什么都不精。</p>
-<p>大中型公司需要专业人才，小公司需要全才，但是对于个人职业发展来说，我建议是分开。</p>
-<p>对于后端java工程师：<br>把精力放在java基础，设计模式，jvm原理，spring+springmvc原理及源码，linux，mysql事务隔离与锁机制，mongodb，http/tcp，多线程，分布式架构（dubbo，dubbox，spring cloud），弹性计算架构，微服务架构（springboot+zookeeper+docker+jenkins），java性能优化，以及相关的项目管理等等。<br>后端追求的是：三高（高并发，高可用，高性能），安全，存储，业务等等。</p>
-<p>对于前端工程师：<br>把精力放在html5，css3，jquery，angularjs，bootstrap，reactjs，vuejs，webpack，less/sass，gulp，nodejs，Google V8引擎，javascript多线程，模块化，面向切面编程，设计模式，浏览器兼容性，性能优化等等。<br>前端追求的是：页面表现，速度流畅，兼容性，用户体验等等。</p>
-<p>偏头痛杨原创文章，禁止转载，版权必究。</p>
-<p>术业有专攻，这样你的核心竞争力才会越来越高，正所谓你往生活中投入什么，生活就会反馈给你什么。<br>并且两端的发展都越来越高深，你想什么都会，那你毕竟什么都不精。</p>
-<p>通过将team分成前后端team，让两边的工程师更加专注各自的领域，独立治理，然后构建出一个全栈式的精益求精的team。<br>原始人时代（各种耦合）</p>
-<p>几曾何时，我们的JavaWeb项目都是使用了若干后台框架，springmvc/struts + spring + spring jdbc/hibernate/mybatis 等等。</p>
-<p>大多数项目在java后端都是分了三层，控制层（controller/action），业务层（service/manage），持久层（dao）。<br>控制层负责接收参数，调用相关业务层，封装数据，以及路由&amp;渲染到jsp页面。<br>然后jsp页面上使用各种标签（jstl/el/struts标签等）或者手写java表达式（&lt;%=%&gt;）将后台的数据展现出来，玩的是MVC那套思路。</p>
-<p>我们先看这种情况：需求定完了，代码写完了，测试测完了，然后呢？要发布了吧？<br>你需要用maven或者eclipse等工具把你的代码打成一个war包，然后把这个war包发布到你的生产环境下的web容器（tomcat/jboss/weblogic/websphere/jetty/resin）里，对吧？</p>
-<p>发布完了之后，你要启动你的web容器，开始提供服务，这时候你通过配置域名，dns等等相关，你的网站就可以访问了（假设你是个网站）。<br>那我们来看，你的前后端代码是不是全都在那个war包里？包括你的js，css，图片，各种第三方的库，对吧？</p>
-<p>好，下面在浏览器中输入你的网站域名（<a href="http://www.xxx.com），之后发生了什么？（这个问题也是很多公司的面试题）" target="_blank" rel="noopener">www.xxx.com），之后发生了什么？（这个问题也是很多公司的面试题）</a><br>我捡干的说了啊，基础不好的童鞋请自己去搜。</p>
-<p>浏览器在通过域名通过dns服务器找到你的服务器外网ip,将http请求发送到你的服务器，在tcp 3次握手之后（http下面是tcp/ip），通过tcp协议开始传输数据，你的服务器得到请求后，开始提供服务，接收参数，之后返回你的应答给浏览器，浏览器再通过content-type来解析你返回的内容，呈现给用户。</p>
-<p>那么我们来看，我们先假设你的首页中有100张图片，此时，用户的看似一次http请求，其实并不是一次，用户在第一次访问的时候，浏览器中不会有缓存，你的100张图片，浏览器要连着请求100次http请求（有人会跟我说http长连短连的问题，不在这里讨论），你的服务器接收这些请求，都需要耗费内存去创建socket来玩tcp传输（消耗你服务器上的计算资源）。</p>
-<p>偏头痛杨原创文章，禁止转载，版权必究。</p>
-<p>重点来了，这样的话，你的服务器的压力会非常大，因为页面中的所有请求都是只请求到你这台服务器上，如果1个人还好，如果10000个人并发访问呢（先不聊服务器集群，这里就说是单实例服务器），那你的服务器能扛住多少个tcp连接？你的带宽有多大？你的服务器的内存有多大？你的硬盘是高性能的吗？你能抗住多少IO？你给web服务器分的内存有多大？会不会宕机？</p>
-<p>这就是为什么，越是大中型的web应用，他们越是要解耦。<br>理论上你可以把你的数据库+应用服务+消息队列+缓存+用户上传的文件+日志+等等都扔在一台服务器上，你也不用玩什么服务治理，也不用做什么性能监控，什么报警机制等等，就乱成一锅粥好了。<br>但是这样就好像是你把鸡蛋都放在一个篮子里，隐患非常大。如果因为一个子应用的内存不稳定导致整个服务器内存溢出而hung住，那你的整个网站就挂掉了。</p>
-<p>如果出意外挂掉，而恰好这时你们的业务又处于井喷式发展高峰期，那么恭喜你，业务成功被技术卡住，很可能会流失大量用户，后果不堪设想。<br>注意：技术一定是要走在业务前面的，否则你将错过最佳的发展期哟，亲~</p>
-<p>此外，你的应用全部都耦合在一起，相当于一个巨石，当服务端负载能力不足时，一般会使用负载均衡的方式，将服务器做成集群，这样其实你是在水平扩展一块块巨石，性能加速度会越来越低，<br>要知道，本身负载就低的功能or模块是没有必要水平扩展的，在本文中的例子就是你的性能瓶颈不在前端，那干嘛要水平扩展前端呢？？？<br>还有发版部署上线的时候，我明明只改了后端的代码，为什么要前端也跟着发布呢？？？<br>（引用：《架构探险-轻量级微服务架构》，黄勇）</p>
-<p>正常的互联网架构，是都要拆开的，你的web服务器集群，你的应用服务器集群+文件服务器集群+数据库服务器集群+消息队列集群+缓存集群等等。<br>JSP的痛点</p>
-<p>以前的javaWeb项目大多数使用jsp作为页面层展示数据给用户，因为流量不高，因此也没有那么苛刻的性能要求，但现在是大数据时代，对于互联网项目的性能要求是越来越高，<br>因此原始的前后端耦合在一起的架构模式已经逐渐不能满足我们，因此我们需要需找一种解耦的方式，来大幅度提升我们的负载能力。</p>
-<p>1.动态资源和静态资源全部耦合在一起，服务器压力大，因为服务器会收到各种http请求，例如css的http请求，js的，图片的等等。<br>一旦服务器出现状况，前后台一起玩完，用户体验极差。</p>
-<p>2.UI出好设计图后，前端工程师只负责将设计图切成html，需要由java工程师来将html套成jsp页面，出错率较高（因为页面中经常会出现大量的js代码），<br>修改问题时需要双方协同开发，效率低下。</p>
-<p>3.jsp必须要在支持java的web服务器里运行（例如tomcat，jetty，resin等），无法使用nginx等（nginx据说单实例http并发高达5w，这个优势要用上），<br>性能提不上来。</p>
-<p>4.第一次请求jsp，必须要在web服务器中编译成servlet，第一次运行会较慢。</p>
-<p>5.每次请求jsp都是访问servlet再用输出流输出的html页面，效率没有直接使用html高（是每次哟，亲~）。</p>
-<p>6.jsp内有较多标签和表达式，前端工程师在修改页面时会捉襟见肘，遇到很多痛点。</p>
-<p>7.如果jsp中的内容很多，页面响应会很慢，因为是同步加载。</p>
-<p>8.需要前端工程师使用java的ide（例如eclipse），以及需要配置各种后端的开发环境，你们有考虑过前端工程师的感受吗。</p>
-<p>基于上述的一些痛点，我们应该把整个项目的开发权重往前移，实现前后端真正的解耦！<br>偏头痛杨原创文章，禁止转载，版权必究。<br>开发模式</p>
-<p>以前老的方式是：<br>1.产品经历/领导/客户提出需求<br>2.UI做出设计图<br>3.前端工程师做html页面<br>4.后端工程师将html页面套成jsp页面（前后端强依赖，后端必须要等前端的html做好才能套jsp。如果html发生变更，就更痛了，开发效率低）<br>5.集成出现问题<br>6.前端返工<br>7.后端返工<br>8.二次集成<br>9.集成成功<br>10.交付</p>
-<p>新的方式是：<br>1.产品经历/领导/客户提出需求<br>2.UI做出设计图<br>3.前后端约定接口&amp;数据&amp;参数<br>4.前后端并行开发（无强依赖，可前后端并行开发，如果需求变更，只要接口&amp;参数不变，就不用两边都修改代码，开发效率高）<br>5.前后端集成<br>6.前端页面调整<br>7.集成成功<br>8.交付</p>
-<p>请求方式</p>
-<p>以前老的方式是：<br>1.客户端请求<br>2.服务端的servlet或controller接收请求（后端控制路由与渲染页面，整个项目开发的权重大部分在后端）<br>3.调用service,dao代码完成业务逻辑<br>4.返回jsp<br>5.jsp展现一些动态的代码</p>
-<p>新的方式是：<br>1.浏览器发送请求<br>2.直接到达html页面（前端控制路由与渲染页面，整个项目开发的权重前移）<br>3.html页面负责调用服务端接口产生数据（通过ajax等等，后台返回json格式数据，json数据格式因为简洁高效而取代xml）<br>4.填充html，展现动态效果，在页面上进行解析并操作DOM。<br>（有兴趣的童鞋可以访问一下阿里巴巴等大型网站，然后按一下F12，监控一下你刷新一次页面，他的http是怎么玩的，大多数都是单独请求后台数据，<br>使用json传输数据，而不是一个大而全的http请求把整个页面包括动+静全部返回过来）</p>
-<p>偏头痛杨原创文章，禁止转载，版权必究。<br>总结一下新的方式的请求步骤：<br>大量并发浏览器请求—&gt;web服务器集群(nginx)—&gt;应用服务器集群(tomcat)—&gt;文件/数据库/缓存/消息队列服务器集群<br>同时又可以玩分模块，还可以按业务拆成一个个的小集群，为后面的架构升级做准备。</p>
-<p>前后分离的优势</p>
-<p>1.可以实现真正的前后端解耦，前端服务器使用nginx。<br>前端/WEB服务器放的是css，js，图片等等一系列静态资源（甚至你还可以css，js，图片等资源放到特定的文件服务器，例如阿里云的oss，并使用cdn加速），前端服务器负责控制页面引用&amp;跳转&amp;路由，前端页面异步调用后端的接口，后端/应用服务器使用tomcat（把tomcat想象成一个数据提供者），加快整体响应速度。<br>（这里需要使用一些前端工程化的框架比如nodejs，react，router，react，redux，webpack）</p>
-<p>2.发现bug，可以快速定位是谁的问题，不会出现互相踢皮球的现象。<br>页面逻辑，跳转错误，浏览器兼容性问题，脚本错误，页面样式等问题，全部由前端工程师来负责。<br>接口数据出错，数据没有提交成功，应答超时等问题，全部由后端工程师来解决。<br>双方互不干扰，前端与后端是相亲相爱的一家人。</p>
-<p>3.在大并发情况下，我可以同时水平扩展前后端服务器，比如淘宝的一个首页就需要2000+台前端服务器做集群来抗住日均多少亿+的日均pv。<br>（去参加阿里的技术峰会，听他们说他们的web容器都是自己写的，就算他单实例抗10万http并发，2000台是2亿http并发，并且他们还可以根据预知洪峰来无限拓展，很恐怖，就一个首页。。。）</p>
-<p>4.减少后端服务器的并发/负载压力<br>除了接口以外的其他所有http请求全部转移到前端nginx上，接口的请求调用tomcat，参考nginx反向代理tomcat。<br>且除了第一次页面请求外，浏览器会大量调用本地缓存。</p>
-<p>5.即使后端服务暂时超时或者宕机了，前端页面也会正常访问，只不过数据刷不出来而已。</p>
-<p>6.也许你也需要有微信相关的轻应用，那样你的接口完全可以共用，如果也有app相关的服务，<br>那么只要通过一些代码重构，也可以大量复用接口，提升效率。（多端应用）</p>
-<p>7.页面显示的东西再多也不怕，因为是异步加载。</p>
-<p>8.nginx支持页面热部署，不用重启服务器，前端升级更无缝。</p>
-<p>9.增加代码的维护性&amp;易读性（前后端耦在一起的代码读起来相当费劲）。</p>
-<p>10.提升开发效率，因为可以前后端并行开发，而不是像以前的强依赖。</p>
-<p>11.在nginx中部署证书，外网使用https访问，并且只开放443和80端口，其他端口一律关闭（防止黑客端口扫描），<br>内网使用http，性能和安全都有保障。</p>
-<p>12.前端大量的组件代码得以复用，组件化，提升开发效率，抽出来！<br>注意事项</p>
-<p>1.在开需求会议的时候，前后端工程师必须全部参加，并且需要制定好接口文档，后端工程师要写好测试用例（2个维度），不要让前端工程师充当你的专职测试，<br>推荐使用chrome的插件postman或soapui或jmeter，service层的测试用例拿junit写。ps：前端也可以玩单元测试吗？</p>
-<p>2.上述的接口并不是java里的interface，说白了调用接口就是调用你controler里的方法。</p>
-<p>3.加重了前端团队的工作量，减轻了后端团队的工作量，提高了性能和可扩展性。</p>
-<p>4.我们需要一些前端的框架来解决类似于页面嵌套，分页，页面跳转控制等功能。（上面提到的那些前端框架）。</p>
-<p>5.如果你的项目很小，或者是一个单纯的内网项目，那你大可放心，不用任何架构而言，但是如果你的项目是外网项目，呵呵哒。</p>
-<p>6.以前还有人在使用类似于velocity/freemarker等模板框架来生成静态页面，仁者见仁智者见智。</p>
-<p>7.这篇文章主要的目的是说jsp在大型外网java web项目中被淘汰掉，可没说jsp可以完全不学，对于一些学生朋友来说，jsp/servlet等相关的java web基础还是要掌握牢的，不然你以为springmvc这种框架是基于什么来写的？</p>
-<p>8.如果页面上有一些权限等等相关的校验，那么这些相关的数据也可以通过ajax从接口里拿。</p>
-<p>9.对于既可以前端做也可以后端做的逻辑，我建议是放到前端，为什么？<br>因为你的逻辑需要计算资源进行计算，如果放到后端去run逻辑，则会消耗带宽&amp;内存&amp;cpu等等计算资源，你要记住一点就是<br>服务端的计算资源是有限的，而如果放到前端，使用的是客户端的计算资源，这样你的服务端负载就会下降（高并发场景）。<br>类似于数据校验这种，前后端都需要做！</p>
-<p>10.前端需要有机制应对后端请求超时以及后端服务宕机的情况，友好的展示给用户。</p>
-<p>扩展阅读</p>
-<p>1.其实对于js，css，图片这类的静态资源可以考虑放到类似于阿里云的oss这类文件服务器上（如果是普通的服务器&amp;操作系统，存储在到达pb级的文件后，或者单个文件夹内的文件数量达到3-5万，<br>io会有很严重的性能问题），<br>再在oss上配cdn（全国子节点加速），这样你页面打开的速度像飞一样， 无论你在全国的哪个地方，并且你的nginx的负载会进一步降低。</p>
-<p>2.如果你要玩轻量级微服务架构，要使用nodejs做网关，用nodejs的好处还有利于seo优化，因为nginx只是向浏览器返回页面静态资源，而国内的搜索引擎爬虫只会抓取静态数据，不会解析页面中的js，<br>这使得应用得不到良好的搜索引擎支持。同时因为nginx不会进行页面的组装渲染，需要把静态页面返回到浏览器，然后完成渲染工作，这加重了浏览器的渲染负担。<br>浏览器发起的请求经过nginx进行分发，URL请求统一分发到nodejs，在nodejs中进行页面组装渲染；API请求则直接发送到后端服务器，完成响应。</p>
-<p>3.如果遇到跨域问题，spring4的CORS可以完美解决，但一般使用nginx反向代理都不会有跨域问题，除非你把前端服务和后端服务分成两个域名。<br>JSONP的方式也被淘汰掉了。</p>
-<p>4.如果想玩多端应用，注意要去掉tomcat原生的session机制，要使用token机制，使用缓存（因为是分布式系统），做单点，对于token机制的安全性问题，可以搜一下jwt。</p>
-<p>5.前端项目中可以加入mock测试（构造虚拟测试对象来模拟后端，可以独立开发和测试），后端需要有详细的测试用例，保证服务的可用性与稳定性。<br>总结</p>
-<p>前后端分离并非仅仅只是一种开发模式，而是一种架构模式（前后端分离架构）。<br>千万不要以为只有在撸代码的时候把前端和后端分开就是前后端分离了。需要区分前后端项目<br>前端项目与后端项目是两个项目，放在两个不同的服务器，需要独立部署，两个不同的工程，两个不同的代码库，不同的开发人员。<br>前后端工程师需要约定交互接口，实现并行开发，开发结束后需要进行独立部署，前端通过ajax来调用http请求调用后端的restful api。<br>前端只需要关注页面的样式与动态数据的解析&amp;渲染，而后端专注于具体业务逻辑。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2026,7 +2454,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2037,7 +2465,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2048,7 +2476,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

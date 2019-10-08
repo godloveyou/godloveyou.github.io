@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TCP/IP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、TCP报文格式   TCP报文格式图：     上图中有几个字段需要重点介绍下：   （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。   （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。   （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：">
+<meta name="keywords" content="TCP&#x2F;IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP&#x2F;IP三次握手四次挥手">
+<meta property="og:url" content="http://godloveyou.github.io/2019/10/08/TCP IP三次握手四次挥手/index.html">
+<meta property="og:site_name" content="David&#39;s Blog">
+<meta property="og:description" content="一、TCP报文格式   TCP报文格式图：     上图中有几个字段需要重点介绍下：   （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。   （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。   （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://dl2.iteye.com/upload/attachment/0108/8317/ef70c29e-651b-33a4-b188-d4e8e0ff9915.png">
+<meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191008/XjQC8Jd9LHcm.png?imageslim">
+<meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191008/4gfW0vbr3WOE.png?imageslim">
+<meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191008/d5nltEXPMxL5.png?imageslim">
+<meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191008/ppSYnlie7IQE.png?imageslim">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251716-1929749101.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251934-555170248.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252371-1979969603.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252636-937376226.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253092-1365683710.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253605-1241059132.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254051-694072128.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254264-644298919.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254468-1577667548.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255109-43618668.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255513-104940885.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255745-1296704292.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255981-1871970231.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102256594-1733317431.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102257013-202026294.png">
+<meta property="og:updated_time" content="2019-10-08T06:11:18.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP&#x2F;IP三次握手四次挥手">
+<meta name="twitter:description" content="一、TCP报文格式   TCP报文格式图：     上图中有几个字段需要重点介绍下：   （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。   （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。   （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：">
+<meta name="twitter:image" content="http://dl2.iteye.com/upload/attachment/0108/8317/ef70c29e-651b-33a4-b188-d4e8e0ff9915.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godloveyou.github.io/2019/10/08/TCP IP三次握手四次挥手/">
+
+
+
+
+
+  <title>TCP/IP三次握手四次挥手 | David's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f7d714ed33bfd150a4e166afae0d03d3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">David's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/10/08/TCP IP三次握手四次挥手/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP/IP三次握手四次挥手</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T10:29:20+08:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/10/08/TCP IP三次握手四次挥手/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/10/08/TCP IP三次握手四次挥手/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>一、TCP报文格式</strong></p>
+<p>  TCP报文格式图：</p>
+<p><img src="http://dl2.iteye.com/upload/attachment/0108/8317/ef70c29e-651b-33a4-b188-d4e8e0ff9915.png" alt> </p>
+<p>  上图中有几个字段需要重点介绍下：</p>
+<p>  （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。</p>
+<p>  （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。</p>
+<p>  （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</p>
+<p>  （A）URG：紧急指针（urgent pointer）有效。</p>
+<p>  （B）ACK：确认序号有效。</p>
+<p>  （C）PSH：接收方应该尽快将这个报文交给应用层。</p>
+<p>  （D）RST：重置连接。</p>
+<p>  （E）SYN：发起一个新连接。</p>
+<p>  （F）FIN：释放一个连接。</p>
+<p>三次握手用wireshark抓包分析<br><img src="http://blog.sjjtcloud.com/blog/20191008/XjQC8Jd9LHcm.png?imageslim" alt="mark"></p>
+<p>第一次握手 SYN<br><img src="http://blog.sjjtcloud.com/blog/20191008/4gfW0vbr3WOE.png?imageslim" alt="mark"></p>
+<p>第二次握手 SYN,ACK<br><img src="http://blog.sjjtcloud.com/blog/20191008/d5nltEXPMxL5.png?imageslim" alt="mark"></p>
+<p>第三次握手<br><img src="http://blog.sjjtcloud.com/blog/20191008/ppSYnlie7IQE.png?imageslim" alt="mark"></p>
+<h1 id="TCP-三次握手-示意图"><a href="#TCP-三次握手-示意图" class="headerlink" title="TCP 三次握手 示意图"></a>TCP 三次握手 示意图</h1><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251716-1929749101.png" alt></p>
+<h2 id="Wireshark-抓包注意事项"><a href="#Wireshark-抓包注意事项" class="headerlink" title="Wireshark 抓包注意事项"></a>Wireshark 抓包注意事项</h2><p>为了演示一个TCP三次握手建立连接的过程，我们通过 Chrome 访问一个网页。<br>已知 HTTP 协议就是建立在TCP链接上的</p>
+<p>比如访问以下的网址：<br><a href="http://toutiao.newmedia139.net/" target="_blank" rel="noopener">http://toutiao.newmedia139.net/</a></p>
+<p>通过 Cmd 的 ping 命令获取 这个网站对应的 IP地址 <strong>183.136.236.13</strong><br><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251934-555170248.png" alt></p>
+<p>确定 这个IP 有一个非常重要的好处，就是我们只需要</p>
+<p>电脑 -&gt; 网站 的数据包</p>
+<p>网站-&gt;电脑 的数据包</p>
+<p>所以，可以使用Wireshark的显示过滤规则，只显示我们需要的数据，不然你一定看着满屏幕的数据抓狂的。</p>
+<h3 id="过滤规则如下："><a href="#过滤规则如下：" class="headerlink" title="过滤规则如下："></a>过滤规则如下：</h3><p>ip.src==183.136.236.13 or ip.dst==183.136.236.13</p>
+<h3 id="截图："><a href="#截图：" class="headerlink" title="截图："></a>截图：</h3><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252371-1979969603.png" alt></p>
+<h2 id="分析TCP握手包"><a href="#分析TCP握手包" class="headerlink" title="分析TCP握手包"></a>分析TCP握手包</h2><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252636-937376226.png" alt></p>
+<p>通过图片，可以看到 先 进行了 TCP 三次传输 然后才 开始 HTTP 传输</p>
+<h2 id="第一次-客户端发送-SYN-报文-到服务器"><a href="#第一次-客户端发送-SYN-报文-到服务器" class="headerlink" title="第一次 客户端发送 SYN 报文 到服务器"></a>第一次 客户端发送 SYN 报文 到服务器</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253092-1365683710.png" alt></p>
+<h2 id="第二次-，服务器接收到-客户端的SYN-报文，回复-SYN-ACK-报文"><a href="#第二次-，服务器接收到-客户端的SYN-报文，回复-SYN-ACK-报文" class="headerlink" title="第二次 ，服务器接收到 客户端的SYN 报文，回复 SYN + ACK 报文"></a>第二次 ，服务器接收到 客户端的SYN 报文，回复 SYN + ACK 报文</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253605-1241059132.png" alt></p>
+<h2 id="第三次-，客户端接收到服务端的-SYN-ACK-报文后，回复-ACK报文"><a href="#第三次-，客户端接收到服务端的-SYN-ACK-报文后，回复-ACK报文" class="headerlink" title="第三次 ，客户端接收到服务端的 SYN+ACK 报文后，回复 ACK报文"></a>第三次 ，客户端接收到服务端的 SYN+ACK 报文后，回复 ACK报文</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254051-694072128.png" alt></p>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>这里有个坑：Wireshark 显示的 Syn Ack的数目是不准确的</p>
+<p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254264-644298919.png" alt></p>
+<p>理论上，Syn 应该初始值是个随机数的，后面的要根据初始值增加<br><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254468-1577667548.png" alt></p>
+<h2 id="TCP-三次握手总结"><a href="#TCP-三次握手总结" class="headerlink" title="TCP 三次握手总结"></a>TCP 三次握手总结</h2><p>建立一个稳定的 双向 连接，最少需要 几次 通信呢？<br>以打电话为例<br>小明 给小红 打电话<br>小明 ： 喂，小红 听得到么？<br>小红： 嗯，我听到你说话了，你能听到我么？<br>小明：我能听到你。</p>
+<p>只有这三个传输都正确了，才能保障双方是 连通的</p>
+<h1 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h1><p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这个原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</p>
+<p>CP的连接的拆除需要发送四个包，因此称为四次挥手(four-way handshake)。客户端或服务器均可主动发起挥手动作，在socket编程中，任何一方执行close()操作即可产生挥手操作。</p>
+<p>（1）客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送。</p>
+<p>（2）服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。</p>
+<p>（3）服务器B关闭与客户端A的连接，发送一个FIN给客户端A。</p>
+<p>（4）客户端A发回ACK报文确认，并将确认序号设置为收到序号加1。</p>
+<p>TCP采用四次挥手关闭连接如图2所示。</p>
+<p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255109-43618668.png" alt></p>
+<h1 id="抓包截图"><a href="#抓包截图" class="headerlink" title="抓包截图"></a>抓包截图</h1><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255513-104940885.png" alt></p>
+<p>其中 183.136.236.13 是服务器的ip<br>可以看到 这一次挥手是由 服务器 发起的</p>
+<h2 id="第一次挥手-FIN-ACK"><a href="#第一次挥手-FIN-ACK" class="headerlink" title="第一次挥手 FIN +ACK"></a>第一次挥手 FIN +ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255745-1296704292.png" alt></p>
+<h2 id="第二次挥手-ACK"><a href="#第二次挥手-ACK" class="headerlink" title="第二次挥手 ACK"></a>第二次挥手 ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255981-1871970231.png" alt></p>
+<h2 id="第三次挥手-FIN-ACK"><a href="#第三次挥手-FIN-ACK" class="headerlink" title="第三次挥手 FIN +ACK"></a>第三次挥手 FIN +ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102256594-1733317431.png" alt></p>
+<h2 id="第四次挥手-ACK"><a href="#第四次挥手-ACK" class="headerlink" title="第四次挥手 ACK"></a>第四次挥手 ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102257013-202026294.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>TCP 由于是全双工的，断开链接需要四次挥手</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/30/nginx配置/" rel="next" title="nginx配置">
+                <i class="fa fa-chevron-left"></i> nginx配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.png" alt="David">
+            
+              <p class="site-author-name" itemprop="name">David</p>
+              <p class="site-description motion-element" itemprop="description">你要保守你心,胜过保守一切,因为一生的果效，是由心发出的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/godloveyou" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:823939100@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-三次握手-示意图"><span class="nav-number">1.</span> <span class="nav-text">TCP 三次握手 示意图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wireshark-抓包注意事项"><span class="nav-number">1.1.</span> <span class="nav-text">Wireshark 抓包注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤规则如下："><span class="nav-number">1.1.1.</span> <span class="nav-text">过滤规则如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截图："><span class="nav-number">1.1.2.</span> <span class="nav-text">截图：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析TCP握手包"><span class="nav-number">1.2.</span> <span class="nav-text">分析TCP握手包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概览"><span class="nav-number">1.3.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次-客户端发送-SYN-报文-到服务器"><span class="nav-number">1.4.</span> <span class="nav-text">第一次 客户端发送 SYN 报文 到服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二次-，服务器接收到-客户端的SYN-报文，回复-SYN-ACK-报文"><span class="nav-number">1.5.</span> <span class="nav-text">第二次 ，服务器接收到 客户端的SYN 报文，回复 SYN + ACK 报文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三次-，客户端接收到服务端的-SYN-ACK-报文后，回复-ACK报文"><span class="nav-number">1.6.</span> <span class="nav-text">第三次 ，客户端接收到服务端的 SYN+ACK 报文后，回复 ACK报文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意："><span class="nav-number">1.7.</span> <span class="nav-text">注意：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-三次握手总结"><span class="nav-number">1.8.</span> <span class="nav-text">TCP 三次握手总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-四次挥手"><span class="nav-number">2.</span> <span class="nav-text">TCP 四次挥手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抓包截图"><span class="nav-number">3.</span> <span class="nav-text">抓包截图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次挥手-FIN-ACK"><span class="nav-number">3.1.</span> <span class="nav-text">第一次挥手 FIN +ACK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二次挥手-ACK"><span class="nav-number">3.2.</span> <span class="nav-text">第二次挥手 ACK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三次挥手-FIN-ACK"><span class="nav-number">3.3.</span> <span class="nav-text">第三次挥手 FIN +ACK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四次挥手-ACK"><span class="nav-number">3.4.</span> <span class="nav-text">第四次挥手 ACK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyto4vUae';
+      var conf = 'fbae73d15fb09500171cf0adae584a71';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

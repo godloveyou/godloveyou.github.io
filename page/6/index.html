@@ -295,6 +295,898 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7.5调整swap分区/" itemprop="url">centos7.5增加swap分区</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Centos7.5调整swap分区/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5调整swap分区/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>先用free -m查看一下swap的大小</p>
+<p><img src="https://files.jb51.net/file_images/article/201804/201841291807170.png?201831291819" alt></p>
+<p>1.添加swap分区 </p>
+<p>使用dd命令创建/home/swap这么一个分区文件。文件的大小是2048000  个block，一般情况下1个block为1K，所以这里空间是2G。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/var/swapfile bs=1024 count=2048000  //添加交换文件并设置其大小为2G</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180627095255111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt> </p>
+<p>2.执行完毕，对交换文件格式化并转换为swap分区： </p>
+<p>mkswap /var/swapfile</p>
+<p><img src="https://img-blog.csdn.net/20180627095317795?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>3.挂载并激活分区： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /var/swapfile</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180627095340170?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>4 赋权限 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 0600 /var/swapfile</span><br></pre></td></tr></table></figure>
+<p>现在再用free -m命令查看一下内存和swap分区大小，就发现增加了2G的空间了。</p>
+<p>注意当计算机重启了以后，发现swap还是原来那么大，新的swap没有自动启动，还要手动启动。那我们需要修改/etc/fstab文件</p>
+<p>5.设置开机自动挂载该分区：<br>vi /etc/fstab<br>在fstab文件末尾追加如下内容后:wq!保存即可： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swapfile swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装RocketMq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7.5安装RocketMq/" itemprop="url">Centos7.5安装RocketMq</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMq/" itemprop="url" rel="index">
+                    <span itemprop="name">RocketMq</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Centos7.5安装RocketMq/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装RocketMq/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装RocketMq/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
+<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
+<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
+<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
+<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
+<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
+<p>查看进程：jps</p>
+<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
+<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
+<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
+<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
+<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
+<p>bin目录：</p>
+<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
+<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
+<p>参考文章</p>
+<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7.5安装Elasticsearch/" itemprop="url">Centos7.5安装Elasticsearch2.3.5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Centos7.5安装Elasticsearch/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装Elasticsearch/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p> Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK</p>
+</blockquote>
+<h3 id="安装方法一（下载rpm包方式）"><a href="#安装方法一（下载rpm包方式）" class="headerlink" title="安装方法一（下载rpm包方式）"></a>安装方法一（下载rpm包方式）</h3><p><strong> 1.百度elasticsearch,点击官网网址</strong></p>
+<p><strong> <img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111519713-1843270100.png" alt></strong></p>
+<p> 2.点击Downloads，选择past releases</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111941963-554816516.png" alt></p>
+<p>3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全）</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112356557-1829265054.png" alt></p>
+<p>4.右键点击RPM选择 – 复制连接地址</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112633619-1394926966.png" alt></p>
+<p>5.在根目录下载rmp包</p>
+<p><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm</code></p>
+<p>6.执行下面的命令,安装完成后按照提示操作,即可</p>
+<p><code>rpm -ivh elasticsearch-2.3.5.rpm</code></p>
+<p>7.启动并查看安装状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br><span class="line"></span><br><span class="line">systemctl status elasticsearch</span><br></pre></td></tr></table></figure>
+<p>8.本地查看版本信息</p>
+<p><code>curl  http://127.0.0.1:9200</code></p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113314791-1988726404.png" alt></p>
+<p>9.查找elasticsearch 安装路径与配置路径，并且配置</p>
+<p>whereis elasticsearch</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113451932-347145346.png" alt></p>
+<p><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<p>修改：<br>  <img src="http://blog.nilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
+<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port</p>
+<p>保存退出后重启elasticsearch</p>
+<p><code>systemctl restart elasticsearch</code></p>
+<p>在浏览器访问虚拟机ip:9200<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
+<h3 id="安装方法二-yum方式安装"><a href="#安装方法二-yum方式安装" class="headerlink" title="安装方法二 (yum方式安装)"></a>安装方法二 (yum方式安装)</h3><p>一、ES的yum安装配置</p>
+<p>由于ES不在yum的本地源，所以我们需要添加ES的yum配置。</p>
+<p>1、下载并安装ES的yum公钥</p>
+<p><code>rpm --import https:`</code>//packages.elastic.co/GPG-KEY-elasticsearch`</p>
+<p>2、配置ES的yum源<br><code>vim /etc/yum.repos.d/elasticsearch.repo</code></p>
+<p> 输入下面的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[elasticsearch-2.x]</span><br><span class="line">name=Elasticsearch repository for 2.x packages</span><br><span class="line">baseurl=http://packages.elastic.co/elasticsearch/2.x/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
+<p>二、yum安装ES</p>
+<p>1、更新yum的缓存<br><code>yum makecache</code></p>
+<p>2、安装ES<br><code>yum install elasticsearch</code></p>
+<p>三、测试ES</p>
+<p>1、配置和启动ES服务器进程</p>
+<p><code>/sbin/chkconfig --add elasticsearch</code></p>
+<p><code>systemctl start elasticsearch</code></p>
+<p>2、查看状态</p>
+<p><code>systemctl status elasticsearch</code></p>
+<p>3、运行测试<br><code>curl -X GET localhost:9200</code></p>
+<p>返回的json结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;Live Wire&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;2.3.5&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;,</span><br><span class="line">    &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;5.5.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>四、通过IP访问ES的配置（同方法一配置方法一样）<br>1、打开/etc/elasticsearch/elasticsearch.yml<br><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<p> network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址，<br> http.port-&gt; 去掉注释<br>  <img src="http://blognilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
+<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
+<h3 id="安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html"><a href="#安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html" class="headerlink" title="安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html"></a>安装中文分词插件参考<a href="https://www.cnblogs.com/shifu204/p/6374234.html" target="_blank" rel="noopener">https://www.cnblogs.com/shifu204/p/6374234.html</a></h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7 安装Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7 安装Docker/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Centos7 安装Docker/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7 安装Docker/" class="cy_cmt_count" data-xid="2019/08/07/Centos7 安装Docker/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Centos7-安装Docker"><a href="#Centos7-安装Docker" class="headerlink" title="Centos7 安装Docker"></a>Centos7 安装Docker</h2><p>安装参考：<a href="https://blog.csdn.net/u010046908/article/details/79553227" target="_blank" rel="noopener">https://blog.csdn.net/u010046908/article/details/79553227</a><br>安装最新版本 <a href="https://blog.csdn.net/kongxx/article/details/78361048" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78361048</a></p>
+<p>阿里云镜像仓库地址： <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></p>
+<p>常用命令<br>docker pull centos  拉取centos<br>docker images 查看本地所有镜像<br>docker run hello-world 运行实例</p>
+<p>docker run -i -t -v /root/sortware/:/mnt/sortware/ 75835a67d134 /bin/bash</p>
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p>exit</p>
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><p>docker stop mycentos</p>
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p>docker start mycentos</p>
+<h3 id="重启后-在mycentos再打开-bin-bash"><a href="#重启后-在mycentos再打开-bin-bash" class="headerlink" title="重启后,在mycentos再打开/bin/bash"></a>重启后,在mycentos再打开/bin/bash</h3><p>docker exec -ti mycentos /bin/bash</p>
+<p>1、初步安装和启动docker<br>yum update -y<br>yum -y install docker<br>systemctl start docker</p>
+<p>2、设置镜像<br>vi /etc/docker/daemon.json</p>
+<p>{<br>  “registry-mirrors”: [“<a href="https://aj2rgad5.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://aj2rgad5.mirror.aliyuncs.com&quot;]</a><br>}</p>
+<p>3、重启docker<br>systemctl daemon-reload<br>systemctl restart docker.service</p>
+<p>4、测试docker是否正常安装和运行<br>docker run hello-world</p>
+<p>5、查看结果<br>Hello from Docker!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Cenos7.5搭建生成环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Cenos7.5搭建生成环境/" itemprop="url">Cenos7.5环境搭建目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Cenos7.5搭建生成环境/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Cenos7.5搭建生成环境/" class="cy_cmt_count" data-xid="2019/08/07/Cenos7.5搭建生成环境/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Linux-设置服务器时区"><a href="#1-Linux-设置服务器时区" class="headerlink" title="1.Linux 设置服务器时区:"></a>1.Linux 设置服务器时区:</h3><p>1、安装ntp服务软件包：yum install ntp<br>2、将ntp设置为缺省启动：systemctl enable ntpd<br>3、修改启动参数，增加-g -x参数，允许ntp服务在系统时间误差较大时也能正常工作：vi /etc/sysconfig/ntpd<br>4、启动ntp服务：/bin/systemctl restart ntpd<br>5、将系统时区改为上海时间（即CST时区）：ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>6、输入date命令查看时间是否正确</p>
+<h3 id="2-搭建FTP-vsftp"><a href="#2-搭建FTP-vsftp" class="headerlink" title="2. 搭建FTP(vsftp)"></a>2. 搭建FTP(vsftp)</h3><p><a href="https://blog.csdn.net/zy517863543/article/details/80028351" target="_blank" rel="noopener">https://blog.csdn.net/zy517863543/article/details/80028351</a></p>
+<p>  遇到的问题：<br>  1.安装成功后, Filezilla可以正常上传下载文件，但是java程序中使用Ftp工具类无法上传成功？<br>   解决方法： 程序中需要指定使用被动模式</p>
+<h3 id="3-搭建SFTP"><a href="#3-搭建SFTP" class="headerlink" title="3.搭建SFTP"></a>3.搭建SFTP</h3><p>参考博客(<a href="https://blog.csdn.net/fenglailea/article/details/78631760" target="_blank" rel="noopener">https://blog.csdn.net/fenglailea/article/details/78631760</a>)</p>
+<h3 id="4-下载并安装redis"><a href="#4-下载并安装redis" class="headerlink" title="4.下载并安装redis"></a>4.下载并安装redis</h3><p><a href="https://www.cnblogs.com/zuidongfeng/p/8032505.html" target="_blank" rel="noopener">https://www.cnblogs.com/zuidongfeng/p/8032505.html</a></p>
+<p>遇到的问题: <a href="https://blog.csdn.net/jexhen/article/details/76098622" target="_blank" rel="noopener">https://blog.csdn.net/jexhen/article/details/76098622</a><br>复制到etc下的配置<br>/etc/redis/6379.conf (自动启动时生效的是这个,两个配置文件做好同步)</p>
+<h3 id="5-搭建java环境"><a href="#5-搭建java环境" class="headerlink" title="5.搭建java环境"></a>5.搭建java环境</h3><p><a href="https://blog.csdn.net/sizhezhongnian/article/details/81142976" target="_blank" rel="noopener">https://blog.csdn.net/sizhezhongnian/article/details/81142976</a><br>JAVA根目录: /usr/java/jdk1.8</p>
+<h3 id="6-搭建并配置NGINX服务器"><a href="#6-搭建并配置NGINX服务器" class="headerlink" title="6.搭建并配置NGINX服务器"></a>6.搭建并配置NGINX服务器</h3><p>安装第三方yum源</p>
+<h4 id="安装下载wget"><a href="#安装下载wget" class="headerlink" title="安装下载wget"></a>安装下载wget</h4><p>yum install wget</p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>wget <a href="http://www.atomicorp.com/installers/atomic" target="_blank" rel="noopener">http://www.atomicorp.com/installers/atomic</a></p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>sh ./atomic</p>
+<h4 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h4><p>yum check-update</p>
+<p>开始安装nginx</p>
+<h4 id="删除系统自带的软件包"><a href="#删除系统自带的软件包" class="headerlink" title="删除系统自带的软件包"></a>删除系统自带的软件包</h4><p>yum remove httpd<em> php</em></p>
+<h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p>yum install -y nginx</p>
+<h4 id="设置nginx开机启动"><a href="#设置nginx开机启动" class="headerlink" title="设置nginx开机启动"></a>设置nginx开机启动</h4><p>chkconfig nginx on</p>
+<h4 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h4><p>service nginx start</p>
+<h3 id="7-搭建TOMCAT及参数优化"><a href="#7-搭建TOMCAT及参数优化" class="headerlink" title="7. 搭建TOMCAT及参数优化"></a>7. 搭建TOMCAT及参数优化</h3><p>安装tomcat,并配置多tomcat<br><a href="https://blog.csdn.net/w410589502/article/details/77988912" target="_blank" rel="noopener">https://blog.csdn.net/w410589502/article/details/77988912</a><br><a href="https://blog.csdn.net/weixin_41004350/article/details/78492500" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41004350/article/details/78492500</a></p>
+<h3 id="8-安装MYSQL-5-7-数据库"><a href="#8-安装MYSQL-5-7-数据库" class="headerlink" title="8. 安装MYSQL(5.7) 数据库"></a>8. 安装MYSQL(5.7) 数据库</h3><p>参考博客: <a href="https://www.cnblogs.com/freely/p/8087885.html" target="_blank" rel="noopener">https://www.cnblogs.com/freely/p/8087885.html</a></p>
+<p>添加用户,授权用户</p>
+<p><a href="https://www.cnblogs.com/xujishou/p/6306765.html" target="_blank" rel="noopener">https://www.cnblogs.com/xujishou/p/6306765.html</a></p>
+<p>配置文件 vim /etc/my.cnf<br>注意更改端口号为13306 需要加入防火墙</p>
+<p>Mysql授权失败错误问题</p>
+<p>执行命令: grant all on <em>.</em> to hospital@’%’</p>
+<p>授权只能访问某库</p>
+<p>grant all privileges on ky.*  to  hospital@’%’ identified by ‘Fv6jl#cxhd3&amp;0vx8’</p>
+<p>执行完要刷新权限  flush privileges;</p>
+<p>ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</p>
+<p><a href="https://www.cnblogs.com/ivictor/p/5142809.html" target="_blank" rel="noopener">https://www.cnblogs.com/ivictor/p/5142809.html</a></p>
+<h3 id="9-防火墙配置及管理"><a href="#9-防火墙配置及管理" class="headerlink" title="9. 防火墙配置及管理"></a>9. 防火墙配置及管理</h3><p>CentOS7使用firewalld打开关闭防火墙与端口</p>
+<p>1、firewalld的基本使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">启动服务   systemctl start firewalld</span><br><span class="line">关闭服务   systemctl stop firewalld</span><br><span class="line">查看状态   systemctl status firewalld </span><br><span class="line">开机禁用   systemctl disable firewalld</span><br><span class="line">开机启用   systemctl enable firewalld</span><br></pre></td></tr></table></figure></p>
+<p>2.systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">启动一个服务：systemctl start firewalld.service</span><br><span class="line">关闭一个服务：systemctl stop firewalld.service</span><br><span class="line">重启一个服务：systemctl restart firewalld.service</span><br><span class="line">显示一个服务的状态：systemctl status firewalld.service</span><br><span class="line">在开机时启用一个服务：systemctl enable firewalld.service</span><br><span class="line">在开机时禁用一个服务：systemctl disable firewalld.service</span><br><span class="line">查看服务是否开机启动：systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：systemctl --failed</span><br></pre></td></tr></table></figure>
+<p>3.配置firewalld-cmd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看版本： firewall-cmd --version</span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure></p>
+<p>4.怎样在防火墙中开启一个端口呢？</p>
+<ul>
+<li><p>添加端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> firewall-cmd --zone=public --add-port=80/tcp --permanent    </span><br><span class="line">（--permanent永久生效，没有此参数重启后失效）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新载入<br>  <code>firewall-cmd --reload</code></p>
+</li>
+<li><p>查看<br>  <code>firewall-cmd --zone= public --query-port=80/tcp</code></p>
+</li>
+<li><p>删除<br>  <code>firewall-cmd --zone= public --remove-port=80/tcp --permanent</code></p>
+</li>
+</ul>
+<p>###10. centos7 常用命令</p>
+<p>1、Apache 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd 启动</span><br><span class="line">systemctl stop httpd 停止</span><br><span class="line">systemctl restart httpd 重启</span><br><span class="line">systemctl status httpd 状态</span><br></pre></td></tr></table></figure></p>
+<p>2、MySQL 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld关闭：</span><br><span class="line">systemctl stop mysqld重启：</span><br><span class="line">systemctl restart mysqld状态：</span><br><span class="line">systemctl status mysqld</span><br></pre></td></tr></table></figure></p>
+<p>3、FTP 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd   启动</span><br><span class="line">systemctl stop vsftpd    停止</span><br><span class="line">systemctl restart vsftpd 重启</span><br><span class="line">systemctl status vsftpd  状态</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>Nginx服务管理命令启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx 启动</span><br><span class="line">systemctl status nginx 查看状态</span><br><span class="line">systemctl stop nginx 停止</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2018/04/12/studyEnglish/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -563,7 +1455,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -574,7 +1466,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -585,7 +1477,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

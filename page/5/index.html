@@ -295,6 +295,868 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Nginx匹配规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Nginx匹配规则/" itemprop="url">Nginx匹配规则说明以及匹配的优先级</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DataBase/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBase</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Nginx匹配规则/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Nginx匹配规则/" class="cy_cmt_count" data-xid="2019/08/07/Nginx匹配规则/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>location 匹配规则<br>语法规则<br>location [=|~|~*|^~] /uri/ { … }</p>
+<p>模式    含义<br>location = /uri    = 表示精确匹配，只有完全匹配上才能生效<br>location ^~ /uri    ^~ 开头对URL路径进行前缀匹配，并且在正则之前。<br>location ~ pattern    开头表示区分大小写的正则匹配<br>location ~* pattern    开头表示不区分大小写的正则匹配<br>location /uri    不带任何修饰符，也表示前缀匹配，但是在正则匹配之后<br>location /    通用匹配，任何未匹配到其它location的请求都会匹配到，相当于switch中的default<br>前缀匹配时，Nginx 不对 url 做编码，因此请求为 /static/20%/aa，可以被规则 ^~ /static/ /aa 匹配到（注意是空格）</p>
+<p>多个 location 配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）:</p>
+<p>首先精确匹配 =<br>其次前缀匹配 ^~<br>其次是按文件中顺序的正则匹配<br>然后匹配不带任何修饰的前缀匹配。<br>最后是交给 / 通用匹配<br>当有匹配成功时候，停止匹配，按当前匹配规则处理请求<br>注意：前缀匹配，如果有包含关系时，按最大匹配原则进行匹配。比如在前缀匹配：location /dir01 与location /dir01/dir02，如有请求 <a href="http://localhost/dir01/dir02/file" target="_blank" rel="noopener">http://localhost/dir01/dir02/file</a> 将最终匹配到 location /dir01/dir02</p>
+<p>例子，有如下匹配规则：</p>
+<p>location = / {<br>   echo “规则A”;<br>}<br>location = /login {<br>   echo “规则B”;<br>}<br>location ^~ /static/ {<br>   echo “规则C”;<br>}<br>location ^~ /static/files {<br>    echo “规则X”;<br>}<br>location ~ .(gif|jpg|png|js|css)$ {<br>   echo “规则D”;<br>}<br>location ~* .png$ {<br>   echo “规则E”;<br>}<br>location /img {<br>    echo “规则Y”;<br>}<br>location / {<br>   echo “规则F”;<br>}<br>那么产生的效果如下：</p>
+<p>访问根目录 /，比如 <a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a> 将匹配 规则A<br>访问 <a href="http://localhost/login" target="_blank" rel="noopener">http://localhost/login</a> 将匹配 规则B，<a href="http://localhost/register" target="_blank" rel="noopener">http://localhost/register</a> 则匹配 规则F<br>访问 <a href="http://localhost/static/a.html" target="_blank" rel="noopener">http://localhost/static/a.html</a> 将匹配 规则C<br>访问 <a href="http://localhost/static/files/a.exe" target="_blank" rel="noopener">http://localhost/static/files/a.exe</a> 将匹配 规则X，虽然 规则C 也能匹配到，但因为最大匹配原则，最终选中了 规则X。你可以测试下，去掉规则 X ，则当前 URL 会匹配上 规则C。<br>访问 <a href="http://localhost/a.gif" target="_blank" rel="noopener">http://localhost/a.gif</a>, <a href="http://localhost/b.jpg" target="_blank" rel="noopener">http://localhost/b.jpg</a> 将匹配 规则D 和 规则 E ，但是 规则 D 顺序优先，规则 E 不起作用，而 <a href="http://localhost/static/c.png" target="_blank" rel="noopener">http://localhost/static/c.png</a> 则优先匹配到 规则 C<br>访问 <a href="http://localhost/a.PNG" target="_blank" rel="noopener">http://localhost/a.PNG</a> 则匹配 规则 E ，而不会匹配 规则 D ，因为 规则 E 不区分大小写。<br>访问 <a href="http://localhost/img/a.gif" target="_blank" rel="noopener">http://localhost/img/a.gif</a> 会匹配上 规则D,虽然 规则Y 也可以匹配上，但是因为正则匹配优先，而忽略了 规则Y。<br>访问 <a href="http://localhost/img/a.tiff" target="_blank" rel="noopener">http://localhost/img/a.tiff</a> 会匹配上 规则Y。<br>访问 <a href="http://localhost/category/id/1111" target="_blank" rel="noopener">http://localhost/category/id/1111</a> 则最终匹配到规则 F ，因为以上规则都不匹配，这个时候应该是 Nginx 转发请求给后端应用服务器，比如 FastCGI（php），tomcat（jsp），Nginx 作为反向代理服务器存在。</p>
+<p>所以实际使用中，笔者觉得至少有三个匹配规则定义，如下：</p>
+<h4 id="直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。"><a href="#直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。" class="headerlink" title="直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。"></a>直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。</h4><h4 id="这里是直接转发给后端应用服务器了，也可以是一个静态首页"><a href="#这里是直接转发给后端应用服务器了，也可以是一个静态首页" class="headerlink" title="这里是直接转发给后端应用服务器了，也可以是一个静态首页"></a>这里是直接转发给后端应用服务器了，也可以是一个静态首页</h4><h4 id="第一个必选规则"><a href="#第一个必选规则" class="headerlink" title="第一个必选规则"></a>第一个必选规则</h4><p>location = / {<br>    proxy_pass <a href="http://tomcat:8080/index" target="_blank" rel="noopener">http://tomcat:8080/index</a><br>}</p>
+<h1 id="第二个必选规则是处理静态文件请求，这是-nginx-作为-http-服务器的强项"><a href="#第二个必选规则是处理静态文件请求，这是-nginx-作为-http-服务器的强项" class="headerlink" title="第二个必选规则是处理静态文件请求，这是 nginx 作为 http 服务器的强项"></a>第二个必选规则是处理静态文件请求，这是 nginx 作为 http 服务器的强项</h1><h1 id="有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用"><a href="#有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用" class="headerlink" title="有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用"></a>有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用</h1><p>location ^~ /static/ {<br>    root /webroot/static/;<br>}<br>location ~* .(gif|jpg|jpeg|png|css|js|ico)$ {<br>    root /webroot/res/;<br>}</p>
+<h1 id="第三个规则就是通用规则，用来转发动态请求到后端应用服务器"><a href="#第三个规则就是通用规则，用来转发动态请求到后端应用服务器" class="headerlink" title="第三个规则就是通用规则，用来转发动态请求到后端应用服务器"></a>第三个规则就是通用规则，用来转发动态请求到后端应用服务器</h1><h1 id="非静态文件请求就默认是动态请求，自己根据实际把握"><a href="#非静态文件请求就默认是动态请求，自己根据实际把握" class="headerlink" title="非静态文件请求就默认是动态请求，自己根据实际把握"></a>非静态文件请求就默认是动态请求，自己根据实际把握</h1><h1 id="毕竟目前的一些框架的流行，带-php、-jsp后缀的情况很少了"><a href="#毕竟目前的一些框架的流行，带-php、-jsp后缀的情况很少了" class="headerlink" title="毕竟目前的一些框架的流行，带.php、.jsp后缀的情况很少了"></a>毕竟目前的一些框架的流行，带.php、.jsp后缀的情况很少了</h1><p>location / {<br>    proxy_pass <a href="http://tomcat:8080/" target="_blank" rel="noopener">http://tomcat:8080/</a><br>}</p>
+<h2 id="rewrite-语法"><a href="#rewrite-语法" class="headerlink" title="rewrite 语法"></a>rewrite 语法</h2><p>作者：Gove_chan<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/qq_15766181/article/details/72829672" target="_blank" rel="noopener">https://blog.csdn.net/qq_15766181/article/details/72829672</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Mysql存储emoji表情错误问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Mysql存储emoji表情错误问题/" itemprop="url">Mysql存储emoji表情错误问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Mysql存储emoji表情错误问题/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Mysql存储emoji表情错误问题/" class="cy_cmt_count" data-xid="2019/08/07/Mysql存储emoji表情错误问题/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23</span><br></pre></td></tr></table></figure></p>
+<p>解决方法 ：</p>
+<ol>
+<li><p>windows服务器<br>修改my.ini配置文件,修改编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysqld]  </span><br><span class="line">character-set-server=utf8mb4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启Mysql服务</p>
+</li>
+<li><p>先查看数据库的编码方式：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;%char%&apos;;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改整个表的编码方式：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table user convert to character set utf8mb4 collate utf8mb4_bin;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>修改某个字段的编码方式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE user_patient MODIFY COLUMN user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT &apos;姓名&apos;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Java-io操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Java-io操作/" itemprop="url">JAVA IO总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Java-io操作/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Java-io操作/" class="cy_cmt_count" data-xid="2019/08/07/Java-io操作/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#JAVA IO总结</p>
+<p><img src="https://www.2cto.com/uploadfile/Collfiles/20160801/20160801093838973.png" alt="IO分类图"></p>
+<h2 id="InputStream和OutputStream"><a href="#InputStream和OutputStream" class="headerlink" title="InputStream和OutputStream"></a>InputStream和OutputStream</h2><ul>
+<li>InputStream是所有字节输入流的父类</li>
+</ul>
+<ul>
+<li>int read():读取一个字节以int形式返回,该int值的低8位有效，返回-1则表示EOF</li>
+<li>int read(byte[] b): 读取b.length字节到数组中，返回值为实际读取到的字节量</li>
+</ul>
+<ul>
+<li>OutputStream是所有字节输出流的父类</li>
+</ul>
+<ul>
+<li>void write(int d) 写出一个字节，写的是int的低8位</li>
+<li>void write(byte[] d)将给定的字节数组中的所有字节全部写出</li>
+</ul>
+<h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><ul>
+<li>FileInputStream 是文件的字节输入流</li>
+</ul>
+<ul>
+<li>int read()</li>
+<li>int read(byte[] b)</li>
+</ul>
+<ul>
+<li>FileOutputStream 是文件的字节输出流，FOS有两种模式一种是重写模式，一种是追加模式</li>
+</ul>
+<ul>
+<li>void write(int d)</li>
+<li>void write(byte[] d)</li>
+<li>void write(byte[] d,int offset,int len)将字节数组d中 从偏移量offset开始的 len个字节写入文件输出流中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 文件流</span><br><span class="line"> * FileOutPutStream是字节输出流</span><br><span class="line"> */</span><br><span class="line">public class FosTest &#123;</span><br><span class="line"></span><br><span class="line">    File f = new File(&quot;fileOut.txt&quot;);</span><br><span class="line"></span><br><span class="line">    //测试FOS 追加模式</span><br><span class="line">    @Test</span><br><span class="line">    @Ignore</span><br><span class="line">    public void testFosAppendMode()&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            FileOutputStream fos = new FileOutputStream(f,true);</span><br><span class="line">            fos.write(&quot;,Hello every one I am David&quot;.getBytes());</span><br><span class="line">            fos.flush();</span><br><span class="line">            fos.close();</span><br><span class="line"></span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //测试FOS 重写模式</span><br><span class="line">    @Test</span><br><span class="line">    @Ignore</span><br><span class="line">    public void testFosOverrideMode()&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            FileOutputStream fos = new FileOutputStream(f);</span><br><span class="line">            fos.write(&quot;You are good Boy&quot;.getBytes());</span><br><span class="line">            fos.flush();</span><br><span class="line">            fos.close();</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h2><blockquote>
+<p>在读取数据时 若以字节为单位读取数据，会因为读取次数频繁而大大的降低读取效率<br>缓冲流就是通过提高每次读写的字节数量,减少读写次数 从而提高读写效率</p>
+</blockquote>
+<ul>
+<li>BufferedInputStream</li>
+<li>BufferedOutputStream</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * BufferedOutputStream</span><br><span class="line"> * 内部维护着一个缓冲区,当我们向该流写数据时，都会先将数据写入缓冲区, 当缓冲区已满时,缓冲流会一次性将数据写出</span><br><span class="line"> * 用途：在向硬件设备写出数据时, 使用缓冲流可以减小写出次数，从而提高了写出效率</span><br><span class="line"> * 注意: 有时我们在写出数据后希望 数据立即被写出，而不是存储在缓冲区中 直到缓冲区满后才真正写出，这时可以调用flush()强制写出</span><br><span class="line"> *</span><br><span class="line"> * BufferedInputPutStream 处理流</span><br><span class="line"> * 内部也是维护一个缓冲区，当读取字节数据时会尽可能多的读取 然后存入缓冲区，然后逐一的返回缓存的字节数据，直到读取完毕</span><br><span class="line"> */</span><br><span class="line">public class BosBisTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testBos()&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            byte[] d = new byte[100];</span><br><span class="line"></span><br><span class="line">            FileOutputStream fos = new FileOutputStream(&quot;fileOut.txt&quot;,true);</span><br><span class="line">            BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">            bos.write(&quot;,I am from China&quot;.getBytes());</span><br><span class="line">            bos.close();</span><br><span class="line"></span><br><span class="line">            FileInputStream fio = new FileInputStream(&quot;fileOut.txt&quot;);</span><br><span class="line">            BufferedInputStream bio = new BufferedInputStream(fio);</span><br><span class="line"></span><br><span class="line">            int dd = -1;</span><br><span class="line">            while((dd = bio.read())!=-1)&#123;</span><br><span class="line">                //一个个字节的读取输出了，</span><br><span class="line">                System.out.println(dd+&quot;,&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reader和Writer"><a href="#Reader和Writer" class="headerlink" title="Reader和Writer"></a>Reader和Writer</h2><ul>
+<li>Reader是字符输入流的父类，当要读文本文件时最好使用Reader类，它为读取文本而设计</li>
+<li><p>Writer是字符输出流的父类，当要写文本文件时最好使用Writer类，而不是直接写OutputStream；因为Writer类就是为写文本而设计的。</p>
+</li>
+<li><p>字符流是以char(字符)为单位读写数据的,一次处理一个Unicode</p>
+</li>
+<li>字符流的底层仍然是基本的字节流.</li>
+</ul>
+<h3 id="Reader常用方法"><a href="#Reader常用方法" class="headerlink" title="Reader常用方法"></a>Reader常用方法</h3><ul>
+<li>int read(): 读取一个字符,返回int值 “低16位”有效</li>
+<li>int read(char[] chs): 读取一个字符数组的length个字符并存入该数组,返回值为实际读取到的字符量</li>
+</ul>
+<h3 id="Writer常用方法"><a href="#Writer常用方法" class="headerlink" title="Writer常用方法"></a>Writer常用方法</h3><ul>
+<li>void write(int c): 写出一个字符,写出给定int值 “低16位”表示的字符。</li>
+<li>void write(char[] chs):将给定字符数组中所有字符写出</li>
+<li>void write(char[] chs,int offset,int len):将给定的字符数组中从offset处开始连续的len个字符写出</li>
+</ul>
+<h3 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h3><p>###InputStreamReader: 字符输入流<br> 使用该流可以设置字符集,并按照指定的字符集从流中按照该编码将字节数据转换为字符并读取 </p>
+<ul>
+<li>InputStreamReader(InputStream in, String charsetName) 根据指定字符集创建ISR</li>
+<li>InputStreamReader(InputStream in) 根据系统默认字符集创建ISR</li>
+</ul>
+<h3 id="OutputStreamWriter-字符输出流"><a href="#OutputStreamWriter-字符输出流" class="headerlink" title="OutputStreamWriter:字符输出流"></a>OutputStreamWriter:字符输出流</h3><p>使用该流可以设置字符集,并按照指定字符集 将字符转换为对应字节后通过流写出 </p>
+<ul>
+<li>OutputStreamWriter(OutputStream out,String charsetName) 基于指定的字节输出流和字符集创建OSW</li>
+<li>OutputStreamWriter(OutputStream out) 基于指定的字节输出流和系统默认字符集创建OSW</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 测试InputStreamReader 和 OutputStreamWriter</span><br><span class="line"> */</span><br><span class="line">public class OswTest &#123;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    @Ignore</span><br><span class="line">    public void testOsw() throws java.io.IOException&#123;</span><br><span class="line">        FileOutputStream fos = new FileOutputStream(&quot;demo.txt&quot;);</span><br><span class="line">        OutputStreamWriter osw = new OutputStreamWriter(fos,&quot;UTF-8&quot;);</span><br><span class="line">        osw.write(&quot;中国人&quot;);</span><br><span class="line">        osw.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void testIsr() throws java.io.IOException&#123;</span><br><span class="line">        FileInputStream fis = new FileInputStream(&quot;demo.txt&quot;);</span><br><span class="line">        InputStreamReader isr = new InputStreamReader(fis,&quot;utf-8&quot;);</span><br><span class="line">        int data = -1;</span><br><span class="line">        while ((data=isr.read())!=-1)&#123;</span><br><span class="line">            System.out.println((char)data);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        isr.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h3><ul>
+<li>FileReader</li>
+<li>FileWriter</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class FileReaderWriterTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            File f = new File(&quot;demo.txt&quot;);</span><br><span class="line">            FileWriter fw = new FileWriter(f);</span><br><span class="line">            fw.write(&quot;Hello\ndavid&quot;);</span><br><span class="line">            fw.close();</span><br><span class="line"></span><br><span class="line">            FileReader fr = new FileReader(f);</span><br><span class="line">            int res = 0;</span><br><span class="line">            while ( (res=fr.read())!=-1)&#123;</span><br><span class="line">                System.out.println((char)res);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fr.close();</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h3><ul>
+<li>BufferedReader 它是缓存字符输入流,内部提供了缓冲区 可以提交读取效率</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader(Reader reader) 构造函数</span><br><span class="line">String readLine() 该方法连续读取一行字符串</span><br></pre></td></tr></table></figure>
+<ul>
+<li>BufferedWriter</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BufferedWriter(Writer writer)构造函数</span><br><span class="line">void newLine()  //写入一个行分隔符。 </span><br><span class="line">void write(char ch)</span><br><span class="line">void write(char[] cbuf)</span><br><span class="line">void write(char[] cbuf,int offset,int len)</span><br></pre></td></tr></table></figure>
+<p> Demo代码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"> public class BufferedReaderWriter &#123;</span><br><span class="line"> 	</span><br><span class="line">    @Test</span><br><span class="line">    @Ignore</span><br><span class="line">    public void testReader()&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            BufferedReader br = new BufferedReader(new FileReader(&quot;demo.txt&quot;));</span><br><span class="line">            String str= &quot;&quot;;</span><br><span class="line">            while((str=br.readLine())!=null)&#123;</span><br><span class="line">                System.out.println(&quot;---&quot;+str);</span><br><span class="line">            &#125;</span><br><span class="line">            br.close();</span><br><span class="line"></span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void testWriter()&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;demo.txt&quot;));</span><br><span class="line">            bw.write(&quot;Hello&quot;);</span><br><span class="line"></span><br><span class="line">            bw.newLine();</span><br><span class="line">            bw.write(&quot;I am david&quot;);</span><br><span class="line">            bw.newLine();</span><br><span class="line">            bw.close();</span><br><span class="line"></span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/MybatisPlus总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/MybatisPlus总结/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/MybatisPlus总结/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/MybatisPlus总结/" class="cy_cmt_count" data-xid="2019/08/07/MybatisPlus总结/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###MybatisPlus总结</p>
+<ol>
+<li>mybatisPlus中使用updateById和update 都不能更新某个字段为””问题<br>解决方法： 修改mybatis-plus配置文件，如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;</span><br><span class="line">field-strategy: 1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Mysql主从复制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Mysql主从复制/" itemprop="url">Mysql主从复制原理及步骤</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DataBase/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBase</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Mysql主从复制/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Mysql主从复制/" class="cy_cmt_count" data-xid="2019/08/07/Mysql主从复制/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Mysql主从复制的原理"><a href="#Mysql主从复制的原理" class="headerlink" title="Mysql主从复制的原理"></a>Mysql主从复制的原理</h2><blockquote>
+<p>mysql内建有一种复制方式，即指定一台或多台服务器为主机master，另外一台或多台服务器作为从机slave。当master存在更新的时候，master将更新写入二进制文件，并维护了一个索引文件跟踪日志。当slave连接到主服务器之后，slave会通知master进行同步，master通过索引找日志文件上一次同步的位置，然后将这段时间内的更新数据发送给slave进行同步<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/07/Mysql主从复制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></blockquote></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/IDEA快捷键/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1163,159 +2025,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Docker常用命令/" itemprop="url">Docker常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Docker常用命令/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Docker常用命令/" class="cy_cmt_count" data-xid="2019/08/07/Docker常用命令/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看本机的镜像,可通过该方法查看到镜像id等信息.</span><br><span class="line">docker images </span><br><span class="line"></span><br><span class="line">获取镜像 name：镜像名  [:tag]：版本，默认为最新的（也就是会自己加上一个参数:latest）</span><br><span class="line">docker pull [options] name[:tag]</span><br><span class="line"></span><br><span class="line">删除镜像,需要删除其下所有容器</span><br><span class="line">docker rmi &lt;镜像id&gt;</span><br><span class="line"></span><br><span class="line">运行镜像,构建出一个容器. -d表示后台运行. </span><br><span class="line">docker run -d image </span><br><span class="line">-p 8080:80  进行端口映射，将nginx的80端口映射到主机的8080端口上，也就是别人访问8080，可以访问到自己的80</span><br><span class="line"></span><br><span class="line">查看目前正在运行的容器</span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">查看所有容器</span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">重要:xx表示不同的命令如，pull、run等。可以查看该命令的帮助，所有参数</span><br><span class="line">docker xx --help</span><br><span class="line"></span><br><span class="line">停止容器</span><br><span class="line">docker stop &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">删除容器</span><br><span class="line">docker rm &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">启动一个运行(run)过的容器</span><br><span class="line">docker start &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">在运行的容器中执行命令 </span><br><span class="line">docker exec [options] container command [arg...]</span><br><span class="line">例如:   </span><br><span class="line">docker exec -it &lt;容器id&gt; bash</span><br><span class="line">可以进入一个容器，和虚拟机中一样。也就是容器内部</span><br><span class="line"></span><br><span class="line">挂载目录:将宿主机的文件共享给容器</span><br><span class="line">docker run -d --name=test -v /opt/test:/usr/databases docker-test </span><br><span class="line">test是容器的名字，需唯一；</span><br><span class="line">-v表示创建一个数据卷并挂载到容器里，</span><br><span class="line">示例表示把宿主机的/opt/test目录挂载到容器的/usr/databases目录下；</span><br><span class="line">docker-test是镜像的名字</span><br><span class="line"></span><br><span class="line">查看容器当前信息,可在该命令的 Mounts信息中,找到挂载目录信息</span><br><span class="line">docker inspect &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">运行容器</span><br><span class="line">-d表示后台运行 -p表示设置端口映射， jpress是镜像名</span><br><span class="line">docker run -d -p  8888:8080 jpress</span><br><span class="line"></span><br><span class="line">运行mysql镜像</span><br><span class="line">docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=xxx  images(镜像名)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Elasticsearch安装中文分词插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1459,6 +2168,159 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://（虚拟机ip）:9200**/_analyze?analyzer=ik&amp;pretty=true&amp;text=helloworld,中华人民共和国&quot;</span><br></pre></td></tr></table></figure>
 <p><img src="http://blog.nilaile.cn/blog/20190613/PXqmfSip2ESr.png" alt="mark"></p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Docker常用命令/" itemprop="url">Docker常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Docker常用命令/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Docker常用命令/" class="cy_cmt_count" data-xid="2019/08/07/Docker常用命令/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看本机的镜像,可通过该方法查看到镜像id等信息.</span><br><span class="line">docker images </span><br><span class="line"></span><br><span class="line">获取镜像 name：镜像名  [:tag]：版本，默认为最新的（也就是会自己加上一个参数:latest）</span><br><span class="line">docker pull [options] name[:tag]</span><br><span class="line"></span><br><span class="line">删除镜像,需要删除其下所有容器</span><br><span class="line">docker rmi &lt;镜像id&gt;</span><br><span class="line"></span><br><span class="line">运行镜像,构建出一个容器. -d表示后台运行. </span><br><span class="line">docker run -d image </span><br><span class="line">-p 8080:80  进行端口映射，将nginx的80端口映射到主机的8080端口上，也就是别人访问8080，可以访问到自己的80</span><br><span class="line"></span><br><span class="line">查看目前正在运行的容器</span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">查看所有容器</span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">重要:xx表示不同的命令如，pull、run等。可以查看该命令的帮助，所有参数</span><br><span class="line">docker xx --help</span><br><span class="line"></span><br><span class="line">停止容器</span><br><span class="line">docker stop &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">删除容器</span><br><span class="line">docker rm &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">启动一个运行(run)过的容器</span><br><span class="line">docker start &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">在运行的容器中执行命令 </span><br><span class="line">docker exec [options] container command [arg...]</span><br><span class="line">例如:   </span><br><span class="line">docker exec -it &lt;容器id&gt; bash</span><br><span class="line">可以进入一个容器，和虚拟机中一样。也就是容器内部</span><br><span class="line"></span><br><span class="line">挂载目录:将宿主机的文件共享给容器</span><br><span class="line">docker run -d --name=test -v /opt/test:/usr/databases docker-test </span><br><span class="line">test是容器的名字，需唯一；</span><br><span class="line">-v表示创建一个数据卷并挂载到容器里，</span><br><span class="line">示例表示把宿主机的/opt/test目录挂载到容器的/usr/databases目录下；</span><br><span class="line">docker-test是镜像的名字</span><br><span class="line"></span><br><span class="line">查看容器当前信息,可在该命令的 Mounts信息中,找到挂载目录信息</span><br><span class="line">docker inspect &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">运行容器</span><br><span class="line">-d表示后台运行 -p表示设置端口映射， jpress是镜像名</span><br><span class="line">docker run -d -p  8888:8080 jpress</span><br><span class="line"></span><br><span class="line">运行mysql镜像</span><br><span class="line">docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=xxx  images(镜像名)</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1830,898 +2692,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7.5调整swap分区/" itemprop="url">centos7.5增加swap分区</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Centos7.5调整swap分区/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5调整swap分区/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>先用free -m查看一下swap的大小</p>
-<p><img src="https://files.jb51.net/file_images/article/201804/201841291807170.png?201831291819" alt></p>
-<p>1.添加swap分区 </p>
-<p>使用dd命令创建/home/swap这么一个分区文件。文件的大小是2048000  个block，一般情况下1个block为1K，所以这里空间是2G。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/var/swapfile bs=1024 count=2048000  //添加交换文件并设置其大小为2G</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180627095255111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt> </p>
-<p>2.执行完毕，对交换文件格式化并转换为swap分区： </p>
-<p>mkswap /var/swapfile</p>
-<p><img src="https://img-blog.csdn.net/20180627095317795?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>3.挂载并激活分区： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /var/swapfile</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180627095340170?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>4 赋权限 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 0600 /var/swapfile</span><br></pre></td></tr></table></figure>
-<p>现在再用free -m命令查看一下内存和swap分区大小，就发现增加了2G的空间了。</p>
-<p>注意当计算机重启了以后，发现swap还是原来那么大，新的swap没有自动启动，还要手动启动。那我们需要修改/etc/fstab文件</p>
-<p>5.设置开机自动挂载该分区：<br>vi /etc/fstab<br>在fstab文件末尾追加如下内容后:wq!保存即可： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swapfile swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装RocketMq/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7.5安装RocketMq/" itemprop="url">Centos7.5安装RocketMq</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RocketMq/" itemprop="url" rel="index">
-                    <span itemprop="name">RocketMq</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Centos7.5安装RocketMq/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装RocketMq/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装RocketMq/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
-<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
-<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
-<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
-<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
-<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
-<p>查看进程：jps</p>
-<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
-<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
-<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
-<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
-<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
-<p>bin目录：</p>
-<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
-<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
-<p>参考文章</p>
-<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7.5安装Elasticsearch/" itemprop="url">Centos7.5安装Elasticsearch2.3.5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Centos7.5安装Elasticsearch/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装Elasticsearch/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p> Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK</p>
-</blockquote>
-<h3 id="安装方法一（下载rpm包方式）"><a href="#安装方法一（下载rpm包方式）" class="headerlink" title="安装方法一（下载rpm包方式）"></a>安装方法一（下载rpm包方式）</h3><p><strong> 1.百度elasticsearch,点击官网网址</strong></p>
-<p><strong> <img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111519713-1843270100.png" alt></strong></p>
-<p> 2.点击Downloads，选择past releases</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111941963-554816516.png" alt></p>
-<p>3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全）</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112356557-1829265054.png" alt></p>
-<p>4.右键点击RPM选择 – 复制连接地址</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112633619-1394926966.png" alt></p>
-<p>5.在根目录下载rmp包</p>
-<p><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm</code></p>
-<p>6.执行下面的命令,安装完成后按照提示操作,即可</p>
-<p><code>rpm -ivh elasticsearch-2.3.5.rpm</code></p>
-<p>7.启动并查看安装状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br><span class="line"></span><br><span class="line">systemctl status elasticsearch</span><br></pre></td></tr></table></figure>
-<p>8.本地查看版本信息</p>
-<p><code>curl  http://127.0.0.1:9200</code></p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113314791-1988726404.png" alt></p>
-<p>9.查找elasticsearch 安装路径与配置路径，并且配置</p>
-<p>whereis elasticsearch</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113451932-347145346.png" alt></p>
-<p><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
-<p>修改：<br>  <img src="http://blog.nilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
-<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port</p>
-<p>保存退出后重启elasticsearch</p>
-<p><code>systemctl restart elasticsearch</code></p>
-<p>在浏览器访问虚拟机ip:9200<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
-<h3 id="安装方法二-yum方式安装"><a href="#安装方法二-yum方式安装" class="headerlink" title="安装方法二 (yum方式安装)"></a>安装方法二 (yum方式安装)</h3><p>一、ES的yum安装配置</p>
-<p>由于ES不在yum的本地源，所以我们需要添加ES的yum配置。</p>
-<p>1、下载并安装ES的yum公钥</p>
-<p><code>rpm --import https:`</code>//packages.elastic.co/GPG-KEY-elasticsearch`</p>
-<p>2、配置ES的yum源<br><code>vim /etc/yum.repos.d/elasticsearch.repo</code></p>
-<p> 输入下面的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[elasticsearch-2.x]</span><br><span class="line">name=Elasticsearch repository for 2.x packages</span><br><span class="line">baseurl=http://packages.elastic.co/elasticsearch/2.x/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
-<p>二、yum安装ES</p>
-<p>1、更新yum的缓存<br><code>yum makecache</code></p>
-<p>2、安装ES<br><code>yum install elasticsearch</code></p>
-<p>三、测试ES</p>
-<p>1、配置和启动ES服务器进程</p>
-<p><code>/sbin/chkconfig --add elasticsearch</code></p>
-<p><code>systemctl start elasticsearch</code></p>
-<p>2、查看状态</p>
-<p><code>systemctl status elasticsearch</code></p>
-<p>3、运行测试<br><code>curl -X GET localhost:9200</code></p>
-<p>返回的json结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;Live Wire&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;2.3.5&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;,</span><br><span class="line">    &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;5.5.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>四、通过IP访问ES的配置（同方法一配置方法一样）<br>1、打开/etc/elasticsearch/elasticsearch.yml<br><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
-<p> network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址，<br> http.port-&gt; 去掉注释<br>  <img src="http://blognilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
-<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
-<h3 id="安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html"><a href="#安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html" class="headerlink" title="安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html"></a>安装中文分词插件参考<a href="https://www.cnblogs.com/shifu204/p/6374234.html" target="_blank" rel="noopener">https://www.cnblogs.com/shifu204/p/6374234.html</a></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7 安装Docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7 安装Docker/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Centos7 安装Docker/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7 安装Docker/" class="cy_cmt_count" data-xid="2019/08/07/Centos7 安装Docker/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Centos7-安装Docker"><a href="#Centos7-安装Docker" class="headerlink" title="Centos7 安装Docker"></a>Centos7 安装Docker</h2><p>安装参考：<a href="https://blog.csdn.net/u010046908/article/details/79553227" target="_blank" rel="noopener">https://blog.csdn.net/u010046908/article/details/79553227</a><br>安装最新版本 <a href="https://blog.csdn.net/kongxx/article/details/78361048" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78361048</a></p>
-<p>阿里云镜像仓库地址： <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></p>
-<p>常用命令<br>docker pull centos  拉取centos<br>docker images 查看本地所有镜像<br>docker run hello-world 运行实例</p>
-<p>docker run -i -t -v /root/sortware/:/mnt/sortware/ 75835a67d134 /bin/bash</p>
-<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p>exit</p>
-<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><p>docker stop mycentos</p>
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p>docker start mycentos</p>
-<h3 id="重启后-在mycentos再打开-bin-bash"><a href="#重启后-在mycentos再打开-bin-bash" class="headerlink" title="重启后,在mycentos再打开/bin/bash"></a>重启后,在mycentos再打开/bin/bash</h3><p>docker exec -ti mycentos /bin/bash</p>
-<p>1、初步安装和启动docker<br>yum update -y<br>yum -y install docker<br>systemctl start docker</p>
-<p>2、设置镜像<br>vi /etc/docker/daemon.json</p>
-<p>{<br>  “registry-mirrors”: [“<a href="https://aj2rgad5.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://aj2rgad5.mirror.aliyuncs.com&quot;]</a><br>}</p>
-<p>3、重启docker<br>systemctl daemon-reload<br>systemctl restart docker.service</p>
-<p>4、测试docker是否正常安装和运行<br>docker run hello-world</p>
-<p>5、查看结果<br>Hello from Docker!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Cenos7.5搭建生成环境/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Cenos7.5搭建生成环境/" itemprop="url">Cenos7.5环境搭建目录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/Cenos7.5搭建生成环境/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Cenos7.5搭建生成环境/" class="cy_cmt_count" data-xid="2019/08/07/Cenos7.5搭建生成环境/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-Linux-设置服务器时区"><a href="#1-Linux-设置服务器时区" class="headerlink" title="1.Linux 设置服务器时区:"></a>1.Linux 设置服务器时区:</h3><p>1、安装ntp服务软件包：yum install ntp<br>2、将ntp设置为缺省启动：systemctl enable ntpd<br>3、修改启动参数，增加-g -x参数，允许ntp服务在系统时间误差较大时也能正常工作：vi /etc/sysconfig/ntpd<br>4、启动ntp服务：/bin/systemctl restart ntpd<br>5、将系统时区改为上海时间（即CST时区）：ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>6、输入date命令查看时间是否正确</p>
-<h3 id="2-搭建FTP-vsftp"><a href="#2-搭建FTP-vsftp" class="headerlink" title="2. 搭建FTP(vsftp)"></a>2. 搭建FTP(vsftp)</h3><p><a href="https://blog.csdn.net/zy517863543/article/details/80028351" target="_blank" rel="noopener">https://blog.csdn.net/zy517863543/article/details/80028351</a></p>
-<p>  遇到的问题：<br>  1.安装成功后, Filezilla可以正常上传下载文件，但是java程序中使用Ftp工具类无法上传成功？<br>   解决方法： 程序中需要指定使用被动模式</p>
-<h3 id="3-搭建SFTP"><a href="#3-搭建SFTP" class="headerlink" title="3.搭建SFTP"></a>3.搭建SFTP</h3><p>参考博客(<a href="https://blog.csdn.net/fenglailea/article/details/78631760" target="_blank" rel="noopener">https://blog.csdn.net/fenglailea/article/details/78631760</a>)</p>
-<h3 id="4-下载并安装redis"><a href="#4-下载并安装redis" class="headerlink" title="4.下载并安装redis"></a>4.下载并安装redis</h3><p><a href="https://www.cnblogs.com/zuidongfeng/p/8032505.html" target="_blank" rel="noopener">https://www.cnblogs.com/zuidongfeng/p/8032505.html</a></p>
-<p>遇到的问题: <a href="https://blog.csdn.net/jexhen/article/details/76098622" target="_blank" rel="noopener">https://blog.csdn.net/jexhen/article/details/76098622</a><br>复制到etc下的配置<br>/etc/redis/6379.conf (自动启动时生效的是这个,两个配置文件做好同步)</p>
-<h3 id="5-搭建java环境"><a href="#5-搭建java环境" class="headerlink" title="5.搭建java环境"></a>5.搭建java环境</h3><p><a href="https://blog.csdn.net/sizhezhongnian/article/details/81142976" target="_blank" rel="noopener">https://blog.csdn.net/sizhezhongnian/article/details/81142976</a><br>JAVA根目录: /usr/java/jdk1.8</p>
-<h3 id="6-搭建并配置NGINX服务器"><a href="#6-搭建并配置NGINX服务器" class="headerlink" title="6.搭建并配置NGINX服务器"></a>6.搭建并配置NGINX服务器</h3><p>安装第三方yum源</p>
-<h4 id="安装下载wget"><a href="#安装下载wget" class="headerlink" title="安装下载wget"></a>安装下载wget</h4><p>yum install wget</p>
-<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>wget <a href="http://www.atomicorp.com/installers/atomic" target="_blank" rel="noopener">http://www.atomicorp.com/installers/atomic</a></p>
-<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>sh ./atomic</p>
-<h4 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h4><p>yum check-update</p>
-<p>开始安装nginx</p>
-<h4 id="删除系统自带的软件包"><a href="#删除系统自带的软件包" class="headerlink" title="删除系统自带的软件包"></a>删除系统自带的软件包</h4><p>yum remove httpd<em> php</em></p>
-<h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p>yum install -y nginx</p>
-<h4 id="设置nginx开机启动"><a href="#设置nginx开机启动" class="headerlink" title="设置nginx开机启动"></a>设置nginx开机启动</h4><p>chkconfig nginx on</p>
-<h4 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h4><p>service nginx start</p>
-<h3 id="7-搭建TOMCAT及参数优化"><a href="#7-搭建TOMCAT及参数优化" class="headerlink" title="7. 搭建TOMCAT及参数优化"></a>7. 搭建TOMCAT及参数优化</h3><p>安装tomcat,并配置多tomcat<br><a href="https://blog.csdn.net/w410589502/article/details/77988912" target="_blank" rel="noopener">https://blog.csdn.net/w410589502/article/details/77988912</a><br><a href="https://blog.csdn.net/weixin_41004350/article/details/78492500" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41004350/article/details/78492500</a></p>
-<h3 id="8-安装MYSQL-5-7-数据库"><a href="#8-安装MYSQL-5-7-数据库" class="headerlink" title="8. 安装MYSQL(5.7) 数据库"></a>8. 安装MYSQL(5.7) 数据库</h3><p>参考博客: <a href="https://www.cnblogs.com/freely/p/8087885.html" target="_blank" rel="noopener">https://www.cnblogs.com/freely/p/8087885.html</a></p>
-<p>添加用户,授权用户</p>
-<p><a href="https://www.cnblogs.com/xujishou/p/6306765.html" target="_blank" rel="noopener">https://www.cnblogs.com/xujishou/p/6306765.html</a></p>
-<p>配置文件 vim /etc/my.cnf<br>注意更改端口号为13306 需要加入防火墙</p>
-<p>Mysql授权失败错误问题</p>
-<p>执行命令: grant all on <em>.</em> to hospital@’%’</p>
-<p>授权只能访问某库</p>
-<p>grant all privileges on ky.*  to  hospital@’%’ identified by ‘Fv6jl#cxhd3&amp;0vx8’</p>
-<p>执行完要刷新权限  flush privileges;</p>
-<p>ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</p>
-<p><a href="https://www.cnblogs.com/ivictor/p/5142809.html" target="_blank" rel="noopener">https://www.cnblogs.com/ivictor/p/5142809.html</a></p>
-<h3 id="9-防火墙配置及管理"><a href="#9-防火墙配置及管理" class="headerlink" title="9. 防火墙配置及管理"></a>9. 防火墙配置及管理</h3><p>CentOS7使用firewalld打开关闭防火墙与端口</p>
-<p>1、firewalld的基本使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">启动服务   systemctl start firewalld</span><br><span class="line">关闭服务   systemctl stop firewalld</span><br><span class="line">查看状态   systemctl status firewalld </span><br><span class="line">开机禁用   systemctl disable firewalld</span><br><span class="line">开机启用   systemctl enable firewalld</span><br></pre></td></tr></table></figure></p>
-<p>2.systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">启动一个服务：systemctl start firewalld.service</span><br><span class="line">关闭一个服务：systemctl stop firewalld.service</span><br><span class="line">重启一个服务：systemctl restart firewalld.service</span><br><span class="line">显示一个服务的状态：systemctl status firewalld.service</span><br><span class="line">在开机时启用一个服务：systemctl enable firewalld.service</span><br><span class="line">在开机时禁用一个服务：systemctl disable firewalld.service</span><br><span class="line">查看服务是否开机启动：systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：systemctl --failed</span><br></pre></td></tr></table></figure>
-<p>3.配置firewalld-cmd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看版本： firewall-cmd --version</span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure></p>
-<p>4.怎样在防火墙中开启一个端口呢？</p>
-<ul>
-<li><p>添加端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> firewall-cmd --zone=public --add-port=80/tcp --permanent    </span><br><span class="line">（--permanent永久生效，没有此参数重启后失效）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新载入<br>  <code>firewall-cmd --reload</code></p>
-</li>
-<li><p>查看<br>  <code>firewall-cmd --zone= public --query-port=80/tcp</code></p>
-</li>
-<li><p>删除<br>  <code>firewall-cmd --zone= public --remove-port=80/tcp --permanent</code></p>
-</li>
-</ul>
-<p>###10. centos7 常用命令</p>
-<p>1、Apache 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd 启动</span><br><span class="line">systemctl stop httpd 停止</span><br><span class="line">systemctl restart httpd 重启</span><br><span class="line">systemctl status httpd 状态</span><br></pre></td></tr></table></figure></p>
-<p>2、MySQL 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld关闭：</span><br><span class="line">systemctl stop mysqld重启：</span><br><span class="line">systemctl restart mysqld状态：</span><br><span class="line">systemctl status mysqld</span><br></pre></td></tr></table></figure></p>
-<p>3、FTP 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd   启动</span><br><span class="line">systemctl stop vsftpd    停止</span><br><span class="line">systemctl restart vsftpd 重启</span><br><span class="line">systemctl status vsftpd  状态</span><br></pre></td></tr></table></figure></p>
-<ol start="4">
-<li>Nginx服务管理命令启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx 启动</span><br><span class="line">systemctl status nginx 查看状态</span><br><span class="line">systemctl stop nginx 停止</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2774,7 +2744,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2785,7 +2755,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2796,7 +2766,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
