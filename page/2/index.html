@@ -295,6 +295,322 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/java线程池/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/19/java线程池/" itemprop="url">线程池之ThreadPoolExecutor使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T09:41:23+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/19/java线程池/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/19/java线程池/" class="cy_cmt_count" data-xid="2019/08/19/java线程池/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="ThreadPoolExecutor构造方法"><a href="#ThreadPoolExecutor构造方法" class="headerlink" title="ThreadPoolExecutor构造方法"></a>ThreadPoolExecutor构造方法</h3><p><img src="http://blog.sjjtcloud.com/blog/20190819/voP4iKK3jVUw.png?imageslim" alt="mark"></p>
+<p>我们以最后一个构造方法（参数最多的那个），对其参数进行解释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize, // 1</span><br><span class="line">                             int maximumPoolSize,  // 2</span><br><span class="line">                             long keepAliveTime,  // 3</span><br><span class="line">                             TimeUnit unit,  // 4</span><br><span class="line">                             BlockingQueue&lt;Runnable&gt; workQueue, // 5</span><br><span class="line">                             ThreadFactory threadFactory,  // 6</span><br><span class="line">                             RejectedExecutionHandler handler ) &#123; //7</span><br><span class="line">       if (corePoolSize &lt; 0 ||</span><br><span class="line">           maximumPoolSize &lt;= 0 ||</span><br><span class="line">           maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">           keepAliveTime &lt; 0)</span><br><span class="line">           throw new IllegalArgumentException();</span><br><span class="line">       if (workQueue == null || threadFactory == null || handler == null)</span><br><span class="line">           throw new NullPointerException();</span><br><span class="line">       this.corePoolSize = corePoolSize;</span><br><span class="line">       this.maximumPoolSize = maximumPoolSize;</span><br><span class="line">       this.workQueue = workQueue;</span><br><span class="line">       this.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">       this.threadFactory = threadFactory;</span><br><span class="line">       this.handler = handler;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/19/java线程池/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/" itemprop="url">CenOS7.5使用crontab定时备份数据库脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:25:05+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index">
+                    <span itemprop="name">LINUX</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/" class="cy_cmt_count" data-xid="2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-编写备份脚本mysqlBackup-sh"><a href="#1-编写备份脚本mysqlBackup-sh" class="headerlink" title="1.编写备份脚本mysqlBackup.sh"></a>1.编写备份脚本mysqlBackup.sh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">DB_IP=localhost</span><br><span class="line">DB_PORT=3306</span><br><span class="line">DB_USER=root</span><br><span class="line">#密码 #＆这些需要转义加＼</span><br><span class="line">DB_PASSWORD=l\#cxhd3\&amp;0vx</span><br><span class="line">DB_NAME=business</span><br><span class="line">DB_BACKUP_DIR=/home/backup/mysql</span><br><span class="line"></span><br><span class="line">#切换目录</span><br><span class="line">cd $DB_BACKUP_DIR</span><br><span class="line">day=`date +%Y%m%d`</span><br><span class="line"></span><br><span class="line">#删除</span><br><span class="line">rm -rf $day</span><br><span class="line">mkdir $day</span><br><span class="line">cd $day</span><br><span class="line"></span><br><span class="line">echo &quot;================  开始备份..  =================&quot;</span><br><span class="line">tables=(tb_user tb_dept)</span><br><span class="line">for table in $&#123;tables[@]&#125;;</span><br><span class="line">do</span><br><span class="line"> backup_file_name=&quot;$&#123;table&#125;.sql&quot;</span><br><span class="line"> mysqldump -h$&#123;DB_IP&#125; -u$&#123;DB_USER&#125; -p$&#123;DB_PASSWORD&#125; -P$&#123;DB_PORT&#125; $DB_NAME $table&gt;$backup_file_name</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;================  结束备份..  =================&quot;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CentOs定时任务Crontab的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -426,6 +742,222 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试3/" itemprop="url">java面试系列问题(3)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/面试3/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/面试3/" class="cy_cmt_count" data-xid="2019/08/07/面试3/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、基础题</p>
+<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
+<p>写出一个必然会产生死锁的伪代码；</p>
+<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
+<p>toString()方法什么情况下需要重写；</p>
+<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
+<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
+<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
+<p>Java 8流式迭代的好处？</p>
+<p>项目中用到的JDK的哪些特性？</p>
+<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
+<p>Spring的bean的创建时机？依赖注入的时机？</p>
+<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
+<p>CopyOnWriteArrayList是什么；</p>
+<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
+<p>如何调试多线程的程序；</p>
+<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
+<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
+<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
+<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
+<p>二、网络基础</p>
+<p>HTTP、TCP、UDP的区别和联系；</p>
+<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
+<p>TCP和UDP各用了底层什么协议；</p>
+<p>单个UDP报文最大容量；</p>
+<p>单个TCP报文最大容量；</p>
+<p>TCP报头格式、UDP报头格式；</p>
+<p>Server遭遇SYN Flood应当怎么处理；</p>
+<p>Web开发中如何防范XSS？</p>
+<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
+<p>三、操作系统</p>
+<p>为什么要内存对齐；</p>
+<p>为什么会有大端小端，htol这一类函数的作用；</p>
+<p>top显示出来的系统信息都是什么含义；（重要！）</p>
+<p>Linux地址空间，怎么样进行寻址的；</p>
+<p>Linux如何查找目录或者文件的；</p>
+<p>四、分布式其他</p>
+<p>分库与分表带来的分布式困境与应对之策；</p>
+<p>Solr如何实现全天24小时索引更新；</p>
+<p>五、Redis</p>
+<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
+<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
+<p>Redis复制的过程;</p>
+<p>Redis队列应用场景；</p>
+<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
+<p>六、系统设计开放性题目</p>
+<p>秒杀系统设计，超卖怎么搞;</p>
+<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
+<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
+<p>基于数组实现一个循环阻塞队列；</p>
+<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
+<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
+<p>七、大数据量问题（后边会有专题单独讨论）</p>
+<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
+<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
+<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
+<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
+<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
+<p>八、逻辑思维题</p>
+<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
+<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
+<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
+<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+
+          
         
       
     </div>
@@ -641,222 +1173,6 @@
 <p>了解哪几种序列化协议？如何选择合适的序列化协议；</p>
 <p>Redis渐进式rehash过程？</p>
 <p>比如我有个电商平台，做每日订单的异常检测，服务端代码应该写；</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/面试3/" itemprop="url">java面试系列问题(3)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/面试3/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/面试3/" class="cy_cmt_count" data-xid="2019/08/07/面试3/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、基础题</p>
-<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
-<p>写出一个必然会产生死锁的伪代码；</p>
-<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
-<p>toString()方法什么情况下需要重写；</p>
-<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
-<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
-<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
-<p>Java 8流式迭代的好处？</p>
-<p>项目中用到的JDK的哪些特性？</p>
-<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
-<p>Spring的bean的创建时机？依赖注入的时机？</p>
-<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
-<p>CopyOnWriteArrayList是什么；</p>
-<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
-<p>如何调试多线程的程序；</p>
-<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
-<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
-<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
-<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
-<p>二、网络基础</p>
-<p>HTTP、TCP、UDP的区别和联系；</p>
-<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
-<p>TCP和UDP各用了底层什么协议；</p>
-<p>单个UDP报文最大容量；</p>
-<p>单个TCP报文最大容量；</p>
-<p>TCP报头格式、UDP报头格式；</p>
-<p>Server遭遇SYN Flood应当怎么处理；</p>
-<p>Web开发中如何防范XSS？</p>
-<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
-<p>三、操作系统</p>
-<p>为什么要内存对齐；</p>
-<p>为什么会有大端小端，htol这一类函数的作用；</p>
-<p>top显示出来的系统信息都是什么含义；（重要！）</p>
-<p>Linux地址空间，怎么样进行寻址的；</p>
-<p>Linux如何查找目录或者文件的；</p>
-<p>四、分布式其他</p>
-<p>分库与分表带来的分布式困境与应对之策；</p>
-<p>Solr如何实现全天24小时索引更新；</p>
-<p>五、Redis</p>
-<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
-<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
-<p>Redis复制的过程;</p>
-<p>Redis队列应用场景；</p>
-<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
-<p>六、系统设计开放性题目</p>
-<p>秒杀系统设计，超卖怎么搞;</p>
-<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
-<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
-<p>基于数组实现一个循环阻塞队列；</p>
-<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
-<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
-<p>七、大数据量问题（后边会有专题单独讨论）</p>
-<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
-<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
-<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
-<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
-<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
-<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
-<p>八、逻辑思维题</p>
-<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
-<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
-<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
-<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
 
           
         
@@ -1601,160 +1917,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/阿里云常用文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/阿里云常用文档/" itemprop="url">阿里云常用文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/阿里云/" itemprop="url" rel="index">
-                    <span itemprop="name">阿里云</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/阿里云常用文档/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/阿里云常用文档/" class="cy_cmt_count" data-xid="2019/08/07/阿里云常用文档/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
-<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/第一章spring概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2074,7 +2236,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/前后端工程师的目标/">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/阿里云常用文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -2093,7 +2255,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/07/前后端工程师的目标/" itemprop="url">前后端工程师的目标</a></h1>
+                <a class="post-title-link" href="/2019/08/07/阿里云常用文档/" itemprop="url">阿里云常用文档</a></h1>
         
 
         <div class="post-meta">
@@ -2128,8 +2290,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/全栈/" itemprop="url" rel="index">
-                    <span itemprop="name">全栈</span>
+                  <a href="/categories/阿里云/" itemprop="url" rel="index">
+                    <span itemprop="name">阿里云</span>
                   </a>
                 </span>
 
@@ -2147,8 +2309,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/08/07/前后端工程师的目标/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/前后端工程师的目标/" class="cy_cmt_count" data-xid="2019/08/07/前后端工程师的目标/" itemprop="commentsCount"></span>
+                <a href="/2019/08/07/阿里云常用文档/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/阿里云常用文档/" class="cy_cmt_count" data-xid="2019/08/07/阿里云常用文档/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -2178,195 +2340,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       
         
           
-            <h2 id="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精"><a href="#术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精" class="headerlink" title="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精."></a>术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精.</h2><hr>
-<h3 id="JAVA后端工程师"><a href="#JAVA后端工程师" class="headerlink" title="JAVA后端工程师"></a>JAVA后端工程师</h3><ul>
-<li><p>把精力放在java基础，设计模式，jvm原理，spring+springmvc原理及源码，linux，mysql事务隔离与锁机制，mongodb，http/tcp，多线程，分布式架构（dubbo，dubbox，spring cloud），弹性计算架构，微服务架构（springboot+zookeeper+docker+jenkins），java性能优化，以及相关的项目管理</p>
-</li>
-<li><p>后端追求的是：三高（高并发，高可用，高性能），安全，存储，业务等等 *</p>
-</li>
-</ul>
-<h3 id="前端工程师"><a href="#前端工程师" class="headerlink" title="前端工程师"></a>前端工程师</h3><ul>
-<li><p>把精力放在html5，css3，jquery，angularjs，bootstrap，reactjs，vuejs，webpack，less/sass，gulp，nodejs，Google V8引擎，javascript多线程，模块化，面向切面编程，设计模式，浏览器兼容性，性能优化等等。</p>
-</li>
-<li><p>前端追求的是：页面表现，速度流畅，兼容性，用户体验等等。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/几个内网端口映射服务网站/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/几个内网端口映射服务网站/" itemprop="url">内网穿透端口映射网站</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/几个内网端口映射服务网站/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/几个内网端口映射服务网站/" class="cy_cmt_count" data-xid="2019/08/07/几个内网端口映射服务网站/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>目前在使用的 <a href="http://ngrok.io/" target="_blank" rel="noopener">http://ngrok.io</a> == <a href="http://ngrok.com/" target="_blank" rel="noopener">http://ngrok.com</a></li>
-<li><a href="http://natapp.cn/" target="_blank" rel="noopener">http://natapp.cn/</a></li>
-<li><a href="http://ngrok.2bdata.com/" target="_blank" rel="noopener">http://ngrok.2bdata.com/</a></li>
-<li><a href="http://www.ngrok.cc/" target="_blank" rel="noopener">http://www.ngrok.cc/</a></li>
-<li><a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a></li>
-<li>路由侠 <a href="http://www.luyouxia.com/" target="_blank" rel="noopener">http://www.luyouxia.com/</a></li>
-<li>WeNAT <a href="https://www.wezoz.com/" target="_blank" rel="noopener">https://www.wezoz.com/</a></li>
-</ul>
-<h2 id="目前使用的ngrok的穿透工具-（http-ngrok-io）"><a href="#目前使用的ngrok的穿透工具-（http-ngrok-io）" class="headerlink" title="目前使用的ngrok的穿透工具 （http://ngrok.io）"></a>目前使用的ngrok的穿透工具 （<a href="http://ngrok.io）" target="_blank" rel="noopener">http://ngrok.io）</a></h2><p>登录账户: <a href="mailto:blog.nilaile.cn@gmail.com" target="_blank" rel="noopener">blog.nilaile.cn@gmail.com</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h3><ol>
-<li>解压ngrok安装程序</li>
-<li>命令行进入ngrok目录,执行 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ngrok authtoken 你的token(注册账号成功后再access)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://blog.nilaile.cn/blog/20190620/X8hi37QWJdYb.png" alt="mark"></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
-<li>命令行进入ngrok目录,执行以下命令即可<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ngrok http 8086(你要绑定的本地端口号)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://blog.nilaile.cn/blog/20190620/AVYDzWYdp4Da.png" alt="mark">   </p>
-<ol start="2">
-<li>ngrok还提供了了一个web统计页面访问 <code>http://127.0.0.1:4041</code><br><img src="http://blog.nilaile.cn/blog/20190620/O8SdOI5aOtDh.png" alt="mark"></li>
-</ol>
+            <p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
+<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
 
           
         
@@ -2454,7 +2429,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2465,7 +2440,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2476,7 +2451,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
