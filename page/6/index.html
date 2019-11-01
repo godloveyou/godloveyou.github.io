@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker安装Mysql/">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Elasticsearch安装中文分词插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/07/Docker安装Mysql/" itemprop="url">Docker安装Mysql</a></h1>
+                <a class="post-title-link" href="/2019/08/07/Elasticsearch安装中文分词插件/" itemprop="url">Elasticsearch安装中文分词插件ik</a></h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -368,8 +368,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/08/07/Docker安装Mysql/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Docker安装Mysql/" class="cy_cmt_count" data-xid="2019/08/07/Docker安装Mysql/" itemprop="commentsCount"></span>
+                <a href="/2019/08/07/Elasticsearch安装中文分词插件/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Elasticsearch安装中文分词插件/" class="cy_cmt_count" data-xid="2019/08/07/Elasticsearch安装中文分词插件/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -399,37 +399,44 @@
       
         
           
-            <h3 id="方法一、docker-pull-mysql"><a href="#方法一、docker-pull-mysql" class="headerlink" title="方法一、docker pull mysql"></a>方法一、docker pull mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runoob@runoob:/mysql$ docker search mysql</span><br></pre></td></tr></table></figure>
-<h3 id="2-获取-docker-pull-mysql-5-6"><a href="#2-获取-docker-pull-mysql-5-6" class="headerlink" title="2. 获取 docker pull mysql:5.6"></a>2. 获取 <code>docker pull mysql:5.6</code></h3><p>等待下载完成后，我们就可以在本地镜像列表里查到REPOSITORY为mysql,标签为5.7的镜像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker images| grep mysql</span><br><span class="line">mysql         5.7        a1aa4f76fab9        2 days ago        373MB</span><br></pre></td></tr></table></figure>
-<h3 id="方法二、通过-Dockerfile构建"><a href="#方法二、通过-Dockerfile构建" class="headerlink" title="方法二、通过 Dockerfile构建"></a>方法二、通过 Dockerfile构建</h3><p>1.首先创建目录mysql,用于存放后面的相关东西。</p>
-<p><code>runoob@runoob:~$ mkdir -p ~/mysql/data ~/mysql/logs ~/mysql/conf</code></p>
-<p>data目录将映射为mysql容器配置的数据文件存放路径<br>logs目录将映射为mysql容器的日志目录<br>conf目录里的配置文件将映射为mysql容器的配置文件</p>
-<p>2.进入创建的mysql目录，创建Dockerfile文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added RUN groupadd -r mysql &amp;&amp; useradd -r -g mysql mysql # add gosu for easy step-down from root ENV GOSU_VERSION 1.7 RUN set  -x \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y --no-install-recommends ca-certificates wget &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)&quot; \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu.asc &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc&quot; \</span><br><span class="line">    &amp;&amp; export GNUPGHOME=&quot;$(mktemp -d)&quot; \</span><br><span class="line">    &amp;&amp; gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \</span><br><span class="line">    &amp;&amp; gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; rm -r &quot;$GNUPGHOME&quot; /usr/local/bin/gosu.asc \</span><br><span class="line">    &amp;&amp; chmod +x /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; gosu nobody true \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove ca-certificates wget</span><br><span class="line"></span><br><span class="line">RUN mkdir /docker-entrypoint-initdb.d</span><br><span class="line"></span><br><span class="line"># FATAL ERROR: please install the following Perl modules before executing /usr/local/mysql/scripts/mysql_install_db:</span><br><span class="line"># File::Basename</span><br><span class="line"># File::Copy</span><br><span class="line"># Sys::Hostname</span><br><span class="line"># Data::Dumper</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y perl pwgen --no-install-recommends &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"># gpg: key 5072E1F5: public key &quot;MySQL Release Engineering &lt;mysql-build@oss.oracle.com&gt;&quot; imported</span><br><span class="line">RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5</span><br><span class="line"></span><br><span class="line">ENV MYSQL_MAJOR 5.6</span><br><span class="line">ENV MYSQL_VERSION 5.6.31-1debian8</span><br><span class="line"></span><br><span class="line">RUN echo &quot;deb http://repo.mysql.com/apt/debian/ jessie mysql-$&#123;MYSQL_MAJOR&#125;&quot; &gt; /etc/apt/sources.list.d/mysql.list</span><br><span class="line"></span><br><span class="line"># the &quot;/var/lib/mysql&quot; stuff here is because the mysql-server postinst doesn&apos;t have an explicit way to disable the mysql_install_db codepath besides having a database already &quot;configured&quot; (ie, stuff in /var/lib/mysql/mysql)</span><br><span class="line"># also, we set debconf keys to make APT a little quieter</span><br><span class="line">RUN &#123; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/data-dir select &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/re-root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/remove-test-db select false; \</span><br><span class="line">    &#125; | debconf-set-selections \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y mysql-server=&quot;$&#123;MYSQL_VERSION&#125;&quot; &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/mysql &amp;&amp; mkdir -p /var/lib/mysql /var/run/mysqld \</span><br><span class="line">    &amp;&amp; chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \</span><br><span class="line"># ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime</span><br><span class="line">    &amp;&amp; chmod 777 /var/run/mysqld</span><br><span class="line"></span><br><span class="line"># comment out a few problematic configuration values</span><br><span class="line"># don&apos;t reverse lookup hostnames, they are usually another container</span><br><span class="line">RUN sed -Ei &apos;s/^(bind-address|log)/#&amp;/&apos; /etc/mysql/my.cnf \</span><br><span class="line">    &amp;&amp; echo &apos;skip-host-cache\nskip-name-resolve&apos; | awk &apos;&#123; print &#125; $1 == &quot;[mysqld]&quot; &amp;&amp; c == 0 &#123; c = 1; system(&quot;cat&quot;) &#125;&apos; /etc/mysql/my.cnf &gt; /tmp/my.cnf \</span><br><span class="line">    &amp;&amp; mv /tmp/my.cnf /etc/mysql/my.cnf</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/mysql</span><br><span class="line"></span><br><span class="line">COPY docker-entrypoint.sh /usr/local/bin/</span><br><span class="line">RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat</span><br><span class="line">ENTRYPOINT [&quot;docker-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">EXPOSE 3306</span><br><span class="line">CMD [&quot;mysqld&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>通过Dockerfile创建一个镜像，替换成你自己的名字</p>
-<p><code>runoob@runoob:~/mysql$ docker build -t mysql .</code></p>
-<p>创建完成后，我们可以在本地的镜像列表里查找到刚刚创建的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker images |grep mysql</span><br><span class="line">mysql 5.6  2c0964ec182a  3 weeks ago 329 MB</span><br></pre></td></tr></table></figure>
-<h2 id="使用mysql镜像"><a href="#使用mysql镜像" class="headerlink" title="使用mysql镜像"></a>使用mysql镜像</h2><h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker run -p 13306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456  -d mysql:5.7</span><br></pre></td></tr></table></figure>
-<p>命令说明：</p>
-<ul>
-<li><strong>–name mymysql</strong>：定义容器的别名。</li>
-<li></li>
-<li><p><strong>-p 3306:3306</strong>：将容器的 3306 端口映射到主机的 13306 端口。</p>
-</li>
-<li><p><strong>-v $PWD/conf:/etc/mysql/conf.d</strong>：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。</p>
-</li>
-<li><p><strong>-v $PWD/logs:/logs</strong>：将主机当前目录下的 logs 目录挂载到容器的 /logs。</p>
-</li>
-<li><p><strong>-v $PWD/data:/var/lib/mysql</strong> ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 。</p>
-</li>
-<li><p><strong>-e MYSQL_ROOT_PASSWORD=123456：</strong>初始化 root 用户的密码。</p>
-</li>
-</ul>
-<h3 id="查看容器启动情况"><a href="#查看容器启动情况" class="headerlink" title="查看容器启动情况"></a>查看容器启动情况</h3><p><code>[root@localhost ~]# docker ps</code></p>
-<p><img src="http://blog.nilaile.cn/blog/20190613/B9qkTex9gJfj.png" alt="mark"></p>
-<h3 id="重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name"><a href="#重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name" class="headerlink" title="重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)"></a>重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart mymysql</span><br></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart f75c3467f92e</span><br></pre></td></tr></table></figure></p>
+            <p>Elasticsearch自带standard分词只能把汉语分割成一个个字，而不能分词、分段，这就是我们需要分析器ik的地方了。</p>
+<h3 id="安装结果"><a href="#安装结果" class="headerlink" title="安装结果:"></a>安装结果:</h3><p><code>http:`</code>//{ip}:9200/_analyze?analyzer=standard&amp;pretty=true&amp;text=sojson中华人民共和国`</p>
+<p><img src="http://blog.nilaile.cn/blog/20190613/PXqmfSip2ESr.png" alt="mark"></p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>访问浏览器（虚拟机IP:9200）查看你elasticsearch的版本号<br><img src="http://blog.nilaile.cn/blog/20190613/r7kxHm3y7Ta2.png" alt="mark"></p>
+<p><strong>一、下载ik的相应版本</strong></p>
+<p>查看版本和下载链接<a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">点击这里</a></p>
+<p>这里提供5.0.0的ES及以前的版本对应的ik版本</p>
+<p><img src="http://blog.nilaile.cn/blog/20190613/5oX0v1yjC6mz.png" alt="mark"></p>
+<p><strong>二、下载的方式</strong></p>
+<p>我这里的ES是2.3.5，对应的ik版本是1.9.5</p>
+<p>在版本里选择1.9.5，点击 【Download ZIP】右键选择 – 复制链接地址</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207145657885-2081174365.png" alt></p>
+<p><code>wget https://github.com/medcl/elasticsearch-analysis-ik/archive/v1.9.5.zip</code></p>
+<p><strong>三、解包</strong>（如果没有unzip命令的使用  <strong>yum install zip unzip *</strong>  命令安装）</p>
+<p><code>unzip v1.9.5.zip</code></p>
+<p><strong>四、 打包</strong></p>
+<p>因为是java的源码，需要用maven打包</p>
+<p>进入解压后的目录elasticsearch-analysis-ik-1.10.1里面，输入下面命令进行打包</p>
+<p><code>cd elasticsearch-analysis-ik-1.9.5/</code></p>
+<p><code>mvn clean package</code></p>
+<p>（注：如果没有mvn的可以直接使用 <strong>yum install java*</strong> 进行安装，把ES的环境也一起配置好）</p>
+<p><strong>五、配置</strong></p>
+<p>1、打包后，在当前目录下有target目录，进去，有一个releases目录，把里面的zip包复制到你安装ES目录下的plugins目录下的ik目录（ik目录需要手动添加）</p>
+<p>查找ES插件路径可以使用命令<br><code>whereis elasticsearch</code></p>
+<p>ES插件默认安装路径是：<br><code>/usr/share/elasticsearch/plugins/</code></p>
+<p>mkdir -p /usr/share/elasticsearch/plugins/ik</p>
+<p>cd target/releases/</p>
+<p>mv elasticsearch-analysis-ik-1.9.5.zip /usr/share/elasticsearch/plugins/ik</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>; “复制代码”)</p>
+<p>2、使用unzip命令解包，并把zip包删除了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/elasticsearch/plugins/</span><br><span class="line"></span><br><span class="line">unzip elasticsearch-analysis-ik-1.9.5.zip</span><br><span class="line"></span><br><span class="line">rm -rf elasticsearch-analysis-ik-1.9.5.zip</span><br></pre></td></tr></table></figure>
+<p><strong>六、测试</strong></p>
+<p>重启ES服务，查看ES的状态为（Active: active (running)）即可。</p>
+<p>systemctl restart elasticsearch</p>
+<p>systemctl status elasticsearch</p>
+<p>如果需要具体测试的话，可以在官网git的下面介绍有（<a href="https://github.com/medcl/elasticsearch-analysis-ik/tree/v1.10.1" target="_blank" rel="noopener">点击查看</a>），简单的方法可以使用下面命令在浏览器访问确认</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://（虚拟机ip）:9200**/_analyze?analyzer=ik&amp;pretty=true&amp;text=helloworld,中华人民共和国&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://blog.nilaile.cn/blog/20190613/PXqmfSip2ESr.png" alt="mark"></p>
 
           
         
@@ -632,7 +639,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker安装Mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -651,7 +658,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/07/Centos7.5调整swap分区/" itemprop="url">centos7.5增加swap分区</a></h1>
+                <a class="post-title-link" href="/2019/08/07/Docker安装Mysql/" itemprop="url">Docker安装Mysql</a></h1>
         
 
         <div class="post-meta">
@@ -686,8 +693,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -705,8 +712,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/08/07/Centos7.5调整swap分区/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5调整swap分区/" itemprop="commentsCount"></span>
+                <a href="/2019/08/07/Docker安装Mysql/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Docker安装Mysql/" class="cy_cmt_count" data-xid="2019/08/07/Docker安装Mysql/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -736,25 +743,239 @@
       
         
           
-            <p>先用free -m查看一下swap的大小</p>
-<p><img src="https://files.jb51.net/file_images/article/201804/201841291807170.png?201831291819" alt></p>
-<p>1.添加swap分区 </p>
-<p>使用dd命令创建/home/swap这么一个分区文件。文件的大小是2048000  个block，一般情况下1个block为1K，所以这里空间是2G。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/var/swapfile bs=1024 count=2048000  //添加交换文件并设置其大小为2G</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180627095255111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt> </p>
-<p>2.执行完毕，对交换文件格式化并转换为swap分区： </p>
-<p>mkswap /var/swapfile</p>
-<p><img src="https://img-blog.csdn.net/20180627095317795?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>3.挂载并激活分区： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /var/swapfile</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180627095340170?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>4 赋权限 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 0600 /var/swapfile</span><br></pre></td></tr></table></figure>
-<p>现在再用free -m命令查看一下内存和swap分区大小，就发现增加了2G的空间了。</p>
-<p>注意当计算机重启了以后，发现swap还是原来那么大，新的swap没有自动启动，还要手动启动。那我们需要修改/etc/fstab文件</p>
-<p>5.设置开机自动挂载该分区：<br>vi /etc/fstab<br>在fstab文件末尾追加如下内容后:wq!保存即可： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swapfile swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
+            <h3 id="方法一、docker-pull-mysql"><a href="#方法一、docker-pull-mysql" class="headerlink" title="方法一、docker pull mysql"></a>方法一、docker pull mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runoob@runoob:/mysql$ docker search mysql</span><br></pre></td></tr></table></figure>
+<h3 id="2-获取-docker-pull-mysql-5-6"><a href="#2-获取-docker-pull-mysql-5-6" class="headerlink" title="2. 获取 docker pull mysql:5.6"></a>2. 获取 <code>docker pull mysql:5.6</code></h3><p>等待下载完成后，我们就可以在本地镜像列表里查到REPOSITORY为mysql,标签为5.7的镜像。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker images| grep mysql</span><br><span class="line">mysql         5.7        a1aa4f76fab9        2 days ago        373MB</span><br></pre></td></tr></table></figure>
+<h3 id="方法二、通过-Dockerfile构建"><a href="#方法二、通过-Dockerfile构建" class="headerlink" title="方法二、通过 Dockerfile构建"></a>方法二、通过 Dockerfile构建</h3><p>1.首先创建目录mysql,用于存放后面的相关东西。</p>
+<p><code>runoob@runoob:~$ mkdir -p ~/mysql/data ~/mysql/logs ~/mysql/conf</code></p>
+<p>data目录将映射为mysql容器配置的数据文件存放路径<br>logs目录将映射为mysql容器的日志目录<br>conf目录里的配置文件将映射为mysql容器的配置文件</p>
+<p>2.进入创建的mysql目录，创建Dockerfile文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added RUN groupadd -r mysql &amp;&amp; useradd -r -g mysql mysql # add gosu for easy step-down from root ENV GOSU_VERSION 1.7 RUN set  -x \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y --no-install-recommends ca-certificates wget &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)&quot; \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu.asc &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc&quot; \</span><br><span class="line">    &amp;&amp; export GNUPGHOME=&quot;$(mktemp -d)&quot; \</span><br><span class="line">    &amp;&amp; gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \</span><br><span class="line">    &amp;&amp; gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; rm -r &quot;$GNUPGHOME&quot; /usr/local/bin/gosu.asc \</span><br><span class="line">    &amp;&amp; chmod +x /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; gosu nobody true \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove ca-certificates wget</span><br><span class="line"></span><br><span class="line">RUN mkdir /docker-entrypoint-initdb.d</span><br><span class="line"></span><br><span class="line"># FATAL ERROR: please install the following Perl modules before executing /usr/local/mysql/scripts/mysql_install_db:</span><br><span class="line"># File::Basename</span><br><span class="line"># File::Copy</span><br><span class="line"># Sys::Hostname</span><br><span class="line"># Data::Dumper</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y perl pwgen --no-install-recommends &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"># gpg: key 5072E1F5: public key &quot;MySQL Release Engineering &lt;mysql-build@oss.oracle.com&gt;&quot; imported</span><br><span class="line">RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5</span><br><span class="line"></span><br><span class="line">ENV MYSQL_MAJOR 5.6</span><br><span class="line">ENV MYSQL_VERSION 5.6.31-1debian8</span><br><span class="line"></span><br><span class="line">RUN echo &quot;deb http://repo.mysql.com/apt/debian/ jessie mysql-$&#123;MYSQL_MAJOR&#125;&quot; &gt; /etc/apt/sources.list.d/mysql.list</span><br><span class="line"></span><br><span class="line"># the &quot;/var/lib/mysql&quot; stuff here is because the mysql-server postinst doesn&apos;t have an explicit way to disable the mysql_install_db codepath besides having a database already &quot;configured&quot; (ie, stuff in /var/lib/mysql/mysql)</span><br><span class="line"># also, we set debconf keys to make APT a little quieter</span><br><span class="line">RUN &#123; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/data-dir select &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/re-root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/remove-test-db select false; \</span><br><span class="line">    &#125; | debconf-set-selections \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y mysql-server=&quot;$&#123;MYSQL_VERSION&#125;&quot; &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/mysql &amp;&amp; mkdir -p /var/lib/mysql /var/run/mysqld \</span><br><span class="line">    &amp;&amp; chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \</span><br><span class="line"># ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime</span><br><span class="line">    &amp;&amp; chmod 777 /var/run/mysqld</span><br><span class="line"></span><br><span class="line"># comment out a few problematic configuration values</span><br><span class="line"># don&apos;t reverse lookup hostnames, they are usually another container</span><br><span class="line">RUN sed -Ei &apos;s/^(bind-address|log)/#&amp;/&apos; /etc/mysql/my.cnf \</span><br><span class="line">    &amp;&amp; echo &apos;skip-host-cache\nskip-name-resolve&apos; | awk &apos;&#123; print &#125; $1 == &quot;[mysqld]&quot; &amp;&amp; c == 0 &#123; c = 1; system(&quot;cat&quot;) &#125;&apos; /etc/mysql/my.cnf &gt; /tmp/my.cnf \</span><br><span class="line">    &amp;&amp; mv /tmp/my.cnf /etc/mysql/my.cnf</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/mysql</span><br><span class="line"></span><br><span class="line">COPY docker-entrypoint.sh /usr/local/bin/</span><br><span class="line">RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat</span><br><span class="line">ENTRYPOINT [&quot;docker-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">EXPOSE 3306</span><br><span class="line">CMD [&quot;mysqld&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>通过Dockerfile创建一个镜像，替换成你自己的名字</p>
+<p><code>runoob@runoob:~/mysql$ docker build -t mysql .</code></p>
+<p>创建完成后，我们可以在本地的镜像列表里查找到刚刚创建的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker images |grep mysql</span><br><span class="line">mysql 5.6  2c0964ec182a  3 weeks ago 329 MB</span><br></pre></td></tr></table></figure>
+<h2 id="使用mysql镜像"><a href="#使用mysql镜像" class="headerlink" title="使用mysql镜像"></a>使用mysql镜像</h2><h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker run -p 13306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456  -d mysql:5.7</span><br></pre></td></tr></table></figure>
+<p>命令说明：</p>
+<ul>
+<li><strong>–name mymysql</strong>：定义容器的别名。</li>
+<li></li>
+<li><p><strong>-p 3306:3306</strong>：将容器的 3306 端口映射到主机的 13306 端口。</p>
+</li>
+<li><p><strong>-v $PWD/conf:/etc/mysql/conf.d</strong>：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。</p>
+</li>
+<li><p><strong>-v $PWD/logs:/logs</strong>：将主机当前目录下的 logs 目录挂载到容器的 /logs。</p>
+</li>
+<li><p><strong>-v $PWD/data:/var/lib/mysql</strong> ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 。</p>
+</li>
+<li><p><strong>-e MYSQL_ROOT_PASSWORD=123456：</strong>初始化 root 用户的密码。</p>
+</li>
+</ul>
+<h3 id="查看容器启动情况"><a href="#查看容器启动情况" class="headerlink" title="查看容器启动情况"></a>查看容器启动情况</h3><p><code>[root@localhost ~]# docker ps</code></p>
+<p><img src="http://blog.nilaile.cn/blog/20190613/B9qkTex9gJfj.png" alt="mark"></p>
+<h3 id="重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name"><a href="#重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name" class="headerlink" title="重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)"></a>重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart mymysql</span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart f75c3467f92e</span><br></pre></td></tr></table></figure></p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7.5安装Elasticsearch/" itemprop="url">Centos7.5安装Elasticsearch2.3.5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/08/07/Centos7.5安装Elasticsearch/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装Elasticsearch/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p> Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK</p>
+</blockquote>
+<h3 id="安装方法一（下载rpm包方式）"><a href="#安装方法一（下载rpm包方式）" class="headerlink" title="安装方法一（下载rpm包方式）"></a>安装方法一（下载rpm包方式）</h3><p><strong> 1.百度elasticsearch,点击官网网址</strong></p>
+<p><strong> <img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111519713-1843270100.png" alt></strong></p>
+<p> 2.点击Downloads，选择past releases</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111941963-554816516.png" alt></p>
+<p>3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全）</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112356557-1829265054.png" alt></p>
+<p>4.右键点击RPM选择 – 复制连接地址</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112633619-1394926966.png" alt></p>
+<p>5.在根目录下载rmp包</p>
+<p><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm</code></p>
+<p>6.执行下面的命令,安装完成后按照提示操作,即可</p>
+<p><code>rpm -ivh elasticsearch-2.3.5.rpm</code></p>
+<p>7.启动并查看安装状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br><span class="line"></span><br><span class="line">systemctl status elasticsearch</span><br></pre></td></tr></table></figure>
+<p>8.本地查看版本信息</p>
+<p><code>curl  http://127.0.0.1:9200</code></p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113314791-1988726404.png" alt></p>
+<p>9.查找elasticsearch 安装路径与配置路径，并且配置</p>
+<p>whereis elasticsearch</p>
+<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113451932-347145346.png" alt></p>
+<p><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<p>修改：<br>  <img src="http://blog.nilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
+<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port</p>
+<p>保存退出后重启elasticsearch</p>
+<p><code>systemctl restart elasticsearch</code></p>
+<p>在浏览器访问虚拟机ip:9200<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
+<h3 id="安装方法二-yum方式安装"><a href="#安装方法二-yum方式安装" class="headerlink" title="安装方法二 (yum方式安装)"></a>安装方法二 (yum方式安装)</h3><p>一、ES的yum安装配置</p>
+<p>由于ES不在yum的本地源，所以我们需要添加ES的yum配置。</p>
+<p>1、下载并安装ES的yum公钥</p>
+<p><code>rpm --import https:`</code>//packages.elastic.co/GPG-KEY-elasticsearch`</p>
+<p>2、配置ES的yum源<br><code>vim /etc/yum.repos.d/elasticsearch.repo</code></p>
+<p> 输入下面的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[elasticsearch-2.x]</span><br><span class="line">name=Elasticsearch repository for 2.x packages</span><br><span class="line">baseurl=http://packages.elastic.co/elasticsearch/2.x/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
+<p>二、yum安装ES</p>
+<p>1、更新yum的缓存<br><code>yum makecache</code></p>
+<p>2、安装ES<br><code>yum install elasticsearch</code></p>
+<p>三、测试ES</p>
+<p>1、配置和启动ES服务器进程</p>
+<p><code>/sbin/chkconfig --add elasticsearch</code></p>
+<p><code>systemctl start elasticsearch</code></p>
+<p>2、查看状态</p>
+<p><code>systemctl status elasticsearch</code></p>
+<p>3、运行测试<br><code>curl -X GET localhost:9200</code></p>
+<p>返回的json结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;Live Wire&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;2.3.5&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;,</span><br><span class="line">    &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;5.5.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>四、通过IP访问ES的配置（同方法一配置方法一样）<br>1、打开/etc/elasticsearch/elasticsearch.yml<br><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<p> network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址，<br> http.port-&gt; 去掉注释<br>  <img src="http://blognilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
+<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
+<h3 id="安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html"><a href="#安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html" class="headerlink" title="安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html"></a>安装中文分词插件参考<a href="https://www.cnblogs.com/shifu204/p/6374234.html" target="_blank" rel="noopener">https://www.cnblogs.com/shifu204/p/6374234.html</a></h3>
           
         
       
@@ -973,7 +1194,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -992,7 +1213,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/07/Centos7.5安装Elasticsearch/" itemprop="url">Centos7.5安装Elasticsearch2.3.5</a></h1>
+                <a class="post-title-link" href="/2019/08/07/Centos7.5调整swap分区/" itemprop="url">centos7.5增加swap分区</a></h1>
         
 
         <div class="post-meta">
@@ -1027,8 +1248,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -1046,8 +1267,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/08/07/Centos7.5安装Elasticsearch/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5安装Elasticsearch/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5安装Elasticsearch/" itemprop="commentsCount"></span>
+                <a href="/2019/08/07/Centos7.5调整swap分区/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/08/07/Centos7.5调整swap分区/" class="cy_cmt_count" data-xid="2019/08/07/Centos7.5调整swap分区/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -1077,56 +1298,25 @@
       
         
           
-            <blockquote>
-<p> Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK</p>
-</blockquote>
-<h3 id="安装方法一（下载rpm包方式）"><a href="#安装方法一（下载rpm包方式）" class="headerlink" title="安装方法一（下载rpm包方式）"></a>安装方法一（下载rpm包方式）</h3><p><strong> 1.百度elasticsearch,点击官网网址</strong></p>
-<p><strong> <img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111519713-1843270100.png" alt></strong></p>
-<p> 2.点击Downloads，选择past releases</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207111941963-554816516.png" alt></p>
-<p>3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全）</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112356557-1829265054.png" alt></p>
-<p>4.右键点击RPM选择 – 复制连接地址</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207112633619-1394926966.png" alt></p>
-<p>5.在根目录下载rmp包</p>
-<p><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm</code></p>
-<p>6.执行下面的命令,安装完成后按照提示操作,即可</p>
-<p><code>rpm -ivh elasticsearch-2.3.5.rpm</code></p>
-<p>7.启动并查看安装状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br><span class="line"></span><br><span class="line">systemctl status elasticsearch</span><br></pre></td></tr></table></figure>
-<p>8.本地查看版本信息</p>
-<p><code>curl  http://127.0.0.1:9200</code></p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113314791-1988726404.png" alt></p>
-<p>9.查找elasticsearch 安装路径与配置路径，并且配置</p>
-<p>whereis elasticsearch</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207113451932-347145346.png" alt></p>
-<p><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
-<p>修改：<br>  <img src="http://blog.nilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
-<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port</p>
-<p>保存退出后重启elasticsearch</p>
-<p><code>systemctl restart elasticsearch</code></p>
-<p>在浏览器访问虚拟机ip:9200<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
-<h3 id="安装方法二-yum方式安装"><a href="#安装方法二-yum方式安装" class="headerlink" title="安装方法二 (yum方式安装)"></a>安装方法二 (yum方式安装)</h3><p>一、ES的yum安装配置</p>
-<p>由于ES不在yum的本地源，所以我们需要添加ES的yum配置。</p>
-<p>1、下载并安装ES的yum公钥</p>
-<p><code>rpm --import https:`</code>//packages.elastic.co/GPG-KEY-elasticsearch`</p>
-<p>2、配置ES的yum源<br><code>vim /etc/yum.repos.d/elasticsearch.repo</code></p>
-<p> 输入下面的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[elasticsearch-2.x]</span><br><span class="line">name=Elasticsearch repository for 2.x packages</span><br><span class="line">baseurl=http://packages.elastic.co/elasticsearch/2.x/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
-<p>二、yum安装ES</p>
-<p>1、更新yum的缓存<br><code>yum makecache</code></p>
-<p>2、安装ES<br><code>yum install elasticsearch</code></p>
-<p>三、测试ES</p>
-<p>1、配置和启动ES服务器进程</p>
-<p><code>/sbin/chkconfig --add elasticsearch</code></p>
-<p><code>systemctl start elasticsearch</code></p>
-<p>2、查看状态</p>
-<p><code>systemctl status elasticsearch</code></p>
-<p>3、运行测试<br><code>curl -X GET localhost:9200</code></p>
-<p>返回的json结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;Live Wire&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;2.3.5&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;,</span><br><span class="line">    &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;5.5.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>四、通过IP访问ES的配置（同方法一配置方法一样）<br>1、打开/etc/elasticsearch/elasticsearch.yml<br><code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
-<p> network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址，<br> http.port-&gt; 去掉注释<br>  <img src="http://blognilaile.cn/blog/20190613/38Ej7AxkGxTd.png" alt="mark"></p>
-<p> 这样就可以在window系统用浏览器通过访问虚拟机的ip:port<br><img src="http://blognilaile.cn/blog/20190613/3HR3guW0ew98.png" alt="mark"></p>
-<h3 id="安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html"><a href="#安装中文分词插件参考https-www-cnblogs-com-shifu204-p-6374234-html" class="headerlink" title="安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html"></a>安装中文分词插件参考<a href="https://www.cnblogs.com/shifu204/p/6374234.html" target="_blank" rel="noopener">https://www.cnblogs.com/shifu204/p/6374234.html</a></h3>
+            <p>先用free -m查看一下swap的大小</p>
+<p><img src="https://files.jb51.net/file_images/article/201804/201841291807170.png?201831291819" alt></p>
+<p>1.添加swap分区 </p>
+<p>使用dd命令创建/home/swap这么一个分区文件。文件的大小是2048000  个block，一般情况下1个block为1K，所以这里空间是2G。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/var/swapfile bs=1024 count=2048000  //添加交换文件并设置其大小为2G</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180627095255111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt> </p>
+<p>2.执行完毕，对交换文件格式化并转换为swap分区： </p>
+<p>mkswap /var/swapfile</p>
+<p><img src="https://img-blog.csdn.net/20180627095317795?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>3.挂载并激活分区： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /var/swapfile</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180627095340170?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYnpoYnpoYmJhYnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>4 赋权限 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 0600 /var/swapfile</span><br></pre></td></tr></table></figure>
+<p>现在再用free -m命令查看一下内存和swap分区大小，就发现增加了2G的空间了。</p>
+<p>注意当计算机重启了以后，发现swap还是原来那么大，新的swap没有自动启动，还要手动启动。那我们需要修改/etc/fstab文件</p>
+<p>5.设置开机自动挂载该分区：<br>vi /etc/fstab<br>在fstab文件末尾追加如下内容后:wq!保存即可： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swapfile swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -1792,7 +1982,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1803,7 +1993,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1814,7 +2004,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

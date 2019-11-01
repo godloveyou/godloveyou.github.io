@@ -295,6 +295,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/11/01/微信小程序生成分享码及跳转页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/01/微信小程序生成分享码及跳转页面/" itemprop="url">微信小程序生成分享码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-01T10:58:16+08:00">
+                2019-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/11/01/微信小程序生成分享码及跳转页面/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://godloveyou.github.io/2019/11/01/微信小程序生成分享码及跳转页面/" class="cy_cmt_count" data-xid="2019/11/01/微信小程序生成分享码及跳转页面/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-小程序码介绍"><a href="#1-小程序码介绍" class="headerlink" title="1.小程序码介绍"></a>1.小程序码介绍</h3><p>小程序开发文档:<a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html</a></p>
+<p>微信小程序 允许开发者生成跳转到某个页面的小程序码, 在用户扫码后跳转到指定页面时，也可以附加参数,附加的参数在小程序端可以获取到</p>
+<p>从微信小程序开发文档上我们可以了解到，目前微信支持两种二维码（左），小程序码和小程序二维码（右）。官方推荐使用小程序码，因为小程序码具有更好的辨识度。</p>
+<p><img src="http://blog.sjjtcloud.com/blog/20191101/VrrAc4pUi9ik.png?imageslim" alt="mark"></p>
+<p>官方提供生成小程序码的两种方式 </p>
+<p>方式一： 适用于 <strong>需要的码的数量相对较少的业务场景,通过该接口生成的小程序码，有数量限制,永久有效</strong>，(这种方式不能附带额外的自定义参数) </p>
+<p><img src="http://blog.sjjtcloud.com/blog/20191101/ImDmWeP34i1f.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>接口地址: <a href="https://api.weixin.qq.com/wxa/getwxacode?access_token=ACCESS_TOKEN" target="_blank" rel="noopener">https://api.weixin.qq.com/wxa/getwxacode?access_token=ACCESS_TOKEN</a></p>
+</li>
+<li><p>具体参数参考微信官方文档:<br>[<a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.get.html]" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.get.html]</a></p>
+</li>
+</ul>
+<p>方式二: 适用于使用数量极多的场景（可以附带额外的自定义参数）。<br><img src="http://blog.sjjtcloud.com/blog/20191101/vShaY0JQCeGi.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>接口地址：<a href="https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN" target="_blank" rel="noopener">https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN</a></p>
+</li>
+<li><p>具体参数参考微信官方文档：<a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html</a></p>
+</li>
+</ul>
+<p>注意:<br> 两种方式均需要获取 ACCESS_TOEKN，微信提供的开发者工具中也 可以在线获取，<a href="https://mp.weixin.qq.com/debug/" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/</a></p>
+<h3 id="2-后台获取小程序码DEMO（演示第一种获取方式-生成的二维码扫码后直接跳转到指定页面）"><a href="#2-后台获取小程序码DEMO（演示第一种获取方式-生成的二维码扫码后直接跳转到指定页面）" class="headerlink" title="2. 后台获取小程序码DEMO（演示第一种获取方式,生成的二维码扫码后直接跳转到指定页面）"></a>2. 后台获取小程序码DEMO（演示第一种获取方式,生成的二维码扫码后直接跳转到指定页面）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpUtilTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String token = <span class="string">"27_b7dbAFkuHIrKjeiYA05TOYoMlgD723P_lfMZwfhofQA_FcpXXZ3thuLOUmyFy9OZH9nXMvgMjm683SzVJa0w2MshxZ2TGT90aY7H2IxEdwtdLQoY4srLv3vbMZgZOVgAIATIP"</span>;</span><br><span class="line">        <span class="comment">//使用第一种 获取方式获取小程序码</span></span><br><span class="line">  String url = <span class="string">"https://api.weixin.qq.com/wxa/getwxacode?access_token="</span>+token;</span><br><span class="line">        Map&lt;String,Object&gt; data = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">        Map&lt;String,Object&gt; color = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        data.put(<span class="string">"path"</span>,<span class="string">"pages/quickly/quickly"</span>);</span><br><span class="line">        data.put(<span class="string">"auto_color"</span>,<span class="keyword">false</span>);</span><br><span class="line">        data.put(<span class="string">"width"</span>,<span class="number">450</span>);</span><br><span class="line">        color.put(<span class="string">"r"</span>,<span class="number">0</span>);</span><br><span class="line">        color.put(<span class="string">"g"</span>,<span class="number">0</span>);</span><br><span class="line">        color.put(<span class="string">"b"</span>,<span class="number">0</span>);</span><br><span class="line">        data.put(<span class="string">"line_color"</span>,color);</span><br><span class="line">        HttpRequest request = HttpUtil.createPost(url);</span><br><span class="line">        request.body(JSONUtil.toJsonStr(data));</span><br><span class="line">        HttpResponse response = request.execute();</span><br><span class="line">        <span class="comment">//请求接口返回的图片的字节码，直接写入本地文件就可以</span></span><br><span class="line">        <span class="keyword">byte</span>[] imgBytes = response.bodyBytes();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"h:/jumpToQuick.jpg"</span>));</span><br><span class="line">            IoUtil.write(outputStream,<span class="keyword">true</span>,imgBytes);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-前端请求获取小程序码"><a href="#3-前端请求获取小程序码" class="headerlink" title="3.前端请求获取小程序码"></a>3.前端请求获取小程序码</h3><p>因为第二中方法可生成的小程序码极多，所以我们一般会使用这种方法来获取小程序码。  今天主要像大家介绍一下第二种方法。</p>
+<p>一般我们主要常用的参数是：scene（如果需要页面参数）、page和width。  page是页面地址，例如：’pages/index’。<strong>pages前面不能有斜杠</strong>  scene是参数，为字符串。比如要传入一个用户id=1234，要根据这个用户id来给当前页面返回不同的内容，那么scene参数就可以写成”1234”，多个参数按一定规则分开，如&amp;符号，第二个参数是recommendId=123则可以这样写”1234&amp;123”。我们来开一下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line"> data:&#123;&#125;,</span><br><span class="line"> getQrcode()&#123;</span><br><span class="line"> wx.request(&#123;</span><br><span class="line"> url: <span class="string">"https://www....com/weixin/get-qrcode"</span>,<span class="comment">//域名省略</span></span><br><span class="line"> data: &#123;</span><br><span class="line"> page:<span class="string">"pages/index"</span>,</span><br><span class="line"> scene:<span class="string">"1234&amp;123"</span>,</span><br><span class="line"> width:<span class="number">300</span></span><br><span class="line"> &#125;,</span><br><span class="line"> header: &#123;</span><br><span class="line"> <span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line"> &#125;,</span><br><span class="line"> method:  <span class="string">'POST'</span>,</span><br><span class="line"> dataType: <span class="string">'json'</span>,</span><br><span class="line"> success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">let</span> qrcodeUrl=res.data;<span class="comment">//服务器小程序码地址</span></span><br><span class="line"> &#125;,</span><br><span class="line"> fail: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line"> complete: options.complete || <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"> &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>解析：get-qrcode接口是自己小程序后端的接口，前端调用此接口，传入相应参数，后台通过参数请求小程序接口获取到小程序码存到自己服务上，返回小程序码服务器地址。</p>
+<h3 id="3-用户扫码进入后的逻辑"><a href="#3-用户扫码进入后的逻辑" class="headerlink" title="3.用户扫码进入后的逻辑"></a>3.用户扫码进入后的逻辑</h3><p>我们可以在onload生命周期中处理参数</p>
+<p>onLoad:function(options){<br> if(options.scene){<br> let scene=decodeURIComponent(options.scene);<br> //&amp;是我们定义的参数链接方式<br> let userId=scene.split(“&amp;”)[0];<br> let recommendId=scene.split(‘&amp;’)[1];<br> //其他逻辑处理。。。。。<br> }<br>}</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/10/25/No space left on device/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1721,170 +1900,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/NUC启动盘制作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/NUC启动盘制作/" itemprop="url">NUC启动U盘制作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T15:37:42+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/启动U盘/" itemprop="url" rel="index">
-                    <span itemprop="name">启动U盘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/19/NUC启动盘制作/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2019/08/19/NUC启动盘制作/" class="cy_cmt_count" data-xid="2019/08/19/NUC启动盘制作/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="U盘制作步骤及镜像复制"><a href="#U盘制作步骤及镜像复制" class="headerlink" title="U盘制作步骤及镜像复制"></a>U盘制作步骤及镜像复制</h3><ol>
-<li>CMD-&gt;diskpart</li>
-<li><p>DISKPART&gt; list disk</p>
-<p>磁盘 ###  状态           大小     可用     Dyn  Gpt</p>
-<hr>
-<p>磁盘 0    联机              931 GB  1024 KB        <em><br>磁盘 1    联机              119 GB      0 B        </em><br>磁盘 2    联机               14 GB      0 B</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/NUC启动盘制作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1937,7 +1952,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1948,7 +1963,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1959,7 +1974,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
