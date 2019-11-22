@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Executor]]></title>
+    <url>%2F2019%2F11%2F22%2FExecutor%E6%A1%86%E6%9E%B6%2F</url>
+    <content type="text"><![CDATA[简介Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。 Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor接口及继承自Executor接口的ExecutorService接口, Executor框架有两个关键类实现了ExecutorService接口（ThreadPoolExecutor和ScheduledThreadPoolExecutor） （3）异步计算的结果。包括Future接口及实现了Future接口的FutureTask类。 各个类和接口简介 Executor 它是框架基础, 将任务的提交 和任务的执行分离开来 ThreadPoolExecutor 是线程池的核心实现类,用来执行被提交的任务 Future接口及实现FutureTask 代表异步计算的结果 Runnable接口和Callable接口的实现类 都可以被ThreadPoolExecutor和ScheduledThreadPoolExecutor执行]]></content>
+      <categories>
+        <category>Executor框架</category>
+      </categories>
+      <tags>
+        <tag>java多线程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux下nohup文件过大问题解决方案]]></title>
     <url>%2F2019%2F11%2F11%2FLinux%E4%B8%8Bnohup%E6%96%87%E4%BB%B6%E8%BF%87%E5%A4%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
     <content type="text"><![CDATA[文件过大可能对系统造成的影响 文件打开非常慢 系统线程被阻塞 无法正常运行（采集系统曾经碰到过） 解决方法1 直接指定到黑洞目录,在本地也不会保留,项目中一般都配置的有日志文件,所以这个文件其实是冗余的123#!/bin/bash#nohup java -Dfile.encoding=utf-8 -jar $JAVA_OPTS admin.jar &gt; admin.log &amp;nohup java -Dfile.encoding=utf-8 -jar $JAVA_OPTS admin.jar &gt; /dev/null &amp; 解决方法2 切割日志文件1234567891011#!/bin/sh#################启动日志切割服务#################this_path=$(cd `dirname $0`;pwd)cd $this_pathecho $this_pathcurrent_date=`date -d "-1 day" "+%Y%m%d"`echo $current_datesplit -b 65535000 -d -a 4 /home/.../nohup.out /home/.../log/log_$&#123;current_date&#125;_ cat /dev/null &gt; nohup.out split命令 split -b 65535000 -d -a 4 nohup.out ./log/log_${current_date}_ 这里使用split命令,将nouhup文件按指定大小切分(65535000b 大概60多M吧，可以自定义大小 )，并分成指定格式（-d -a 4以4位数字形式为后缀以从0000开始,具体可以百度split命令用法）,最终输出格式为log_20160610_0001]]></content>
@@ -204,17 +215,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[windows/mac下图床神器]]></title>
-    <url>%2F2019%2F08%2F07%2F%E5%9B%BE%E5%BA%8A%E7%A5%9E%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[windows下图床神器价格: 免费平台: WINDOW官网: 图床神器MPIC MAC下图床神器价格: 免费(自定义图床需要购买高级版，RMB 58/年)平台: Mac官网: 图床神器 iPic | Toolinbox下载: AppStore 使用教程官网写得很详细了，点击这里 去官网看吧~]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>图床神器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[阿里云常用文档]]></title>
     <url>%2F2019%2F08%2F07%2F%E9%98%BF%E9%87%8C%E4%BA%91%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3%2F</url>
     <content type="text"><![CDATA[阿里云常用文档升级云盘后扩展分区阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式文档地址(https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV)]]></content>
@@ -226,6 +226,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[windows/mac下图床神器]]></title>
+    <url>%2F2019%2F08%2F07%2F%E5%9B%BE%E5%BA%8A%E7%A5%9E%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[windows下图床神器价格: 免费平台: WINDOW官网: 图床神器MPIC MAC下图床神器价格: 免费(自定义图床需要购买高级版，RMB 58/年)平台: Mac官网: 图床神器 iPic | Toolinbox下载: AppStore 使用教程官网写得很详细了，点击这里 去官网看吧~]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>图床神器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为什么要使用spring?]]></title>
     <url>%2F2019%2F08%2F07%2F%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A6%82%E8%BF%B0%2F</url>
     <content type="text"><![CDATA[spring是一个开源的应用框架,目的是帮我们简化企业级应用程序的开发,spring帮助我们创建对象，管理对象之间的依赖,spring还有框架粘合剂的作用，帮我们整合各种我们需要的框架如hibernate,mybatis，struts2等. Spring能帮我们做什么？ sping帮助我们通过配置文件或者注解创建对象，管理对象之间的依赖关系. spring的AOP（面向切面编程）帮我们无耦合的实现日志记录，权限控制，性能统计等功能 spring帮助我们管理数据库事物，获取连接，关闭连接的工作交由spring来完成 spring提供了第三方数据访问框架的无缝集成(hibernate,mybatis,JPA)SPRING-JDBCB本身还提供了一套jdbc访问模板 spring提供了第三方web框架的无缝集成(struts2,JSF),spring本身也提供了一套spring-mvc框架方便web层搭建 spring能够帮我们更好的与JAVA EE整合(JAVA MAIL,任务调度,缓存)等 如何学好要学好Spring，首先要明确Spring是个什么东西，能帮我们做些什么事情，知道了这些然后做个简单的例子，这样就基本知道怎么使用Spring了。Spring核心是IoC容器，所以一定要透彻理解什么是IoC容器，以及如何配置及使用容器，其他所有技术都是基于容器实现的；理解好IoC后，接下来是面向切面编程，首先还是明确概念，基本配置，最后是实现原理，接下来就是数据库事务管理，其实Spring管理事务是通过面向切面编程实现的，所以基础很重要，IoC容器和面向切面编程搞定后，其余都是基于这俩东西的实现，学起来就更加轻松了。要学好Spring不能急，一定要把基础打牢，基础牢固了，这就是磨刀不误砍柴工。]]></content>
@@ -234,6 +245,17 @@
       </categories>
       <tags>
         <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[内网穿透端口映射网站]]></title>
+    <url>%2F2019%2F08%2F07%2F%E5%87%A0%E4%B8%AA%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E6%9C%8D%E5%8A%A1%E7%BD%91%E7%AB%99%2F</url>
+    <content type="text"><![CDATA[目前在使用的 http://ngrok.io == http://ngrok.com http://natapp.cn/ http://ngrok.2bdata.com/ http://www.ngrok.cc/ http://www.nat123.com/ 路由侠 http://www.luyouxia.com/ WeNAT https://www.wezoz.com/ 目前使用的ngrok的穿透工具 （http://ngrok.io）登录账户: blog.nilaile.cn@gmail.com 安装: 解压ngrok安装程序 命令行进入ngrok目录,执行 1$ ngrok authtoken 你的token(注册账号成功后再access) 使用 命令行进入ngrok目录,执行以下命令即可1$ ngrok http 8086(你要绑定的本地端口号) ngrok还提供了了一个web统计页面访问 http://127.0.0.1:4041]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>内网映射</tag>
       </tags>
   </entry>
   <entry>
@@ -249,14 +271,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[内网穿透端口映射网站]]></title>
-    <url>%2F2019%2F08%2F07%2F%E5%87%A0%E4%B8%AA%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E6%9C%8D%E5%8A%A1%E7%BD%91%E7%AB%99%2F</url>
-    <content type="text"><![CDATA[目前在使用的 http://ngrok.io == http://ngrok.com http://natapp.cn/ http://ngrok.2bdata.com/ http://www.ngrok.cc/ http://www.nat123.com/ 路由侠 http://www.luyouxia.com/ WeNAT https://www.wezoz.com/ 目前使用的ngrok的穿透工具 （http://ngrok.io）登录账户: blog.nilaile.cn@gmail.com 安装: 解压ngrok安装程序 命令行进入ngrok目录,执行 1$ ngrok authtoken 你的token(注册账号成功后再access) 使用 命令行进入ngrok目录,执行以下命令即可1$ ngrok http 8086(你要绑定的本地端口号) ngrok还提供了了一个web统计页面访问 http://127.0.0.1:4041]]></content>
+    <title><![CDATA[乡愁]]></title>
+    <url>%2F2019%2F08%2F07%2F%E4%B9%A1%E6%84%81%2F</url>
+    <content type="text"><![CDATA[有家的地方没有工作，有工作的地方没有家，他乡容不了灵魂，故乡安置不了肉身。从此便有了漂泊，有了远方,有了乡愁,有了无尽的牵挂]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>随笔</category>
       </categories>
       <tags>
-        <tag>内网映射</tag>
+        <tag>乡愁</tag>
       </tags>
   </entry>
   <entry>
@@ -282,14 +304,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[乡愁]]></title>
-    <url>%2F2019%2F08%2F07%2F%E4%B9%A1%E6%84%81%2F</url>
-    <content type="text"><![CDATA[有家的地方没有工作，有工作的地方没有家，他乡容不了灵魂，故乡安置不了肉身。从此便有了漂泊，有了远方,有了乡愁,有了无尽的牵挂]]></content>
+    <title><![CDATA[windows基于NGINX配置HTTPS证书]]></title>
+    <url>%2F2019%2F08%2F07%2Fwindows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6%2F</url>
+    <content type="text"><![CDATA[下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)官方下载链接具体 从阿里云获取那个免费的HTTPS证书 Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是**.key和 ***.pem 修改配置文件如下 1234567891011121314151617181920212223242526272829303132333435363738394041server &#123; listen 443; server_name localhost; ssl on; ssl_certificate cert/2195340_www.baidu.com.pem; #替换为自己的证书文件 ssl_certificate_key cert/2195340_www.baidu.com.key;#替换为自己的证书文件 ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; location / &#123; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; root D:/nginx-1.12.2/html; index index.html index.htm; try_files $uri $uri/ @router; &#125; location /admin &#123; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_pass http://127.0.0.1:8083/admin; &#125;&#125; server &#123; listen 80; server_name www.nilaile.com nilaile.com; #这里改为自己的域名,多个域名空格分开 proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; &#125;]]></content>
       <categories>
-        <category>随笔</category>
+        <category>windows</category>
       </categories>
       <tags>
-        <tag>乡愁</tag>
+        <tag>NGINX</tag>
       </tags>
   </entry>
   <entry>
@@ -315,20 +337,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[windows基于NGINX配置HTTPS证书]]></title>
-    <url>%2F2019%2F08%2F07%2Fwindows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6%2F</url>
-    <content type="text"><![CDATA[下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)官方下载链接具体 从阿里云获取那个免费的HTTPS证书 Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是**.key和 ***.pem 修改配置文件如下 1234567891011121314151617181920212223242526272829303132333435363738394041server &#123; listen 443; server_name localhost; ssl on; ssl_certificate cert/2195340_www.baidu.com.pem; #替换为自己的证书文件 ssl_certificate_key cert/2195340_www.baidu.com.key;#替换为自己的证书文件 ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; location / &#123; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; root D:/nginx-1.12.2/html; index index.html index.htm; try_files $uri $uri/ @router; &#125; location /admin &#123; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_pass http://127.0.0.1:8083/admin; &#125;&#125; server &#123; listen 80; server_name www.nilaile.com nilaile.com; #这里改为自己的域名,多个域名空格分开 proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; &#125;]]></content>
-      <categories>
-        <category>windows</category>
-      </categories>
-      <tags>
-        <tag>NGINX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>%2F2019%2F08%2F07%2Fswaggr%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%2F</url>
     <content type="text"><![CDATA[/** swagger使用规范 之所以设定规范是为了能够让swagger被正确运用以便达到替代传统接口文档和解决传统文档的痛点的两个目的. * 传统接口文档中对于每个请求参数都有详细的描述, 前端对于多数请求参数都能准确理解, 但是在编写这份使用规范前swagger未被正确运用 已造成前端无法准确理解请求参数的含义,增加了不必要的沟通成本. * 传统接口文档对于每个模块之间的分类很明确, 前端能够快速查找到对应模块的接口文档, 但是在编写这份使用规范前swagger未被正确运用 导致每个模块名称仅被描述为”xxx-controller”,前端无法快速查找到对应模块的接口文档同时也增加了不必要的沟通成本. 传统接口文档对于请求响应都有code来表明当前请求的状况, 可根据对应的code来完成相应操作, 但是在编写这份使用规范前swagger未被正确运用, 导致前端无法准确理解目前所使用的Http code所代表的含义, 从而增加了不必要的沟通成本. * 为了解决以上三个存在的问题从而达到易维护和消除不必要的沟通成本的目的, 请各位同事严格遵守以下规范. 若有不同的想法,欢迎提出讨论并完善该规范. * 1.controller中对于path及form类型参数的使用规范 请查看示例{@link com.hikedu.backend.swaggerexample.ExampleController#pathAndFormParamsStandard(String)} * 2.controller中对于code的使用及描述规范 使用Http code并通过注解@ApiResponse来完成描述, 并根据对应的情况在ResponseEntity对象中返回. 请查看示例中的@Responses注解的用法 {@link com.hikedu.backend.swaggerexample.ExampleController#pathAndFormParamsStandard(String)} * 3.禁止直接使用Model来作为controller的接收参数, 而是创建对应的DTO来接收参数. 之所以禁止是因为如下几个原因: 1.model的意义是在controller、service、dao、View层来传递数据, 所以尽量保证model功能的单一, 以避免产生不必要的复杂度. 2.使用model因为存在诸如createdAt, updatedAt等不必要的字段并不适合作为controller的入参. 3.model因其本身的意义不能添加太多和model功能不相干的属性以达到使用model作为controller参数的目的. 因此有必要创建DTO来作为controller的参数. 使用详见{@link com.hikedu.backend.model.dto.ExampleDTO} * 4.controller中对于使用对象接收参数的使用规范 在当前规范未实施前, 所有的以对象接收的参数的字段含义对于前端来讲是模糊不清的. 因此有必要对对象中的每个属性做描述,以便前端能够理解参数的含义. 示例见{@link com.hikedu.backend.model.dto.ExampleDTO}中的参数注解 和{@link com.hikedu.backend.swaggerexample.ExampleController#objectParamsStandard(ExampleDTO)} * 5.响应的model数据添加说明 未实施当前规范前, 所有的响应数据均没有说明, 前端无法理解响应数据中参数的含义, 因此有必要在响应的model中为每个参数添加说明 示例见如下两处 {@link com.hikedu.backend.model.dto.ExampleResponseDataDTO} {@link ExampleController#responseDataStandard()} * @author himly z1399956473@gamil.com 2018.8.20 */]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F08%2F07%2FoneMall%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[oneMall项目环境Mysql5.7安装位置: 192.168.1.34(虚拟机)安装方式: docker用户名: root密码: 123456端口 13306：3306（docker中Mysql端口采用的默认3306,映射外部端口未13306） Zookeeper安装位置: 192.168.1.34(虚拟机)安装方式: docker端口: 2181 RocketMq安装位置: 192.168.1.34(虚拟机)安装方式: 直接安装（/root/rocketmq)端口: 9876 elasticsearch2.5安装位置: 192.168.1.34(虚拟机)安装方式: 直接安装端口: 9200安装的插件: elasticsearch-analyzer-ik(中文分词插件)]]></content>
   </entry>
   <entry>
     <title><![CDATA[next主题配置文件]]></title>
@@ -343,8 +359,8 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2F2019%2F08%2F07%2FoneMall%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[oneMall项目环境Mysql5.7安装位置: 192.168.1.34(虚拟机)安装方式: docker用户名: root密码: 123456端口 13306：3306（docker中Mysql端口采用的默认3306,映射外部端口未13306） Zookeeper安装位置: 192.168.1.34(虚拟机)安装方式: docker端口: 2181 RocketMq安装位置: 192.168.1.34(虚拟机)安装方式: 直接安装（/root/rocketmq)端口: 9876 elasticsearch2.5安装位置: 192.168.1.34(虚拟机)安装方式: 直接安装端口: 9200安装的插件: elasticsearch-analyzer-ik(中文分词插件)]]></content>
+    <url>%2F2019%2F08%2F07%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[查看端口占用情况netstat -tunlp |grep 8082 jar包后台运行$ nohup java -Dfile.encoding=utf-8 -jar rr-api.jar &amp; //nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行//当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中//除非另外指定了输出文件 jobs: 列出所有后台执行的作业，并且每个作业前面都有个编号。$ jobs kill -9 进程号 （杀死进程） 作业管理 将“当前”作业放到后台“暂停”：ctrl+z 观察当前后台作业状态： jobs参数： -l 除了列出作业号之外同时列出PID -r：列出仅在后台运行（run）的作业 -s：仅列出暂停的作业 将后台作业拿到前台处理： fg fg %jobnumber (%可有可无) 让作业在后台运行： bgctrl+z让当前作业到后台去暂停， bg 作业号就可以在后台run 管理后台作业：kill我们可以让一个已经在后台的作业继续执行，也可以让该作业使用fg拿到前台。如果直接删除该作业，或者让作业重启，需要给作业发送信号。kill -signal %jobnumber参数：kill -l 列出当前kill能够使用的信号signal：表示给后台的作业什么指示，用man 7 signal可知-1（数字）：重新读取一次参数的设置文件（类似reload）-2：表示与由键盘输入ctrl-c同样的动作-9：立刻强制删除一个作业-15：以正常方式终止一项作业。与-9不一样。]]></content>
   </entry>
   <entry>
     <title><![CDATA[linux文件系统]]></title>
@@ -358,16 +374,22 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2019%2F08%2F07%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[查看端口占用情况netstat -tunlp |grep 8082 jar包后台运行$ nohup java -Dfile.encoding=utf-8 -jar rr-api.jar &amp; //nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行//当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中//除非另外指定了输出文件 jobs: 列出所有后台执行的作业，并且每个作业前面都有个编号。$ jobs kill -9 进程号 （杀死进程） 作业管理 将“当前”作业放到后台“暂停”：ctrl+z 观察当前后台作业状态： jobs参数： -l 除了列出作业号之外同时列出PID -r：列出仅在后台运行（run）的作业 -s：仅列出暂停的作业 将后台作业拿到前台处理： fg fg %jobnumber (%可有可无) 让作业在后台运行： bgctrl+z让当前作业到后台去暂停， bg 作业号就可以在后台run 管理后台作业：kill我们可以让一个已经在后台的作业继续执行，也可以让该作业使用fg拿到前台。如果直接删除该作业，或者让作业重启，需要给作业发送信号。kill -signal %jobnumber参数：kill -l 列出当前kill能够使用的信号signal：表示给后台的作业什么指示，用man 7 signal可知-1（数字）：重新读取一次参数的设置文件（类似reload）-2：表示与由键盘输入ctrl-c同样的动作-9：立刻强制删除一个作业-15：以正常方式终止一项作业。与-9不一样。]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[jenkins配置部署启动springboot项目]]></title>
     <url>%2F2019%2F08%2F07%2Fjenkins%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8springboot%E9%A1%B9%E7%9B%AE%2F</url>
     <content type="text"><![CDATA[1. jenkins连接远程ssh服务器需要安装一个ssh plugin插件 2. 配置一个全局凭证,就是连接远程服务器的用户名密码 3.在Jenkins系统设置–》SSH remote hosts–》下配置一个ssh服务器 4. 新建任务,输入要执行的脚本 Jenkins配置的脚本：12345#!/bin/bashecho &quot;stop collector&quot;sh /home/deploy/stop.shecho &quot;start collector&quot;sh /home/deploy/start.sh stop.sh脚本如下12345678#!/bin/bashecho &quot;Stopping tooldin-mq&quot;pid=`ps -ef | grep admin.jar | grep -v grep | awk &apos;&#123;print $2&#125;&apos;`if [ -n &quot;$pid&quot; ]then echo &quot;kill -9 的pid:&quot; $pid kill -9 $pidfi start.sh脚本如下123#!/bin/bashsource /etc/profile # 注意这行代码nohup java -Dfile.encoding=utf-8 -jar /home/deploy/admin.jar &gt; /usr/local/collector/admin.log &amp; 遇到的问题在Jenkins中执行该新建的任务时,系统一直无法启动成功,stop.sh脚本确实执行成功了但是项目一直未在后台启动成功 解决思路 先是按照网上的教程更改了jenkins中配置的执行脚本,防止jenkins进程结束后杀死子进程,更改后测试无效123456#!/bin/bashBUILD_ID=DONTKILLMEecho &quot;stop collector&quot;sh /home/deploy/stop.shecho &quot;start collector&quot;sh /home/deploy/start.sh 然后把 start.sh 错误输出指向标准输出 12#!/bin/bashnohup java -jar /home/deploy/admin.jar &gt; /home/deploy/admin.log 2&gt;&amp;1 &amp; 然后在jenkins中启动任务,然后cat admin.log中打印出了错误的日志 1nohup: failed to run command `java&apos;: No such file or directory 看到这个错误，猜想多半是由于java未配置环境变量，但是服务器环境变量确实正常，输入java –version可以看到是能够正常响应的,最终只能在start.sh脚本中增加 source /etc/profile 最后特别感谢饺子哥的帮助]]></content>
       <categories>
         <category>Jenkins</category>
+      </categories>
+      <tags>
+        <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jenkins安装]]></title>
+    <url>%2F2019%2F08%2F07%2Fjenkins%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[安装环境 安装环境 centos7.5,jdk1.8参考博客: https://www.jianshu.com/p/180fb11a5b96 安装步骤注意: 安装前需要确认一下系统是否已经安装并配置好java环境变量1.下载依赖1sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 2.导入秘钥1sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key 3.安装1yum install jenkins 4.查看安装路径1rpm -ql jenkins 5.修改默认端口号1vi /etc/sysconfig/jenkins 找到JENKINS_PORT=”8080”,修改为自己的端口号如8090 6.启动jenkins1systemctl start jenkins 7.如果启动报如下错误,需要修改jenkins的配置文件1Starting Jenkins bash: /usr/bin/java: No such file or directory 修改Jenkins启动配置文件，指定java安装路径。1vim /etc/init.d/jenkins 打开配置文件后找到candidates这行，在下面增加自己的java安装路径123456789candidates=&quot;/usr/java/jdk1.8/bin/java ## 这里 增加自己的java安装路径，下面的不用动/etc/alternatives/java/usr/lib/jvm/java-1.8.0/bin/java/usr/lib/jvm/jre-1.8.0/bin/java/usr/lib/jvm/java-1.7.0/bin/java/usr/lib/jvm/jre-1.7.0/bin/java/usr/bin/java&quot; 相关目录说明123456jenkins相关目录释义：1. /usr/lib/jenkins/：jenkins安装目录，war包会放在这里。2. /etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME”等都可以在这里配置。3. /var/lib/jenkins/：默认的JENKINS_HOME。4. /var/log/jenkins/jenkins.log：jenkins日志文件。5. /etc/init.d/jenkins： jenkins启动配置文件这里需要配置java安装目录 常用命令1.启动123方法1: java -jar /usr/lib/jenkins/jenkins.war --httpPort=8090方法2： service jenkins start方法3: systemctl start jenkins 浏览器访问 http://localhost:8090 输入初始密码即可初始密码路径位于1/var/lib/jenkins/secrets/initialAdminPassword 2.停止1service jenkins stop 3.查看运行状态1service jenkins start]]></content>
+      <categories>
+        <category>JAVA运维工具</category>
       </categories>
       <tags>
         <tag>jenkins</tag>
@@ -382,17 +404,6 @@
       </categories>
       <tags>
         <tag>中文乱码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[jenkins安装]]></title>
-    <url>%2F2019%2F08%2F07%2Fjenkins%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[安装环境 安装环境 centos7.5,jdk1.8参考博客: https://www.jianshu.com/p/180fb11a5b96 安装步骤注意: 安装前需要确认一下系统是否已经安装并配置好java环境变量1.下载依赖1sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 2.导入秘钥1sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key 3.安装1yum install jenkins 4.查看安装路径1rpm -ql jenkins 5.修改默认端口号1vi /etc/sysconfig/jenkins 找到JENKINS_PORT=”8080”,修改为自己的端口号如8090 6.启动jenkins1systemctl start jenkins 7.如果启动报如下错误,需要修改jenkins的配置文件1Starting Jenkins bash: /usr/bin/java: No such file or directory 修改Jenkins启动配置文件，指定java安装路径。1vim /etc/init.d/jenkins 打开配置文件后找到candidates这行，在下面增加自己的java安装路径123456789candidates=&quot;/usr/java/jdk1.8/bin/java ## 这里 增加自己的java安装路径，下面的不用动/etc/alternatives/java/usr/lib/jvm/java-1.8.0/bin/java/usr/lib/jvm/jre-1.8.0/bin/java/usr/lib/jvm/java-1.7.0/bin/java/usr/lib/jvm/jre-1.7.0/bin/java/usr/bin/java&quot; 相关目录说明123456jenkins相关目录释义：1. /usr/lib/jenkins/：jenkins安装目录，war包会放在这里。2. /etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME”等都可以在这里配置。3. /var/lib/jenkins/：默认的JENKINS_HOME。4. /var/log/jenkins/jenkins.log：jenkins日志文件。5. /etc/init.d/jenkins： jenkins启动配置文件这里需要配置java安装目录 常用命令1.启动123方法1: java -jar /usr/lib/jenkins/jenkins.war --httpPort=8090方法2： service jenkins start方法3: systemctl start jenkins 浏览器访问 http://localhost:8090 输入初始密码即可初始密码路径位于1/var/lib/jenkins/secrets/initialAdminPassword 2.停止1service jenkins stop 3.查看运行状态1service jenkins start]]></content>
-      <categories>
-        <category>JAVA运维工具</category>
-      </categories>
-      <tags>
-        <tag>jenkins</tag>
       </tags>
   </entry>
   <entry>
@@ -429,11 +440,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2019%2F08%2F07%2Fcenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%2F</url>
-    <content type="text"><![CDATA[cenos7.5下载地址http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[android版本API对应关系]]></title>
     <url>%2F2019%2F08%2F07%2Fandroid%E7%89%88%E6%9C%ACAPI%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[code name Version API level Q Preview API level Q Pie 9.0 API level 28 Oreo 8.1 API level 27 Oreo 8.0 API level 26 Nougat 7.1 API level 25 Nougat 7.0 API level 24 Marshmallow 6.0 API level 23 Lollipop 5.1 API level 22 Lollipop 5.0 API level 21 KitKat 4.4 - 4.4.4 API level 19 Jelly Bean 4.3.x API level 18 Jelly Bean 4.2.x API level 17 Jelly Bean 4.1.x API level 16 Ice Cream Sandwich 4.0.3 - 4.0.4 API level 15, NDK 8 Ice Cream Sandwich 4.0.1 - 4.0.2 API level 14, NDK 7 Honeycomb 3.2.x API level 13 Honeycomb 3.1 API level 12, NDK 6 Honeycomb 3.0 API level 11 Gingerbread 2.3.3 - 2.3.7 API level 10 Gingerbread 2.3 - 2.3.2 API level 9, NDK 5 Froyo 2.2.x API level 8, NDK 4 Eclair 2.1 API level 7, NDK 3 Eclair 2.0.1 API level 6 Eclair 2.0 API level 5 Donut 1.6 API level 4, NDK 2 Cupcake 1.5 API level 3, NDK 1 (no code name) 1.1 API level 2 (no code name) 1.0 API level 1]]></content>
@@ -445,14 +451,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mysql存储emoji表情错误问题]]></title>
-    <url>%2F2019%2F08%2F07%2FMysql%E5%AD%98%E5%82%A8emoji%E8%A1%A8%E6%83%85%E9%94%99%E8%AF%AF%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:1Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23 解决方法 ： windows服务器修改my.ini配置文件,修改编码 1234[mysql] default-character-set=utf8mb4[mysqld] character-set-server=utf8mb4 重启Mysql服务 先查看数据库的编码方式： 1show variables like &apos;%char%&apos;; 修改整个表的编码方式： 1alter table user convert to character set utf8mb4 collate utf8mb4_bin; 修改某个字段的编码方式：1ALTER TABLE user_patient MODIFY COLUMN user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT &apos;姓名&apos;]]></content>
+    <title></title>
+    <url>%2F2019%2F08%2F07%2Fcenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%2F</url>
+    <content type="text"><![CDATA[cenos7.5下载地址http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Nginx匹配规则说明以及匹配的优先级]]></title>
+    <url>%2F2019%2F08%2F07%2FNginx%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99%2F</url>
+    <content type="text"><![CDATA[location 匹配规则语法规则location [=|~|~*|^~] /uri/ { … } 模式 含义location = /uri = 表示精确匹配，只有完全匹配上才能生效location ^~ /uri ^~ 开头对URL路径进行前缀匹配，并且在正则之前。location ~ pattern 开头表示区分大小写的正则匹配location ~* pattern 开头表示不区分大小写的正则匹配location /uri 不带任何修饰符，也表示前缀匹配，但是在正则匹配之后location / 通用匹配，任何未匹配到其它location的请求都会匹配到，相当于switch中的default前缀匹配时，Nginx 不对 url 做编码，因此请求为 /static/20%/aa，可以被规则 ^~ /static/ /aa 匹配到（注意是空格） 多个 location 配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）: 首先精确匹配 =其次前缀匹配 ^~其次是按文件中顺序的正则匹配然后匹配不带任何修饰的前缀匹配。最后是交给 / 通用匹配当有匹配成功时候，停止匹配，按当前匹配规则处理请求注意：前缀匹配，如果有包含关系时，按最大匹配原则进行匹配。比如在前缀匹配：location /dir01 与location /dir01/dir02，如有请求 http://localhost/dir01/dir02/file 将最终匹配到 location /dir01/dir02 例子，有如下匹配规则： location = / { echo “规则A”;}location = /login { echo “规则B”;}location ^~ /static/ { echo “规则C”;}location ^~ /static/files { echo “规则X”;}location ~ .(gif|jpg|png|js|css)$ { echo “规则D”;}location ~* .png$ { echo “规则E”;}location /img { echo “规则Y”;}location / { echo “规则F”;}那么产生的效果如下： 访问根目录 /，比如 http://localhost/ 将匹配 规则A访问 http://localhost/login 将匹配 规则B，http://localhost/register 则匹配 规则F访问 http://localhost/static/a.html 将匹配 规则C访问 http://localhost/static/files/a.exe 将匹配 规则X，虽然 规则C 也能匹配到，但因为最大匹配原则，最终选中了 规则X。你可以测试下，去掉规则 X ，则当前 URL 会匹配上 规则C。访问 http://localhost/a.gif, http://localhost/b.jpg 将匹配 规则D 和 规则 E ，但是 规则 D 顺序优先，规则 E 不起作用，而 http://localhost/static/c.png 则优先匹配到 规则 C访问 http://localhost/a.PNG 则匹配 规则 E ，而不会匹配 规则 D ，因为 规则 E 不区分大小写。访问 http://localhost/img/a.gif 会匹配上 规则D,虽然 规则Y 也可以匹配上，但是因为正则匹配优先，而忽略了 规则Y。访问 http://localhost/img/a.tiff 会匹配上 规则Y。访问 http://localhost/category/id/1111 则最终匹配到规则 F ，因为以上规则都不匹配，这个时候应该是 Nginx 转发请求给后端应用服务器，比如 FastCGI（php），tomcat（jsp），Nginx 作为反向代理服务器存在。 所以实际使用中，笔者觉得至少有三个匹配规则定义，如下： 直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。这里是直接转发给后端应用服务器了，也可以是一个静态首页第一个必选规则location = / { proxy_pass http://tomcat:8080/index} 第二个必选规则是处理静态文件请求，这是 nginx 作为 http 服务器的强项有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用location ^~ /static/ { root /webroot/static/;}location ~* .(gif|jpg|jpeg|png|css|js|ico)$ { root /webroot/res/;} 第三个规则就是通用规则，用来转发动态请求到后端应用服务器非静态文件请求就默认是动态请求，自己根据实际把握毕竟目前的一些框架的流行，带.php、.jsp后缀的情况很少了location / { proxy_pass http://tomcat:8080/} rewrite 语法作者：Gove_chan来源：CSDN原文：https://blog.csdn.net/qq_15766181/article/details/72829672版权声明：本文为博主原创文章，转载请附上博文链接！]]></content>
       <categories>
-        <category>数据库</category>
+        <category>DataBase</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
+        <tag>NGINX</tag>
       </tags>
   </entry>
   <entry>
@@ -467,25 +478,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Nginx匹配规则说明以及匹配的优先级]]></title>
-    <url>%2F2019%2F08%2F07%2FNginx%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99%2F</url>
-    <content type="text"><![CDATA[location 匹配规则语法规则location [=|~|~*|^~] /uri/ { … } 模式 含义location = /uri = 表示精确匹配，只有完全匹配上才能生效location ^~ /uri ^~ 开头对URL路径进行前缀匹配，并且在正则之前。location ~ pattern 开头表示区分大小写的正则匹配location ~* pattern 开头表示不区分大小写的正则匹配location /uri 不带任何修饰符，也表示前缀匹配，但是在正则匹配之后location / 通用匹配，任何未匹配到其它location的请求都会匹配到，相当于switch中的default前缀匹配时，Nginx 不对 url 做编码，因此请求为 /static/20%/aa，可以被规则 ^~ /static/ /aa 匹配到（注意是空格） 多个 location 配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）: 首先精确匹配 =其次前缀匹配 ^~其次是按文件中顺序的正则匹配然后匹配不带任何修饰的前缀匹配。最后是交给 / 通用匹配当有匹配成功时候，停止匹配，按当前匹配规则处理请求注意：前缀匹配，如果有包含关系时，按最大匹配原则进行匹配。比如在前缀匹配：location /dir01 与location /dir01/dir02，如有请求 http://localhost/dir01/dir02/file 将最终匹配到 location /dir01/dir02 例子，有如下匹配规则： location = / { echo “规则A”;}location = /login { echo “规则B”;}location ^~ /static/ { echo “规则C”;}location ^~ /static/files { echo “规则X”;}location ~ .(gif|jpg|png|js|css)$ { echo “规则D”;}location ~* .png$ { echo “规则E”;}location /img { echo “规则Y”;}location / { echo “规则F”;}那么产生的效果如下： 访问根目录 /，比如 http://localhost/ 将匹配 规则A访问 http://localhost/login 将匹配 规则B，http://localhost/register 则匹配 规则F访问 http://localhost/static/a.html 将匹配 规则C访问 http://localhost/static/files/a.exe 将匹配 规则X，虽然 规则C 也能匹配到，但因为最大匹配原则，最终选中了 规则X。你可以测试下，去掉规则 X ，则当前 URL 会匹配上 规则C。访问 http://localhost/a.gif, http://localhost/b.jpg 将匹配 规则D 和 规则 E ，但是 规则 D 顺序优先，规则 E 不起作用，而 http://localhost/static/c.png 则优先匹配到 规则 C访问 http://localhost/a.PNG 则匹配 规则 E ，而不会匹配 规则 D ，因为 规则 E 不区分大小写。访问 http://localhost/img/a.gif 会匹配上 规则D,虽然 规则Y 也可以匹配上，但是因为正则匹配优先，而忽略了 规则Y。访问 http://localhost/img/a.tiff 会匹配上 规则Y。访问 http://localhost/category/id/1111 则最终匹配到规则 F ，因为以上规则都不匹配，这个时候应该是 Nginx 转发请求给后端应用服务器，比如 FastCGI（php），tomcat（jsp），Nginx 作为反向代理服务器存在。 所以实际使用中，笔者觉得至少有三个匹配规则定义，如下： 直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。这里是直接转发给后端应用服务器了，也可以是一个静态首页第一个必选规则location = / { proxy_pass http://tomcat:8080/index} 第二个必选规则是处理静态文件请求，这是 nginx 作为 http 服务器的强项有两种配置模式，目录匹配或后缀匹配，任选其一或搭配使用location ^~ /static/ { root /webroot/static/;}location ~* .(gif|jpg|jpeg|png|css|js|ico)$ { root /webroot/res/;} 第三个规则就是通用规则，用来转发动态请求到后端应用服务器非静态文件请求就默认是动态请求，自己根据实际把握毕竟目前的一些框架的流行，带.php、.jsp后缀的情况很少了location / { proxy_pass http://tomcat:8080/} rewrite 语法作者：Gove_chan来源：CSDN原文：https://blog.csdn.net/qq_15766181/article/details/72829672版权声明：本文为博主原创文章，转载请附上博文链接！]]></content>
+    <title><![CDATA[Mysql存储emoji表情错误问题]]></title>
+    <url>%2F2019%2F08%2F07%2FMysql%E5%AD%98%E5%82%A8emoji%E8%A1%A8%E6%83%85%E9%94%99%E8%AF%AF%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:1Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23 解决方法 ： windows服务器修改my.ini配置文件,修改编码 1234[mysql] default-character-set=utf8mb4[mysqld] character-set-server=utf8mb4 重启Mysql服务 先查看数据库的编码方式： 1show variables like &apos;%char%&apos;; 修改整个表的编码方式： 1alter table user convert to character set utf8mb4 collate utf8mb4_bin; 修改某个字段的编码方式：1ALTER TABLE user_patient MODIFY COLUMN user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT &apos;姓名&apos;]]></content>
       <categories>
-        <category>DataBase</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>NGINX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JAVA IO总结]]></title>
-    <url>%2F2019%2F08%2F07%2FJava-io%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[#JAVA IO总结 InputStream和OutputStream InputStream是所有字节输入流的父类 int read():读取一个字节以int形式返回,该int值的低8位有效，返回-1则表示EOF int read(byte[] b): 读取b.length字节到数组中，返回值为实际读取到的字节量 OutputStream是所有字节输出流的父类 void write(int d) 写出一个字节，写的是int的低8位 void write(byte[] d)将给定的字节数组中的所有字节全部写出 文件字节流 FileInputStream 是文件的字节输入流 int read() int read(byte[] b) FileOutputStream 是文件的字节输出流，FOS有两种模式一种是重写模式，一种是追加模式 void write(int d) void write(byte[] d) void write(byte[] d,int offset,int len)将字节数组d中 从偏移量offset开始的 len个字节写入文件输出流中 123456789101112131415161718192021222324252627282930313233343536373839/** * 文件流 * FileOutPutStream是字节输出流 */public class FosTest &#123; File f = new File(&quot;fileOut.txt&quot;); //测试FOS 追加模式 @Test @Ignore public void testFosAppendMode()&#123; try&#123; FileOutputStream fos = new FileOutputStream(f,true); fos.write(&quot;,Hello every one I am David&quot;.getBytes()); fos.flush(); fos.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125; //测试FOS 重写模式 @Test @Ignore public void testFosOverrideMode()&#123; try&#123; FileOutputStream fos = new FileOutputStream(f); fos.write(&quot;You are good Boy&quot;.getBytes()); fos.flush(); fos.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; 缓冲流 在读取数据时 若以字节为单位读取数据，会因为读取次数频繁而大大的降低读取效率缓冲流就是通过提高每次读写的字节数量,减少读写次数 从而提高读写效率 BufferedInputStream BufferedOutputStream 12345678910111213141516171819202122232425262728293031323334/** * BufferedOutputStream * 内部维护着一个缓冲区,当我们向该流写数据时，都会先将数据写入缓冲区, 当缓冲区已满时,缓冲流会一次性将数据写出 * 用途：在向硬件设备写出数据时, 使用缓冲流可以减小写出次数，从而提高了写出效率 * 注意: 有时我们在写出数据后希望 数据立即被写出，而不是存储在缓冲区中 直到缓冲区满后才真正写出，这时可以调用flush()强制写出 * * BufferedInputPutStream 处理流 * 内部也是维护一个缓冲区，当读取字节数据时会尽可能多的读取 然后存入缓冲区，然后逐一的返回缓存的字节数据，直到读取完毕 */public class BosBisTest &#123; @Test public void testBos()&#123; try&#123; byte[] d = new byte[100]; FileOutputStream fos = new FileOutputStream(&quot;fileOut.txt&quot;,true); BufferedOutputStream bos = new BufferedOutputStream(fos); bos.write(&quot;,I am from China&quot;.getBytes()); bos.close(); FileInputStream fio = new FileInputStream(&quot;fileOut.txt&quot;); BufferedInputStream bio = new BufferedInputStream(fio); int dd = -1; while((dd = bio.read())!=-1)&#123; //一个个字节的读取输出了， System.out.println(dd+&quot;,&quot;); &#125; &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; Reader和Writer Reader是字符输入流的父类，当要读文本文件时最好使用Reader类，它为读取文本而设计 Writer是字符输出流的父类，当要写文本文件时最好使用Writer类，而不是直接写OutputStream；因为Writer类就是为写文本而设计的。 字符流是以char(字符)为单位读写数据的,一次处理一个Unicode 字符流的底层仍然是基本的字节流. Reader常用方法 int read(): 读取一个字符,返回int值 “低16位”有效 int read(char[] chs): 读取一个字符数组的length个字符并存入该数组,返回值为实际读取到的字符量 Writer常用方法 void write(int c): 写出一个字符,写出给定int值 “低16位”表示的字符。 void write(char[] chs):将给定字符数组中所有字符写出 void write(char[] chs,int offset,int len):将给定的字符数组中从offset处开始连续的len个字符写出 转换流###InputStreamReader: 字符输入流 使用该流可以设置字符集,并按照指定的字符集从流中按照该编码将字节数据转换为字符并读取 InputStreamReader(InputStream in, String charsetName) 根据指定字符集创建ISR InputStreamReader(InputStream in) 根据系统默认字符集创建ISR OutputStreamWriter:字符输出流使用该流可以设置字符集,并按照指定字符集 将字符转换为对应字节后通过流写出 OutputStreamWriter(OutputStream out,String charsetName) 基于指定的字节输出流和字符集创建OSW OutputStreamWriter(OutputStream out) 基于指定的字节输出流和系统默认字符集创建OSW 123456789101112131415161718192021222324252627/** * 测试InputStreamReader 和 OutputStreamWriter */public class OswTest &#123; @Test @Ignore public void testOsw() throws java.io.IOException&#123; FileOutputStream fos = new FileOutputStream(&quot;demo.txt&quot;); OutputStreamWriter osw = new OutputStreamWriter(fos,&quot;UTF-8&quot;); osw.write(&quot;中国人&quot;); osw.close(); &#125; @Test public void testIsr() throws java.io.IOException&#123; FileInputStream fis = new FileInputStream(&quot;demo.txt&quot;); InputStreamReader isr = new InputStreamReader(fis,&quot;utf-8&quot;); int data = -1; while ((data=isr.read())!=-1)&#123; System.out.println((char)data); &#125; isr.close(); &#125;&#125; 文件字符流 FileReader FileWriter 12345678910111213141516171819202122public class FileReaderWriterTest &#123; @Test public void test()&#123; try&#123; File f = new File(&quot;demo.txt&quot;); FileWriter fw = new FileWriter(f); fw.write(&quot;Hello\ndavid&quot;); fw.close(); FileReader fr = new FileReader(f); int res = 0; while ( (res=fr.read())!=-1)&#123; System.out.println((char)res); &#125; fr.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; 字符缓冲流 BufferedReader 它是缓存字符输入流,内部提供了缓冲区 可以提交读取效率 12BufferedReader(Reader reader) 构造函数String readLine() 该方法连续读取一行字符串 BufferedWriter 12345BufferedWriter(Writer writer)构造函数void newLine() //写入一个行分隔符。 void write(char ch)void write(char[] cbuf)void write(char[] cbuf,int offset,int len) Demo代码 1234567891011121314151617181920212223242526272829303132333435 public class BufferedReaderWriter &#123; @Test @Ignore public void testReader()&#123; try &#123; BufferedReader br = new BufferedReader(new FileReader(&quot;demo.txt&quot;)); String str= &quot;&quot;; while((str=br.readLine())!=null)&#123; System.out.println(&quot;---&quot;+str); &#125; br.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125; @Test public void testWriter()&#123; try&#123; BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;demo.txt&quot;)); bw.write(&quot;Hello&quot;); bw.newLine(); bw.write(&quot;I am david&quot;); bw.newLine(); bw.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>JAVA</category>
-      </categories>
-      <tags>
-        <tag>IO</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -498,6 +498,17 @@
       <tags>
         <tag>Mysql</tag>
         <tag>主从复制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVA IO总结]]></title>
+    <url>%2F2019%2F08%2F07%2FJava-io%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[#JAVA IO总结 InputStream和OutputStream InputStream是所有字节输入流的父类 int read():读取一个字节以int形式返回,该int值的低8位有效，返回-1则表示EOF int read(byte[] b): 读取b.length字节到数组中，返回值为实际读取到的字节量 OutputStream是所有字节输出流的父类 void write(int d) 写出一个字节，写的是int的低8位 void write(byte[] d)将给定的字节数组中的所有字节全部写出 文件字节流 FileInputStream 是文件的字节输入流 int read() int read(byte[] b) FileOutputStream 是文件的字节输出流，FOS有两种模式一种是重写模式，一种是追加模式 void write(int d) void write(byte[] d) void write(byte[] d,int offset,int len)将字节数组d中 从偏移量offset开始的 len个字节写入文件输出流中 123456789101112131415161718192021222324252627282930313233343536373839/** * 文件流 * FileOutPutStream是字节输出流 */public class FosTest &#123; File f = new File(&quot;fileOut.txt&quot;); //测试FOS 追加模式 @Test @Ignore public void testFosAppendMode()&#123; try&#123; FileOutputStream fos = new FileOutputStream(f,true); fos.write(&quot;,Hello every one I am David&quot;.getBytes()); fos.flush(); fos.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125; //测试FOS 重写模式 @Test @Ignore public void testFosOverrideMode()&#123; try&#123; FileOutputStream fos = new FileOutputStream(f); fos.write(&quot;You are good Boy&quot;.getBytes()); fos.flush(); fos.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; 缓冲流 在读取数据时 若以字节为单位读取数据，会因为读取次数频繁而大大的降低读取效率缓冲流就是通过提高每次读写的字节数量,减少读写次数 从而提高读写效率 BufferedInputStream BufferedOutputStream 12345678910111213141516171819202122232425262728293031323334/** * BufferedOutputStream * 内部维护着一个缓冲区,当我们向该流写数据时，都会先将数据写入缓冲区, 当缓冲区已满时,缓冲流会一次性将数据写出 * 用途：在向硬件设备写出数据时, 使用缓冲流可以减小写出次数，从而提高了写出效率 * 注意: 有时我们在写出数据后希望 数据立即被写出，而不是存储在缓冲区中 直到缓冲区满后才真正写出，这时可以调用flush()强制写出 * * BufferedInputPutStream 处理流 * 内部也是维护一个缓冲区，当读取字节数据时会尽可能多的读取 然后存入缓冲区，然后逐一的返回缓存的字节数据，直到读取完毕 */public class BosBisTest &#123; @Test public void testBos()&#123; try&#123; byte[] d = new byte[100]; FileOutputStream fos = new FileOutputStream(&quot;fileOut.txt&quot;,true); BufferedOutputStream bos = new BufferedOutputStream(fos); bos.write(&quot;,I am from China&quot;.getBytes()); bos.close(); FileInputStream fio = new FileInputStream(&quot;fileOut.txt&quot;); BufferedInputStream bio = new BufferedInputStream(fio); int dd = -1; while((dd = bio.read())!=-1)&#123; //一个个字节的读取输出了， System.out.println(dd+&quot;,&quot;); &#125; &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; Reader和Writer Reader是字符输入流的父类，当要读文本文件时最好使用Reader类，它为读取文本而设计 Writer是字符输出流的父类，当要写文本文件时最好使用Writer类，而不是直接写OutputStream；因为Writer类就是为写文本而设计的。 字符流是以char(字符)为单位读写数据的,一次处理一个Unicode 字符流的底层仍然是基本的字节流. Reader常用方法 int read(): 读取一个字符,返回int值 “低16位”有效 int read(char[] chs): 读取一个字符数组的length个字符并存入该数组,返回值为实际读取到的字符量 Writer常用方法 void write(int c): 写出一个字符,写出给定int值 “低16位”表示的字符。 void write(char[] chs):将给定字符数组中所有字符写出 void write(char[] chs,int offset,int len):将给定的字符数组中从offset处开始连续的len个字符写出 转换流###InputStreamReader: 字符输入流 使用该流可以设置字符集,并按照指定的字符集从流中按照该编码将字节数据转换为字符并读取 InputStreamReader(InputStream in, String charsetName) 根据指定字符集创建ISR InputStreamReader(InputStream in) 根据系统默认字符集创建ISR OutputStreamWriter:字符输出流使用该流可以设置字符集,并按照指定字符集 将字符转换为对应字节后通过流写出 OutputStreamWriter(OutputStream out,String charsetName) 基于指定的字节输出流和字符集创建OSW OutputStreamWriter(OutputStream out) 基于指定的字节输出流和系统默认字符集创建OSW 123456789101112131415161718192021222324252627/** * 测试InputStreamReader 和 OutputStreamWriter */public class OswTest &#123; @Test @Ignore public void testOsw() throws java.io.IOException&#123; FileOutputStream fos = new FileOutputStream(&quot;demo.txt&quot;); OutputStreamWriter osw = new OutputStreamWriter(fos,&quot;UTF-8&quot;); osw.write(&quot;中国人&quot;); osw.close(); &#125; @Test public void testIsr() throws java.io.IOException&#123; FileInputStream fis = new FileInputStream(&quot;demo.txt&quot;); InputStreamReader isr = new InputStreamReader(fis,&quot;utf-8&quot;); int data = -1; while ((data=isr.read())!=-1)&#123; System.out.println((char)data); &#125; isr.close(); &#125;&#125; 文件字符流 FileReader FileWriter 12345678910111213141516171819202122public class FileReaderWriterTest &#123; @Test public void test()&#123; try&#123; File f = new File(&quot;demo.txt&quot;); FileWriter fw = new FileWriter(f); fw.write(&quot;Hello\ndavid&quot;); fw.close(); FileReader fr = new FileReader(f); int res = 0; while ( (res=fr.read())!=-1)&#123; System.out.println((char)res); &#125; fr.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125; 字符缓冲流 BufferedReader 它是缓存字符输入流,内部提供了缓冲区 可以提交读取效率 12BufferedReader(Reader reader) 构造函数String readLine() 该方法连续读取一行字符串 BufferedWriter 12345BufferedWriter(Writer writer)构造函数void newLine() //写入一个行分隔符。 void write(char ch)void write(char[] cbuf)void write(char[] cbuf,int offset,int len) Demo代码 1234567891011121314151617181920212223242526272829303132333435 public class BufferedReaderWriter &#123; @Test @Ignore public void testReader()&#123; try &#123; BufferedReader br = new BufferedReader(new FileReader(&quot;demo.txt&quot;)); String str= &quot;&quot;; while((str=br.readLine())!=null)&#123; System.out.println(&quot;---&quot;+str); &#125; br.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125; @Test public void testWriter()&#123; try&#123; BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;demo.txt&quot;)); bw.write(&quot;Hello&quot;); bw.newLine(); bw.write(&quot;I am david&quot;); bw.newLine(); bw.close(); &#125;catch (Exception e)&#123; e.printStackTrace(); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>IO</tag>
       </tags>
   </entry>
   <entry>
@@ -561,6 +572,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Centos7.5安装Elasticsearch2.3.5]]></title>
+    <url>%2F2019%2F08%2F07%2FCentos7.5%E5%AE%89%E8%A3%85Elasticsearch%2F</url>
+    <content type="text"><![CDATA[Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK 安装方法一（下载rpm包方式） 1.百度elasticsearch,点击官网网址 2.点击Downloads，选择past releases 3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全） 4.右键点击RPM选择 – 复制连接地址 5.在根目录下载rmp包 wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm 6.执行下面的命令,安装完成后按照提示操作,即可 rpm -ivh elasticsearch-2.3.5.rpm 7.启动并查看安装状态 123systemctl start elasticsearchsystemctl status elasticsearch 8.本地查看版本信息 curl http://127.0.0.1:9200 9.查找elasticsearch 安装路径与配置路径，并且配置 whereis elasticsearch vim /etc/elasticsearch/elasticsearch.yml 修改： 这样就可以在window系统用浏览器通过访问虚拟机的ip:port 保存退出后重启elasticsearch systemctl restart elasticsearch 在浏览器访问虚拟机ip:9200 安装方法二 (yum方式安装)一、ES的yum安装配置 由于ES不在yum的本地源，所以我们需要添加ES的yum配置。 1、下载并安装ES的yum公钥 rpm --import https:`//packages.elastic.co/GPG-KEY-elasticsearch` 2、配置ES的yum源vim /etc/yum.repos.d/elasticsearch.repo 输入下面的内容：123456[elasticsearch-2.x]name=Elasticsearch repository for 2.x packagesbaseurl=http://packages.elastic.co/elasticsearch/2.x/centosgpgcheck=1gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearchenabled=1 二、yum安装ES 1、更新yum的缓存yum makecache 2、安装ESyum install elasticsearch 三、测试ES 1、配置和启动ES服务器进程 /sbin/chkconfig --add elasticsearch systemctl start elasticsearch 2、查看状态 systemctl status elasticsearch 3、运行测试curl -X GET localhost:9200 返回的json结果如下：123456789101112&#123; &quot;name&quot; : &quot;Live Wire&quot;, &quot;cluster_name&quot; : &quot;elasticsearch&quot;, &quot;version&quot; : &#123; &quot;number&quot; : &quot;2.3.5&quot;, &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;, &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;, &quot;build_snapshot&quot; : false, &quot;lucene_version&quot; : &quot;5.5.0&quot; &#125;, &quot;tagline&quot; : &quot;You Know, for Search&quot;&#125; 四、通过IP访问ES的配置（同方法一配置方法一样）1、打开/etc/elasticsearch/elasticsearch.ymlvim /etc/elasticsearch/elasticsearch.yml network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址， http.port-&gt; 去掉注释 这样就可以在window系统用浏览器通过访问虚拟机的ip:port 安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html]]></content>
+      <categories>
+        <category>elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Centos7.5安装RocketMq]]></title>
     <url>%2F2019%2F08%2F07%2FCentos7.5%E5%AE%89%E8%A3%85RocketMq%2F</url>
     <content type="text"><![CDATA[1、下载apache最新rocketmq二进制压缩文件下载地址：https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip 下载命令：wget https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip 2、解压安装解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip 3、环境变量nameserver环境变量：vi /etc/profile 添加：export NAMESRV_ADDR=127.0.0.1:9876 4、启动bin目录，启动nameserver和broker： nohup sh mqnamesrv &gt;mqname.log &amp; nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp; 查看进程：jps 启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。 设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g 5、启动失败查看启动日志：cat nohup.out 启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory. 因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。 bin目录： vi runserver.sh vi runbroker.sh 参考文章 [https://www.jianshu.com/p/04a98ba770a4][https://blog.csdn.net/paincupid/article/details/81333138]]]></content>
@@ -580,17 +602,6 @@
       </categories>
       <tags>
         <tag>swap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Centos7.5安装Elasticsearch2.3.5]]></title>
-    <url>%2F2019%2F08%2F07%2FCentos7.5%E5%AE%89%E8%A3%85Elasticsearch%2F</url>
-    <content type="text"><![CDATA[Elasticsearch是一个基于Lucene的搜索服务器,它需要依赖于java环境,所以需要先安装了JDK 安装方法一（下载rpm包方式） 1.百度elasticsearch,点击官网网址 2.点击Downloads，选择past releases 3.找到2.3.5的版本，（由于elasticsearch更新太快，插件更新进度跟不上，2.3.5的版本插件最齐全） 4.右键点击RPM选择 – 复制连接地址 5.在根目录下载rmp包 wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm 6.执行下面的命令,安装完成后按照提示操作,即可 rpm -ivh elasticsearch-2.3.5.rpm 7.启动并查看安装状态 123systemctl start elasticsearchsystemctl status elasticsearch 8.本地查看版本信息 curl http://127.0.0.1:9200 9.查找elasticsearch 安装路径与配置路径，并且配置 whereis elasticsearch vim /etc/elasticsearch/elasticsearch.yml 修改： 这样就可以在window系统用浏览器通过访问虚拟机的ip:port 保存退出后重启elasticsearch systemctl restart elasticsearch 在浏览器访问虚拟机ip:9200 安装方法二 (yum方式安装)一、ES的yum安装配置 由于ES不在yum的本地源，所以我们需要添加ES的yum配置。 1、下载并安装ES的yum公钥 rpm --import https:`//packages.elastic.co/GPG-KEY-elasticsearch` 2、配置ES的yum源vim /etc/yum.repos.d/elasticsearch.repo 输入下面的内容：123456[elasticsearch-2.x]name=Elasticsearch repository for 2.x packagesbaseurl=http://packages.elastic.co/elasticsearch/2.x/centosgpgcheck=1gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearchenabled=1 二、yum安装ES 1、更新yum的缓存yum makecache 2、安装ESyum install elasticsearch 三、测试ES 1、配置和启动ES服务器进程 /sbin/chkconfig --add elasticsearch systemctl start elasticsearch 2、查看状态 systemctl status elasticsearch 3、运行测试curl -X GET localhost:9200 返回的json结果如下：123456789101112&#123; &quot;name&quot; : &quot;Live Wire&quot;, &quot;cluster_name&quot; : &quot;elasticsearch&quot;, &quot;version&quot; : &#123; &quot;number&quot; : &quot;2.3.5&quot;, &quot;build_hash&quot; : &quot;90f439ff60a3c0f497f91663701e64ccd01edbb4&quot;, &quot;build_timestamp&quot; : &quot;2016-07-27T10:36:52Z&quot;, &quot;build_snapshot&quot; : false, &quot;lucene_version&quot; : &quot;5.5.0&quot; &#125;, &quot;tagline&quot; : &quot;You Know, for Search&quot;&#125; 四、通过IP访问ES的配置（同方法一配置方法一样）1、打开/etc/elasticsearch/elasticsearch.ymlvim /etc/elasticsearch/elasticsearch.yml network.host-&gt; 把后面改为0.0.0.0或者虚拟机ip地址， http.port-&gt; 去掉注释 这样就可以在window系统用浏览器通过访问虚拟机的ip:port 安装中文分词插件参考https://www.cnblogs.com/shifu204/p/6374234.html]]></content>
-      <categories>
-        <category>elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>elasticsearch</tag>
       </tags>
   </entry>
   <entry>
