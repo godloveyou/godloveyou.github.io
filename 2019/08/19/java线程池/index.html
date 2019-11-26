@@ -82,16 +82,16 @@
 <meta name="description" content="ThreadPoolExecutor构造方法 我们以最后一个构造方法（参数最多的那个），对其参数进行解释： 123456789101112131415161718192021public ThreadPoolExecutor(int corePoolSize, // 1                             int maximumPoolSize,  // 2">
 <meta name="keywords" content="线程池">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线程池之ThreadPoolExecutor使用">
+<meta property="og:title" content="线程池-ThreadPoolExecutor详解">
 <meta property="og:url" content="http://godloveyou.github.io/2019/08/19/java线程池/index.html">
 <meta property="og:site_name" content="David&#39;s Blog">
 <meta property="og:description" content="ThreadPoolExecutor构造方法 我们以最后一个构造方法（参数最多的那个），对其参数进行解释： 123456789101112131415161718192021public ThreadPoolExecutor(int corePoolSize, // 1                             int maximumPoolSize,  // 2">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://blog.sjjtcloud.com/blog/20190819/voP4iKK3jVUw.png?imageslim">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/11183270-ef3cb072affbec03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/398/format/webp">
-<meta property="og:updated_time" content="2019-08-20T03:31:47.009Z">
+<meta property="og:updated_time" content="2019-11-26T06:19:46.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线程池之ThreadPoolExecutor使用">
+<meta name="twitter:title" content="线程池-ThreadPoolExecutor详解">
 <meta name="twitter:description" content="ThreadPoolExecutor构造方法 我们以最后一个构造方法（参数最多的那个），对其参数进行解释： 123456789101112131415161718192021public ThreadPoolExecutor(int corePoolSize, // 1                             int maximumPoolSize,  // 2">
 <meta name="twitter:image" content="http://blog.sjjtcloud.com/blog/20190819/voP4iKK3jVUw.png?imageslim">
 
@@ -129,7 +129,7 @@
 
 
 
-  <title>线程池之ThreadPoolExecutor使用 | David's Blog</title>
+  <title>线程池-ThreadPoolExecutor详解 | David's Blog</title>
   
 
 
@@ -315,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">线程池之ThreadPoolExecutor使用</h1>
+          <h1 class="post-title" itemprop="name headline">线程池-ThreadPoolExecutor详解</h1>
         
 
         <div class="post-meta">
@@ -445,7 +445,7 @@
 <td>5</td>
 <td>workQueue</td>
 <td>BlockingQueue<runnable></runnable></td>
-<td>线程等待队列</td>
+<td>线程等待队列(用来暂时保存任务的工作队列)</td>
 </tr>
 <tr>
 <td>6</td>
@@ -457,7 +457,7 @@
 <td>7</td>
 <td>handler</td>
 <td>RejectedExecutionHandler</td>
-<td>拒绝策略</td>
+<td>拒绝策略(当ThreadPoolExecutor已经关闭或ThreadPoolExecutor已经饱和时（达到了最大线程池大小且工作队列已满），execute()方法将要调用的Handler。)</td>
 </tr>
 </tbody>
 </table>
@@ -492,12 +492,17 @@
 </tbody>
 </table>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><ol>
-<li><strong>FixedThreadPool</strong></li>
+<li><strong>FixedThreadPool详解</strong><br>FixedThreadPool 被称为可重用固定线程数的线程池</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newFixedThreadPool(int nThreads) &#123;</span><br><span class="line">    return new ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
-<li>corePoolSize与maximumPoolSize相等，即其线程全为核心线程，是一个固定大小的线程池，是其优势；</li>
+<li>corePoolSize与maximumPoolSize相等,都被设置为创建FixedThredPool时指定的参数nThreads(即其线程全为核心线程，是一个固定大小的线程池)；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>当线程池中的线程数大于corePoolSize时，keepAliveTime表示的就是：多余的空闲线程等待新任务的最长时间，超过这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余的空闲线程会被立即终止</li>
 <li>keepAliveTime = 0 该参数默认对核心线程无效，而FixedThreadPool全部为核心线程；</li>
 <li>workQueue 为LinkedBlockingQueue（无界阻塞队列），队列最大值为Integer.MAX_VALUE。如果任务提交速度持续大余任务处理速度，会造成队列大量阻塞。因为队列很大，很有可能在拒绝策略前，内存溢出。是其劣势；</li>
 <li>FixedThreadPool的任务执行是无序的；</li>
@@ -505,7 +510,7 @@
 </blockquote>
 <p>适用场景：可用于Web服务瞬时削峰，但需注意长时间持续高峰情况造成的队列阻塞。</p>
 <ol start="2">
-<li><strong>CachedThreadPool</strong></li>
+<li><strong>CachedThreadPool详解</strong><br>CachedThreadPool 是一个会根据需要创建新线程的线程池</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> public static ExecutorService newCachedThreadPool() &#123;</span><br><span class="line">    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,</span><br><span class="line">                                  60L, TimeUnit.SECONDS,</span><br><span class="line">                                  new SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -515,19 +520,45 @@
 <li>workQueue 为 SynchronousQueue 同步队列，这个队列类似于一个接力棒，入队出队必须同时传递，因为CachedThreadPool线程创建无限制，不会有队列等待，所以使用SynchronousQueue；</li>
 </ul>
 </blockquote>
+<blockquote>
+<ul>
+<li>CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，</li>
+<li>CachedThreadPool的maximumPool是无界的。这意味着，如果主线程提交任务的速度高于maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下,CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源</li>
+</ul>
+</blockquote>
 <p>适用场景：快速处理大量耗时较短的任务，如Netty的NIO接受请求时，可使用CachedThreadPool。</p>
 <ol start="3">
 <li><strong>SingleThreadExecutor</strong></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newSingleThreadExecutor() &#123;</span><br><span class="line">    return new FinalizableDelegatedExecutorService</span><br><span class="line">        (new ThreadPoolExecutor(1, 1,</span><br><span class="line">                                0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                new LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>SingleThreadExecutor的corePoolSize和maximumPoolSize被设置为1。其他参数与FixedThreadPool相同</li>
+<li>SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工作队列（队列的容量为Integer.MAX_VALUE)</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li></li>
+</ul>
+</blockquote>
 <p>咋一瞅，不就是newFixedThreadPool(1)吗？定眼一看，这里多了一层FinalizableDelegatedExecutorService包装，这一层有什么用呢，写个dome来解释一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ExecutorService fixedExecutorService = Executors.newFixedThreadPool(1);</span><br><span class="line">        ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) fixedExecutorService;</span><br><span class="line">        System.out.println(threadPoolExecutor.getMaximumPoolSize());</span><br><span class="line">        threadPoolExecutor.setCorePoolSize(8);</span><br><span class="line"></span><br><span class="line">        ExecutorService singleExecutorService = Executors.newSingleThreadExecutor();</span><br><span class="line">//      运行时异常 java.lang.ClassCastException</span><br><span class="line">//      ThreadPoolExecutor threadPoolExecutor2 = (ThreadPoolExecutor) singleExecutorService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>对比可以看出，FixedThreadPool可以向下转型为ThreadPoolExecutor，并对其线程池进行配置，而SingleThreadExecutor被包装后，无法成功向下转型。<strong>因此，SingleThreadExecutor被定以后，无法修改，做到了真正的Single。</strong></p>
+<p>对比可以看出，FixedThreadPool可以向下转型为ThreadPoolExecutor，并对其线程池进行配置，而SingleThreadExecutor被包装后，无法成功向下转型。<strong>因此SingleThreadExecutor被定以后，无法修改，做到了真正的Single。</strong></p>
 <ol start="4">
-<li><strong>ScheduledThreadPool</strong></li>
+<li><strong>ScheduledThreadPool详解</strong></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) &#123;</span><br><span class="line">    return new ScheduledThreadPoolExecutor(corePoolSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>newScheduledThreadPool调用的是ScheduledThreadPoolExecutor的构造方法，而ScheduledThreadPoolExecutor继承了ThreadPoolExecutor，构造是还是调用了其父类的构造方法。</p>
+<blockquote>
+<ul>
+<li>newScheduledThreadPool调用的是ScheduledThreadPoolExecutor的构造方法</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>ScheduledThreadPoolExecutor继承自ThreadPoolExecutor。它主要用来在给定的延迟之后运行任务，或者定期执行任务。ScheduledThreadPoolExecutor的功能与Timer类似，但ScheduledThreadPoolExecutor功能更强大、更灵活。Timer对应的是单个后台线程，而ScheduledThreadPoolExecutor可以在构造函数中指定多个对应的后台线程数. </li>
+</ul>
+</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public ScheduledThreadPoolExecutor(int corePoolSize) &#123;</span><br><span class="line">    super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,</span><br><span class="line">          new DelayedWorkQueue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="二、自定义线程池"><a href="#二、自定义线程池" class="headerlink" title="二、自定义线程池"></a>二、自定义线程池</h5><p>以下是自定义线程池，使用了有界队列，自定义ThreadFactory和拒绝策略的demo：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws InterruptedException, IOException &#123;</span><br><span class="line">        int corePoolSize = 2;</span><br><span class="line">        int maximumPoolSize = 4;</span><br><span class="line">        long keepAliveTime = 10;</span><br><span class="line">        TimeUnit unit = TimeUnit.SECONDS;</span><br><span class="line">        BlockingQueue&lt;Runnable&gt; workQueue = new ArrayBlockingQueue&lt;&gt;(2);</span><br><span class="line">        ThreadFactory threadFactory = new NameTreadFactory();</span><br><span class="line">        RejectedExecutionHandler handler = new MyIgnorePolicy();</span><br><span class="line">        ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit,</span><br><span class="line">                workQueue, threadFactory, handler);</span><br><span class="line">        executor.prestartAllCoreThreads(); // 预启动所有核心线程</span><br><span class="line"></span><br><span class="line">        for (int i = 1; i &lt;= 10; i++) &#123;</span><br><span class="line">            MyTask task = new MyTask(String.valueOf(i));</span><br><span class="line">            executor.execute(task);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.in.read(); //阻塞主线程</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class NameTreadFactory implements ThreadFactory &#123;</span><br><span class="line"></span><br><span class="line">        private final AtomicInteger mThreadNum = new AtomicInteger(1);</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Thread newThread(Runnable r) &#123;</span><br><span class="line">            Thread t = new Thread(r, &quot;my-thread-&quot; + mThreadNum.getAndIncrement());</span><br><span class="line">            System.out.println(t.getName() + &quot; has been created&quot;);</span><br><span class="line">            return t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyIgnorePolicy implements RejectedExecutionHandler &#123;</span><br><span class="line"></span><br><span class="line">        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">            doLog(r, e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void doLog(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">            // 可做日志记录等</span><br><span class="line">            System.err.println( r.toString() + &quot; rejected&quot;);</span><br><span class="line">//          System.out.println(&quot;completedTaskCount: &quot; + e.getCompletedTaskCount());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class MyTask implements Runnable &#123;</span><br><span class="line">        private String name;</span><br><span class="line"></span><br><span class="line">        public MyTask(String name) &#123;</span><br><span class="line">            this.name = name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                System.out.println(this.toString() + &quot; is running!&quot;);</span><br><span class="line">                Thread.sleep(3000); //让任务执行慢点</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public String getName() &#123;</span><br><span class="line">            return name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public String toString() &#123;</span><br><span class="line">            return &quot;MyTask [name=&quot; + name + &quot;]&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -678,7 +709,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

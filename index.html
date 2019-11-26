@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/11/22/Executor框架/" itemprop="url">Executor</a></h1>
+                <a class="post-title-link" href="/2019/11/22/Executor框架/" itemprop="url">Executor框架简介</a></h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Executor框架/" itemprop="url" rel="index">
-                    <span itemprop="name">Executor框架</span>
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
                   </a>
                 </span>
 
@@ -399,17 +399,43 @@
       
         
           
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
-<p><img src="http://blog.sjjtcloud.com/blog/20191122/lELRVLBzyvMY.png?imageslim" alt="Executor框架的成员及其关系"></p>
+            <blockquote>
+<p>Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
+</blockquote>
+<p>![Executor框架的成员及其关系]<img src="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim" alt="mark"></p>
 <h3 id="Executor框架包括3大部分："><a href="#Executor框架包括3大部分：" class="headerlink" title="Executor框架包括3大部分："></a>Executor框架包括3大部分：</h3><p>（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口；</p>
 <p>（2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor接口及继承自Executor接口的ExecutorService接口, Executor框架有两个关键类实现了ExecutorService接口（ThreadPoolExecutor和ScheduledThreadPoolExecutor）</p>
 <p>（3）异步计算的结果。包括Future接口及实现了Future接口的FutureTask类。</p>
-<h3 id="各个类和接口简介"><a href="#各个类和接口简介" class="headerlink" title="各个类和接口简介"></a>各个类和接口简介</h3><ul>
-<li>Executor 它是框架基础, 将任务的提交 和任务的执行分离开来</li>
-<li>ThreadPoolExecutor 是线程池的核心实现类,用来执行被提交的任务</li>
-<li>Future接口及实现FutureTask 代表异步计算的结果</li>
-<li>Runnable接口和Callable接口的实现类 都可以被ThreadPoolExecutor和ScheduledThreadPoolExecutor执行</li>
+<h3 id="Executor各个类和接口简介"><a href="#Executor各个类和接口简介" class="headerlink" title="Executor各个类和接口简介"></a>Executor各个类和接口简介</h3><p> Executor 它是框架基础, 将任务的提交 和任务的执行分离开来</p>
+<h4 id="（1）ThreadPoolExecutor"><a href="#（1）ThreadPoolExecutor" class="headerlink" title="（1）ThreadPoolExecutor"></a>（1）ThreadPoolExecutor</h4><p>它是线程池的核心实现类,用来执行被提交的任务<br>创建方式：ThreadPoolExecutor通常使用Executors来创建,Executors可以创建3种类型的ThreadPoolExecutor<br>应用场景：适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景</p>
+<ol>
+<li><p>SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>FixedThreadPool  用于创建使用固定线程数的FixedThreadPool的API</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads,ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>应用场景：适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场景，它适用于负载比较重的服务器</p>
+<ol start="3">
+<li>CachedThreadPool  下面是Executors提供的，创建一个会根据需要创建新线程的CachedThreadPool的API。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>应用场景: CachedThreadPool是大小无界的线程池，适用于执行很多的短期异步任务的小程序，或者<br>是负载较轻的服务器</p>
+<h4 id="2-ScheduledThreadPoolExecutor"><a href="#2-ScheduledThreadPoolExecutor" class="headerlink" title="(2)ScheduledThreadPoolExecutor"></a>(2)ScheduledThreadPoolExecutor</h4><p>它是一个实现类，可以在给定的延迟后运行命令，或者定期执行命令。ScheduledThreadPoolExecutor比Timer更灵活,功能更强大</p>
+<p>创建方式<br>ScheduledThreadPoolExecutor通常使用工厂类Executors来创建。Executors可以创建2种类型的ScheduledThreadPoolExecutor，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">·ScheduledThreadPoolExecutor。包含若干个线程的ScheduledThreadPoolExecutor。</span><br><span class="line">·SingleThreadScheduledExecutor。只包含一个线程的ScheduledThreadPoolExecutor。</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>方式一: 创建固定个数线程ScheduledThreadPoolExecutor的API<br>应用场景: 适用于需要多个后台线程执行周期任务，同时为了满足资源管理的需求而需要限制后台线程的数量的应用场景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                              ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二: 创建只包含一个线程的ScheduledThreadPoolExecutor<br>应用场景:适用于需要单个后台线程执行周期任务，同时需要保证顺序地执行各个任务的应用场景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newSingleThreadScheduledExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newSingleThreadScheduledExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>(3)Future接口<br>Futrue接口和实现Futrue接口的FutrueTask类用来表示<strong>异步计算的结果</strong>当我们把Runnable接口或者Callable接口的实现类提交(submit)给ThreadPoolExecutor或ScheduledThreadPoolExecutor时,ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutrueTask对象,下面是对应API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span></span><br><span class="line"><span class="function">&lt;T&gt; Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span></span><br><span class="line"><span class="function">Future&lt;&gt; <span class="title">submit</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>(4)Runnable接口和Callable接口<br>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。</p>
+<p>除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Callable&lt;Object&gt; <span class="title">callable</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>下面是Executors提供的，把一个Runnable和一个待返回的结果包装成一个Callable的API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Callable&lt;T&gt; <span class="title">callable</span><span class="params">(Runnable task, T result)</span></span></span><br></pre></td></tr></table></figure></p>
 <p><img src="http://blog.sjjtcloud.com/blog/20191122/jh9FyfKXLM3U.png?imageslim" alt="Executor框架的使用示意图"></p>
 
           
@@ -1971,7 +1997,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
