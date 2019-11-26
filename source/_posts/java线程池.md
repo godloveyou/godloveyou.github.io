@@ -1,5 +1,5 @@
 ---
-title: 线程池之ThreadPoolExecutor使用
+title: 线程池-ThreadPoolExecutor详解
 categories: java
 tags: 线程池
 ---
@@ -44,9 +44,10 @@ tags: 线程池
 | 2 | maximumPoolSize | int | 最大线程池大小 |
 | 3 | keepAliveTime | long | 线程最大空闲时间 |
 | 4 | unit | TimeUnit | 时间单位 |
-| 5 | workQueue | BlockingQueue<Runnable> | 线程等待队列 |
+| 5 | workQueue | BlockingQueue<Runnable> | 线程等待队列(用来暂时保存任务的工作队列) |
 | 6 | threadFactory | ThreadFactory | 线程创建工厂 |
-| 7 | handler | RejectedExecutionHandler | 拒绝策略 |
+| 7 | handler | RejectedExecutionHandler | 拒绝策略(当ThreadPoolExecutor已经关闭或ThreadPoolExecutor已经饱和时（达到了最大线程池大小且工作队列已满），execute()方法将要调用的Handler。) |
+
 
 如果对这些参数作用有疑惑的请看 [ThreadPoolExecutor概述](https://www.jianshu.com/p/c41e942bcd64)。
 知道了各个参数的作用后，我们开始构造符合我们期待的线程池。首先看JDK给我们预定义的几种线程池：
@@ -83,7 +84,8 @@ tags: 线程池
 
 #### 源码分析
 
-1.  **FixedThreadPool**
+1.  **FixedThreadPool详解**
+FixedThreadPool 被称为可重用固定线程数的线程池
 
 ```
     public static ExecutorService newFixedThreadPool(int nThreads) {
@@ -94,14 +96,17 @@ tags: 线程池
 
 ```
 
-> *   corePoolSize与maximumPoolSize相等，即其线程全为核心线程，是一个固定大小的线程池，是其优势；
+> *   corePoolSize与maximumPoolSize相等,都被设置为创建FixedThredPool时指定的参数nThreads(即其线程全为核心线程，是一个固定大小的线程池)；
+
+> * 当线程池中的线程数大于corePoolSize时，keepAliveTime表示的就是：多余的空闲线程等待新任务的最长时间，超过这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余的空闲线程会被立即终止
 > *   keepAliveTime = 0 该参数默认对核心线程无效，而FixedThreadPool全部为核心线程；
 > *   workQueue 为LinkedBlockingQueue（无界阻塞队列），队列最大值为Integer.MAX_VALUE。如果任务提交速度持续大余任务处理速度，会造成队列大量阻塞。因为队列很大，很有可能在拒绝策略前，内存溢出。是其劣势；
 > *   FixedThreadPool的任务执行是无序的；
 
 适用场景：可用于Web服务瞬时削峰，但需注意长时间持续高峰情况造成的队列阻塞。
 
-2.  **CachedThreadPool**
+2.  **CachedThreadPool详解**
+CachedThreadPool 是一个会根据需要创建新线程的线程池
 
 ```
      public static ExecutorService newCachedThreadPool() {
@@ -116,6 +121,9 @@ tags: 线程池
 > *   keepAliveTime = 60s，线程空闲60s后自动结束。
 > *   workQueue 为 SynchronousQueue 同步队列，这个队列类似于一个接力棒，入队出队必须同时传递，因为CachedThreadPool线程创建无限制，不会有队列等待，所以使用SynchronousQueue；
 
+> * CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，
+> * CachedThreadPool的maximumPool是无界的。这意味着，如果主线程提交任务的速度高于maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下,CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源
+
 适用场景：快速处理大量耗时较短的任务，如Netty的NIO接受请求时，可使用CachedThreadPool。
 
 3.  **SingleThreadExecutor**
@@ -129,6 +137,11 @@ tags: 线程池
     }
 
 ```
+
+> * SingleThreadExecutor的corePoolSize和maximumPoolSize被设置为1。其他参数与FixedThreadPool相同
+> * SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工作队列（队列的容量为Integer.MAX_VALUE)
+
+> * 
 
 咋一瞅，不就是newFixedThreadPool(1)吗？定眼一看，这里多了一层FinalizableDelegatedExecutorService包装，这一层有什么用呢，写个dome来解释一下：
 
@@ -146,9 +159,9 @@ tags: 线程池
 
 ```
 
-对比可以看出，FixedThreadPool可以向下转型为ThreadPoolExecutor，并对其线程池进行配置，而SingleThreadExecutor被包装后，无法成功向下转型。**因此，SingleThreadExecutor被定以后，无法修改，做到了真正的Single。**
+对比可以看出，FixedThreadPool可以向下转型为ThreadPoolExecutor，并对其线程池进行配置，而SingleThreadExecutor被包装后，无法成功向下转型。**因此SingleThreadExecutor被定以后，无法修改，做到了真正的Single。**
 
-4.  **ScheduledThreadPool**
+4.  **ScheduledThreadPool详解**
 
 ```
     public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
@@ -157,7 +170,10 @@ tags: 线程池
 
 ```
 
-newScheduledThreadPool调用的是ScheduledThreadPoolExecutor的构造方法，而ScheduledThreadPoolExecutor继承了ThreadPoolExecutor，构造是还是调用了其父类的构造方法。
+> * newScheduledThreadPool调用的是ScheduledThreadPoolExecutor的构造方法
+
+> * ScheduledThreadPoolExecutor继承自ThreadPoolExecutor。它主要用来在给定的延迟之后运行任务，或者定期执行任务。ScheduledThreadPoolExecutor的功能与Timer类似，但ScheduledThreadPoolExecutor功能更强大、更灵活。Timer对应的是单个后台线程，而ScheduledThreadPoolExecutor可以在构造函数中指定多个对应的后台线程数. 
+
 
 ```
     public ScheduledThreadPoolExecutor(int corePoolSize) {
@@ -166,8 +182,6 @@ newScheduledThreadPool调用的是ScheduledThreadPoolExecutor的构造方法，�
     }
 
 ```
-
-
 
 
 ##### 二、自定义线程池
