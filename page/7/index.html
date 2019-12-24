@@ -295,6 +295,334 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7 安装Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Centos7 安装Docker/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Centos7-安装Docker"><a href="#Centos7-安装Docker" class="headerlink" title="Centos7 安装Docker"></a>Centos7 安装Docker</h2><p>安装参考：<a href="https://blog.csdn.net/u010046908/article/details/79553227" target="_blank" rel="noopener">https://blog.csdn.net/u010046908/article/details/79553227</a><br>安装最新版本 <a href="https://blog.csdn.net/kongxx/article/details/78361048" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78361048</a></p>
+<p>阿里云镜像仓库地址： <a href="https://dev.aliyun.com/search.html" target="_blank" rel="noopener">https://dev.aliyun.com/search.html</a></p>
+<p>常用命令<br>docker pull centos  拉取centos<br>docker images 查看本地所有镜像<br>docker run hello-world 运行实例</p>
+<p>docker run -i -t -v /root/sortware/:/mnt/sortware/ 75835a67d134 /bin/bash</p>
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p>exit</p>
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><p>docker stop mycentos</p>
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p>docker start mycentos</p>
+<h3 id="重启后-在mycentos再打开-bin-bash"><a href="#重启后-在mycentos再打开-bin-bash" class="headerlink" title="重启后,在mycentos再打开/bin/bash"></a>重启后,在mycentos再打开/bin/bash</h3><p>docker exec -ti mycentos /bin/bash</p>
+<p>1、初步安装和启动docker<br>yum update -y<br>yum -y install docker<br>systemctl start docker</p>
+<p>2、设置镜像<br>vi /etc/docker/daemon.json</p>
+<p>{<br>  “registry-mirrors”: [“<a href="https://aj2rgad5.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://aj2rgad5.mirror.aliyuncs.com&quot;]</a><br>}</p>
+<p>3、重启docker<br>systemctl daemon-reload<br>systemctl restart docker.service</p>
+<p>4、测试docker是否正常安装和运行<br>docker run hello-world</p>
+<p>5、查看结果<br>Hello from Docker!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Cenos7.5搭建生成环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Cenos7.5搭建生成环境/" itemprop="url">Cenos7.5环境搭建目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Linux-设置服务器时区"><a href="#1-Linux-设置服务器时区" class="headerlink" title="1.Linux 设置服务器时区:"></a>1.Linux 设置服务器时区:</h3><p>1、安装ntp服务软件包：yum install ntp<br>2、将ntp设置为缺省启动：systemctl enable ntpd<br>3、修改启动参数，增加-g -x参数，允许ntp服务在系统时间误差较大时也能正常工作：vi /etc/sysconfig/ntpd<br>4、启动ntp服务：/bin/systemctl restart ntpd<br>5、将系统时区改为上海时间（即CST时区）：ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>6、输入date命令查看时间是否正确</p>
+<h3 id="2-搭建FTP-vsftp"><a href="#2-搭建FTP-vsftp" class="headerlink" title="2. 搭建FTP(vsftp)"></a>2. 搭建FTP(vsftp)</h3><p><a href="https://blog.csdn.net/zy517863543/article/details/80028351" target="_blank" rel="noopener">https://blog.csdn.net/zy517863543/article/details/80028351</a></p>
+<p>  遇到的问题：<br>  1.安装成功后, Filezilla可以正常上传下载文件，但是java程序中使用Ftp工具类无法上传成功？<br>   解决方法： 程序中需要指定使用被动模式</p>
+<h3 id="3-搭建SFTP"><a href="#3-搭建SFTP" class="headerlink" title="3.搭建SFTP"></a>3.搭建SFTP</h3><p>参考博客(<a href="https://blog.csdn.net/fenglailea/article/details/78631760" target="_blank" rel="noopener">https://blog.csdn.net/fenglailea/article/details/78631760</a>)</p>
+<h3 id="4-下载并安装redis"><a href="#4-下载并安装redis" class="headerlink" title="4.下载并安装redis"></a>4.下载并安装redis</h3><p><a href="https://www.cnblogs.com/zuidongfeng/p/8032505.html" target="_blank" rel="noopener">https://www.cnblogs.com/zuidongfeng/p/8032505.html</a></p>
+<p>遇到的问题: <a href="https://blog.csdn.net/jexhen/article/details/76098622" target="_blank" rel="noopener">https://blog.csdn.net/jexhen/article/details/76098622</a><br>复制到etc下的配置<br>/etc/redis/6379.conf (自动启动时生效的是这个,两个配置文件做好同步)</p>
+<h3 id="5-搭建java环境"><a href="#5-搭建java环境" class="headerlink" title="5.搭建java环境"></a>5.搭建java环境</h3><p><a href="https://blog.csdn.net/sizhezhongnian/article/details/81142976" target="_blank" rel="noopener">https://blog.csdn.net/sizhezhongnian/article/details/81142976</a><br>JAVA根目录: /usr/java/jdk1.8</p>
+<h3 id="6-搭建并配置NGINX服务器"><a href="#6-搭建并配置NGINX服务器" class="headerlink" title="6.搭建并配置NGINX服务器"></a>6.搭建并配置NGINX服务器</h3><p>安装第三方yum源</p>
+<h4 id="安装下载wget"><a href="#安装下载wget" class="headerlink" title="安装下载wget"></a>安装下载wget</h4><p>yum install wget</p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>wget <a href="http://www.atomicorp.com/installers/atomic" target="_blank" rel="noopener">http://www.atomicorp.com/installers/atomic</a></p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>sh ./atomic</p>
+<h4 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h4><p>yum check-update</p>
+<p>开始安装nginx</p>
+<h4 id="删除系统自带的软件包"><a href="#删除系统自带的软件包" class="headerlink" title="删除系统自带的软件包"></a>删除系统自带的软件包</h4><p>yum remove httpd<em> php</em></p>
+<h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p>yum install -y nginx</p>
+<h4 id="设置nginx开机启动"><a href="#设置nginx开机启动" class="headerlink" title="设置nginx开机启动"></a>设置nginx开机启动</h4><p>chkconfig nginx on</p>
+<h4 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h4><p>service nginx start</p>
+<h3 id="7-搭建TOMCAT及参数优化"><a href="#7-搭建TOMCAT及参数优化" class="headerlink" title="7. 搭建TOMCAT及参数优化"></a>7. 搭建TOMCAT及参数优化</h3><p>安装tomcat,并配置多tomcat<br><a href="https://blog.csdn.net/w410589502/article/details/77988912" target="_blank" rel="noopener">https://blog.csdn.net/w410589502/article/details/77988912</a><br><a href="https://blog.csdn.net/weixin_41004350/article/details/78492500" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41004350/article/details/78492500</a></p>
+<h3 id="8-安装MYSQL-5-7-数据库"><a href="#8-安装MYSQL-5-7-数据库" class="headerlink" title="8. 安装MYSQL(5.7) 数据库"></a>8. 安装MYSQL(5.7) 数据库</h3><p>参考博客: <a href="https://www.cnblogs.com/freely/p/8087885.html" target="_blank" rel="noopener">https://www.cnblogs.com/freely/p/8087885.html</a></p>
+<p>添加用户,授权用户</p>
+<p><a href="https://www.cnblogs.com/xujishou/p/6306765.html" target="_blank" rel="noopener">https://www.cnblogs.com/xujishou/p/6306765.html</a></p>
+<p>配置文件 vim /etc/my.cnf<br>注意更改端口号为13306 需要加入防火墙</p>
+<p>Mysql授权失败错误问题</p>
+<p>执行命令: grant all on <em>.</em> to hospital@’%’</p>
+<p>授权只能访问某库</p>
+<p>grant all privileges on ky.*  to  hospital@’%’ identified by ‘Fv6jl#cxhd3&amp;0vx8’</p>
+<p>执行完要刷新权限  flush privileges;</p>
+<p>ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</p>
+<p><a href="https://www.cnblogs.com/ivictor/p/5142809.html" target="_blank" rel="noopener">https://www.cnblogs.com/ivictor/p/5142809.html</a></p>
+<h3 id="9-防火墙配置及管理"><a href="#9-防火墙配置及管理" class="headerlink" title="9. 防火墙配置及管理"></a>9. 防火墙配置及管理</h3><p>CentOS7使用firewalld打开关闭防火墙与端口</p>
+<p>1、firewalld的基本使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">启动服务   systemctl start firewalld</span><br><span class="line">关闭服务   systemctl stop firewalld</span><br><span class="line">查看状态   systemctl status firewalld </span><br><span class="line">开机禁用   systemctl disable firewalld</span><br><span class="line">开机启用   systemctl enable firewalld</span><br></pre></td></tr></table></figure></p>
+<p>2.systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">启动一个服务：systemctl start firewalld.service</span><br><span class="line">关闭一个服务：systemctl stop firewalld.service</span><br><span class="line">重启一个服务：systemctl restart firewalld.service</span><br><span class="line">显示一个服务的状态：systemctl status firewalld.service</span><br><span class="line">在开机时启用一个服务：systemctl enable firewalld.service</span><br><span class="line">在开机时禁用一个服务：systemctl disable firewalld.service</span><br><span class="line">查看服务是否开机启动：systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：systemctl --failed</span><br></pre></td></tr></table></figure>
+<p>3.配置firewalld-cmd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看版本： firewall-cmd --version</span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure></p>
+<p>4.怎样在防火墙中开启一个端口呢？</p>
+<ul>
+<li><p>添加端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> firewall-cmd --zone=public --add-port=80/tcp --permanent    </span><br><span class="line">（--permanent永久生效，没有此参数重启后失效）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新载入<br>  <code>firewall-cmd --reload</code></p>
+</li>
+<li><p>查看<br>  <code>firewall-cmd --zone= public --query-port=80/tcp</code></p>
+</li>
+<li><p>删除<br>  <code>firewall-cmd --zone= public --remove-port=80/tcp --permanent</code></p>
+</li>
+</ul>
+<p>###10. centos7 常用命令</p>
+<p>1、Apache 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd 启动</span><br><span class="line">systemctl stop httpd 停止</span><br><span class="line">systemctl restart httpd 重启</span><br><span class="line">systemctl status httpd 状态</span><br></pre></td></tr></table></figure></p>
+<p>2、MySQL 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld关闭：</span><br><span class="line">systemctl stop mysqld重启：</span><br><span class="line">systemctl restart mysqld状态：</span><br><span class="line">systemctl status mysqld</span><br></pre></td></tr></table></figure></p>
+<p>3、FTP 服务管理命令启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd   启动</span><br><span class="line">systemctl stop vsftpd    停止</span><br><span class="line">systemctl restart vsftpd 重启</span><br><span class="line">systemctl status vsftpd  状态</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>Nginx服务管理命令启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx 启动</span><br><span class="line">systemctl status nginx 查看状态</span><br><span class="line">systemctl stop nginx 停止</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2018/04/12/studyEnglish/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -362,17 +690,6 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/04/12/studyEnglish/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://godloveyou.github.io/2018/04/12/studyEnglish/" class="cy_cmt_count" data-xid="2018/04/12/studyEnglish/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
@@ -384,7 +701,7 @@
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -563,7 +880,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +902,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -644,22 +961,8 @@
   </span>
   <span class="author" itemprop="copyrightHolder">David</span>
 
-  
+
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
 
         
 <div class="busuanzi-count">
@@ -809,10 +1112,6 @@
 
 
 
-
-  
-    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyto4vUae"></script>
-  
 
 
 

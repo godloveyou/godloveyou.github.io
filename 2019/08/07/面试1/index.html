@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://pam1kb0ai.bkt.clouddn.com/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png">
 <meta property="og:image" content="http://pam1kb0ai.bkt.clouddn.com/java%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%B7%A8%E5%B9%B3%E5%8F%B0.jpg">
 <meta property="og:image" content="http://pam1kb0ai.bkt.clouddn.com/jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
-<meta property="og:updated_time" content="2019-08-07T01:26:40.929Z">
+<meta property="og:updated_time" content="2019-12-24T02:09:41.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java面试系列问题(1)">
 <meta name="twitter:description" content="1. final, finally, finalize 的区别 final它是java中的一个关键字和修饰符,用于声明属性,方法，类，分别标书修饰的属性不可变,方法不可覆盖,类不可继承    finally是异常处理语句结构的一部分，表示总是执行,使用 finally 可以维护对象的内部状态，并可以清理非内存资源   finallize这个方法是Object类的一个方法，因此所有类都继承了它,当垃">
@@ -364,17 +364,6 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/08/07/面试1/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/08/07/面试1/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
@@ -391,7 +380,7 @@
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -407,8 +396,7 @@
         <h3 id="1-final-finally-finalize-的区别"><a href="#1-final-finally-finalize-的区别" class="headerlink" title="1. final, finally, finalize 的区别"></a>1. final, finally, finalize 的区别</h3><p> final它是java中的一个关键字和修饰符,用于声明属性,方法，类，分别标书修饰的属性不可变,方法不可覆盖,类不可继承  </p>
 <p> finally是异常处理语句结构的一部分，表示总是执行,使用 finally 可以维护对象的内部状态，并可以清理非内存资源 </p>
 <p> finallize这个方法是Object类的一个方法，因此所有类都继承了它,当垃圾收集器确定某个对象不再被引用时，会调用该方法做清理工作,如果想要执行自定义的清理工作，可以在子类中覆盖该方法.</p>
-<hr>
-<h3 id="2-Exception、Error、运行时异常与一般异常有何异同"><a href="#2-Exception、Error、运行时异常与一般异常有何异同" class="headerlink" title="2. Exception、Error、运行时异常与一般异常有何异同"></a>2. Exception、Error、运行时异常与一般异常有何异同</h3><p><a href="https://blog.csdn.net/m0_37531231/article/details/79502778(参考)" target="_blank" rel="noopener">https://blog.csdn.net/m0_37531231/article/details/79502778(参考)</a><br><img src="http://pam1kb0ai.bkt.clouddn.com/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png" alt="Java异常类层次结构图"></p>
+<h3 id="2-Exception、Error、运行时异常与一般异常有何异同"><a href="#2-Exception、Error、运行时异常与一般异常有何异同" class="headerlink" title="2. Exception、Error、运行时异常与一般异常有何异同"></a>2. Exception、Error、运行时异常与一般异常有何异同</h3><p><img src="http://pam1kb0ai.bkt.clouddn.com/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png" alt="Java异常类层次结构图"></p>
 <p>Error层次结构描述了java运行时系统的内部错误和资源耗尽错误。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题</p>
 <p>Exceprion这个层次结构又分解为连个分支：一个分支派生于RuntimeException；另一个分支包含其他异常。划分两个分支的规则是：由程序错误导致的异常属于RuntimeException；而程序本身没有没有问题，但由于像I/O错误这类异常导致的异常属于其他异常  </p>
 <h3 id="3-请写出5种常见到的runtime-exception"><a href="#3-请写出5种常见到的runtime-exception" class="headerlink" title="3. 请写出5种常见到的runtime exception"></a>3. 请写出5种常见到的runtime exception</h3><p>NullpointerExection IndexOutOfBoundsException NumberFormatException FileNotFoundException EofException</p>
@@ -416,10 +404,7 @@
 <h3 id="5-包装类，装箱和拆箱"><a href="#5-包装类，装箱和拆箱" class="headerlink" title="5.包装类，装箱和拆箱"></a>5.包装类，装箱和拆箱</h3><p>Java中的基本类型功能简单，不具备对象的特性，为了使基本类型具备对象的特性，所以出现了包装类，就可以像操作对象一样操作基本类型数据  </p>
 <p>装箱就是 自动将基本数据类型转换为包装器类型；拆箱就是  自动将包装器类型转换为基本数据类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java5之前如果要定义一个值为10的Integer对象 必须这样定义 Integer i = new Integer(10)</span><br><span class="line">Integer i = 10;  //装箱</span><br><span class="line">int n = i;   //拆箱</span><br></pre></td></tr></table></figure>
-<h3 id="6-String、StringBuilder、StringBuffer"><a href="#6-String、StringBuilder、StringBuffer" class="headerlink" title="6.String、StringBuilder、StringBuffer"></a>6.String、StringBuilder、StringBuffer</h3><p>1.执行速度StringBuilder &gt; StringBuffer &gt; String</p>
-<ol start="2">
-<li>操作少量数据用String, 单线程下操作大量字符串数据用StringBuilder, 多线程下操作大量数据用StringBuffer</li>
-</ol>
+<h3 id="6-String、StringBuilder、StringBuffer"><a href="#6-String、StringBuilder、StringBuffer" class="headerlink" title="6.String、StringBuilder、StringBuffer"></a>6.String、StringBuilder、StringBuffer</h3><p>1.执行速度StringBuilder &gt; StringBuffer &gt; String<br>2.操作少量数据用String, 单线程下操作大量字符串数据用StringBuilder, 多线程下操作大量数据用StringBuffer</p>
 <h3 id="7-重载和重写的区别"><a href="#7-重载和重写的区别" class="headerlink" title="7.重载和重写的区别"></a>7.重载和重写的区别</h3><p>重载(Overload):<br>方法名称相同, 参数个数或类型不同，可以有不同的返回类型,可以有不同的访问修饰符,可以抛出不同的异常.  </p>
 <p>重写(Override):<br>参数列表与被重写的方法相同，返回类型与被重写的方法一致，访问修饰符要大于被重写方法的修饰符  </p>
 <h3 id="8-抽象类和接口有什么区别"><a href="#8-抽象类和接口有什么区别" class="headerlink" title="8.抽象类和接口有什么区别"></a>8.抽象类和接口有什么区别</h3><p>1.抽象类可以有默认的方法实现,接口完全是抽象的不存在方法实现<br>2.抽象类可以有构造器, 接口没有构造器<br>3.抽象类的修饰符可以是public,protected,default; 接口默认都是public,不能使用其他修饰符<br>4.抽象类比接口速度更快，因为接口需要寻找它的实现类<br>5.抽象类可以继承1个类并可以实现多个接口， 接口只能实现接口 不能继承接口</p>
@@ -691,8 +676,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/07/阿里云常用文档/" rel="next" title="阿里云常用文档">
-                <i class="fa fa-chevron-left"></i> 阿里云常用文档
+              <a href="/2019/08/07/面试2/" rel="next" title="java面试系列问题(2)">
+                <i class="fa fa-chevron-left"></i> java面试系列问题(2)
               </a>
             
           </div>
@@ -701,8 +686,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/07/面试2/" rel="prev" title="java面试系列问题(2)">
-                java面试系列问题(2) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/07/面试3/" rel="prev" title="java面试系列问题(3)">
+                java面试系列问题(3) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -721,12 +706,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 
 
     <div class="post-spread">
-      
-        
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
   </div>
@@ -793,7 +772,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -815,7 +794,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -890,22 +869,8 @@ service是由web容器来调用的，我们无需对service具体内容做任何
   </span>
   <span class="author" itemprop="copyrightHolder">David</span>
 
-  
+
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
 
         
 <div class="busuanzi-count">
@@ -1059,21 +1024,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 
 
 
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyto4vUae';
-      var conf = 'fbae73d15fb09500171cf0adae584a71';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
 
 
 

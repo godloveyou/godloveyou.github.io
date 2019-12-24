@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。  ![Executor框架的成员及其关系] Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给">
+<meta name="description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。   Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor">
 <meta name="keywords" content="java多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Executor框架简介">
 <meta property="og:url" content="http://godloveyou.github.io/2019/11/22/Executor框架/index.html">
 <meta property="og:site_name" content="David&#39;s Blog">
-<meta property="og:description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。  ![Executor框架的成员及其关系] Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给">
+<meta property="og:description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。   Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim">
 <meta property="og:image" content="http://blog.sjjtcloud.com/blog/20191122/jh9FyfKXLM3U.png?imageslim">
-<meta property="og:updated_time" content="2019-11-26T03:13:49.009Z">
+<meta property="og:updated_time" content="2019-12-24T02:03:25.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Executor框架简介">
-<meta name="twitter:description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。  ![Executor框架的成员及其关系] Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给">
+<meta name="twitter:description" content="Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。   Executor框架包括3大部分：（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口； （2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor">
 <meta name="twitter:image" content="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim">
 
 
@@ -363,17 +363,6 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/11/22/Executor框架/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/11/22/Executor框架/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
@@ -390,7 +379,7 @@
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -406,20 +395,20 @@
         <blockquote>
 <p>Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
 </blockquote>
-<p>![Executor框架的成员及其关系]<img src="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim" alt="mark"></p>
+<p><img src="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim" alt="Executor框架的成员及其关系"></p>
 <h3 id="Executor框架包括3大部分："><a href="#Executor框架包括3大部分：" class="headerlink" title="Executor框架包括3大部分："></a>Executor框架包括3大部分：</h3><p>（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口；</p>
 <p>（2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor接口及继承自Executor接口的ExecutorService接口, Executor框架有两个关键类实现了ExecutorService接口（ThreadPoolExecutor和ScheduledThreadPoolExecutor）</p>
 <p>（3）异步计算的结果。包括Future接口及实现了Future接口的FutureTask类。</p>
 <h3 id="Executor各个类和接口简介"><a href="#Executor各个类和接口简介" class="headerlink" title="Executor各个类和接口简介"></a>Executor各个类和接口简介</h3><p> Executor 它是框架基础, 将任务的提交 和任务的执行分离开来</p>
 <h4 id="（1）ThreadPoolExecutor"><a href="#（1）ThreadPoolExecutor" class="headerlink" title="（1）ThreadPoolExecutor"></a>（1）ThreadPoolExecutor</h4><p>它是线程池的核心实现类,用来执行被提交的任务<br>创建方式：ThreadPoolExecutor通常使用Executors来创建,Executors可以创建3种类型的ThreadPoolExecutor<br>应用场景：适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景</p>
 <ol>
-<li><p>SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API</p>
+<li><p>SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>FixedThreadPool  用于创建使用固定线程数的FixedThreadPool的API</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads,ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads,ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
 <p>应用场景：适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场景，它适用于负载比较重的服务器</p>
 <ol start="3">
 <li>CachedThreadPool  下面是Executors提供的，创建一个会根据需要创建新线程的CachedThreadPool的API。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
@@ -437,8 +426,9 @@
 </li>
 </ul>
 <p>(3)Future接口<br>Futrue接口和实现Futrue接口的FutrueTask类用来表示<strong>异步计算的结果</strong>当我们把Runnable接口或者Callable接口的实现类提交(submit)给ThreadPoolExecutor或ScheduledThreadPoolExecutor时,ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutrueTask对象,下面是对应API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span></span><br><span class="line"><span class="function">&lt;T&gt; Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span></span><br><span class="line"><span class="function">Future&lt;&gt; <span class="title">submit</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>(4)Runnable接口和Callable接口<br>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。</p>
-<p>除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Callable&lt;Object&gt; <span class="title">callable</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>(4)Runnable接口和Callable接口<br>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。</p>
+<p>除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Callable&lt;Object&gt; <span class="title">callable</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure>
 <p>下面是Executors提供的，把一个Runnable和一个待返回的结果包装成一个Callable的API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Callable&lt;T&gt; <span class="title">callable</span><span class="params">(Runnable task, T result)</span></span></span><br></pre></td></tr></table></figure></p>
 <p><img src="http://blog.sjjtcloud.com/blog/20191122/jh9FyfKXLM3U.png?imageslim" alt="Executor框架的使用示意图"></p>
 
@@ -481,6 +471,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/12/24/计算机组成原理名词解释/" rel="prev" title="计算机组成原理名词解释">
+                计算机组成原理名词解释 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -497,12 +491,6 @@
 
 
     <div class="post-spread">
-      
-        
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
   </div>
@@ -569,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +579,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -666,22 +654,8 @@
   </span>
   <span class="author" itemprop="copyrightHolder">David</span>
 
-  
+
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
 
         
 <div class="busuanzi-count">
@@ -835,21 +809,6 @@
 
 
 
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyto4vUae';
-      var conf = 'fbae73d15fb09500171cf0adae584a71';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
 
 
 
