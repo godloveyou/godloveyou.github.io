@@ -3,10 +3,10 @@ title: Executor框架简介
 categories: 多线程
 tags: java多线程
 ---
->Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。
 
-![Executor框架的成员及其关系]![mark](http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim)
+> Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。
 
+![Executor框架的成员及其关系](http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim)
 
 ### Executor框架包括3大部分：
 
@@ -25,7 +25,7 @@ tags: java多线程
 创建方式：ThreadPoolExecutor通常使用Executors来创建,Executors可以创建3种类型的ThreadPoolExecutor
 应用场景：适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景
 
-1. SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API
+1. SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API
 ```java
 public static ExecutorService newSingleThreadExecutor()
 public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory)
@@ -34,7 +34,7 @@ public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactor
 
 2. FixedThreadPool  用于创建使用固定线程数的FixedThreadPool的API
 
-  ```java
+```java
 public static ExecutorService newFixedThreadPool(int nThreads)
 public static ExecutorService newFixedThreadPool(int nThreads,ThreadFactory threadFactory)
 
@@ -83,20 +83,18 @@ Future<> submit(Runnable task)
 ```
 
 (4)Runnable接口和Callable接口
-Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。
+Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。
 
 除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。
+
 ```java
 public static Callable<Object> callable(Runnable task)
 ```
+
 下面是Executors提供的，把一个Runnable和一个待返回的结果包装成一个Callable的API
 ```java
 public static <T> Callable<T> callable(Runnable task, T result)
 ```
-
-
-
-
 
 ![Executor框架的使用示意图](http://blog.sjjtcloud.com/blog/20191122/jh9FyfKXLM3U.png?imageslim)
 
