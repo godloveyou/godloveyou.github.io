@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>使用Nextcloud搭建私有云盘</title>
+    <url>/2019/12/26/Nextcloud%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-安装并运行-首次默认会通过搜索远程来拉取"><a href="#1-安装并运行-首次默认会通过搜索远程来拉取" class="headerlink" title="1. 安装并运行(首次默认会通过搜索远程来拉取)"></a>1. 安装并运行(首次默认会通过搜索远程来拉取)</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d --name nextcloud \</span><br><span class="line">-p 8020:80 \</span><br><span class="line">-v /data/nextcloud:/var/www/html \</span><br><span class="line">nextcloud</span><br></pre></td></tr></table></figure>
+<h2 id="2-首次运行配置"><a href="#2-首次运行配置" class="headerlink" title="2. 首次运行配置"></a>2. 首次运行配置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">访问: http://安装的服务器ip:8020/</span><br><span class="line">配置用户名密码,数据库用户名密码</span><br><span class="line">注意: 实现创建好一个空的数据库,因为这里要使用到</span><br></pre></td></tr></table></figure>
+<h2 id="3-停止服务docker-stop-容器id"><a href="#3-停止服务docker-stop-容器id" class="headerlink" title="3. 停止服务docker stop 容器id"></a>3. 停止服务<code>docker stop 容器id</code></h2><h2 id="4-重启服务docker-start-容器id"><a href="#4-重启服务docker-start-容器id" class="headerlink" title="4. 重启服务docker start 容器id"></a>4. 重启服务<code>docker start 容器id</code></h2><h2 id="App中使用nextcloud"><a href="#App中使用nextcloud" class="headerlink" title="App中使用nextcloud"></a>App中使用nextcloud</h2><p><img src="http://blog.sjjtcloud.com/blog/20191226/97aLM514Kf0n.png?imageslim" alt="mark"></p>
+<h2 id="1-下载Android-iphone市场搜索nextcloud并下载"><a href="#1-下载Android-iphone市场搜索nextcloud并下载" class="headerlink" title="1. 下载Android/iphone市场搜索nextcloud并下载"></a>1. 下载Android/iphone市场搜索nextcloud并下载</h2><h2 id="2-指定登录地址http-安装的服务器ip-8020-用户名-密码即可登录管理"><a href="#2-指定登录地址http-安装的服务器ip-8020-用户名-密码即可登录管理" class="headerlink" title="2. 指定登录地址http://安装的服务器ip:8020/ 用户名,密码即可登录管理"></a>2. 指定登录地址http://安装的服务器ip:8020/ 用户名,密码即可登录管理</h2><p>参考博客: <a href="https://zhuanlan.zhihu.com/p/62987726" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/62987726</a></p>
+]]></content>
+      <categories>
+        <category>Nextcloud</category>
+      </categories>
+      <tags>
+        <tag>Nextcloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Idea怎样多次启动同一个服务(项目)</title>
+    <url>/2019/12/26/IDEA%E6%80%8E%E6%A0%B7%E5%A4%9A%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1(%E9%A1%B9%E7%9B%AE)/</url>
+    <content><![CDATA[<h1 id="1-Edit-configition"><a href="#1-Edit-configition" class="headerlink" title="1. Edit configition"></a>1. <strong>Edit configition</strong></h1><p><img src="http://blog.sjjtcloud.com/blog/20191226/x7TokVvXjQmW.png?imageslim" alt="mark"></p>
+<h1 id="2-Allow-running-in-paraller打钩"><a href="#2-Allow-running-in-paraller打钩" class="headerlink" title="2. Allow running in paraller打钩"></a>2. <strong>Allow running in paraller</strong>打钩</h1><p><img src="http://blog.sjjtcloud.com/blog/20191226/DiXWVjlWquUX.png?imageslim" alt="mark"></p>
+<h1 id="3-修改配置文件中的端口号"><a href="#3-修改配置文件中的端口号" class="headerlink" title="3. 修改配置文件中的端口号"></a>3. <strong>修改配置文件中的端口号</strong></h1><p><img src="http://blog.sjjtcloud.com/blog/20191226/XjdqL5dB05gq.png?imageslim" alt="mark"></p>
+<h1 id="4-重启项目即可"><a href="#4-重启项目即可" class="headerlink" title="4. 重启项目即可"></a>4. 重启项目即可</h1>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2019/12/24/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95-%E5%90%8D%E8%AF%8D/</url>
     <content><![CDATA[<h2 id="英语语法-名词"><a href="#英语语法-名词" class="headerlink" title="英语语法-名词"></a>英语语法-名词</h2><h3 id="1-名词复数规则变化"><a href="#1-名词复数规则变化" class="headerlink" title="1.名词复数规则变化"></a>1.名词复数规则变化</h3><table>
@@ -1362,19 +1391,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>阿里云常用文档</title>
-    <url>/2019/08/07/%E9%98%BF%E9%87%8C%E4%BA%91%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
-<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
-]]></content>
-      <categories>
-        <category>阿里云</category>
-      </categories>
-      <tags>
-        <tag>阿里云文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>为什么要使用spring?</title>
     <url>/2019/08/07/%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<blockquote>
@@ -1398,6 +1414,19 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title>阿里云常用文档</title>
+    <url>/2019/08/07/%E9%98%BF%E9%87%8C%E4%BA%91%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
+<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
+]]></content>
+      <categories>
+        <category>阿里云</category>
+      </categories>
+      <tags>
+        <tag>阿里云文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows/mac下图床神器</title>
     <url>/2019/08/07/%E5%9B%BE%E5%BA%8A%E7%A5%9E%E5%99%A8/</url>
     <content><![CDATA[<h2 id="windows下图床神器"><a href="#windows下图床神器" class="headerlink" title="windows下图床神器"></a>windows下图床神器</h2><p>价格: <code>免费</code><br>平台: <code>WINDOW</code><br>官网: <a href="http://mpic.lzhaofu.cn/" target="_blank" rel="noopener">图床神器MPIC</a></p>
@@ -1409,6 +1438,31 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>图床神器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前后端工程师的目标</title>
+    <url>/2019/08/07/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E7%9B%AE%E6%A0%87/</url>
+    <content><![CDATA[<h2 id="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精"><a href="#术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精" class="headerlink" title="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精."></a>术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精.</h2><hr>
+<h3 id="JAVA后端工程师"><a href="#JAVA后端工程师" class="headerlink" title="JAVA后端工程师"></a>JAVA后端工程师</h3><ul>
+<li><p>把精力放在java基础，设计模式，jvm原理，spring+springmvc原理及源码，linux，mysql事务隔离与锁机制，mongodb，http/tcp，多线程，分布式架构（dubbo，dubbox，spring cloud），弹性计算架构，微服务架构（springboot+zookeeper+docker+jenkins），java性能优化，以及相关的项目管理</p>
+</li>
+<li><p>后端追求的是：三高（高并发，高可用，高性能），安全，存储，业务等等 *</p>
+</li>
+</ul>
+<h3 id="前端工程师"><a href="#前端工程师" class="headerlink" title="前端工程师"></a>前端工程师</h3><ul>
+<li><p>把精力放在html5，css3，jquery，angularjs，bootstrap，reactjs，vuejs，webpack，less/sass，gulp，nodejs，Google V8引擎，javascript多线程，模块化，面向切面编程，设计模式，浏览器兼容性，性能优化等等。</p>
+</li>
+<li><p>前端追求的是：页面表现，速度流畅，兼容性，用户体验等等。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>全栈</category>
+      </categories>
+      <tags>
+        <tag>计划</tag>
+        <tag>目标</tag>
       </tags>
   </entry>
   <entry>
@@ -1447,28 +1501,17 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>前后端工程师的目标</title>
-    <url>/2019/08/07/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E7%9B%AE%E6%A0%87/</url>
-    <content><![CDATA[<h2 id="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精"><a href="#术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精" class="headerlink" title="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精."></a>术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精.</h2><hr>
-<h3 id="JAVA后端工程师"><a href="#JAVA后端工程师" class="headerlink" title="JAVA后端工程师"></a>JAVA后端工程师</h3><ul>
-<li><p>把精力放在java基础，设计模式，jvm原理，spring+springmvc原理及源码，linux，mysql事务隔离与锁机制，mongodb，http/tcp，多线程，分布式架构（dubbo，dubbox，spring cloud），弹性计算架构，微服务架构（springboot+zookeeper+docker+jenkins），java性能优化，以及相关的项目管理</p>
-</li>
-<li><p>后端追求的是：三高（高并发，高可用，高性能），安全，存储，业务等等 *</p>
-</li>
-</ul>
-<h3 id="前端工程师"><a href="#前端工程师" class="headerlink" title="前端工程师"></a>前端工程师</h3><ul>
-<li><p>把精力放在html5，css3，jquery，angularjs，bootstrap，reactjs，vuejs，webpack，less/sass，gulp，nodejs，Google V8引擎，javascript多线程，模块化，面向切面编程，设计模式，浏览器兼容性，性能优化等等。</p>
-</li>
-<li><p>前端追求的是：页面表现，速度流畅，兼容性，用户体验等等。</p>
-</li>
-</ul>
+    <title>使用nginx做反代时遇到413 Request Entity Too Large的解决方法</title>
+    <url>/2019/08/07/%E4%BD%BF%E7%94%A8nginx%E5%81%9A%E5%8F%8D%E4%BB%A3%E6%97%B6%E9%81%87%E5%88%B0413-Request-Entity-Too-Large%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p><strong><a href="https://www.cnblogs.com/jiaoyiping/p/5638096.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiaoyiping/p/5638096.html</a></strong></p>
+<p><a href="https://blog.csdn.net/qq_36949907/article/details/79182363" target="_blank" rel="noopener">https://blog.csdn.net/qq_36949907/article/details/79182363</a></p>
+<p><a href="https://www.cnblogs.com/wanghx-0713/p/8080571.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghx-0713/p/8080571.html</a><br>Mysql时间差函数<br>SELECT TIMESTAMPDIFF(MONTH,’2009-10-01’,’2009-09-01’);<br>interval可是：<br>SECOND 秒 SECONDS<br>MINUTE 分钟 MINUTES<br>HOUR 时间 HOURS<br>DAY 天 DAYS<br>MONTH 月 MONTHS<br>YEAR 年 YEARS</p>
 ]]></content>
       <categories>
-        <category>全栈</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>计划</tag>
-        <tag>目标</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1500,20 +1543,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>乡愁</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用nginx做反代时遇到413 Request Entity Too Large的解决方法</title>
-    <url>/2019/08/07/%E4%BD%BF%E7%94%A8nginx%E5%81%9A%E5%8F%8D%E4%BB%A3%E6%97%B6%E9%81%87%E5%88%B0413-Request-Entity-Too-Large%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p><strong><a href="https://www.cnblogs.com/jiaoyiping/p/5638096.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiaoyiping/p/5638096.html</a></strong></p>
-<p><a href="https://blog.csdn.net/qq_36949907/article/details/79182363" target="_blank" rel="noopener">https://blog.csdn.net/qq_36949907/article/details/79182363</a></p>
-<p><a href="https://www.cnblogs.com/wanghx-0713/p/8080571.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghx-0713/p/8080571.html</a><br>Mysql时间差函数<br>SELECT TIMESTAMPDIFF(MONTH,’2009-10-01’,’2009-09-01’);<br>interval可是：<br>SECOND 秒 SECONDS<br>MINUTE 分钟 MINUTES<br>HOUR 时间 HOURS<br>DAY 天 DAYS<br>MONTH 月 MONTHS<br>YEAR 年 YEARS</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1603,28 +1632,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>windows基于NGINX配置HTTPS证书</title>
-    <url>/2019/08/07/windows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6/</url>
-    <content><![CDATA[<ol>
-<li><p>下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官方下载链接</a>具体</p>
-</li>
-<li><p>从阿里云获取那个免费的HTTPS证书</p>
-</li>
-<li><p>Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是<strong>**</strong>.key和 ***.pem</p>
-</li>
-<li><p>修改配置文件如下</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 443;</span><br><span class="line">	server_name localhost;</span><br><span class="line">	ssl on;</span><br><span class="line">	ssl_certificate  	cert/2195340_www.baidu.com.pem;    #替换为自己的证书文件</span><br><span class="line">	ssl_certificate_key 	cert/2195340_www.baidu.com.key;#替换为自己的证书文件</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"></span><br><span class="line">   location / &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		root   D:/nginx-1.12.2/html;</span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">		try_files $uri $uri/ @router;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">   location /admin &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> server &#123;</span><br><span class="line">   	listen   80;</span><br><span class="line">	server_name www.nilaile.com  nilaile.com;   #这里改为自己的域名,多个域名空格分开</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>windows</category>
-      </categories>
-      <tags>
-        <tag>NGINX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows安装Nginx</title>
     <url>/2019/08/07/windows%E5%AE%89%E8%A3%85nginx/</url>
     <content><![CDATA[<h2 id="1-官方下载NGINX-download"><a href="#1-官方下载NGINX-download" class="headerlink" title="1. 官方下载NGINX download"></a>1. 官方下载NGINX <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">download</a></h2><h2 id="2-解压运行"><a href="#2-解压运行" class="headerlink" title="2.解压运行"></a>2.解压运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd c:\</span><br><span class="line">unzip nginx-1.12.2.zip</span><br><span class="line">cd nginx-1.12.2</span><br><span class="line">start nginx</span><br></pre></td></tr></table></figure>
@@ -1658,6 +1665,28 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 </tr>
 </tbody>
 </table>
+]]></content>
+      <categories>
+        <category>windows</category>
+      </categories>
+      <tags>
+        <tag>NGINX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows基于NGINX配置HTTPS证书</title>
+    <url>/2019/08/07/windows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6/</url>
+    <content><![CDATA[<ol>
+<li><p>下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官方下载链接</a>具体</p>
+</li>
+<li><p>从阿里云获取那个免费的HTTPS证书</p>
+</li>
+<li><p>Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是<strong>**</strong>.key和 ***.pem</p>
+</li>
+<li><p>修改配置文件如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 443;</span><br><span class="line">	server_name localhost;</span><br><span class="line">	ssl on;</span><br><span class="line">	ssl_certificate  	cert/2195340_www.baidu.com.pem;    #替换为自己的证书文件</span><br><span class="line">	ssl_certificate_key 	cert/2195340_www.baidu.com.key;#替换为自己的证书文件</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"></span><br><span class="line">   location / &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		root   D:/nginx-1.12.2/html;</span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">		try_files $uri $uri/ @router;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">   location /admin &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> server &#123;</span><br><span class="line">   	listen   80;</span><br><span class="line">	server_name www.nilaile.com  nilaile.com;   #这里改为自己的域名,多个域名空格分开</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>windows</category>
@@ -1710,6 +1739,15 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 ]]></content>
   </entry>
   <entry>
+    <title></title>
+    <url>/2019/08/07/oneMall%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h1 id="oneMall项目环境"><a href="#oneMall项目环境" class="headerlink" title="oneMall项目环境"></a>oneMall项目环境</h1><h3 id="Mysql5-7"><a href="#Mysql5-7" class="headerlink" title="Mysql5.7"></a>Mysql5.7</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: docker<br>用户名: root<br>密码: 123456<br>端口  13306：3306（docker中Mysql端口采用的默认3306,映射外部端口未13306）</p>
+<h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: docker<br>端口: 2181</p>
+<h3 id="RocketMq"><a href="#RocketMq" class="headerlink" title="RocketMq"></a>RocketMq</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: 直接安装（/root/rocketmq)<br>端口: 9876</p>
+<h3 id="elasticsearch2-5"><a href="#elasticsearch2-5" class="headerlink" title="elasticsearch2.5"></a>elasticsearch2.5</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: 直接安装<br>端口: 9200<br>安装的插件:  elasticsearch-analyzer-ik(中文分词插件)</p>
+]]></content>
+  </entry>
+  <entry>
     <title>next主题配置文件</title>
     <url>/2019/08/07/next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ===============================================================</span><br><span class="line"># ========================= ATTENTION! ==========================</span><br><span class="line"># ===============================================================</span><br><span class="line"># NexT repository is moving here: https://github.com/theme-next</span><br><span class="line"># ===============================================================</span><br><span class="line"># It&apos;s rebase to v6.0.0 and future maintenance will resume there</span><br><span class="line"># ===============================================================</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Theme Core Configuration Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Set to true, if you want to fully override the default configuration.</span><br><span class="line"># Useful if you don&apos;t want to inherit the theme _config.yml configurations.</span><br><span class="line">override: false</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Site Information Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># To get or check favicons visit: https://realfavicongenerator.net</span><br><span class="line"># Put your favicons into `hexo-site/source/` (recommend) or `hexo-site/themes/next/source/images/` directory.</span><br><span class="line"></span><br><span class="line"># Default NexT favicons placed in `hexo-site/themes/next/source/images/` directory.</span><br><span class="line"># And if you want to place your icons in `hexo-site/source/` root directory, you must remove `/images` prefix from pathes.</span><br><span class="line"></span><br><span class="line"># For example, you put your favicons into `hexo-site/source/images` directory.</span><br><span class="line"># Then need to rename &amp; redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/favicon-16x16-next.png</span><br><span class="line">  medium: /images/favicon-32x32-next.png</span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: /images/logo.svg</span><br><span class="line">  #android_manifest: /images/manifest.json</span><br><span class="line">  #ms_browserconfig: /images/browserconfig.xml</span><br><span class="line"></span><br><span class="line"># Set default keywords (Use a comma to separate)</span><br><span class="line">keywords: &quot;Hexo, NexT&quot;</span><br><span class="line"></span><br><span class="line"># Set rss to false to disable feed link.</span><br><span class="line"># Leave rss as empty to use site&apos;s feed link.</span><br><span class="line"># Set rss to specific value if you have burned your feed already.</span><br><span class="line">rss:</span><br><span class="line"></span><br><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup.</span><br><span class="line">  # If not defined, current year will be used.</span><br><span class="line">  #since: 2015</span><br><span class="line"></span><br><span class="line">  # Icon between year and copyright info.</span><br><span class="line">  icon: user</span><br><span class="line"></span><br><span class="line">  # If not defined, will be used `author` from Hexo main config.</span><br><span class="line">  copyright:</span><br><span class="line">  # -------------------------------------------------------------</span><br><span class="line">  # Hexo link (Powered by Hexo).</span><br><span class="line">  powered: true</span><br><span class="line"></span><br><span class="line">  theme:</span><br><span class="line">    # Theme &amp; scheme info link (Theme - NexT.scheme).</span><br><span class="line">    enable: true</span><br><span class="line">    # Version info of NexT after scheme info (vX.X.X).</span><br><span class="line">    version: true</span><br><span class="line">  # -------------------------------------------------------------</span><br><span class="line">  # Any custom text can be defined here.</span><br><span class="line">  #custom_text: Hosted by &lt;a target=&quot;_blank&quot; href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># SEO Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.</span><br><span class="line"># See: https://support.google.com/webmasters/answer/139066</span><br><span class="line"># Tips: Before you open this tag, remember set up your URL in hexo _config.yml ( ex. url: http://yourdomain.com )</span><br><span class="line">canonical: true</span><br><span class="line"></span><br><span class="line"># Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.</span><br><span class="line">seo: false</span><br><span class="line"></span><br><span class="line"># If true, will add site-subtitle to index page, added in main hexo config.</span><br><span class="line"># subtitle: Subtitle</span><br><span class="line">index_with_subtitle: false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash from link value (/archives -&gt; archives).</span><br><span class="line"># Usage: `Key: /link/ || icon`</span><br><span class="line"># Key is the name of menu item. If translate for this menu will find in languages - this translate will be loaded; if not - Key name will be used. Key is case-senstive.</span><br><span class="line"># Value before `||` delimeter is the target link.</span><br><span class="line"># Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.</span><br><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  #about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  #categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  commonweal: /404.html  || heartbeat</span><br><span class="line"></span><br><span class="line"># Enable/Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Sidebar Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Social Links.</span><br><span class="line"># Usage: `Key: permalink || icon`</span><br><span class="line"># Key is the link label showing to end users.</span><br><span class="line"># Value before `||` delimeter is the target permalink.</span><br><span class="line"># Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/godloveyou || github</span><br><span class="line">  E-Mail: mailto:823939100@gmail.com || envelope</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  #Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line">social_icons:</span><br><span class="line">  enable: true</span><br><span class="line">  icons_only: false</span><br><span class="line">  transition: false</span><br><span class="line"></span><br><span class="line"># Blog rolls</span><br><span class="line">links_icon: link</span><br><span class="line">links_title: Links</span><br><span class="line">links_layout: block</span><br><span class="line">#links_layout: inline</span><br><span class="line">#links:</span><br><span class="line">  #Title: http://example.com/</span><br><span class="line"></span><br><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/author.png</span><br><span class="line"></span><br><span class="line"># Table Of Contents in the Sidebar</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line"></span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line"></span><br><span class="line"># Creative Commons 4.0 International License.</span><br><span class="line"># http://creativecommons.org/</span><br><span class="line"># Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero</span><br><span class="line">#creative_commons: by-nc-sa</span><br><span class="line">#creative_commons:</span><br><span class="line"></span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position, available value: left | right (only for Pisces | Gemini).</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Sidebar Display, available value (only for Muse | Mist):</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  Totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line">  #display: always</span><br><span class="line">  #display: hide</span><br><span class="line">  #display: remove</span><br><span class="line"></span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line"></span><br><span class="line">  # Back to top in sidebar (only for Pisces | Gemini).</span><br><span class="line">  b2t: false</span><br><span class="line"></span><br><span class="line">  # Scroll percent label in b2t button.</span><br><span class="line">  scrollpercent: false</span><br><span class="line"></span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Post Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Automatically scroll page to section which is under &lt;!-- more --&gt; mark.</span><br><span class="line">scroll_to_more: true</span><br><span class="line"></span><br><span class="line"># Automatically saving scroll position on each post/page in cookies.</span><br><span class="line">save_scroll: false</span><br><span class="line"></span><br><span class="line"># Automatically excerpt description in homepage as preamble text.</span><br><span class="line">excerpt_description: true</span><br><span class="line"></span><br><span class="line"># Automatically Excerpt. Not recommend.</span><br><span class="line"># Please use &lt;!-- more --&gt; in the post to control excerpt accurately.</span><br><span class="line">auto_excerpt:</span><br><span class="line">  enable: false</span><br><span class="line">  length: 150</span><br><span class="line"></span><br><span class="line"># Post meta display settings</span><br><span class="line">post_meta:</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true</span><br><span class="line">  updated_at: false</span><br><span class="line">  categories: true</span><br><span class="line"></span><br><span class="line"># Post wordcount display settings</span><br><span class="line"># Dependencies: https://github.com/willin/hexo-wordcount</span><br><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: false</span><br><span class="line">  min2read: false</span><br><span class="line">  totalcount: false</span><br><span class="line">  separated_meta: true</span><br><span class="line"></span><br><span class="line"># Wechat Subscriber</span><br><span class="line">#wechat_subscriber:</span><br><span class="line">  #enabled: true</span><br><span class="line">  #qcode: /path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg</span><br><span class="line">  #description: ex. subscribe to my blog by scanning my public wechat account</span><br><span class="line"></span><br><span class="line"># Reward</span><br><span class="line">#reward_comment: Donate comment here</span><br><span class="line">#wechatpay: /images/wechatpay.jpg</span><br><span class="line">#alipay: /images/alipay.jpg</span><br><span class="line">#bitcoin: /images/bitcoin.png</span><br><span class="line"></span><br><span class="line"># Declare license on posts</span><br><span class="line">post_copyright:</span><br><span class="line">  enable: false</span><br><span class="line">  license: CC BY-NC-SA 3.0</span><br><span class="line">  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Misc Theme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Reduce padding / margin indents on devices with narrow width.</span><br><span class="line">mobile_layout_economy: false</span><br><span class="line"></span><br><span class="line"># Android Chrome header panel color ($black-deep).</span><br><span class="line">android_chrome_color: &quot;#222&quot;</span><br><span class="line"></span><br><span class="line"># Custom Logo.</span><br><span class="line"># !!Only available for Default Scheme currently.</span><br><span class="line"># Options:</span><br><span class="line">#   enabled: [true/false] - Replace with specific image</span><br><span class="line">#   image: url-of-image   - Images&apos;s url</span><br><span class="line">custom_logo:</span><br><span class="line">  enabled: false</span><br><span class="line">  image:</span><br><span class="line"></span><br><span class="line"># Code Highlight theme</span><br><span class="line"># Available value:</span><br><span class="line">#    normal | night | night eighties | night blue | night bright</span><br><span class="line"># https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">highlight_theme: normal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Font Settings</span><br><span class="line"># - Find fonts on Google Fonts (https://www.google.com/fonts)</span><br><span class="line"># - All fonts set here will have the following styles:</span><br><span class="line">#     light, light italic, normal, normal italic, bold, bold italic</span><br><span class="line"># - Be aware that setting too much fonts will cause site running slowly</span><br><span class="line"># - Introduce in 5.0.1</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># CAUTION! Safari Version 10.1.2 bug: https://github.com/iissnan/hexo-theme-next/issues/1844</span><br><span class="line"># To avoid space between header and sidebar in Pisces / Gemini themes recommended to use Web Safe fonts for `global` (and `logo`):</span><br><span class="line"># Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line">font:</span><br><span class="line">  enable: false</span><br><span class="line"></span><br><span class="line">  # Uri of fonts host. E.g. //fonts.googleapis.com (Default).</span><br><span class="line">  host:</span><br><span class="line"></span><br><span class="line">  # Font options:</span><br><span class="line">  # `external: true` will load this font family from `host` above.</span><br><span class="line">  # `family: Times New Roman`. Without any quotes.</span><br><span class="line">  # `size: xx`. Use `px` as unit.</span><br><span class="line"></span><br><span class="line">  # Global font settings used on &lt;body&gt; element.</span><br><span class="line">  global:</span><br><span class="line">    external: true</span><br><span class="line">    family: Lato</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for Headlines (h1, h2, h3, h4, h5, h6).</span><br><span class="line">  # Fallback to `global` font settings.</span><br><span class="line">  headings:</span><br><span class="line">    external: true</span><br><span class="line">    family:</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for posts.</span><br><span class="line">  # Fallback to `global` font settings.</span><br><span class="line">  posts:</span><br><span class="line">    external: true</span><br><span class="line">    family:</span><br><span class="line"></span><br><span class="line">  # Font settings for Logo.</span><br><span class="line">  # Fallback to `global` font settings.</span><br><span class="line">  logo:</span><br><span class="line">    external: true</span><br><span class="line">    family:</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for &lt;code&gt; and code blocks.</span><br><span class="line">  codes:</span><br><span class="line">    external: true</span><br><span class="line">    family:</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Third Party Services Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: false</span><br><span class="line">  per_page: false</span><br><span class="line">  cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span><br><span class="line"></span><br><span class="line"># Han Support docs: https://hanzi.pro/</span><br><span class="line">han: false</span><br><span class="line"></span><br><span class="line"># Swiftype Search API Key</span><br><span class="line"> #swiftype_key: jYY_fsKS5TYycYSCJas6</span><br><span class="line"></span><br><span class="line"># Baidu Analytics ID</span><br><span class="line">baidu_analytics: f7d714ed33bfd150a4e166afae0d03d3</span><br><span class="line"></span><br><span class="line"># Duoshuo ShortName</span><br><span class="line">#duoshuo_shortname:</span><br><span class="line"></span><br><span class="line"># Disqus</span><br><span class="line">disqus:</span><br><span class="line">  enable: false</span><br><span class="line">  shortname:</span><br><span class="line">  count: true</span><br><span class="line"></span><br><span class="line"># Hypercomments</span><br><span class="line">#hypercomments_id:</span><br><span class="line"></span><br><span class="line"># changyan</span><br><span class="line">changyan:</span><br><span class="line">  enable: true</span><br><span class="line">  appid: cyto4vUae</span><br><span class="line">  appkey: fbae73d15fb09500171cf0adae584a71</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: false</span><br><span class="line">  appid:  # your leancloud application appid</span><br><span class="line">  appkey:  # your leancloud application appkey</span><br><span class="line">  notify: false # mail notifier , https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: Just go go # comment box placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick,mail,link # custom comment header</span><br><span class="line">  pageSize: 10 # pagination size</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Support for youyan comments system.</span><br><span class="line"># You can get your uid from http://www.uyan.cc</span><br><span class="line">#youyan_uid: your uid</span><br><span class="line"></span><br><span class="line"># Support for LiveRe comments system.</span><br><span class="line"># You can get your uid from https://livere.com/insight/myCode (General web site)</span><br><span class="line">#livere_uid: your uid</span><br><span class="line"></span><br><span class="line"># Gitment</span><br><span class="line"># Introduction: https://imsun.net/posts/gitment-introduction/</span><br><span class="line"># You can get your Github ID from https://api.github.com/users/&lt;Github username&gt;</span><br><span class="line">gitment:</span><br><span class="line">  enable: false</span><br><span class="line">  mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway</span><br><span class="line">  count: true # Show comments count in post meta area</span><br><span class="line">  lazy: false # Comments lazy loading with a button</span><br><span class="line">  cleanly: false # Hide &apos;Powered by ...&apos; on footer, and more</span><br><span class="line">  language: # Force language, or auto switch by theme</span><br><span class="line">  github_user: # MUST HAVE, Your Github ID</span><br><span class="line">  github_repo: # MUST HAVE, The repo you use to store Gitment comments</span><br><span class="line">  client_id: # MUST HAVE, Github client id for the Gitment</span><br><span class="line">  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment</span><br><span class="line">  proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect</span><br><span class="line">  redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled</span><br><span class="line"></span><br><span class="line"># Baidu Share</span><br><span class="line"># Available value:</span><br><span class="line">#    button | slide</span><br><span class="line"># Warning: Baidu Share does not support https.</span><br><span class="line">baidushare: true</span><br><span class="line">type: button</span><br><span class="line"></span><br><span class="line"># Share</span><br><span class="line"># This plugin is more useful in China, make sure you known how to use it.</span><br><span class="line"># And you can find the use guide at official webiste: http://www.jiathis.com/.</span><br><span class="line"># Warning: JiaThis does not support https.</span><br><span class="line">#jiathis:</span><br><span class="line">  ##uid: Get this uid from http://www.jiathis.com/</span><br><span class="line">#add_this_id:</span><br><span class="line"></span><br><span class="line"># Share</span><br><span class="line">#duoshuo_share: true</span><br><span class="line"></span><br><span class="line"># NeedMoreShare2</span><br><span class="line"># This plugin is a pure javascript sharing lib which is useful in China.</span><br><span class="line"># See: https://github.com/revir/need-more-share2</span><br><span class="line"># Also see: https://github.com/DzmVasileusky/needShareButton</span><br><span class="line"># iconStyle: default | box</span><br><span class="line"># boxForm: horizontal | vertical</span><br><span class="line"># position: top / middle / bottom + Left / Center / Right</span><br><span class="line"># networks: Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Reddit,</span><br><span class="line">#           Delicious,StumbleUpon,Pinterest,Facebook,GooglePlus,Slashdot,</span><br><span class="line">#           Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,</span><br><span class="line">#           Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru</span><br><span class="line">needmoreshare2:</span><br><span class="line">  enable: false</span><br><span class="line">  postbottom:</span><br><span class="line">    enable: false</span><br><span class="line">    options:</span><br><span class="line">      iconStyle: box</span><br><span class="line">      boxForm: horizontal</span><br><span class="line">      position: bottomCenter</span><br><span class="line">      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook</span><br><span class="line">  float:</span><br><span class="line">    enable: false</span><br><span class="line">    options:</span><br><span class="line">      iconStyle: box</span><br><span class="line">      boxForm: horizontal</span><br><span class="line">      position: middleRight</span><br><span class="line">      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook</span><br><span class="line"></span><br><span class="line"># Google Webmaster tools verification setting</span><br><span class="line"># See: https://www.google.com/webmasters/</span><br><span class="line">#google_site_verification:</span><br><span class="line"></span><br><span class="line"># Google Analytics</span><br><span class="line">#google_analytics:</span><br><span class="line"></span><br><span class="line"># Bing Webmaster tools verification setting</span><br><span class="line"># See: https://www.bing.com/webmaster/</span><br><span class="line">#bing_site_verification:</span><br><span class="line"></span><br><span class="line"># Yandex Webmaster tools verification setting</span><br><span class="line"># See: https://webmaster.yandex.ru/</span><br><span class="line">#yandex_site_verification:</span><br><span class="line"></span><br><span class="line"># CNZZ count</span><br><span class="line">#cnzz_siteid:</span><br><span class="line"></span><br><span class="line"># Application Insights</span><br><span class="line"># See https://azure.microsoft.com/en-us/services/application-insights/</span><br><span class="line"># application_insights:</span><br><span class="line"></span><br><span class="line"># Make duoshuo show UA</span><br><span class="line"># user_id must NOT be null when admin_enable is true!</span><br><span class="line"># you can visit http://dev.duoshuo.com get duoshuo user id.</span><br><span class="line">duoshuo_info:</span><br><span class="line">  ua_enable: true</span><br><span class="line">  admin_enable: false</span><br><span class="line">  user_id: 0</span><br><span class="line">  #admin_nickname: Author</span><br><span class="line"></span><br><span class="line"># Post widgets &amp; FB/VK comments settings.</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Facebook SDK Support.</span><br><span class="line"># https://github.com/iissnan/hexo-theme-next/pull/410</span><br><span class="line">facebook_sdk:</span><br><span class="line">  enable:       false</span><br><span class="line">  app_id:       #&lt;app_id&gt;</span><br><span class="line">  fb_admin:     #&lt;user_id&gt;</span><br><span class="line">  like_button:  #true</span><br><span class="line">  webmaster:    #true</span><br><span class="line"></span><br><span class="line"># Facebook comments plugin</span><br><span class="line"># This plugin depends on Facebook SDK.</span><br><span class="line"># If facebook_sdk.enable is false, Facebook comments plugin is unavailable.</span><br><span class="line">facebook_comments_plugin:</span><br><span class="line">  enable:       false</span><br><span class="line">  num_of_posts: 10    # min posts num is 1</span><br><span class="line">  width:        100%  # default width is 550px</span><br><span class="line">  scheme:       light # default scheme is light (light or dark)</span><br><span class="line"></span><br><span class="line"># VKontakte API Support.</span><br><span class="line"># To get your AppID visit https://vk.com/editapp?act=create</span><br><span class="line">vkontakte_api:</span><br><span class="line">  enable:       false</span><br><span class="line">  app_id:       #&lt;app_id&gt;</span><br><span class="line">  like:         true</span><br><span class="line">  comments:     true</span><br><span class="line">  num_of_posts: 10</span><br><span class="line"></span><br><span class="line"># Star rating support to each article.</span><br><span class="line"># To get your ID visit https://widgetpack.com</span><br><span class="line">rating:</span><br><span class="line">  enable: false</span><br><span class="line">  id:     #&lt;app_id&gt;</span><br><span class="line">  color:  fc6423</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Show number of visitors to each article.</span><br><span class="line"># You can visit https://leancloud.cn get AppID and AppKey.</span><br><span class="line">leancloud_visitors:</span><br><span class="line">  enable: false</span><br><span class="line">  app_id: #&lt;app_id&gt;</span><br><span class="line">  app_key: #&lt;app_key&gt;</span><br><span class="line"></span><br><span class="line"># Another tool to show number of visitors to each article.</span><br><span class="line"># visit https://console.firebase.google.com/u/0/ to get apiKey and projectId</span><br><span class="line"># visit https://firebase.google.com/docs/firestore/ to get more information about firestore</span><br><span class="line">firestore:</span><br><span class="line">  enable: false</span><br><span class="line">  collection: articles #required, a string collection name to access firestore database</span><br><span class="line">  apiKey: #required</span><br><span class="line">  projectId: #required</span><br><span class="line">  bluebird: false #enable this if you want to include bluebird 3.5.1(core version) Promise polyfill</span><br><span class="line"></span><br><span class="line"># Show PV/UV of the website/page with busuanzi.</span><br><span class="line"># Get more information on http://ibruce.info/2015/04/04/busuanzi/</span><br><span class="line">busuanzi_count:</span><br><span class="line">  # count values only if the other configs are false</span><br><span class="line">  enable: true</span><br><span class="line">  # custom uv span for the whole site</span><br><span class="line">  site_uv: true</span><br><span class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_uv_footer:</span><br><span class="line">  # custom pv span for the whole site</span><br><span class="line">  site_pv: true</span><br><span class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;</span><br><span class="line">  site_pv_footer:</span><br><span class="line">  # custom pv span for one page only</span><br><span class="line">  page_pv: true</span><br><span class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt;</span><br><span class="line">  page_pv_footer:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Tencent analytics ID</span><br><span class="line"># tencent_analytics:</span><br><span class="line"></span><br><span class="line"># Tencent MTA ID</span><br><span class="line"># tencent_mta:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO</span><br><span class="line">baidu_push: false</span><br><span class="line"></span><br><span class="line"># Google Calendar</span><br><span class="line"># Share your recent schedule to others via calendar page</span><br><span class="line">#</span><br><span class="line"># API Documentation:</span><br><span class="line"># https://developers.google.com/google-apps/calendar/v3/reference/events/list</span><br><span class="line">calendar:</span><br><span class="line">  enable: false</span><br><span class="line">  calendar_id: &lt;required&gt;</span><br><span class="line">  api_key: &lt;required&gt;</span><br><span class="line">  orderBy: startTime</span><br><span class="line">  offsetMax: 24</span><br><span class="line">  offsetMin: 4</span><br><span class="line">  timeZone:</span><br><span class="line">  showDeleted: false</span><br><span class="line">  singleEvents: true</span><br><span class="line">  maxResults: 250</span><br><span class="line"></span><br><span class="line"># Algolia Search</span><br><span class="line">algolia_search:</span><br><span class="line">  enable: false</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 10</span><br><span class="line">  labels:</span><br><span class="line">    input_placeholder: Search for Posts</span><br><span class="line">    hits_empty: &quot;We didn&apos;t find any results for the search: $&#123;query&#125;&quot;</span><br><span class="line">    hits_stats: &quot;$&#123;hits&#125; results found in $&#123;time&#125; ms&quot;</span><br><span class="line"></span><br><span class="line"># Local search</span><br><span class="line"># Dependencies: https://github.com/flashlab/hexo-generator-search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # if auto, trigger search by changing input</span><br><span class="line">  # if manual, trigger search by pressing enter key or search button</span><br><span class="line">  trigger: auto</span><br><span class="line">  # show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Tags Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># External URL with BASE64 encrypt &amp; decrypt.</span><br><span class="line"># Usage: &#123;% exturl text url &quot;title&quot; %&#125;</span><br><span class="line"># Alias: &#123;% extlink text url &quot;title&quot; %&#125;</span><br><span class="line">exturl: false</span><br><span class="line"></span><br><span class="line"># Note tag (bs-callout).</span><br><span class="line">note:</span><br><span class="line">  # Note tag style values:</span><br><span class="line">  #  - simple    bs-callout old alert style. Default.</span><br><span class="line">  #  - modern    bs-callout new (v2-v3) alert style.</span><br><span class="line">  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span><br><span class="line">  #  - disabled  disable all CSS styles import of note tag.</span><br><span class="line">  style: simple</span><br><span class="line">  icons: false</span><br><span class="line">  border_radius: 3</span><br><span class="line">  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span><br><span class="line">  # Offset also applied to label tag variables. This option can work with disabled note tag.</span><br><span class="line">  light_bg_offset: 0</span><br><span class="line"></span><br><span class="line"># Label tag.</span><br><span class="line">label: true</span><br><span class="line"></span><br><span class="line"># Tabs tag.</span><br><span class="line">tabs:</span><br><span class="line">  enable: true</span><br><span class="line">  transition:</span><br><span class="line">    tabs: false</span><br><span class="line">    labels: true</span><br><span class="line">  border_radius: 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#! ---------------------------------------------------------------</span><br><span class="line">#! DO NOT EDIT THE FOLLOWING SETTINGS</span><br><span class="line">#! UNLESS YOU KNOW WHAT YOU ARE DOING</span><br><span class="line">#! ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Use velocity to animate everything.</span><br><span class="line">motion:</span><br><span class="line">  enable: true</span><br><span class="line">  async: false</span><br><span class="line">  transition:</span><br><span class="line">    # Transition variants:</span><br><span class="line">    # fadeIn | fadeOut | flipXIn | flipXOut | flipYIn | flipYOut | flipBounceXIn | flipBounceXOut | flipBounceYIn | flipBounceYOut</span><br><span class="line">    # swoopIn | swoopOut | whirlIn | whirlOut | shrinkIn | shrinkOut | expandIn | expandOut</span><br><span class="line">    # bounceIn | bounceOut | bounceUpIn | bounceUpOut | bounceDownIn | bounceDownOut | bounceLeftIn | bounceLeftOut | bounceRightIn | bounceRightOut</span><br><span class="line">    # slideUpIn | slideUpOut | slideDownIn | slideDownOut | slideLeftIn | slideLeftOut | slideRightIn | slideRightOut</span><br><span class="line">    # slideUpBigIn | slideUpBigOut | slideDownBigIn | slideDownBigOut | slideLeftBigIn | slideLeftBigOut | slideRightBigIn | slideRightBigOut</span><br><span class="line">    # perspectiveUpIn | perspectiveUpOut | perspectiveDownIn | perspectiveDownOut | perspectiveLeftIn | perspectiveLeftOut | perspectiveRightIn | perspectiveRightOut</span><br><span class="line">    post_block: fadeIn</span><br><span class="line">    post_header: slideDownIn</span><br><span class="line">    post_body: slideDownIn</span><br><span class="line">    coll_header: slideLeftIn</span><br><span class="line">    # Only for Pisces | Gemini.</span><br><span class="line">    sidebar: slideUpIn</span><br><span class="line"></span><br><span class="line"># Fancybox</span><br><span class="line">fancybox: true</span><br><span class="line"></span><br><span class="line"># Progress bar in the top during page loading.</span><br><span class="line">pace: false</span><br><span class="line"># Themes list:</span><br><span class="line">#pace-theme-big-counter</span><br><span class="line">#pace-theme-bounce</span><br><span class="line">#pace-theme-barber-shop</span><br><span class="line">#pace-theme-center-atom</span><br><span class="line">#pace-theme-center-circle</span><br><span class="line">#pace-theme-center-radar</span><br><span class="line">#pace-theme-center-simple</span><br><span class="line">#pace-theme-corner-indicator</span><br><span class="line">#pace-theme-fill-left</span><br><span class="line">#pace-theme-flash</span><br><span class="line">#pace-theme-loading-bar</span><br><span class="line">#pace-theme-mac-osx</span><br><span class="line">#pace-theme-minimal</span><br><span class="line"># For example</span><br><span class="line"># pace_theme: pace-theme-center-simple</span><br><span class="line">pace_theme: pace-theme-minimal</span><br><span class="line"></span><br><span class="line"># Canvas-nest</span><br><span class="line">canvas_nest: false</span><br><span class="line"></span><br><span class="line"># three_waves</span><br><span class="line">three_waves: false</span><br><span class="line"></span><br><span class="line"># canvas_lines</span><br><span class="line">canvas_lines: false</span><br><span class="line"></span><br><span class="line"># canvas_sphere</span><br><span class="line">canvas_sphere: false</span><br><span class="line"></span><br><span class="line"># Only fit scheme Pisces</span><br><span class="line"># Canvas-ribbon</span><br><span class="line"># size: The width of the ribbon.</span><br><span class="line"># alpha: The transparency of the ribbon.</span><br><span class="line"># zIndex: The display level of the ribbon.</span><br><span class="line">canvas_ribbon:</span><br><span class="line">  enable: false</span><br><span class="line">  size: 300</span><br><span class="line">  alpha: 0.6</span><br><span class="line">  zIndex: -1</span><br><span class="line"></span><br><span class="line"># Script Vendors.</span><br><span class="line"># Set a CDN address for the vendor you want to customize.</span><br><span class="line"># For example</span><br><span class="line">#    jquery: https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js</span><br><span class="line"># Be aware that you should use the same version as internal ones to avoid potential problems.</span><br><span class="line"># Please use the https protocol of CDN files when you enable https on your site.</span><br><span class="line">vendors:</span><br><span class="line">  # Internal path prefix. Please do not edit it.</span><br><span class="line">  _internal: lib</span><br><span class="line"></span><br><span class="line">  # Internal version: 2.1.3</span><br><span class="line">  jquery:</span><br><span class="line"></span><br><span class="line">  # Internal version: 2.1.5</span><br><span class="line">  # See: http://fancyapps.com/fancybox/</span><br><span class="line">  fancybox:</span><br><span class="line">  fancybox_css:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.0.6</span><br><span class="line">  # See: https://github.com/ftlabs/fastclick</span><br><span class="line">  fastclick:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.9.7</span><br><span class="line">  # See: https://github.com/tuupola/jquery_lazyload</span><br><span class="line">  lazyload:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.2.1</span><br><span class="line">  # See: http://VelocityJS.org</span><br><span class="line">  velocity:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.2.1</span><br><span class="line">  # See: http://VelocityJS.org</span><br><span class="line">  velocity_ui:</span><br><span class="line"></span><br><span class="line">  # Internal version: 0.7.9</span><br><span class="line">  # See: https://faisalman.github.io/ua-parser-js/</span><br><span class="line">  ua_parser:</span><br><span class="line"></span><br><span class="line">  # Internal version: 4.6.2</span><br><span class="line">  # See: http://fontawesome.io/</span><br><span class="line">  fontawesome:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1</span><br><span class="line">  # https://www.algolia.com</span><br><span class="line">  algolia_instant_js:</span><br><span class="line">  algolia_instant_css:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.0.2</span><br><span class="line">  # See: https://github.com/HubSpot/pace</span><br><span class="line">  # Or use direct links below:</span><br><span class="line">  # pace: //cdn.bootcss.com/pace/1.0.2/pace.min.js</span><br><span class="line">  # pace_css: //cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css</span><br><span class="line">  pace:</span><br><span class="line">  pace_css:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.0.0</span><br><span class="line">  # https://github.com/hustcc/canvas-nest.js</span><br><span class="line">  canvas_nest:</span><br><span class="line"></span><br><span class="line">  # three</span><br><span class="line">  three:</span><br><span class="line"></span><br><span class="line">  # three_waves</span><br><span class="line">  # https://github.com/jjandxa/three_waves</span><br><span class="line">  three_waves:</span><br><span class="line"></span><br><span class="line">  # three_waves</span><br><span class="line">  # https://github.com/jjandxa/canvas_lines</span><br><span class="line">  canvas_lines:</span><br><span class="line"></span><br><span class="line">  # three_waves</span><br><span class="line">  # https://github.com/jjandxa/canvas_sphere</span><br><span class="line">  canvas_sphere:</span><br><span class="line"></span><br><span class="line">  # Internal version: 1.0.0</span><br><span class="line">  # https://github.com/zproo/canvas-ribbon</span><br><span class="line">  canvas_ribbon:</span><br><span class="line"></span><br><span class="line">  # Internal version: 3.3.0</span><br><span class="line">  # https://github.com/ethantw/Han</span><br><span class="line">  han:</span><br><span class="line"></span><br><span class="line">  # needMoreShare2</span><br><span class="line">  # https://github.com/revir/need-more-share2</span><br><span class="line">  needMoreShare2:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Assets</span><br><span class="line">css: css</span><br><span class="line">js: js</span><br><span class="line">images: images</span><br><span class="line"></span><br><span class="line"># Theme version</span><br><span class="line">version: 5.1.4</span><br></pre></td></tr></table></figure>]]></content>
@@ -1719,15 +1757,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       <tags>
         <tag>next主题</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2019/08/07/oneMall%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h1 id="oneMall项目环境"><a href="#oneMall项目环境" class="headerlink" title="oneMall项目环境"></a>oneMall项目环境</h1><h3 id="Mysql5-7"><a href="#Mysql5-7" class="headerlink" title="Mysql5.7"></a>Mysql5.7</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: docker<br>用户名: root<br>密码: 123456<br>端口  13306：3306（docker中Mysql端口采用的默认3306,映射外部端口未13306）</p>
-<h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: docker<br>端口: 2181</p>
-<h3 id="RocketMq"><a href="#RocketMq" class="headerlink" title="RocketMq"></a>RocketMq</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: 直接安装（/root/rocketmq)<br>端口: 9876</p>
-<h3 id="elasticsearch2-5"><a href="#elasticsearch2-5" class="headerlink" title="elasticsearch2.5"></a>elasticsearch2.5</h3><p>安装位置: 192.168.1.34(虚拟机)<br>安装方式: 直接安装<br>端口: 9200<br>安装的插件:  elasticsearch-analyzer-ik(中文分词插件)</p>
-]]></content>
   </entry>
   <entry>
     <title>linux文件系统</title>
@@ -1771,6 +1800,19 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 </li>
 </ol>
 ]]></content>
+  </entry>
+  <entry>
+    <title>springboot以jar包启动,打包到测试服务器,中文乱码,数据库乱码</title>
+    <url>/2019/08/07/jar%E5%8C%85%E5%90%AF%E5%8A%A8%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>原因<br>windows启动的jar的时候给Java虚拟机设置编码默认不是utf-8, 所以乱码,同时连接插入到数据库的很多数据也是乱码, linux系统的服务器编码默认是utf-8，对于是windows的服务器默认不是utf-8。所以在启动的时候需要设置编码方式。</p>
+<p>解决方案: 启动jar包时设置编码<br>如下所示：java -Dfile.encoding=utf=8 -<br><code>java -Dfile.encoding=utf-8 -jar rr-api.jar</code></p>
+]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>中文乱码</tag>
+      </tags>
   </entry>
   <entry>
     <title>jenkins配置部署启动springboot项目</title>
@@ -1835,19 +1877,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot以jar包启动,打包到测试服务器,中文乱码,数据库乱码</title>
-    <url>/2019/08/07/jar%E5%8C%85%E5%90%AF%E5%8A%A8%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>原因<br>windows启动的jar的时候给Java虚拟机设置编码默认不是utf-8, 所以乱码,同时连接插入到数据库的很多数据也是乱码, linux系统的服务器编码默认是utf-8，对于是windows的服务器默认不是utf-8。所以在启动的时候需要设置编码方式。</p>
-<p>解决方案: 启动jar包时设置编码<br>如下所示：java -Dfile.encoding=utf=8 -<br><code>java -Dfile.encoding=utf-8 -jar rr-api.jar</code></p>
-]]></content>
-      <categories>
-        <category>springboot</category>
-      </categories>
-      <tags>
-        <tag>中文乱码</tag>
       </tags>
   </entry>
   <entry>
@@ -1979,6 +2008,27 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title>centOS ssh连接 一段时间无操作连接自动断开问题</title>
+    <url>/2019/08/07/centOS-ssh%E8%BF%9E%E6%8E%A5-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E6%97%A0%E6%93%8D%E4%BD%9C%E8%BF%9E%E6%8E%A5%E8%87%AA%E5%8A%A8%E6%96%AD%E5%BC%80%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>解决方法：</p>
+<p>1 修改  /etc/ssh/sshd_config 文件<br>执行命令：vi /etc/ssh/sshd_config</p>
+<p>中间部分有：</p>
+<h4 id="ClientAliveInterval-0"><a href="#ClientAliveInterval-0" class="headerlink" title="ClientAliveInterval 0"></a>ClientAliveInterval 0</h4><h4 id="ClientAliveCountMax-3"><a href="#ClientAliveCountMax-3" class="headerlink" title="ClientAliveCountMax 3"></a>ClientAliveCountMax 3</h4><p>改为：</p>
+<p>ClientAliveInterval 60</p>
+<p>ClientAliveCountMax 60</p>
+<p>修改后如下用图：</p>
+<p>ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送.而ClientAliveInterval 60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了</p>
+<p>ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开 。</p>
+<p>2重启sshd （必须的否则无效）<br>执行命令：/bin/systemctl restart  sshd.service<br>我有在网上找这个问题的解决方法，有的只改参数，没有讲重启sshd。有的说了但是呢在我的机子上命令不能用，例如：/etc/init.d/sshdstart   /etc/rc.d/init.d/sshd restart</p>
+]]></content>
+      <categories>
+        <category>centos</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cron表达式详解</title>
     <url>/2019/08/07/cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>　<br>　　　Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7个域，每一个域代表一个含义，Cron有如下两种语法格式：<br>　　（1） Seconds Minutes Hours DayofMonth Month DayofWeek Year<br>　　（2） Seconds Minutes Hours DayofMonth Month DayofWeek</p>
@@ -2080,33 +2130,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       <tags>
         <tag>定时任务</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>centOS ssh连接 一段时间无操作连接自动断开问题</title>
-    <url>/2019/08/07/centOS-ssh%E8%BF%9E%E6%8E%A5-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E6%97%A0%E6%93%8D%E4%BD%9C%E8%BF%9E%E6%8E%A5%E8%87%AA%E5%8A%A8%E6%96%AD%E5%BC%80%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>解决方法：</p>
-<p>1 修改  /etc/ssh/sshd_config 文件<br>执行命令：vi /etc/ssh/sshd_config</p>
-<p>中间部分有：</p>
-<h4 id="ClientAliveInterval-0"><a href="#ClientAliveInterval-0" class="headerlink" title="ClientAliveInterval 0"></a>ClientAliveInterval 0</h4><h4 id="ClientAliveCountMax-3"><a href="#ClientAliveCountMax-3" class="headerlink" title="ClientAliveCountMax 3"></a>ClientAliveCountMax 3</h4><p>改为：</p>
-<p>ClientAliveInterval 60</p>
-<p>ClientAliveCountMax 60</p>
-<p>修改后如下用图：</p>
-<p>ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送.而ClientAliveInterval 60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了</p>
-<p>ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开 。</p>
-<p>2重启sshd （必须的否则无效）<br>执行命令：/bin/systemctl restart  sshd.service<br>我有在网上找这个问题的解决方法，有的只改参数，没有讲重启sshd。有的说了但是呢在我的机子上命令不能用，例如：/etc/init.d/sshdstart   /etc/rc.d/init.d/sshd restart</p>
-]]></content>
-      <categories>
-        <category>centos</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2019/08/07/cenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/</url>
-    <content><![CDATA[<h3 id="cenos7-5下载地址"><a href="#cenos7-5下载地址" class="headerlink" title="cenos7.5下载地址"></a>cenos7.5下载地址</h3><p><a href="http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/" target="_blank" rel="noopener">http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/</a></p>
-]]></content>
   </entry>
   <entry>
     <title>android版本API对应关系</title>
@@ -2244,6 +2267,30 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2019/08/07/cenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/</url>
+    <content><![CDATA[<h3 id="cenos7-5下载地址"><a href="#cenos7-5下载地址" class="headerlink" title="cenos7.5下载地址"></a>cenos7.5下载地址</h3><p><a href="http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/" target="_blank" rel="noopener">http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Nginx配置Https证书后,API项目访问时POST请求变为GET请求</title>
+    <url>/2019/08/07/Nginx%E9%85%8D%E7%BD%AEHttps%E8%AF%81%E4%B9%A6%E5%90%8E,API%E9%A1%B9%E7%9B%AE%E8%AE%BF%E9%97%AE%E6%97%B6POST%E8%AF%B7%E6%B1%82%E5%8F%98%E4%B8%BAGET%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<p>Nginx下配置Https证书，之前的博客是: <a href="http://nilaile.win/2019/05/13/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener">Nginx配置Https证书</a></p>
+<p>Https证书配置完成后 admin模块可以正常跳转到HTTPS, API模块部署后,后台请求登录遇到异常,查看Nginx日志后发现从http跳转到https时,请求的api方法从POST变为了GET请求，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;POST /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 301 185 &quot;-&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br><span class="line"></span><br><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;GET /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 200 65 &quot;http://www.sjjtcloud.com:80/ylzhy-api/api/wechat/user/login&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br></pre></td></tr></table></figure>
+<p>查找相关资料后, 发现是由于 301引起的。换成307问题解决</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;   </span><br><span class="line">	server &#123;</span><br><span class="line">		listen 443;</span><br><span class="line">		server_name www.sjjtcloud.com;</span><br><span class="line">		ssl on;</span><br><span class="line">		ssl_certificate  	cert/2195340_www.sjjtcloud.com.pem;</span><br><span class="line">		ssl_certificate_key 	cert/2195340_www.sjjtcloud.com.key;</span><br><span class="line">		ssl_session_timeout 5m;</span><br><span class="line">		ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">		ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">		ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			root   D:/nginx-1.12.2/html;</span><br><span class="line">			index  index.html index.htm;</span><br><span class="line">			try_files $uri $uri/ @router;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		location /api/ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		location /admin &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	 server &#123;</span><br><span class="line">    	listen   80;</span><br><span class="line">		server_name www.sjjtcloud.com sjjtcloud.com;  </span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		#rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; #这种写法是错误的</span><br><span class="line">		return 307 https://$server_name$request_uri; ###改为307</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>301 Moved Permanently<br>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一</p>
+<p>307 Temporary Redirect<br>请求的资源现在临时从不同的URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求 </p>
+]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mysql存储emoji表情错误问题</title>
     <url>/2019/08/07/Mysql%E5%AD%98%E5%82%A8emoji%E8%A1%A8%E6%83%85%E9%94%99%E8%AF%AF%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23</span><br></pre></td></tr></table></figure></p>
@@ -2274,24 +2321,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>Nginx配置Https证书后,API项目访问时POST请求变为GET请求</title>
-    <url>/2019/08/07/Nginx%E9%85%8D%E7%BD%AEHttps%E8%AF%81%E4%B9%A6%E5%90%8E,API%E9%A1%B9%E7%9B%AE%E8%AE%BF%E9%97%AE%E6%97%B6POST%E8%AF%B7%E6%B1%82%E5%8F%98%E4%B8%BAGET%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<p>Nginx下配置Https证书，之前的博客是: <a href="http://nilaile.win/2019/05/13/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener">Nginx配置Https证书</a></p>
-<p>Https证书配置完成后 admin模块可以正常跳转到HTTPS, API模块部署后,后台请求登录遇到异常,查看Nginx日志后发现从http跳转到https时,请求的api方法从POST变为了GET请求，日志如下:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;POST /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 301 185 &quot;-&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br><span class="line"></span><br><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;GET /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 200 65 &quot;http://www.sjjtcloud.com:80/ylzhy-api/api/wechat/user/login&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br></pre></td></tr></table></figure>
-<p>查找相关资料后, 发现是由于 301引起的。换成307问题解决</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;   </span><br><span class="line">	server &#123;</span><br><span class="line">		listen 443;</span><br><span class="line">		server_name www.sjjtcloud.com;</span><br><span class="line">		ssl on;</span><br><span class="line">		ssl_certificate  	cert/2195340_www.sjjtcloud.com.pem;</span><br><span class="line">		ssl_certificate_key 	cert/2195340_www.sjjtcloud.com.key;</span><br><span class="line">		ssl_session_timeout 5m;</span><br><span class="line">		ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">		ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">		ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			root   D:/nginx-1.12.2/html;</span><br><span class="line">			index  index.html index.htm;</span><br><span class="line">			try_files $uri $uri/ @router;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		location /api/ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		location /admin &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	 server &#123;</span><br><span class="line">    	listen   80;</span><br><span class="line">		server_name www.sjjtcloud.com sjjtcloud.com;  </span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		#rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; #这种写法是错误的</span><br><span class="line">		return 307 https://$server_name$request_uri; ###改为307</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>301 Moved Permanently<br>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一</p>
-<p>307 Temporary Redirect<br>请求的资源现在临时从不同的URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求 </p>
-]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>https</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx匹配规则说明以及匹配的优先级</title>
     <url>/2019/08/07/Nginx%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/</url>
     <content><![CDATA[<p>location 匹配规则<br>语法规则<br>location [=|~|~*|^~] /uri/ { … }</p>
@@ -2312,6 +2341,47 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>NGINX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql主从复制原理及步骤</title>
+    <url>/2019/08/07/Mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="Mysql主从复制的原理"><a href="#Mysql主从复制的原理" class="headerlink" title="Mysql主从复制的原理"></a>Mysql主从复制的原理</h2><blockquote>
+<p>mysql内建有一种复制方式，即指定一台或多台服务器为主机master，另外一台或多台服务器作为从机slave。当master存在更新的时候，master将更新写入二进制文件，并维护了一个索引文件跟踪日志。当slave连接到主服务器之后，slave会通知master进行同步，master通过索引找日志文件上一次同步的位置，然后将这段时间内的更新数据发送给slave进行同步<br><a id="more"></a></p>
+</blockquote>
+<h3 id="主从配置的优缺点"><a href="#主从配置的优缺点" class="headerlink" title="主从配置的优缺点"></a>主从配置的优缺点</h3><p>优点：高可用，提高容错率，数据分布，负载均衡。</p>
+<p>缺点：单向同步，无法解决主机宕机问题</p>
+<h3 id="主从配置先决条件"><a href="#主从配置先决条件" class="headerlink" title="主从配置先决条件"></a>主从配置先决条件</h3><ol>
+<li>Mysql版本必须一致</li>
+<li>保证两台主机的mysql远程连接开启</li>
+</ol>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>主库从库均创建要给名为auth的数据库</p>
+<ol start="3">
+<li>主库ip:192.168.1.121 </li>
+<li>从库ip:192.168.1.107</li>
+</ol>
+<h3 id="主机-主库-配置"><a href="#主机-主库-配置" class="headerlink" title="主机(主库)配置"></a>主机(主库)配置</h3><h5 id="1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置"><a href="#1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置" class="headerlink" title="1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置"></a>1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">server-id=66 <span class="comment">#id唯一</span></span><br><span class="line">log-bin=E:/phpStudy/MySQL/log-bin <span class="comment">#同步日志的文件存放路径</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db=auth <span class="comment">#备份哪些些数据库的二进制日志</span></span><br><span class="line"><span class="comment">#binlog-ignore-db=test  #也可以直接设置哪些数据库不同步</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-重启mysql服务-可以在上面配置的日志文件存储路径下找到索引文件-表示成功"><a href="#2-重启mysql服务-可以在上面配置的日志文件存储路径下找到索引文件-表示成功" class="headerlink" title="2. 重启mysql服务,可以在上面配置的日志文件存储路径下找到索引文件,表示成功"></a>2. 重启mysql服务,可以在上面配置的日志文件存储路径下找到索引文件,表示成功</h5><h5 id="3-登陆mysql，给从机配置登录名，登陆，密码和权限"><a href="#3-登陆mysql，给从机配置登录名，登陆，密码和权限" class="headerlink" title="3. 登陆mysql，给从机配置登录名，登陆，密码和权限"></a>3. 登陆mysql，给从机配置登录名，登陆，密码和权限</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">replication</span> <span class="keyword">slave</span>,reload,super <span class="keyword">on</span> *.*  <span class="keyword">to</span> <span class="keyword">slave</span>@<span class="number">192.168</span><span class="number">.1</span><span class="number">.121</span>  <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'changpan'</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="4-查看主库状态-配置从机时需要使用file和postion两个值"><a href="#4-查看主库状态-配置从机时需要使用file和postion两个值" class="headerlink" title="4. 查看主库状态 配置从机时需要使用file和postion两个值"></a>4. 查看主库状态 配置从机时需要使用file和postion两个值</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">master</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fxmemory/1028818/o_%e4%b8%bb%e6%9c%ba%e7%8a%b6%e6%80%81.png" alt></p>
+<h3 id="从机-从库-配置"><a href="#从机-从库-配置" class="headerlink" title="从机(从库)配置"></a>从机(从库)配置</h3><h5 id="1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置-1"><a href="#1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置-1" class="headerlink" title="1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置"></a>1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">server-id=88 　　<span class="comment">#保证整数唯一</span></span><br><span class="line">replicate-<span class="keyword">do</span>-db=auth  <span class="comment">#同步哪一个数据库 跟主库一致</span></span><br></pre></td></tr></table></figure>
+<p>注意: 配置好之后重启数据库</p>
+<h5 id="2-测试是否能够登陆到主库-校验之前主库的配置"><a href="#2-测试是否能够登陆到主库-校验之前主库的配置" class="headerlink" title="2. 测试是否能够登陆到主库,校验之前主库的配置"></a>2. 测试是否能够登陆到主库,校验之前主库的配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql -uslave -h 192.168.1.121 -pchangpan</span><br></pre></td></tr></table></figure>
+<h5 id="3-配置从库的同步链接信息-登陆从库-Navicat中执行下面命令"><a href="#3-配置从库的同步链接信息-登陆从库-Navicat中执行下面命令" class="headerlink" title="3.配置从库的同步链接信息,登陆从库,Navicat中执行下面命令"></a>3.配置从库的同步链接信息,登陆从库,Navicat中执行下面命令</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">stop</span> <span class="keyword">slave</span>;      关闭从机同步连接</span><br><span class="line"><span class="keyword">change</span> <span class="keyword">master</span> <span class="keyword">to</span> master_host = <span class="string">'192.168.1.121'</span>, master_user=<span class="string">'slave'</span>, master_password =<span class="string">'changpan'</span>, master_log_file=<span class="string">'mysql-bin.000001'</span>,master_log_pos=<span class="number">593</span>;</span><br></pre></td></tr></table></figure>
+<p>【注意】master_log_file,master_log_pos是主库中通过命令show master status查询到的数据</p>
+<h5 id="4-开启同步-查看从库配置的有效性"><a href="#4-开启同步-查看从库配置的有效性" class="headerlink" title="4.开启同步,查看从库配置的有效性"></a>4.开启同步,查看从库配置的有效性</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span>；     开启同步连接</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">slave</span> <span class="keyword">status</span>;   查看主从机连接信息</span><br></pre></td></tr></table></figure>
+<p>输入命令后查看下面的结果<br><img src="https://images.cnblogs.com/cnblogs_com/fxmemory/1028818/o_%e5%90%8c%e6%ad%a5%e7%8a%b6%e6%80%81.png" alt></p>
+<h5 id="当上面查看到的状态中出现以下-两个值都为YES时-表示成功"><a href="#当上面查看到的状态中出现以下-两个值都为YES时-表示成功" class="headerlink" title="当上面查看到的状态中出现以下 两个值都为YES时,表示成功"></a>当上面查看到的状态中出现以下 两个值都为YES时,表示成功</h5><p>Slave_IO_Running:Yes<br>Slave_SQL_Running:Yes</p>
+<h5 id="5-测试-在主库中添加一个新表或表中插入新的数据，进行测试"><a href="#5-测试-在主库中添加一个新表或表中插入新的数据，进行测试" class="headerlink" title="5. 测试,在主库中添加一个新表或表中插入新的数据，进行测试"></a>5. 测试,在主库中添加一个新表或表中插入新的数据，进行测试</h5><h4 id="已有主库-怎样在此基础上进行主从同步呢？"><a href="#已有主库-怎样在此基础上进行主从同步呢？" class="headerlink" title="已有主库,怎样在此基础上进行主从同步呢？"></a>已有主库,怎样在此基础上进行主从同步呢？</h4><h5 id="1-锁定或者阻断主库中的表进写操作-导出sql结构和数据"><a href="#1-锁定或者阻断主库中的表进写操作-导出sql结构和数据" class="headerlink" title="1.锁定或者阻断主库中的表进写操作,导出sql结构和数据"></a>1.锁定或者阻断主库中的表进写操作,导出sql结构和数据</h5><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysql&gt; FLUSH TABLES WITH READ LOCK;</span><br><span class="line">mysqldump -u root -p123456 <span class="comment">--opt -R openser &gt; openser20121203.sql；</span></span><br><span class="line">mysql&gt; UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+<h5 id="2-从库中关闭同步链接，然后导入sql、"><a href="#2-从库中关闭同步链接，然后导入sql、" class="headerlink" title="2.从库中关闭同步链接，然后导入sql、"></a>2.从库中关闭同步链接，然后导入sql、</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">stop</span> <span class="keyword">slave</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="3-关闭从库链接-重启从库链接即可"><a href="#3-关闭从库链接-重启从库链接即可" class="headerlink" title="3.关闭从库链接,重启从库链接即可"></a>3.关闭从库链接,重启从库链接即可</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="4-进行测试OK"><a href="#4-进行测试OK" class="headerlink" title="4.进行测试OK"></a>4.进行测试OK</h5>]]></content>
+      <categories>
+        <category>DataBase</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>主从复制</tag>
       </tags>
   </entry>
   <entry>
@@ -2415,47 +2485,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>IO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mysql主从复制原理及步骤</title>
-    <url>/2019/08/07/Mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="Mysql主从复制的原理"><a href="#Mysql主从复制的原理" class="headerlink" title="Mysql主从复制的原理"></a>Mysql主从复制的原理</h2><blockquote>
-<p>mysql内建有一种复制方式，即指定一台或多台服务器为主机master，另外一台或多台服务器作为从机slave。当master存在更新的时候，master将更新写入二进制文件，并维护了一个索引文件跟踪日志。当slave连接到主服务器之后，slave会通知master进行同步，master通过索引找日志文件上一次同步的位置，然后将这段时间内的更新数据发送给slave进行同步<br><a id="more"></a></p>
-</blockquote>
-<h3 id="主从配置的优缺点"><a href="#主从配置的优缺点" class="headerlink" title="主从配置的优缺点"></a>主从配置的优缺点</h3><p>优点：高可用，提高容错率，数据分布，负载均衡。</p>
-<p>缺点：单向同步，无法解决主机宕机问题</p>
-<h3 id="主从配置先决条件"><a href="#主从配置先决条件" class="headerlink" title="主从配置先决条件"></a>主从配置先决条件</h3><ol>
-<li>Mysql版本必须一致</li>
-<li>保证两台主机的mysql远程连接开启</li>
-</ol>
-<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>主库从库均创建要给名为auth的数据库</p>
-<ol start="3">
-<li>主库ip:192.168.1.121 </li>
-<li>从库ip:192.168.1.107</li>
-</ol>
-<h3 id="主机-主库-配置"><a href="#主机-主库-配置" class="headerlink" title="主机(主库)配置"></a>主机(主库)配置</h3><h5 id="1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置"><a href="#1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置" class="headerlink" title="1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置"></a>1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">server-id=66 <span class="comment">#id唯一</span></span><br><span class="line">log-bin=E:/phpStudy/MySQL/log-bin <span class="comment">#同步日志的文件存放路径</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db=auth <span class="comment">#备份哪些些数据库的二进制日志</span></span><br><span class="line"><span class="comment">#binlog-ignore-db=test  #也可以直接设置哪些数据库不同步</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-重启mysql服务-可以在上面配置的日志文件存储路径下找到索引文件-表示成功"><a href="#2-重启mysql服务-可以在上面配置的日志文件存储路径下找到索引文件-表示成功" class="headerlink" title="2. 重启mysql服务,可以在上面配置的日志文件存储路径下找到索引文件,表示成功"></a>2. 重启mysql服务,可以在上面配置的日志文件存储路径下找到索引文件,表示成功</h5><h5 id="3-登陆mysql，给从机配置登录名，登陆，密码和权限"><a href="#3-登陆mysql，给从机配置登录名，登陆，密码和权限" class="headerlink" title="3. 登陆mysql，给从机配置登录名，登陆，密码和权限"></a>3. 登陆mysql，给从机配置登录名，登陆，密码和权限</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">replication</span> <span class="keyword">slave</span>,reload,super <span class="keyword">on</span> *.*  <span class="keyword">to</span> <span class="keyword">slave</span>@<span class="number">192.168</span><span class="number">.1</span><span class="number">.121</span>  <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'changpan'</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="4-查看主库状态-配置从机时需要使用file和postion两个值"><a href="#4-查看主库状态-配置从机时需要使用file和postion两个值" class="headerlink" title="4. 查看主库状态 配置从机时需要使用file和postion两个值"></a>4. 查看主库状态 配置从机时需要使用file和postion两个值</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">master</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://images.cnblogs.com/cnblogs_com/fxmemory/1028818/o_%e4%b8%bb%e6%9c%ba%e7%8a%b6%e6%80%81.png" alt></p>
-<h3 id="从机-从库-配置"><a href="#从机-从库-配置" class="headerlink" title="从机(从库)配置"></a>从机(从库)配置</h3><h5 id="1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置-1"><a href="#1-找到Mysql安装目录下的my-ini配置文件-在-mysqld-下增加如下配置-1" class="headerlink" title="1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置"></a>1. 找到Mysql安装目录下的my.ini配置文件,在[mysqld]下增加如下配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">server-id=88 　　<span class="comment">#保证整数唯一</span></span><br><span class="line">replicate-<span class="keyword">do</span>-db=auth  <span class="comment">#同步哪一个数据库 跟主库一致</span></span><br></pre></td></tr></table></figure>
-<p>注意: 配置好之后重启数据库</p>
-<h5 id="2-测试是否能够登陆到主库-校验之前主库的配置"><a href="#2-测试是否能够登陆到主库-校验之前主库的配置" class="headerlink" title="2. 测试是否能够登陆到主库,校验之前主库的配置"></a>2. 测试是否能够登陆到主库,校验之前主库的配置</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql -uslave -h 192.168.1.121 -pchangpan</span><br></pre></td></tr></table></figure>
-<h5 id="3-配置从库的同步链接信息-登陆从库-Navicat中执行下面命令"><a href="#3-配置从库的同步链接信息-登陆从库-Navicat中执行下面命令" class="headerlink" title="3.配置从库的同步链接信息,登陆从库,Navicat中执行下面命令"></a>3.配置从库的同步链接信息,登陆从库,Navicat中执行下面命令</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">stop</span> <span class="keyword">slave</span>;      关闭从机同步连接</span><br><span class="line"><span class="keyword">change</span> <span class="keyword">master</span> <span class="keyword">to</span> master_host = <span class="string">'192.168.1.121'</span>, master_user=<span class="string">'slave'</span>, master_password =<span class="string">'changpan'</span>, master_log_file=<span class="string">'mysql-bin.000001'</span>,master_log_pos=<span class="number">593</span>;</span><br></pre></td></tr></table></figure>
-<p>【注意】master_log_file,master_log_pos是主库中通过命令show master status查询到的数据</p>
-<h5 id="4-开启同步-查看从库配置的有效性"><a href="#4-开启同步-查看从库配置的有效性" class="headerlink" title="4.开启同步,查看从库配置的有效性"></a>4.开启同步,查看从库配置的有效性</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span>；     开启同步连接</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">slave</span> <span class="keyword">status</span>;   查看主从机连接信息</span><br></pre></td></tr></table></figure>
-<p>输入命令后查看下面的结果<br><img src="https://images.cnblogs.com/cnblogs_com/fxmemory/1028818/o_%e5%90%8c%e6%ad%a5%e7%8a%b6%e6%80%81.png" alt></p>
-<h5 id="当上面查看到的状态中出现以下-两个值都为YES时-表示成功"><a href="#当上面查看到的状态中出现以下-两个值都为YES时-表示成功" class="headerlink" title="当上面查看到的状态中出现以下 两个值都为YES时,表示成功"></a>当上面查看到的状态中出现以下 两个值都为YES时,表示成功</h5><p>Slave_IO_Running:Yes<br>Slave_SQL_Running:Yes</p>
-<h5 id="5-测试-在主库中添加一个新表或表中插入新的数据，进行测试"><a href="#5-测试-在主库中添加一个新表或表中插入新的数据，进行测试" class="headerlink" title="5. 测试,在主库中添加一个新表或表中插入新的数据，进行测试"></a>5. 测试,在主库中添加一个新表或表中插入新的数据，进行测试</h5><h4 id="已有主库-怎样在此基础上进行主从同步呢？"><a href="#已有主库-怎样在此基础上进行主从同步呢？" class="headerlink" title="已有主库,怎样在此基础上进行主从同步呢？"></a>已有主库,怎样在此基础上进行主从同步呢？</h4><h5 id="1-锁定或者阻断主库中的表进写操作-导出sql结构和数据"><a href="#1-锁定或者阻断主库中的表进写操作-导出sql结构和数据" class="headerlink" title="1.锁定或者阻断主库中的表进写操作,导出sql结构和数据"></a>1.锁定或者阻断主库中的表进写操作,导出sql结构和数据</h5><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysql&gt; FLUSH TABLES WITH READ LOCK;</span><br><span class="line">mysqldump -u root -p123456 <span class="comment">--opt -R openser &gt; openser20121203.sql；</span></span><br><span class="line">mysql&gt; UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
-<h5 id="2-从库中关闭同步链接，然后导入sql、"><a href="#2-从库中关闭同步链接，然后导入sql、" class="headerlink" title="2.从库中关闭同步链接，然后导入sql、"></a>2.从库中关闭同步链接，然后导入sql、</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">stop</span> <span class="keyword">slave</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="3-关闭从库链接-重启从库链接即可"><a href="#3-关闭从库链接-重启从库链接即可" class="headerlink" title="3.关闭从库链接,重启从库链接即可"></a>3.关闭从库链接,重启从库链接即可</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="4-进行测试OK"><a href="#4-进行测试OK" class="headerlink" title="4.进行测试OK"></a>4.进行测试OK</h5>]]></content>
-      <categories>
-        <category>DataBase</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>主从复制</tag>
       </tags>
   </entry>
   <entry>
@@ -3302,6 +3331,36 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title>Centos7.5安装RocketMq</title>
+    <url>/2019/08/07/Centos7.5%E5%AE%89%E8%A3%85RocketMq/</url>
+    <content><![CDATA[<h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
+<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
+<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
+<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
+<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
+<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
+<p>查看进程：jps</p>
+<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
+<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
+<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
+<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
+<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
+<p>bin目录：</p>
+<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
+<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
+<p>参考文章</p>
+<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
+]]></content>
+      <categories>
+        <category>RocketMq</category>
+      </categories>
+      <tags>
+        <tag>RocketMq</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos7.5安装Elasticsearch2.3.5</title>
     <url>/2019/08/07/Centos7.5%E5%AE%89%E8%A3%85Elasticsearch/</url>
     <content><![CDATA[<blockquote>
@@ -3388,36 +3447,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>swap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7.5安装RocketMq</title>
-    <url>/2019/08/07/Centos7.5%E5%AE%89%E8%A3%85RocketMq/</url>
-    <content><![CDATA[<h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
-<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
-<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
-<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
-<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
-<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
-<p>查看进程：jps</p>
-<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
-<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
-<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
-<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
-<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
-<p>bin目录：</p>
-<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
-<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
-<p>参考文章</p>
-<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
-]]></content>
-      <categories>
-        <category>RocketMq</category>
-      </categories>
-      <tags>
-        <tag>RocketMq</tag>
       </tags>
   </entry>
   <entry>
