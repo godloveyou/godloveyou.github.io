@@ -295,6 +295,833 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/11/22/Executor框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/22/Executor框架/" itemprop="url">Executor框架简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-22T15:41:49+08:00">
+                2019-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
+</blockquote>
+<p><img src="http://blog.sjjtcloud.com/blog/20191126/7lUJFkBwikeL.png?imageslim" alt="Executor框架的成员及其关系"></p>
+<h3 id="Executor框架包括3大部分："><a href="#Executor框架包括3大部分：" class="headerlink" title="Executor框架包括3大部分："></a>Executor框架包括3大部分：</h3><p>（1）任务。也就是工作单元，包括被执行任务需要实现的接口：Runnable接口或者Callable接口；</p>
+<p>（2）任务的执行。也就是把任务分派给多个线程的执行机制，包括Executor接口及继承自Executor接口的ExecutorService接口, Executor框架有两个关键类实现了ExecutorService接口（ThreadPoolExecutor和ScheduledThreadPoolExecutor）</p>
+<p>（3）异步计算的结果。包括Future接口及实现了Future接口的FutureTask类。</p>
+<h3 id="Executor各个类和接口简介"><a href="#Executor各个类和接口简介" class="headerlink" title="Executor各个类和接口简介"></a>Executor各个类和接口简介</h3><p> Executor 它是框架基础, 将任务的提交 和任务的执行分离开来</p>
+<h4 id="（1）ThreadPoolExecutor"><a href="#（1）ThreadPoolExecutor" class="headerlink" title="（1）ThreadPoolExecutor"></a>（1）ThreadPoolExecutor</h4><p>它是线程池的核心实现类,用来执行被提交的任务<br>创建方式：ThreadPoolExecutor通常使用Executors来创建,Executors可以创建3种类型的ThreadPoolExecutor<br>应用场景：适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景</p>
+<ol>
+<li><p>SingleThreadExecutor 创建使用单个线程的SingleThreadExecutor的API</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>FixedThreadPool  用于创建使用固定线程数的FixedThreadPool的API</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads,ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+<p>应用场景：适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场景，它适用于负载比较重的服务器</p>
+<ol start="3">
+<li>CachedThreadPool  下面是Executors提供的，创建一个会根据需要创建新线程的CachedThreadPool的API。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>应用场景: CachedThreadPool是大小无界的线程池，适用于执行很多的短期异步任务的小程序，或者<br>是负载较轻的服务器</p>
+<h4 id="2-ScheduledThreadPoolExecutor"><a href="#2-ScheduledThreadPoolExecutor" class="headerlink" title="(2)ScheduledThreadPoolExecutor"></a>(2)ScheduledThreadPoolExecutor</h4><p>它是一个实现类，可以在给定的延迟后运行命令，或者定期执行命令。ScheduledThreadPoolExecutor比Timer更灵活,功能更强大</p>
+<p>创建方式<br>ScheduledThreadPoolExecutor通常使用工厂类Executors来创建。Executors可以创建2种类型的ScheduledThreadPoolExecutor，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">·ScheduledThreadPoolExecutor。包含若干个线程的ScheduledThreadPoolExecutor。</span><br><span class="line">·SingleThreadScheduledExecutor。只包含一个线程的ScheduledThreadPoolExecutor。</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>方式一: 创建固定个数线程ScheduledThreadPoolExecutor的API<br>应用场景: 适用于需要多个后台线程执行周期任务，同时为了满足资源管理的需求而需要限制后台线程的数量的应用场景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                              ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二: 创建只包含一个线程的ScheduledThreadPoolExecutor<br>应用场景:适用于需要单个后台线程执行周期任务，同时需要保证顺序地执行各个任务的应用场景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newSingleThreadScheduledExecutor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newSingleThreadScheduledExecutor</span><span class="params">(ThreadFactory threadFactory)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(3)Future接口<br>Futrue接口和实现Futrue接口的FutrueTask类用来表示<strong>异步计算的结果</strong>当我们把Runnable接口或者Callable接口的实现类提交(submit)给ThreadPoolExecutor或ScheduledThreadPoolExecutor时,ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutrueTask对象,下面是对应API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span></span><br><span class="line"><span class="function">&lt;T&gt; Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span></span><br><span class="line"><span class="function">Future&lt;&gt; <span class="title">submit</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>(4)Runnable接口和Callable接口<br>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。</p>
+<p>除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Callable&lt;Object&gt; <span class="title">callable</span><span class="params">(Runnable task)</span></span></span><br></pre></td></tr></table></figure>
+<p>下面是Executors提供的，把一个Runnable和一个待返回的结果包装成一个Callable的API<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Callable&lt;T&gt; <span class="title">callable</span><span class="params">(Runnable task, T result)</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://blog.sjjtcloud.com/blog/20191122/jh9FyfKXLM3U.png?imageslim" alt="Executor框架的使用示意图"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/11/11/Linux下nohup文件过大问题解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/11/Linux下nohup文件过大问题解决方案/" itemprop="url">Linux下nohup文件过大问题解决方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-11T09:44:41+08:00">
+                2019-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="文件过大可能对系统造成的影响"><a href="#文件过大可能对系统造成的影响" class="headerlink" title="文件过大可能对系统造成的影响"></a>文件过大可能对系统造成的影响</h3><ol>
+<li>文件打开非常慢</li>
+<li>系统线程被阻塞 无法正常运行（采集系统曾经碰到过）</li>
+</ol>
+<h3 id="解决方法1-直接指定到黑洞目录-在本地也不会保留-项目中一般都配置的有日志文件-所以这个文件其实是冗余的"><a href="#解决方法1-直接指定到黑洞目录-在本地也不会保留-项目中一般都配置的有日志文件-所以这个文件其实是冗余的" class="headerlink" title="解决方法1 直接指定到黑洞目录,在本地也不会保留,项目中一般都配置的有日志文件,所以这个文件其实是冗余的"></a>解决方法1 直接指定到黑洞目录,在本地也不会保留,项目中一般都配置的有日志文件,所以这个文件其实是冗余的</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#nohup java -Dfile.encoding=utf-8 -jar $JAVA_OPTS  admin.jar &gt; admin.log &amp;</span></span><br><span class="line">nohup java -Dfile.encoding=utf-8 -jar <span class="variable">$JAVA_OPTS</span> admin.jar &gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方法2-切割日志文件"><a href="#解决方法2-切割日志文件" class="headerlink" title="解决方法2 切割日志文件"></a>解决方法2 切割日志文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#################启动日志切割服务#################</span></span><br><span class="line">this_path=$(<span class="built_in">cd</span> `dirname <span class="variable">$0</span>`;<span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$this_path</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$this_path</span></span><br><span class="line">current_date=`date -d <span class="string">"-1 day"</span> <span class="string">"+%Y%m%d"</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$current_date</span></span><br><span class="line">split -b 65535000 -d -a 4 /home/.../nohup.out   /home/.../<span class="built_in">log</span>/log_<span class="variable">$&#123;current_date&#125;</span>_  </span><br><span class="line"></span><br><span class="line">cat /dev/null &gt; nohup.out</span><br></pre></td></tr></table></figure>
+<h4 id="split命令"><a href="#split命令" class="headerlink" title="split命令"></a>split命令</h4><p> <code>split  -b 65535000 -d -a 4  nohup.out  ./log/log_${current_date}_</code> 这里使用split命令,将nouhup文件按指定大小切分(65535000b 大概60多M吧，可以自定义大小 )，并分成指定格式（-d -a 4以4位数字形式为后缀以从0000开始,具体可以百度split命令用法）,最终输出格式为log_20160610_0001</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/10/25/No space left on device/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/25/No space left on device/" itemprop="url">No space left on device问题解决</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-25T08:56:59+08:00">
+                2019-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="最近采集器可以正常采集数据-但是数据一直未入库-后来试着停止数据库后启动时-mysql报错No-space-left-on-device"><a href="#最近采集器可以正常采集数据-但是数据一直未入库-后来试着停止数据库后启动时-mysql报错No-space-left-on-device" class="headerlink" title="最近采集器可以正常采集数据,但是数据一直未入库,后来试着停止数据库后启动时,mysql报错No space left on device"></a>最近采集器可以正常采集数据,但是数据一直未入库,后来试着停止数据库后启动时,mysql报错No space left on device</h3><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
+<li>使用 <strong>df -h</strong> 命令查看磁盘使用情况如下：</li>
+</ol>
+<p><img src="http://blog.sjjtcloud.com/blog/20191025/Nh43xnANffMH.png?imageslim" alt="mark"><br>问题发生时/dev/vda1磁盘使用了100%被完全占满,这个是删除数据后截的图</p>
+<ol start="2">
+<li><p>接着，使用 <strong>du -sh *  </strong>命令 在根目录查看每个文件使用情况<br><img src="http://blog.sjjtcloud.com/blog/20191025/M6LphdXthEkt.png?imageslim" alt="mark"></p>
+</li>
+<li><p>最后发现是myql占用了100多G,逐层使用du -sh *最后发现是业务数据库其中一个表,数据占了将近100G</p>
+</li>
+<li>删除该表数据后 问题解决</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/10/21/springboot整合ActiveMq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/21/springboot整合ActiveMq/" itemprop="url">springboot整合ActiveMq入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T17:32:44+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ActiveMq/" itemprop="url" rel="index">
+                    <span itemprop="name">ActiveMq</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://blog.sjjtcloud.com/blog/20191021/FKqfRpofuTfa.png?imageslim" alt="mark"></p>
+<h3 id="1-下载activeMq并启动-版本apache-activemq-5-15-4解压运行"><a href="#1-下载activeMq并启动-版本apache-activemq-5-15-4解压运行" class="headerlink" title="1.下载activeMq并启动(版本apache-activemq-5.15.4解压运行)"></a>1.下载activeMq并启动(版本apache-activemq-5.15.4解压运行)</h3><p>启动成功后管理路径是<a href="http://127.0.0.1:8161" target="_blank" rel="noopener">http://127.0.0.1:8161</a><br>用户名密码admin/admin</p>
+<h3 id="2-springboot项目中加入activeMq依赖"><a href="#2-springboot项目中加入activeMq依赖" class="headerlink" title="2.springboot项目中加入activeMq依赖"></a>2.springboot项目中加入activeMq依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入ActiveMq依赖--&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-activemq<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--  启用JMS 的池化, 就一定要加上这个 jar--&gt;</span> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.activemq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activemq-pool<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-application-yml配置activeMq服务器的配置"><a href="#3-application-yml配置activeMq服务器的配置" class="headerlink" title="3. application.yml配置activeMq服务器的配置"></a>3. application.yml配置activeMq服务器的配置</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MQ所在的服务器的地址</span></span><br><span class="line"><span class="string">spring.activemq.broker-url:</span> <span class="attr">tcp://127.0.0.1:61616</span></span><br><span class="line"><span class="comment"># 是否使用内置的MQ， true  使用； fale  不使用</span></span><br><span class="line"><span class="string">spring.activemq.in-memory:</span> <span class="literal">false</span> </span><br><span class="line"><span class="comment"># 是否在回滚回滚消息之前停止消息传递。这意味着当启用此命令时，消息顺序不会被保留。</span></span><br><span class="line"><span class="string">spring.activemq.non-blocking-redelivery:</span> <span class="literal">false</span></span><br><span class="line"><span class="comment"># 用户名</span></span><br><span class="line"><span class="string">spring.activemq.password:</span> <span class="string">admin</span></span><br><span class="line"><span class="comment"># 密码</span></span><br><span class="line"><span class="string">spring.activemq.user:</span> <span class="string">admin</span></span><br></pre></td></tr></table></figure>
+<p>具体的配置信息解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">spring.activemq.broker-url=tcp://127.0.0.1:61616</span><br><span class="line"># 在考虑结束之前等待的时间</span><br><span class="line">#spring.activemq.close-timeout=15s </span><br><span class="line"># 默认代理URL是否应该在内存中。如果指定了显式代理，则忽略此值。</span><br><span class="line">spring.activemq.in-memory=true </span><br><span class="line"># 是否在回滚回滚消息之前停止消息传递。这意味着当启用此命令时，消息顺序不会被保留。</span><br><span class="line">spring.activemq.non-blocking-redelivery=false</span><br><span class="line"># 密码</span><br><span class="line">spring.activemq.password=admin</span><br><span class="line"># 等待消息发送响应的时间。设置为0等待永远。</span><br><span class="line">spring.activemq.user=admin</span><br><span class="line"># 是否信任所有包</span><br><span class="line">#spring.activemq.packages.trust-all=</span><br><span class="line"># 要信任的特定包的逗号分隔列表（当不信任所有包时）</span><br><span class="line">#spring.activemq.packages.trusted=</span><br><span class="line"># 当连接请求和池满时是否阻塞。设置false会抛“JMSException异常”。</span><br><span class="line">#spring.activemq.pool.block-if-full=true</span><br><span class="line"># 如果池仍然满，则在抛出异常前阻塞时间。</span><br><span class="line">#spring.activemq.pool.block-if-full-timeout=-1ms</span><br><span class="line"># 是否在启动时创建连接。可以在启动时用于加热池。</span><br><span class="line">#spring.activemq.pool.create-connection-on-startup=true</span><br><span class="line"># 是否用Pooledconnectionfactory代替普通的ConnectionFactory。</span><br><span class="line">#spring.activemq.pool.enabled=false </span><br><span class="line"># 连接过期超时。</span><br><span class="line">#spring.activemq.pool.expiry-timeout=0ms</span><br><span class="line"># 连接空闲超时</span><br><span class="line">#spring.activemq.pool.idle-timeout=30s</span><br><span class="line"># 连接池最大连接数</span><br><span class="line">#spring.activemq.pool.max-connections=1</span><br><span class="line"># 每个连接的有效会话的最大数目。</span><br><span class="line">#spring.activemq.pool.maximum-active-session-per-connection=500</span><br><span class="line"># 当有&quot;JMSException&quot;时尝试重新连接</span><br><span class="line">#spring.activemq.pool.reconnect-on-exception=true</span><br><span class="line"># 在空闲连接清除线程之间运行的时间。当为负数时，没有空闲连接驱逐线程运行。</span><br><span class="line">#spring.activemq.pool.time-between-expiration-check=-1ms</span><br><span class="line"># 是否只使用一个MessageProducer</span><br><span class="line">#spring.activemq.pool.use-anonymous-producers=true</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-创建ActiveMqConfig"><a href="#4-创建ActiveMqConfig" class="headerlink" title="4.创建ActiveMqConfig"></a>4.创建ActiveMqConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivemqConfig</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Bean</span>(name = <span class="string">"topic-myqueue"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Queue <span class="title">queue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> ActiveMQQueue(<span class="string">"yw-advice-worker"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Bean</span>(name = <span class="string">"topic-company"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Topic <span class="title">topicCompany</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> ActiveMQTopic(<span class="string">"topic-company"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Bean</span>(name = <span class="string">"topic-worker"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Topic <span class="title">topicWorker</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> ActiveMQTopic(<span class="string">"topic-company"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// topic模式的ListenerContainer </span></span><br><span class="line">  <span class="meta">@Bean</span> </span><br><span class="line">  <span class="keyword">public</span> JmsListenerContainerFactory&lt;?&gt; jmsListenerContainerTopic(ConnectionFactory  activeMQConnectionFactory) &#123;</span><br><span class="line">     DefaultJmsListenerContainerFactory bean = <span class="keyword">new</span> DefaultJmsListenerContainerFactory();</span><br><span class="line">     bean.setPubSubDomain(<span class="keyword">true</span>);</span><br><span class="line">     bean.setConnectionFactory(activeMQConnectionFactory);</span><br><span class="line">     <span class="keyword">return</span> bean;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// queue模式的ListenerContainer </span></span><br><span class="line">  <span class="meta">@Bean</span> </span><br><span class="line">  <span class="keyword">public</span> JmsListenerContainerFactory&lt;?&gt; jmsListenerContainerQueue(</span><br><span class="line">    ConnectionFactory activeMQConnectionFactory) &#123;</span><br><span class="line">     DefaultJmsListenerContainerFactory bean = <span class="keyword">new</span> DefaultJmsListenerContainerFactory();</span><br><span class="line">     bean.setConnectionFactory(activeMQConnectionFactory);</span><br><span class="line">     <span class="keyword">return</span> bean;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-编写生产者测试"><a href="#5-编写生产者测试" class="headerlink" title="5.编写生产者测试"></a>5.编写生产者测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = ApiApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActiveMqProducterTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> JmsMessagingTemplate jmsTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Resource</span>(name = <span class="string">"topic-company"</span>)</span><br><span class="line">  <span class="keyword">private</span> Topic adviceCompany;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Resource</span>(name = <span class="string">"queue-yw"</span>)</span><br><span class="line">  <span class="keyword">private</span> Queue queueAdvice;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testProducter</span><span class="params">()</span></span>&#123;</span><br><span class="line">       jmsTemplate.convertAndSend(adviceCompany, <span class="string">"您有新的外卖订单,已为您自动接单"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Test</span> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSendQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">  jmsTemplate.convertAndSend(queueAdvice,<span class="string">"你好,我来自队列"</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-编写消费者测试"><a href="#6-编写消费者测试" class="headerlink" title="6.编写消费者测试"></a>6.编写消费者测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActiveMqConsumer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(ActiveMqConsumer.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JmsListener</span>(destination = <span class="string">"topic-company"</span>,containerFactory = <span class="string">"jmsListenerContainerTopic"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveTopic</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"接收到topic消息：&#123;&#125;"</span>,msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JmsListener</span>(destination = <span class="string">"queue-yw"</span>,containerFactory = <span class="string">"jmsListenerContainerQueue"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveQueue</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"接收到queue-yw消息：&#123;&#125;"</span>,msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考资料</p>
+<ul>
+<li>(<a href="https://blog.csdn.net/qq_43652509/article/details/83926758" target="_blank" rel="noopener">https://blog.csdn.net/qq_43652509/article/details/83926758</a>)</li>
+<li>(<a href="https://blog.csdn.net/cs_hnu_scw/article/details/81040834" target="_blank" rel="noopener">https://blog.csdn.net/cs_hnu_scw/article/details/81040834</a>)</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/10/08/TCP IP三次握手四次挥手/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/08/TCP IP三次握手四次挥手/" itemprop="url">TCP/IP三次握手四次挥手</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T10:29:20+08:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>一、TCP报文格式</strong></p>
+<p>  TCP报文格式图：</p>
+<p><img src="http://dl2.iteye.com/upload/attachment/0108/8317/ef70c29e-651b-33a4-b188-d4e8e0ff9915.png" alt> </p>
+<p>  上图中有几个字段需要重点介绍下：</p>
+<p>  （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。</p>
+<p>  （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。</p>
+<p>  （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</p>
+<p>  （A）URG：紧急指针（urgent pointer）有效。</p>
+<p>  （B）ACK：确认序号有效。</p>
+<p>  （C）PSH：接收方应该尽快将这个报文交给应用层。</p>
+<p>  （D）RST：重置连接。</p>
+<p>  （E）SYN：发起一个新连接。</p>
+<p>  （F）FIN：释放一个连接。</p>
+<p>三次握手用wireshark抓包分析<br><img src="http://blog.sjjtcloud.com/blog/20191008/XjQC8Jd9LHcm.png?imageslim" alt="mark"></p>
+<p>第一次握手 SYN<br><img src="http://blog.sjjtcloud.com/blog/20191008/4gfW0vbr3WOE.png?imageslim" alt="mark"></p>
+<p>第二次握手 SYN,ACK<br><img src="http://blog.sjjtcloud.com/blog/20191008/d5nltEXPMxL5.png?imageslim" alt="mark"></p>
+<p>第三次握手<br><img src="http://blog.sjjtcloud.com/blog/20191008/ppSYnlie7IQE.png?imageslim" alt="mark"></p>
+<h1 id="TCP-三次握手-示意图"><a href="#TCP-三次握手-示意图" class="headerlink" title="TCP 三次握手 示意图"></a>TCP 三次握手 示意图</h1><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251716-1929749101.png" alt></p>
+<h2 id="Wireshark-抓包注意事项"><a href="#Wireshark-抓包注意事项" class="headerlink" title="Wireshark 抓包注意事项"></a>Wireshark 抓包注意事项</h2><p>为了演示一个TCP三次握手建立连接的过程，我们通过 Chrome 访问一个网页。<br>已知 HTTP 协议就是建立在TCP链接上的</p>
+<p>比如访问以下的网址：<br><a href="http://toutiao.newmedia139.net/" target="_blank" rel="noopener">http://toutiao.newmedia139.net/</a></p>
+<p>通过 Cmd 的 ping 命令获取 这个网站对应的 IP地址 <strong>183.136.236.13</strong><br><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102251934-555170248.png" alt></p>
+<p>确定 这个IP 有一个非常重要的好处，就是我们只需要</p>
+<p>电脑 -&gt; 网站 的数据包</p>
+<p>网站-&gt;电脑 的数据包</p>
+<p>所以，可以使用Wireshark的显示过滤规则，只显示我们需要的数据，不然你一定看着满屏幕的数据抓狂的。</p>
+<h3 id="过滤规则如下："><a href="#过滤规则如下：" class="headerlink" title="过滤规则如下："></a>过滤规则如下：</h3><p>ip.src==183.136.236.13 or ip.dst==183.136.236.13</p>
+<h3 id="截图："><a href="#截图：" class="headerlink" title="截图："></a>截图：</h3><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252371-1979969603.png" alt></p>
+<h2 id="分析TCP握手包"><a href="#分析TCP握手包" class="headerlink" title="分析TCP握手包"></a>分析TCP握手包</h2><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102252636-937376226.png" alt></p>
+<p>通过图片，可以看到 先 进行了 TCP 三次传输 然后才 开始 HTTP 传输</p>
+<h2 id="第一次-客户端发送-SYN-报文-到服务器"><a href="#第一次-客户端发送-SYN-报文-到服务器" class="headerlink" title="第一次 客户端发送 SYN 报文 到服务器"></a>第一次 客户端发送 SYN 报文 到服务器</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253092-1365683710.png" alt></p>
+<h2 id="第二次-，服务器接收到-客户端的SYN-报文，回复-SYN-ACK-报文"><a href="#第二次-，服务器接收到-客户端的SYN-报文，回复-SYN-ACK-报文" class="headerlink" title="第二次 ，服务器接收到 客户端的SYN 报文，回复 SYN + ACK 报文"></a>第二次 ，服务器接收到 客户端的SYN 报文，回复 SYN + ACK 报文</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102253605-1241059132.png" alt></p>
+<h2 id="第三次-，客户端接收到服务端的-SYN-ACK-报文后，回复-ACK报文"><a href="#第三次-，客户端接收到服务端的-SYN-ACK-报文后，回复-ACK报文" class="headerlink" title="第三次 ，客户端接收到服务端的 SYN+ACK 报文后，回复 ACK报文"></a>第三次 ，客户端接收到服务端的 SYN+ACK 报文后，回复 ACK报文</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254051-694072128.png" alt></p>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>这里有个坑：Wireshark 显示的 Syn Ack的数目是不准确的</p>
+<p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254264-644298919.png" alt></p>
+<p>理论上，Syn 应该初始值是个随机数的，后面的要根据初始值增加<br><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102254468-1577667548.png" alt></p>
+<h2 id="TCP-三次握手总结"><a href="#TCP-三次握手总结" class="headerlink" title="TCP 三次握手总结"></a>TCP 三次握手总结</h2><p>建立一个稳定的 双向 连接，最少需要 几次 通信呢？<br>以打电话为例<br>小明 给小红 打电话<br>小明 ： 喂，小红 听得到么？<br>小红： 嗯，我听到你说话了，你能听到我么？<br>小明：我能听到你。</p>
+<p>只有这三个传输都正确了，才能保障双方是 连通的</p>
+<h1 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h1><p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这个原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</p>
+<p>CP的连接的拆除需要发送四个包，因此称为四次挥手(four-way handshake)。客户端或服务器均可主动发起挥手动作，在socket编程中，任何一方执行close()操作即可产生挥手操作。</p>
+<p>（1）客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送。</p>
+<p>（2）服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。</p>
+<p>（3）服务器B关闭与客户端A的连接，发送一个FIN给客户端A。</p>
+<p>（4）客户端A发回ACK报文确认，并将确认序号设置为收到序号加1。</p>
+<p>TCP采用四次挥手关闭连接如图2所示。</p>
+<p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255109-43618668.png" alt></p>
+<h1 id="抓包截图"><a href="#抓包截图" class="headerlink" title="抓包截图"></a>抓包截图</h1><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255513-104940885.png" alt></p>
+<p>其中 183.136.236.13 是服务器的ip<br>可以看到 这一次挥手是由 服务器 发起的</p>
+<h2 id="第一次挥手-FIN-ACK"><a href="#第一次挥手-FIN-ACK" class="headerlink" title="第一次挥手 FIN +ACK"></a>第一次挥手 FIN +ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255745-1296704292.png" alt></p>
+<h2 id="第二次挥手-ACK"><a href="#第二次挥手-ACK" class="headerlink" title="第二次挥手 ACK"></a>第二次挥手 ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102255981-1871970231.png" alt></p>
+<h2 id="第三次挥手-FIN-ACK"><a href="#第三次挥手-FIN-ACK" class="headerlink" title="第三次挥手 FIN +ACK"></a>第三次挥手 FIN +ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102256594-1733317431.png" alt></p>
+<h2 id="第四次挥手-ACK"><a href="#第四次挥手-ACK" class="headerlink" title="第四次挥手 ACK"></a>第四次挥手 ACK</h2><p><img src="https://images2018.cnblogs.com/blog/701983/201803/701983-20180314102257013-202026294.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>TCP 由于是全双工的，断开链接需要四次挥手</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/09/30/nginx配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -981,761 +1808,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/20/windows根据端口号杀进程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/windows根据端口号杀进程/" itemprop="url">Windows运维脚本</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T08:52:19+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="windows根据端口号-查杀进程"><a href="#windows根据端口号-查杀进程" class="headerlink" title="windows根据端口号,查杀进程"></a>windows根据端口号,查杀进程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@echo off</span><br><span class="line">for /f &quot;tokens=5&quot; %%i in (&apos;netstat -aon ^| findstr &quot;:8086&quot;&apos;) do (</span><br><span class="line">    set n=%%i</span><br><span class="line">)</span><br><span class="line">taskkill /f /pid %n%</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/NUC启动盘制作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/NUC启动盘制作/" itemprop="url">NUC启动U盘制作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T15:37:42+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/启动U盘/" itemprop="url" rel="index">
-                    <span itemprop="name">启动U盘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="U盘制作步骤及镜像复制"><a href="#U盘制作步骤及镜像复制" class="headerlink" title="U盘制作步骤及镜像复制"></a>U盘制作步骤及镜像复制</h3><ol>
-<li>CMD-&gt;diskpart</li>
-<li><p>DISKPART&gt; list disk</p>
-<p>磁盘 ###  状态           大小     可用     Dyn  Gpt</p>
-<hr>
-<p>磁盘 0    联机              931 GB  1024 KB        <em><br>磁盘 1    联机              119 GB      0 B        </em><br>磁盘 2    联机               14 GB      0 B</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/NUC启动盘制作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/java线程池/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/java线程池/" itemprop="url">线程池-ThreadPoolExecutor详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T09:41:23+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="ThreadPoolExecutor构造方法"><a href="#ThreadPoolExecutor构造方法" class="headerlink" title="ThreadPoolExecutor构造方法"></a>ThreadPoolExecutor构造方法</h3><p><img src="http://blog.sjjtcloud.com/blog/20190819/voP4iKK3jVUw.png?imageslim" alt="mark"></p>
-<p>我们以最后一个构造方法（参数最多的那个），对其参数进行解释：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize, // 1</span><br><span class="line">                             int maximumPoolSize,  // 2</span><br><span class="line">                             long keepAliveTime,  // 3</span><br><span class="line">                             TimeUnit unit,  // 4</span><br><span class="line">                             BlockingQueue&lt;Runnable&gt; workQueue, // 5</span><br><span class="line">                             ThreadFactory threadFactory,  // 6</span><br><span class="line">                             RejectedExecutionHandler handler ) &#123; //7</span><br><span class="line">       if (corePoolSize &lt; 0 ||</span><br><span class="line">           maximumPoolSize &lt;= 0 ||</span><br><span class="line">           maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">           keepAliveTime &lt; 0)</span><br><span class="line">           throw new IllegalArgumentException();</span><br><span class="line">       if (workQueue == null || threadFactory == null || handler == null)</span><br><span class="line">           throw new NullPointerException();</span><br><span class="line">       this.corePoolSize = corePoolSize;</span><br><span class="line">       this.maximumPoolSize = maximumPoolSize;</span><br><span class="line">       this.workQueue = workQueue;</span><br><span class="line">       this.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">       this.threadFactory = threadFactory;</span><br><span class="line">       this.handler = handler;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/java线程池/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/" itemprop="url">CenOS7.5使用crontab定时备份数据库脚本</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:25:05+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LINUX/" itemprop="url" rel="index">
-                    <span itemprop="name">LINUX</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1-编写备份脚本mysqlBackup-sh"><a href="#1-编写备份脚本mysqlBackup-sh" class="headerlink" title="1.编写备份脚本mysqlBackup.sh"></a>1.编写备份脚本mysqlBackup.sh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">DB_IP=localhost</span><br><span class="line">DB_PORT=3306</span><br><span class="line">DB_USER=root</span><br><span class="line">#密码 #＆这些需要转义加＼</span><br><span class="line">DB_PASSWORD=l\#cxhd3\&amp;0vx</span><br><span class="line">DB_NAME=business</span><br><span class="line">DB_BACKUP_DIR=/home/backup/mysql</span><br><span class="line"></span><br><span class="line">#切换目录</span><br><span class="line">cd $DB_BACKUP_DIR</span><br><span class="line">day=`date +%Y%m%d`</span><br><span class="line"></span><br><span class="line">#删除</span><br><span class="line">rm -rf $day</span><br><span class="line">mkdir $day</span><br><span class="line">cd $day</span><br><span class="line"></span><br><span class="line">echo &quot;================  开始备份..  =================&quot;</span><br><span class="line">tables=(tb_user tb_dept)</span><br><span class="line">for table in $&#123;tables[@]&#125;;</span><br><span class="line">do</span><br><span class="line"> backup_file_name=&quot;$&#123;table&#125;.sql&quot;</span><br><span class="line"> mysqldump -h$&#123;DB_IP&#125; -u$&#123;DB_USER&#125; -p$&#123;DB_PASSWORD&#125; -P$&#123;DB_PORT&#125; $DB_NAME $table&gt;$backup_file_name</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;================  结束备份..  =================&quot;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CentOs定时任务Crontab的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/CentOs定时任务Crontab的使用/" itemprop="url">CentOs定时任务Crontab的使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:22:22+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LINUX/" itemprop="url" rel="index">
-                    <span itemprop="name">LINUX</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p> Linux 下通过crontab来执行定时任务,当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。</p>
-</blockquote>
-<h2 id="linux任务调度的工作主要分为以下两类："><a href="#linux任务调度的工作主要分为以下两类：" class="headerlink" title="linux任务调度的工作主要分为以下两类："></a>linux任务调度的工作主要分为以下两类：</h2><ul>
-<li>1、系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存</li>
-<li>2、个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置</li>
-</ul>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>crontab [ -u user ] file<br>或<br>crontab [ -u user ] { -l | -r | -e }</p>
-<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><ul>
-<li><p>-u user：用来设定某个用户的crontab服务,这个前提是你必须要有其权限(比如说是 root)才能够指定他人的时程表。如果不使用 -u user 的话，就是表示设定自己的时程表。</p>
-</li>
-<li><p>file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab</p>
-</li>
-<li><p>-e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。</p>
-</li>
-<li><p>-l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。</p>
-</li>
-<li><p>-r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件.</p>
-</li>
-</ul>
-<h2 id="crontab的文件格式"><a href="#crontab的文件格式" class="headerlink" title="crontab的文件格式"></a>crontab的文件格式</h2><p><img src="http://blog.sjjtcloud.com/blog/20190806/6dVEtGXqD2FO.png?imageslim" alt="mark"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/07/CentOs定时任务Crontab的使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1788,7 +1860,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1799,7 +1871,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1810,7 +1882,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1863,7 +1935,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

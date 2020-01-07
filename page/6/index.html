@@ -295,6 +295,850 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/centOS-ssh连接-一段时间无操作连接自动断开问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/centOS-ssh连接-一段时间无操作连接自动断开问题/" itemprop="url">centOS ssh连接 一段时间无操作连接自动断开问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>解决方法：</p>
+<p>1 修改  /etc/ssh/sshd_config 文件<br>执行命令：vi /etc/ssh/sshd_config</p>
+<p>中间部分有：</p>
+<h4 id="ClientAliveInterval-0"><a href="#ClientAliveInterval-0" class="headerlink" title="ClientAliveInterval 0"></a>ClientAliveInterval 0</h4><h4 id="ClientAliveCountMax-3"><a href="#ClientAliveCountMax-3" class="headerlink" title="ClientAliveCountMax 3"></a>ClientAliveCountMax 3</h4><p>改为：</p>
+<p>ClientAliveInterval 60</p>
+<p>ClientAliveCountMax 60</p>
+<p>修改后如下用图：</p>
+<p>ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送.而ClientAliveInterval 60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了</p>
+<p>ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开 。</p>
+<p>2重启sshd （必须的否则无效）<br>执行命令：/bin/systemctl restart  sshd.service<br>我有在网上找这个问题的解决方法，有的只改参数，没有讲重启sshd。有的说了但是呢在我的机子上命令不能用，例如：/etc/init.d/sshdstart   /etc/rc.d/init.d/sshd restart</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/cenos7.5下载地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/cenos7.5下载地址/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="cenos7-5下载地址"><a href="#cenos7-5下载地址" class="headerlink" title="cenos7.5下载地址"></a>cenos7.5下载地址</h3><p><a href="http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/" target="_blank" rel="noopener">http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/android版本API对应关系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/android版本API对应关系/" itemprop="url">android版本API对应关系</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://blog.nilaile.cn/blog/20190520/V91Q41R0IX0B.png" alt="mark"></p>
+<table>
+<thead>
+<tr>
+<th>code name</th>
+<th style="text-align:right">Version    API level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q Preview</td>
+<td style="text-align:right">API level Q</td>
+</tr>
+<tr>
+<td>Pie    9.0</td>
+<td style="text-align:right">API level 28</td>
+</tr>
+<tr>
+<td>Oreo    8.1</td>
+<td style="text-align:right">API level 27</td>
+</tr>
+<tr>
+<td>Oreo    8.0</td>
+<td style="text-align:right">API level 26</td>
+</tr>
+<tr>
+<td>Nougat    7.1</td>
+<td style="text-align:right">API level 25</td>
+</tr>
+<tr>
+<td>Nougat    7.0</td>
+<td style="text-align:right">API level 24</td>
+</tr>
+<tr>
+<td>Marshmallow    6.0</td>
+<td style="text-align:right">API level 23</td>
+</tr>
+<tr>
+<td>Lollipop    5.1</td>
+<td style="text-align:right">API level 22</td>
+</tr>
+<tr>
+<td>Lollipop    5.0</td>
+<td style="text-align:right">API level 21</td>
+</tr>
+<tr>
+<td>KitKat    4.4 - 4.4.4</td>
+<td style="text-align:right">API level 19</td>
+</tr>
+<tr>
+<td>Jelly Bean    4.3.x</td>
+<td style="text-align:right">API level 18</td>
+</tr>
+<tr>
+<td>Jelly Bean    4.2.x</td>
+<td style="text-align:right">API level 17</td>
+</tr>
+<tr>
+<td>Jelly Bean    4.1.x</td>
+<td style="text-align:right">API level 16</td>
+</tr>
+<tr>
+<td>Ice Cream Sandwich    4.0.3 - 4.0.4</td>
+<td style="text-align:right">API level 15, NDK 8</td>
+</tr>
+<tr>
+<td>Ice Cream Sandwich    4.0.1 - 4.0.2</td>
+<td style="text-align:right">API level 14, NDK 7</td>
+</tr>
+<tr>
+<td>Honeycomb    3.2.x</td>
+<td style="text-align:right">API level 13</td>
+</tr>
+<tr>
+<td>Honeycomb    3.1</td>
+<td style="text-align:right">API level 12, NDK 6</td>
+</tr>
+<tr>
+<td>Honeycomb    3.0</td>
+<td style="text-align:right">API level 11</td>
+</tr>
+<tr>
+<td>Gingerbread    2.3.3 - 2.3.7</td>
+<td style="text-align:right">API level 10</td>
+</tr>
+<tr>
+<td>Gingerbread    2.3 - 2.3.2</td>
+<td style="text-align:right">API level 9, NDK 5</td>
+</tr>
+<tr>
+<td>Froyo    2.2.x</td>
+<td style="text-align:right">API level 8, NDK 4</td>
+</tr>
+<tr>
+<td>Eclair    2.1</td>
+<td style="text-align:right">API level 7, NDK 3</td>
+</tr>
+<tr>
+<td>Eclair    2.0.1</td>
+<td style="text-align:right">API level 6</td>
+</tr>
+<tr>
+<td>Eclair    2.0</td>
+<td style="text-align:right">API level 5</td>
+</tr>
+<tr>
+<td>Donut    1.6</td>
+<td style="text-align:right">API level 4, NDK 2</td>
+</tr>
+<tr>
+<td>Cupcake    1.5</td>
+<td style="text-align:right">API level 3, NDK 1</td>
+</tr>
+<tr>
+<td>(no code name)    1.1</td>
+<td style="text-align:right">API level 2</td>
+</tr>
+<tr>
+<td>(no code name)    1.0</td>
+<td style="text-align:right">API level 1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Mysql存储emoji表情错误问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Mysql存储emoji表情错误问题/" itemprop="url">Mysql存储emoji表情错误问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23</span><br></pre></td></tr></table></figure></p>
+<p>解决方法 ：</p>
+<ol>
+<li><p>windows服务器<br>修改my.ini配置文件,修改编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysqld]  </span><br><span class="line">character-set-server=utf8mb4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启Mysql服务</p>
+</li>
+<li><p>先查看数据库的编码方式：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;%char%&apos;;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改整个表的编码方式：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table user convert to character set utf8mb4 collate utf8mb4_bin;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>修改某个字段的编码方式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE user_patient MODIFY COLUMN user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT &apos;姓名&apos;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Nginx配置Https证书后,API项目访问时POST请求变为GET请求/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/Nginx配置Https证书后,API项目访问时POST请求变为GET请求/" itemprop="url">Nginx配置Https证书后,API项目访问时POST请求变为GET请求</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Nginx下配置Https证书，之前的博客是: <a href="http://nilaile.win/2019/05/13/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener">Nginx配置Https证书</a></p>
+<p>Https证书配置完成后 admin模块可以正常跳转到HTTPS, API模块部署后,后台请求登录遇到异常,查看Nginx日志后发现从http跳转到https时,请求的api方法从POST变为了GET请求，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;POST /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 301 185 &quot;-&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br><span class="line"></span><br><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;GET /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 200 65 &quot;http://www.sjjtcloud.com:80/ylzhy-api/api/wechat/user/login&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br></pre></td></tr></table></figure>
+<p>查找相关资料后, 发现是由于 301引起的。换成307问题解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;   </span><br><span class="line">	server &#123;</span><br><span class="line">		listen 443;</span><br><span class="line">		server_name www.sjjtcloud.com;</span><br><span class="line">		ssl on;</span><br><span class="line">		ssl_certificate  	cert/2195340_www.sjjtcloud.com.pem;</span><br><span class="line">		ssl_certificate_key 	cert/2195340_www.sjjtcloud.com.key;</span><br><span class="line">		ssl_session_timeout 5m;</span><br><span class="line">		ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">		ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">		ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			root   D:/nginx-1.12.2/html;</span><br><span class="line">			index  index.html index.htm;</span><br><span class="line">			try_files $uri $uri/ @router;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		location /api/ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		location /admin &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	 server &#123;</span><br><span class="line">    	listen   80;</span><br><span class="line">		server_name www.sjjtcloud.com sjjtcloud.com;  </span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		#rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; #这种写法是错误的</span><br><span class="line">		return 307 https://$server_name$request_uri; ###改为307</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>301 Moved Permanently<br>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一</p>
+<p>307 Temporary Redirect<br>请求的资源现在临时从不同的URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Nginx匹配规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -448,6 +1292,129 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/MybatisPlus总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/MybatisPlus总结/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###MybatisPlus总结</p>
+<ol>
+<li>mybatisPlus中使用updateById和update 都不能更新某个字段为””问题<br>解决方法： 修改mybatis-plus配置文件，如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;</span><br><span class="line">field-strategy: 1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Mysql主从复制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -552,129 +1519,6 @@
         
       
     </p></blockquote></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/MybatisPlus总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/MybatisPlus总结/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###MybatisPlus总结</p>
-<ol>
-<li>mybatisPlus中使用updateById和update 都不能更新某个字段为””问题<br>解决方法： 修改mybatis-plus配置文件，如下：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;</span><br><span class="line">field-strategy: 1</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
     
     
     
@@ -1786,802 +2630,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Docker常用命令/" itemprop="url">Docker常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看本机的镜像,可通过该方法查看到镜像id等信息.</span><br><span class="line">docker images </span><br><span class="line"></span><br><span class="line">获取镜像 name：镜像名  [:tag]：版本，默认为最新的（也就是会自己加上一个参数:latest）</span><br><span class="line">docker pull [options] name[:tag]</span><br><span class="line"></span><br><span class="line">删除镜像,需要删除其下所有容器</span><br><span class="line">docker rmi &lt;镜像id&gt;</span><br><span class="line"></span><br><span class="line">运行镜像,构建出一个容器. -d表示后台运行. </span><br><span class="line">docker run -d image </span><br><span class="line">-p 8080:80  进行端口映射，将nginx的80端口映射到主机的8080端口上，也就是别人访问8080，可以访问到自己的80</span><br><span class="line"></span><br><span class="line">查看目前正在运行的容器</span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">查看所有容器</span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">重要:xx表示不同的命令如，pull、run等。可以查看该命令的帮助，所有参数</span><br><span class="line">docker xx --help</span><br><span class="line"></span><br><span class="line">停止容器</span><br><span class="line">docker stop &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">删除容器</span><br><span class="line">docker rm &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">启动一个运行(run)过的容器</span><br><span class="line">docker start &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">在运行的容器中执行命令 </span><br><span class="line">docker exec [options] container command [arg...]</span><br><span class="line">例如:   </span><br><span class="line">docker exec -it &lt;容器id&gt; bash</span><br><span class="line">可以进入一个容器，和虚拟机中一样。也就是容器内部</span><br><span class="line"></span><br><span class="line">挂载目录:将宿主机的文件共享给容器</span><br><span class="line">docker run -d --name=test -v /opt/test:/usr/databases docker-test </span><br><span class="line">test是容器的名字，需唯一；</span><br><span class="line">-v表示创建一个数据卷并挂载到容器里，</span><br><span class="line">示例表示把宿主机的/opt/test目录挂载到容器的/usr/databases目录下；</span><br><span class="line">docker-test是镜像的名字</span><br><span class="line"></span><br><span class="line">查看容器当前信息,可在该命令的 Mounts信息中,找到挂载目录信息</span><br><span class="line">docker inspect &lt;容器id&gt;</span><br><span class="line"></span><br><span class="line">运行容器</span><br><span class="line">-d表示后台运行 -p表示设置端口映射， jpress是镜像名</span><br><span class="line">docker run -d -p  8888:8080 jpress</span><br><span class="line"></span><br><span class="line">运行mysql镜像</span><br><span class="line">docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=xxx  images(镜像名)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Elasticsearch安装中文分词插件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Elasticsearch安装中文分词插件/" itemprop="url">Elasticsearch安装中文分词插件ik</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Elasticsearch自带standard分词只能把汉语分割成一个个字，而不能分词、分段，这就是我们需要分析器ik的地方了。</p>
-<h3 id="安装结果"><a href="#安装结果" class="headerlink" title="安装结果:"></a>安装结果:</h3><p><code>http:`</code>//{ip}:9200/_analyze?analyzer=standard&amp;pretty=true&amp;text=sojson中华人民共和国`</p>
-<p><img src="http://blog.nilaile.cn/blog/20190613/PXqmfSip2ESr.png" alt="mark"></p>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>访问浏览器（虚拟机IP:9200）查看你elasticsearch的版本号<br><img src="http://blog.nilaile.cn/blog/20190613/r7kxHm3y7Ta2.png" alt="mark"></p>
-<p><strong>一、下载ik的相应版本</strong></p>
-<p>查看版本和下载链接<a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">点击这里</a></p>
-<p>这里提供5.0.0的ES及以前的版本对应的ik版本</p>
-<p><img src="http://blog.nilaile.cn/blog/20190613/5oX0v1yjC6mz.png" alt="mark"></p>
-<p><strong>二、下载的方式</strong></p>
-<p>我这里的ES是2.3.5，对应的ik版本是1.9.5</p>
-<p>在版本里选择1.9.5，点击 【Download ZIP】右键选择 – 复制链接地址</p>
-<p><img src="https://images2015.cnblogs.com/blog/1059579/201702/1059579-20170207145657885-2081174365.png" alt></p>
-<p><code>wget https://github.com/medcl/elasticsearch-analysis-ik/archive/v1.9.5.zip</code></p>
-<p><strong>三、解包</strong>（如果没有unzip命令的使用  <strong>yum install zip unzip *</strong>  命令安装）</p>
-<p><code>unzip v1.9.5.zip</code></p>
-<p><strong>四、 打包</strong></p>
-<p>因为是java的源码，需要用maven打包</p>
-<p>进入解压后的目录elasticsearch-analysis-ik-1.10.1里面，输入下面命令进行打包</p>
-<p><code>cd elasticsearch-analysis-ik-1.9.5/</code></p>
-<p><code>mvn clean package</code></p>
-<p>（注：如果没有mvn的可以直接使用 <strong>yum install java*</strong> 进行安装，把ES的环境也一起配置好）</p>
-<p><strong>五、配置</strong></p>
-<p>1、打包后，在当前目录下有target目录，进去，有一个releases目录，把里面的zip包复制到你安装ES目录下的plugins目录下的ik目录（ik目录需要手动添加）</p>
-<p>查找ES插件路径可以使用命令<br><code>whereis elasticsearch</code></p>
-<p>ES插件默认安装路径是：<br><code>/usr/share/elasticsearch/plugins/</code></p>
-<p>mkdir -p /usr/share/elasticsearch/plugins/ik</p>
-<p>cd target/releases/</p>
-<p>mv elasticsearch-analysis-ik-1.9.5.zip /usr/share/elasticsearch/plugins/ik</p>
-<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>; “复制代码”)</p>
-<p>2、使用unzip命令解包，并把zip包删除了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/elasticsearch/plugins/</span><br><span class="line"></span><br><span class="line">unzip elasticsearch-analysis-ik-1.9.5.zip</span><br><span class="line"></span><br><span class="line">rm -rf elasticsearch-analysis-ik-1.9.5.zip</span><br></pre></td></tr></table></figure>
-<p><strong>六、测试</strong></p>
-<p>重启ES服务，查看ES的状态为（Active: active (running)）即可。</p>
-<p>systemctl restart elasticsearch</p>
-<p>systemctl status elasticsearch</p>
-<p>如果需要具体测试的话，可以在官网git的下面介绍有（<a href="https://github.com/medcl/elasticsearch-analysis-ik/tree/v1.10.1" target="_blank" rel="noopener">点击查看</a>），简单的方法可以使用下面命令在浏览器访问确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://（虚拟机ip）:9200**/_analyze?analyzer=ik&amp;pretty=true&amp;text=helloworld,中华人民共和国&quot;</span><br></pre></td></tr></table></figure>
-<p><img src="http://blog.nilaile.cn/blog/20190613/PXqmfSip2ESr.png" alt="mark"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5配置HTTPS证书/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7.5配置HTTPS证书/" itemprop="url">Centos7.5使用NGINX配置https证书</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LINUX/" itemprop="url" rel="index">
-                    <span itemprop="name">LINUX</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-下载安装NGINX"><a href="#1-下载安装NGINX" class="headerlink" title="1. 下载安装NGINX"></a>1. 下载安装NGINX</h3><h3 id="2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf"><a href="#2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf" class="headerlink" title="2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf"></a>2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/config.d/defualt.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#负载均衡配置</span><br><span class="line">upstream webservers_api &#123;</span><br><span class="line">        #weigth</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 127.0.0.1:8086 max_fails=1  fail_timeout=10s;</span><br><span class="line">        #server 127.0.0.1:8081 max_fails=1  fail_timeout=3600s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate  /usr/local/TencentCloud/httpsCert/www.baidu.com.pem;</span><br><span class="line">    ssl_certificate_key /usr/local/TencentCloud/httpsCert/www.baidu.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    access_log /usr/local/web/nginxLogs;</span><br><span class="line"></span><br><span class="line">   #静态文件</span><br><span class="line">   location / &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        root   /usr/local/web/dist;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files $uri $uri/ @router;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #下载文件时把下载文件放在该目录下</span><br><span class="line">    location ~* \.(exe|apk|zip)$ &#123;</span><br><span class="line">        root /usr/local/web/download;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @router &#123;</span><br><span class="line">            rewrite ^.*$ /index.html last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   location /hlwyy/api/ &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_pass http://webservers_api; #跳转到api的负载均衡服务器</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.nilaie.com nilaie.com; #多个域名以空格隔开（替换为自己的域名）</span><br><span class="line">    rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    #access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Docker安装Mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Docker安装Mysql/" itemprop="url">Docker安装Mysql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="方法一、docker-pull-mysql"><a href="#方法一、docker-pull-mysql" class="headerlink" title="方法一、docker pull mysql"></a>方法一、docker pull mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runoob@runoob:/mysql$ docker search mysql</span><br></pre></td></tr></table></figure>
-<h3 id="2-获取-docker-pull-mysql-5-6"><a href="#2-获取-docker-pull-mysql-5-6" class="headerlink" title="2. 获取 docker pull mysql:5.6"></a>2. 获取 <code>docker pull mysql:5.6</code></h3><p>等待下载完成后，我们就可以在本地镜像列表里查到REPOSITORY为mysql,标签为5.7的镜像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker images| grep mysql</span><br><span class="line">mysql         5.7        a1aa4f76fab9        2 days ago        373MB</span><br></pre></td></tr></table></figure>
-<h3 id="方法二、通过-Dockerfile构建"><a href="#方法二、通过-Dockerfile构建" class="headerlink" title="方法二、通过 Dockerfile构建"></a>方法二、通过 Dockerfile构建</h3><p>1.首先创建目录mysql,用于存放后面的相关东西。</p>
-<p><code>runoob@runoob:~$ mkdir -p ~/mysql/data ~/mysql/logs ~/mysql/conf</code></p>
-<p>data目录将映射为mysql容器配置的数据文件存放路径<br>logs目录将映射为mysql容器的日志目录<br>conf目录里的配置文件将映射为mysql容器的配置文件</p>
-<p>2.进入创建的mysql目录，创建Dockerfile文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added RUN groupadd -r mysql &amp;&amp; useradd -r -g mysql mysql # add gosu for easy step-down from root ENV GOSU_VERSION 1.7 RUN set  -x \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y --no-install-recommends ca-certificates wget &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)&quot; \</span><br><span class="line">    &amp;&amp; wget -O /usr/local/bin/gosu.asc &quot;https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc&quot; \</span><br><span class="line">    &amp;&amp; export GNUPGHOME=&quot;$(mktemp -d)&quot; \</span><br><span class="line">    &amp;&amp; gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \</span><br><span class="line">    &amp;&amp; gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; rm -r &quot;$GNUPGHOME&quot; /usr/local/bin/gosu.asc \</span><br><span class="line">    &amp;&amp; chmod +x /usr/local/bin/gosu \</span><br><span class="line">    &amp;&amp; gosu nobody true \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove ca-certificates wget</span><br><span class="line"></span><br><span class="line">RUN mkdir /docker-entrypoint-initdb.d</span><br><span class="line"></span><br><span class="line"># FATAL ERROR: please install the following Perl modules before executing /usr/local/mysql/scripts/mysql_install_db:</span><br><span class="line"># File::Basename</span><br><span class="line"># File::Copy</span><br><span class="line"># Sys::Hostname</span><br><span class="line"># Data::Dumper</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y perl pwgen --no-install-recommends &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"># gpg: key 5072E1F5: public key &quot;MySQL Release Engineering &lt;mysql-build@oss.oracle.com&gt;&quot; imported</span><br><span class="line">RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5</span><br><span class="line"></span><br><span class="line">ENV MYSQL_MAJOR 5.6</span><br><span class="line">ENV MYSQL_VERSION 5.6.31-1debian8</span><br><span class="line"></span><br><span class="line">RUN echo &quot;deb http://repo.mysql.com/apt/debian/ jessie mysql-$&#123;MYSQL_MAJOR&#125;&quot; &gt; /etc/apt/sources.list.d/mysql.list</span><br><span class="line"></span><br><span class="line"># the &quot;/var/lib/mysql&quot; stuff here is because the mysql-server postinst doesn&apos;t have an explicit way to disable the mysql_install_db codepath besides having a database already &quot;configured&quot; (ie, stuff in /var/lib/mysql/mysql)</span><br><span class="line"># also, we set debconf keys to make APT a little quieter</span><br><span class="line">RUN &#123; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/data-dir select &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/re-root-pass password &apos;&apos;; \</span><br><span class="line">        echo mysql-community-server mysql-community-server/remove-test-db select false; \</span><br><span class="line">    &#125; | debconf-set-selections \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get install -y mysql-server=&quot;$&#123;MYSQL_VERSION&#125;&quot; &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/mysql &amp;&amp; mkdir -p /var/lib/mysql /var/run/mysqld \</span><br><span class="line">    &amp;&amp; chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \</span><br><span class="line"># ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime</span><br><span class="line">    &amp;&amp; chmod 777 /var/run/mysqld</span><br><span class="line"></span><br><span class="line"># comment out a few problematic configuration values</span><br><span class="line"># don&apos;t reverse lookup hostnames, they are usually another container</span><br><span class="line">RUN sed -Ei &apos;s/^(bind-address|log)/#&amp;/&apos; /etc/mysql/my.cnf \</span><br><span class="line">    &amp;&amp; echo &apos;skip-host-cache\nskip-name-resolve&apos; | awk &apos;&#123; print &#125; $1 == &quot;[mysqld]&quot; &amp;&amp; c == 0 &#123; c = 1; system(&quot;cat&quot;) &#125;&apos; /etc/mysql/my.cnf &gt; /tmp/my.cnf \</span><br><span class="line">    &amp;&amp; mv /tmp/my.cnf /etc/mysql/my.cnf</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/mysql</span><br><span class="line"></span><br><span class="line">COPY docker-entrypoint.sh /usr/local/bin/</span><br><span class="line">RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat</span><br><span class="line">ENTRYPOINT [&quot;docker-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">EXPOSE 3306</span><br><span class="line">CMD [&quot;mysqld&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>通过Dockerfile创建一个镜像，替换成你自己的名字</p>
-<p><code>runoob@runoob:~/mysql$ docker build -t mysql .</code></p>
-<p>创建完成后，我们可以在本地的镜像列表里查找到刚刚创建的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker images |grep mysql</span><br><span class="line">mysql 5.6  2c0964ec182a  3 weeks ago 329 MB</span><br></pre></td></tr></table></figure>
-<h2 id="使用mysql镜像"><a href="#使用mysql镜像" class="headerlink" title="使用mysql镜像"></a>使用mysql镜像</h2><h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker run -p 13306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456  -d mysql:5.7</span><br></pre></td></tr></table></figure>
-<p>命令说明：</p>
-<ul>
-<li><strong>–name mymysql</strong>：定义容器的别名。</li>
-<li></li>
-<li><p><strong>-p 3306:3306</strong>：将容器的 3306 端口映射到主机的 13306 端口。</p>
-</li>
-<li><p><strong>-v $PWD/conf:/etc/mysql/conf.d</strong>：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。</p>
-</li>
-<li><p><strong>-v $PWD/logs:/logs</strong>：将主机当前目录下的 logs 目录挂载到容器的 /logs。</p>
-</li>
-<li><p><strong>-v $PWD/data:/var/lib/mysql</strong> ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 。</p>
-</li>
-<li><p><strong>-e MYSQL_ROOT_PASSWORD=123456：</strong>初始化 root 用户的密码。</p>
-</li>
-</ul>
-<h3 id="查看容器启动情况"><a href="#查看容器启动情况" class="headerlink" title="查看容器启动情况"></a>查看容器启动情况</h3><p><code>[root@localhost ~]# docker ps</code></p>
-<p><img src="http://blog.nilaile.cn/blog/20190613/B9qkTex9gJfj.png" alt="mark"></p>
-<h3 id="重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name"><a href="#重启docker中的Mysql-可以通过CONTAINER-ID-或者容器的Name" class="headerlink" title="重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)"></a>重启docker中的Mysql(可以通过CONTAINER ID 或者容器的Name)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart mymysql</span><br></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker restart f75c3467f92e</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/Centos7.5安装RocketMq/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/Centos7.5安装RocketMq/" itemprop="url">Centos7.5安装RocketMq</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RocketMq/" itemprop="url" rel="index">
-                    <span itemprop="name">RocketMq</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
-<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
-<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
-<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
-<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
-<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
-<p>查看进程：jps</p>
-<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
-<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
-<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
-<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
-<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
-<p>bin目录：</p>
-<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
-<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
-<p>参考文章</p>
-<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2634,7 +2682,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2645,7 +2693,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2656,7 +2704,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2709,7 +2757,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

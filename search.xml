@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SpringCloud-Feign</title>
+    <url>/2020/01/02/SpringCloud-Feign/</url>
+    <content><![CDATA[<blockquote>
+<p>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用Feign 注解和JAX-RS注解。Feign支持可插拔的编码器和解码器。Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
+</blockquote>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>Feign 采用的是基于接口的注解</li>
+<li>Feign 整合了ribbon，具有负载均衡的能力</li>
+<li>Feign 整合了Hystrix，具有熔断的能力</li>
+</ul>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>在分布式系统中，服务与服务之间的依赖错综复杂，一种不可避免的情况就是某些服务出现故障，导致依赖于它们的其他服务出现远程调度的线程阻塞<br>Hystrix是Netflix公司开源的 个项目，它提供了熔断器功能，能够阻止分布式系统中出现联动故障<br>Hystrix是通过隔离服务的访问点阻止联动故障的，并提供了故障的解决方案,从而提高了整个分布式系统的弹性</p>
+]]></content>
+      <categories>
+        <category>spring cloud</category>
+      </categories>
+      <tags>
+        <tag>Feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理-数据</title>
+    <url>/2020/01/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h2 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h2><p>1.寄存器的位数  反映了无符号数的表示范围</p>
+<h2 id="有符号数"><a href="#有符号数" class="headerlink" title="有符号数"></a>有符号数</h2><p>1.机器数：保存在计算机中的数据， 符号数字化的数<br>2.真值：数据真实的值，带符号的数</p>
+<h2 id="原码转补码"><a href="#原码转补码" class="headerlink" title="原码转补码"></a>原码转补码</h2><p>原码除符号位 按位取反, 末尾加1<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">原码: 1010 0101</span><br><span class="line">补码: 1101 1011</span><br></pre></td></tr></table></figure></p>
+<h2 id="补码转原码"><a href="#补码转原码" class="headerlink" title="补码转原码"></a>补码转原码</h2><p>将补码 除符号位 按位取反,末尾加1</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">补码: 1101 1011</span><br><span class="line">原码: 1010 0101</span><br></pre></td></tr></table></figure>
+<h2 id="已知-y-补-求-y-补？"><a href="#已知-y-补-求-y-补？" class="headerlink" title="已知 y(补) 求 (-y)补？"></a>已知 y(补) 求 (-y)补？</h2><p>将y(补) 连同 符号位在内，每位取反,末位加1,即得(-y)补</p>
+<p>为什么要引入移码？<br>补码无法直观的比较大小，移码一般用于表示浮点数的阶码</p>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>哈尔滨工业大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成原理课后练习题</title>
+    <url>/2020/01/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章 计算机系统概述"></a>第一章 计算机系统概述</h1><h2 id="第2题"><a href="#第2题" class="headerlink" title="第2题"></a>第2题</h2><p>(1) “冯诺依曼计算机”由运算器,控制器,存储器,输入设备,输出设备组成</p>
+<ul>
+<li>运算器:负责算术运算(加减乘除)及逻辑运算</li>
+<li>控制器: 能够自动执行指令</li>
+<li>存储器: 不仅能存放指令,也能存放数据</li>
+<li>输入设备/输出设备: 供给操作人员使用计算机</li>
+</ul>
+<p>(2) 冯诺依曼结构主要思想是什么?<br>1、采用“存储程序”工作方式<br>2、计算机由5大基本部分组成:运算器,控制器,存储器,输入设备,输出设备<br>3、存储器不仅能存放数据,而且能存放指令<br>4、计算机内部以二进制形式表示指令和数据</p>
+<p>(3)用户可分为4类即 最终用户,系统管理员,应用程序员，系统程序员</p>
+<p>(4)程序是由一条条指令构成的,程序启动后Cpu通过追条执行程序中的指令来实现程序功能<br>指令执行的过程主要有五步<br>1.根据Pc取指令到指令寄存器IR<br>2.指令译码并送出控制信号<br>3.取操作数<br>4.指令执行<br>5.回写结果</p>
+<p>(5)CPI与程序所含的指令条数及时钟频率,时钟周期有关</p>
+<p>(6)MIPS(表示平均每秒钟能执行多少百万条指令）但是因为不同机器的指令集不同,指令的功能也不同，同样的指令条数完成的指令功能也不同,所以MIPS不能很好的反映计算机的性能</p>
+<h2 id="第5题"><a href="#第5题" class="headerlink" title="第5题"></a>第5题</h2><p>(1) </p>
+]]></content>
+      <categories>
+        <category>自考</category>
+      </categories>
+      <tags>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Ribbon负载均衡</title>
+    <url>/2019/12/31/SpringCloud-Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+    <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><p>Ribbon是Netflix开源的负载均衡组件, 负载均衡是指将负载分摊到多个执行单元上，常见的负载均衡有两种方式。 </p>
+<ol>
+<li>一种是 独立进程单元，通过负载均衡策略,将请求转发到不同的执行单元上,例如 Ngnix </li>
+<li>另一种是将负载均衡逻辑以代码的形式封装到服务消费者的客户端上，服务消费者客户端维护了一份服务提供的信息列表，有了信息列表, 就可以通过负载均衡策略将请求分摊给多个服务提供者，从而达到负载均衡的目的, 如Ribbon</li>
+</ol>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>方式一：使用Ribbon和RestTemplate结合<br>方式二：和Feign结合(Feign已经默认集成了Ribbon)</p>
+]]></content>
+      <categories>
+        <category>spring cloud</category>
+      </categories>
+      <tags>
+        <tag>Ribbon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Eureka(注册中心)</title>
+    <url>/2019/12/31/SpringCloud-Eureka(%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83)/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>Eureka是Netflix公司开源的服务注册与发现组件。</p>
+</blockquote>
+<h2 id="Eureka中的角色"><a href="#Eureka中的角色" class="headerlink" title="Eureka中的角色"></a>Eureka中的角色</h2><ol>
+<li>服务注册中心,它是一个Eureka Server,提供服务注册于发现的功能 </li>
+<li>服务提供者,它是一个Eureka Client,提供服务 </li>
+<li>服务消费者,它是一个Eureka Client,消费服务</li>
+</ol>
+<h2 id="服务消费的过程"><a href="#服务消费的过程" class="headerlink" title="服务消费的过程"></a>服务消费的过程</h2><ol>
+<li>首先需要启动一个服务注册中心</li>
+<li>服务提供者,向服务注册中心注册,将自己的信息(服务名/IP地址等）通过RESET API的形式提交给服务注册中心Eureka Server</li>
+<li>服务消费者,也向服务注册中心注册,同时服务消费者会获取一份服务注册列表的信息,该列表包含了所有向服务注册中心注册的服务信息</li>
+<li>获取到服务注册列表后,服务消费者就知道服务提供者的IP地址，也就可以通过Http远程调度来消费服务提供者提供的服务</li>
+</ol>
+<h2 id="Eureka基本概念"><a href="#Eureka基本概念" class="headerlink" title="Eureka基本概念"></a>Eureka基本概念</h2><ol>
+<li><p>Register——服务注册</p>
+</li>
+<li><p>Renew——-服务续约<br> 正常情况下Eureka Client会每隔30秒发送一次心跳来进行服务续约,通过服务续约来告知Eureka Server该Eureka Client仍然可用,没有出现故障,正常情况下,Eureka Server如果90秒内未收到Eureka client的心跳，会将该Eureka client从服务列表中删除</p>
+</li>
+<li><p>Fetch Registers—–获取服务注册列表信息<br> Eureka Client从Eureka Server获取服务注册信息,并将其缓存在本地,该列表信息定时更新(每隔30秒),Eureka Client和Eureka Server可以通过JSON/XML数据格式进行通信</p>
+</li>
+<li><p>Cancle——-服务下线<br> Eureka Client在程序关闭时可以向Eureka Server发送下线请求,发送请求后 该客户端信息将从Eureka Server的服务注册列表中删除，该请求不是自动完成的,需要在程序关闭时调用<br> <code>DiscoveryManager . getinstance() .shutdownComponent();</code></p>
+</li>
+<li><p>Evication—-服务剔除<br>默认情况下,Eureka Server如果90秒内未收到Eureka Client的服务续约(心跳请求),Eureka Server会将该服务实例从注册列表删除，即服务剔除</p>
+</li>
+</ol>
+<h2 id="Eureka高可用架构"><a href="#Eureka高可用架构" class="headerlink" title="Eureka高可用架构"></a>Eureka高可用架构</h2>]]></content>
+      <categories>
+        <category>spring cloud</category>
+      </categories>
+      <tags>
+        <tag>Eureka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Nextcloud搭建私有云盘</title>
     <url>/2019/12/26/Nextcloud%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-安装并运行-首次默认会通过搜索远程来拉取"><a href="#1-安装并运行-首次默认会通过搜索远程来拉取" class="headerlink" title="1. 安装并运行(首次默认会通过搜索远程来拉取)"></a>1. 安装并运行(首次默认会通过搜索远程来拉取)</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d --name nextcloud \</span><br><span class="line">-p 8020:80 \</span><br><span class="line">-v /data/nextcloud:/var/www/html \</span><br><span class="line">nextcloud</span><br></pre></td></tr></table></figure>
@@ -830,6 +946,81 @@
       </tags>
   </entry>
   <entry>
+    <title>java面试系列问题(3)</title>
+    <url>/2019/08/07/%E9%9D%A2%E8%AF%953/</url>
+    <content><![CDATA[<p>一、基础题</p>
+<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
+<p>写出一个必然会产生死锁的伪代码；</p>
+<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
+<p>toString()方法什么情况下需要重写；</p>
+<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
+<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
+<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
+<p>Java 8流式迭代的好处？</p>
+<p>项目中用到的JDK的哪些特性？</p>
+<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
+<p>Spring的bean的创建时机？依赖注入的时机？</p>
+<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
+<p>CopyOnWriteArrayList是什么；</p>
+<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
+<p>如何调试多线程的程序；</p>
+<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
+<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
+<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
+<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
+<p>二、网络基础</p>
+<p>HTTP、TCP、UDP的区别和联系；</p>
+<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
+<p>TCP和UDP各用了底层什么协议；</p>
+<p>单个UDP报文最大容量；</p>
+<p>单个TCP报文最大容量；</p>
+<p>TCP报头格式、UDP报头格式；</p>
+<p>Server遭遇SYN Flood应当怎么处理；</p>
+<p>Web开发中如何防范XSS？</p>
+<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
+<p>三、操作系统</p>
+<p>为什么要内存对齐；</p>
+<p>为什么会有大端小端，htol这一类函数的作用；</p>
+<p>top显示出来的系统信息都是什么含义；（重要！）</p>
+<p>Linux地址空间，怎么样进行寻址的；</p>
+<p>Linux如何查找目录或者文件的；</p>
+<p>四、分布式其他</p>
+<p>分库与分表带来的分布式困境与应对之策；</p>
+<p>Solr如何实现全天24小时索引更新；</p>
+<p>五、Redis</p>
+<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
+<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
+<p>Redis复制的过程;</p>
+<p>Redis队列应用场景；</p>
+<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
+<p>六、系统设计开放性题目</p>
+<p>秒杀系统设计，超卖怎么搞;</p>
+<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
+<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
+<p>基于数组实现一个循环阻塞队列；</p>
+<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
+<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
+<p>七、大数据量问题（后边会有专题单独讨论）</p>
+<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
+<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
+<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
+<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
+<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
+<p>八、逻辑思维题</p>
+<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
+<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
+<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
+<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java面试系列问题(4)</title>
     <url>/2019/08/07/%E9%9D%A2%E8%AF%954/</url>
     <content><![CDATA[<p>一、Java基础</p>
@@ -906,72 +1097,143 @@
       </tags>
   </entry>
   <entry>
-    <title>java面试系列问题(3)</title>
-    <url>/2019/08/07/%E9%9D%A2%E8%AF%953/</url>
-    <content><![CDATA[<p>一、基础题</p>
-<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
-<p>写出一个必然会产生死锁的伪代码；</p>
-<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
-<p>toString()方法什么情况下需要重写；</p>
-<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
-<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
-<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
-<p>Java 8流式迭代的好处？</p>
-<p>项目中用到的JDK的哪些特性？</p>
-<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
-<p>Spring的bean的创建时机？依赖注入的时机？</p>
-<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
-<p>CopyOnWriteArrayList是什么；</p>
-<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
-<p>如何调试多线程的程序；</p>
-<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
-<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
-<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
-<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
-<p>二、网络基础</p>
-<p>HTTP、TCP、UDP的区别和联系；</p>
-<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
-<p>TCP和UDP各用了底层什么协议；</p>
-<p>单个UDP报文最大容量；</p>
-<p>单个TCP报文最大容量；</p>
-<p>TCP报头格式、UDP报头格式；</p>
-<p>Server遭遇SYN Flood应当怎么处理；</p>
-<p>Web开发中如何防范XSS？</p>
-<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
-<p>三、操作系统</p>
-<p>为什么要内存对齐；</p>
-<p>为什么会有大端小端，htol这一类函数的作用；</p>
-<p>top显示出来的系统信息都是什么含义；（重要！）</p>
-<p>Linux地址空间，怎么样进行寻址的；</p>
-<p>Linux如何查找目录或者文件的；</p>
-<p>四、分布式其他</p>
-<p>分库与分表带来的分布式困境与应对之策；</p>
-<p>Solr如何实现全天24小时索引更新；</p>
-<p>五、Redis</p>
-<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
-<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
-<p>Redis复制的过程;</p>
-<p>Redis队列应用场景；</p>
-<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
-<p>六、系统设计开放性题目</p>
-<p>秒杀系统设计，超卖怎么搞;</p>
-<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
-<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
-<p>基于数组实现一个循环阻塞队列；</p>
-<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
-<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
-<p>七、大数据量问题（后边会有专题单独讨论）</p>
-<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
-<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
-<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
-<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
-<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
-<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
-<p>八、逻辑思维题</p>
-<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
-<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
-<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
-<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+    <title>java面试系列问题(2)</title>
+    <url>/2019/08/07/%E9%9D%A2%E8%AF%952/</url>
+    <content><![CDATA[<p>一、Java相关</p>
+<p>Arraylist与LinkedList默认空间是多少；</p>
+<p>Arraylist与LinkedList区别与各自的优势List 和 Map 区别；</p>
+<p>谈谈HashMap，哈希表解决hash冲突的方法；</p>
+<p>为什么要重写hashcode()和equals()以及他们之间的区别与关系；</p>
+<p>Object的hashcode()是怎么计算的？</p>
+<p>若hashcode方法永远返回1或者一个常量会产生什么结果？</p>
+<p>Java Collections和Arrays的sort方法默认的排序方法是什么；</p>
+<p>引用计数法与GC Root可达性分析法区别；</p>
+<p>浅拷贝和深拷贝的区别；</p>
+<p>String s=”abc”和String s=new String(“abc”)区别；</p>
+<p>HashSet方法里面的hashcode存在哪，如果重写equals不重写hashcode会怎么样？</p>
+<p>反射的作用与实现原理；</p>
+<p>Java中的回调机制；</p>
+<p>模板方法模式；</p>
+<p>开闭原则说一下；</p>
+<p>发布/订阅使用场景；</p>
+<p>KMP算法（一种改进的字符串匹配算法）；</p>
+<p>JMM里边的原子性、可见性、有序性是如何体现出来的，JMM中内存屏障是什么意思，</p>
+<p>二、多线程</p>
+<p>AtomicInteger底层实现原理；</p>
+<p>synchronized与ReentraLock哪个是公平锁；</p>
+<p>CAS机制会出现什么问题；</p>
+<p>用过并发包下边的哪些类；</p>
+<p>一个线程连着调用start两次会出现什么情况？</p>
+<p>wait方法能不能被重写，wait能不能被中断；</p>
+<p>线程池的实现？四种线程池？重要参数及原理？任务拒接策略有哪几种？</p>
+<p>线程状态以及API怎么操作会发生这种转换；</p>
+<p>常用的避免死锁方法；</p>
+<p>三、JVM</p>
+<p>Minor GC与Full GC分别在什么时候发生？什么时候触发Full GC;</p>
+<p>GC收集器有哪些？CMS收集器与G1收集器的特点。</p>
+<p>Java在什么时候会出现内存泄漏；</p>
+<p>Java中的大对象如何进行存储；</p>
+<p>rt.jar被什么类加载器加载，什么时间加载；</p>
+<p>自己写的类被什么加载，什么时间加载；</p>
+<p>自己写的两个不同的类是被同一个类加载器加载的吗？为什么？</p>
+<p>为什么新生代内存需要有两个Survivor区？</p>
+<p>几种常用的内存调试工具：jmap、jstack、jconsole；</p>
+<p>类加载的五个过程：加载、验证、准备、解析、初始化；</p>
+<p>G1停顿吗，CMS回收步骤，CMS为什么会停顿，停顿时间；</p>
+<p>栈主要存的数据是什么，堆呢？</p>
+<p>堆分为哪几块，比如说新生代老生代，那么新生代又分为什么？</p>
+<p>软引用和弱引用的使用场景（软引用可以实现缓存，弱引用可以用来在回调函数中防止内存泄露）；</p>
+<p>四、数据库</p>
+<p>数据库索引，什么是全文索引，全文索引中的倒排索引是什么原理；</p>
+<p>数据库最佳左前缀原则是什么？</p>
+<p>数据库的三大范式；</p>
+<p>悲观锁和乐观锁的原理和应用场景；</p>
+<p>左连接、右连接、内连接、外连接、交叉连接、笛卡儿积等；</p>
+<p>一般情况下数据库宕机了如何进行恢复（什么是Write Ahead Log机制，什么是Double Write机制，什么是Check Point）；</p>
+<p>什么是redo日志、什么是undo日志；</p>
+<p>数据库中的隔离性是怎样实现的；原子性、一致性、持久性又是如何实现的；</p>
+<p>什么是组合索引，组合索引什么时候会失效；</p>
+<p>关系型数据库和非关系型数据库区别；</p>
+<p>数据库死锁如何解决；</p>
+<p>MySQL并发情况下怎么解决（通过事务、隔离级别、锁）；</p>
+<p>MySQL中的MVCC机制是什么意思，根据具体场景，MVCC是否有问题；</p>
+<p>MySQL数据库的隔离级别，以及如何解决幻读；</p>
+<p>五、缓存服务器</p>
+<p>Redis中zSet跳跃表问题；</p>
+<p>Redis的set的应用场合？</p>
+<p>Redis高级特性了解吗？</p>
+<p>Redis的pipeline有什么用处？</p>
+<p>Redis集群宕机如何处理，怎么样进行数据的迁移；</p>
+<p>Redis的集群方案；</p>
+<p>Redis原子操作怎么用比较好；</p>
+<p>Redis过期策略是怎么实现的呢？</p>
+<p>六、SSM相关</p>
+<p>Spring中@Autowired和@Resource注解的区别？</p>
+<p>Spring声明一个 bean 如何对其进行个性化定制；</p>
+<p>MyBatis有什么优势；</p>
+<p>MyBatis如何做事务管理；</p>
+<p>七、操作系统</p>
+<p>Linux静态链接和动态链接；</p>
+<p>什么是IO多路复用模型（select、poll、epoll）；</p>
+<p>Linux中的grep管道用处？Linux的常用命令？</p>
+<p>操作系统中虚拟地址、逻辑地址、线性地址、物理地址的概念及区别；</p>
+<p>内存的页面置换算法；</p>
+<p>内存的页面置换算法；</p>
+<p>进程调度算法，操作系统是如何调度进程的；</p>
+<p>父子进程、孤儿进程、僵死进程等概念；</p>
+<p>fork进程时的操作；</p>
+<p>kill用法，某个进程杀不掉的原因（僵死进程；进入内核态，忽略kill信号）；</p>
+<p>系统管理命令（如查看内存使用、网络情况）；</p>
+<p>find命令、awk使用；</p>
+<p>Linux下排查某个死循环的线程；</p>
+<p>八、网络相关</p>
+<p>数据链路层是做什么的?</p>
+<p>数据链路层的流量控制？</p>
+<p>网络模型的分层、IP和Mac地址在那个层、TCP和HTTP分别在那个层；</p>
+<p>TCP滑动窗口；</p>
+<p>TCP为什么可靠；</p>
+<p>TCP的同传，拆包与组装包是什么意思；</p>
+<p>Https和Http有什么区别；</p>
+<p>Http 为什么是无状态的；</p>
+<p>TCP三次握手，为什么不是三次，为什么不是四次；</p>
+<p>TCP的拥塞控制、流量控制详细说明？</p>
+<p>Http1.0和Http2.0的区别；</p>
+<p>两个不同ip地址的计算机之间如何通信；</p>
+<p>地址解析协议ARP；</p>
+<p>OSI七层模型分别对应着五层模型的哪一部分；</p>
+<p>TCP三次握手数据丢失了怎么办？那如果后面又找到了呢？</p>
+<p>九、分布式相关</p>
+<p>消息队列使用的场景介绍和作用（应用耦合、异步消息、流量削锋等）；</p>
+<p>如何解决消息队列丢失消息和重复消费问题；</p>
+<p>Kafka使用过吗，什么是幂等性？怎么保证一致性，持久化怎么做，分区partition的理解，LEO是什么意思，如何保证多个partition之间数据一致性的（ISR机制），为什么Kafka可以这么快（基于磁盘的顺序读写）；</p>
+<p>异步队列怎么实现；</p>
+<p>你项目的并发是多少？怎么解决高并发问题？单机情况下Tomcat的并发大概是多少，MySQL的并发大致是多少？</p>
+<p>什么是C10K问题；</p>
+<p>高并发情况下怎么办；</p>
+<p>分布式理论，什么是CAP理论，什么是Base理论，什么是Paxos理论；</p>
+<p>分布式协议的选举算法；</p>
+<p>说一下你对微服务的理解，与SOA的区别；</p>
+<p>Dubbo的基本原理，RPC，支持哪些通信方式，服务的调用过程；</p>
+<p>Dubbo如果有一个服务挂掉了怎么办；</p>
+<p>分布式事务，操作两个表不在一个库，如何保证一致性。</p>
+<p>分布式系统中，每台机器如何产生一个唯一的随机值；</p>
+<p>系统的量级、pv、uv等；</p>
+<p>什么是Hash一致性算法？分布式缓存的一致性，服务器如何扩容（哈希环）；</p>
+<p>正向代理、反向代理；</p>
+<p>什么是客户端负载均衡策略、什么是服务器端负载均衡策略；</p>
+<p>如何优化Tomcat，常见的优化方式有哪些；</p>
+<p>Nginx的Master和Worker，Nginx是如何处理请求的；</p>
+<p>十、系统设计相关</p>
+<p>如何防止表单重复提交（Token令牌环等方式）；</p>
+<p>有一个url白名单，需要使用正则表达式进行过滤，但是url量级很大，大概亿级，那么如何优化正则表达式？如何优化亿级的url匹配呢？</p>
+<p>常见的Nginx负载均衡策略；已有两台Nginx服务器了，倘若这时候再增加一台服务器，采用什么负载均衡算法比较好？</p>
+<p>扫描二维码登录的过程解析；</p>
+<p>如何设计一个生成唯一UUID的算法？</p>
+<p>实现一个负载均衡的算法，服务器资源分配为70%、20%、10%；</p>
+<p>有三个线程T1 T2 T3，如何保证他们按顺序执行；</p>
+<p>三个线程循环输出ABCABCABC….</p>
+<p>十一、安全相关</p>
+<p>什么是XSS攻击，XSS攻击的一般表现形式有哪些？如何防止XSS攻击；</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -1245,152 +1507,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>java面试系列问题(2)</title>
-    <url>/2019/08/07/%E9%9D%A2%E8%AF%952/</url>
-    <content><![CDATA[<p>一、Java相关</p>
-<p>Arraylist与LinkedList默认空间是多少；</p>
-<p>Arraylist与LinkedList区别与各自的优势List 和 Map 区别；</p>
-<p>谈谈HashMap，哈希表解决hash冲突的方法；</p>
-<p>为什么要重写hashcode()和equals()以及他们之间的区别与关系；</p>
-<p>Object的hashcode()是怎么计算的？</p>
-<p>若hashcode方法永远返回1或者一个常量会产生什么结果？</p>
-<p>Java Collections和Arrays的sort方法默认的排序方法是什么；</p>
-<p>引用计数法与GC Root可达性分析法区别；</p>
-<p>浅拷贝和深拷贝的区别；</p>
-<p>String s=”abc”和String s=new String(“abc”)区别；</p>
-<p>HashSet方法里面的hashcode存在哪，如果重写equals不重写hashcode会怎么样？</p>
-<p>反射的作用与实现原理；</p>
-<p>Java中的回调机制；</p>
-<p>模板方法模式；</p>
-<p>开闭原则说一下；</p>
-<p>发布/订阅使用场景；</p>
-<p>KMP算法（一种改进的字符串匹配算法）；</p>
-<p>JMM里边的原子性、可见性、有序性是如何体现出来的，JMM中内存屏障是什么意思，</p>
-<p>二、多线程</p>
-<p>AtomicInteger底层实现原理；</p>
-<p>synchronized与ReentraLock哪个是公平锁；</p>
-<p>CAS机制会出现什么问题；</p>
-<p>用过并发包下边的哪些类；</p>
-<p>一个线程连着调用start两次会出现什么情况？</p>
-<p>wait方法能不能被重写，wait能不能被中断；</p>
-<p>线程池的实现？四种线程池？重要参数及原理？任务拒接策略有哪几种？</p>
-<p>线程状态以及API怎么操作会发生这种转换；</p>
-<p>常用的避免死锁方法；</p>
-<p>三、JVM</p>
-<p>Minor GC与Full GC分别在什么时候发生？什么时候触发Full GC;</p>
-<p>GC收集器有哪些？CMS收集器与G1收集器的特点。</p>
-<p>Java在什么时候会出现内存泄漏；</p>
-<p>Java中的大对象如何进行存储；</p>
-<p>rt.jar被什么类加载器加载，什么时间加载；</p>
-<p>自己写的类被什么加载，什么时间加载；</p>
-<p>自己写的两个不同的类是被同一个类加载器加载的吗？为什么？</p>
-<p>为什么新生代内存需要有两个Survivor区？</p>
-<p>几种常用的内存调试工具：jmap、jstack、jconsole；</p>
-<p>类加载的五个过程：加载、验证、准备、解析、初始化；</p>
-<p>G1停顿吗，CMS回收步骤，CMS为什么会停顿，停顿时间；</p>
-<p>栈主要存的数据是什么，堆呢？</p>
-<p>堆分为哪几块，比如说新生代老生代，那么新生代又分为什么？</p>
-<p>软引用和弱引用的使用场景（软引用可以实现缓存，弱引用可以用来在回调函数中防止内存泄露）；</p>
-<p>四、数据库</p>
-<p>数据库索引，什么是全文索引，全文索引中的倒排索引是什么原理；</p>
-<p>数据库最佳左前缀原则是什么？</p>
-<p>数据库的三大范式；</p>
-<p>悲观锁和乐观锁的原理和应用场景；</p>
-<p>左连接、右连接、内连接、外连接、交叉连接、笛卡儿积等；</p>
-<p>一般情况下数据库宕机了如何进行恢复（什么是Write Ahead Log机制，什么是Double Write机制，什么是Check Point）；</p>
-<p>什么是redo日志、什么是undo日志；</p>
-<p>数据库中的隔离性是怎样实现的；原子性、一致性、持久性又是如何实现的；</p>
-<p>什么是组合索引，组合索引什么时候会失效；</p>
-<p>关系型数据库和非关系型数据库区别；</p>
-<p>数据库死锁如何解决；</p>
-<p>MySQL并发情况下怎么解决（通过事务、隔离级别、锁）；</p>
-<p>MySQL中的MVCC机制是什么意思，根据具体场景，MVCC是否有问题；</p>
-<p>MySQL数据库的隔离级别，以及如何解决幻读；</p>
-<p>五、缓存服务器</p>
-<p>Redis中zSet跳跃表问题；</p>
-<p>Redis的set的应用场合？</p>
-<p>Redis高级特性了解吗？</p>
-<p>Redis的pipeline有什么用处？</p>
-<p>Redis集群宕机如何处理，怎么样进行数据的迁移；</p>
-<p>Redis的集群方案；</p>
-<p>Redis原子操作怎么用比较好；</p>
-<p>Redis过期策略是怎么实现的呢？</p>
-<p>六、SSM相关</p>
-<p>Spring中@Autowired和@Resource注解的区别？</p>
-<p>Spring声明一个 bean 如何对其进行个性化定制；</p>
-<p>MyBatis有什么优势；</p>
-<p>MyBatis如何做事务管理；</p>
-<p>七、操作系统</p>
-<p>Linux静态链接和动态链接；</p>
-<p>什么是IO多路复用模型（select、poll、epoll）；</p>
-<p>Linux中的grep管道用处？Linux的常用命令？</p>
-<p>操作系统中虚拟地址、逻辑地址、线性地址、物理地址的概念及区别；</p>
-<p>内存的页面置换算法；</p>
-<p>内存的页面置换算法；</p>
-<p>进程调度算法，操作系统是如何调度进程的；</p>
-<p>父子进程、孤儿进程、僵死进程等概念；</p>
-<p>fork进程时的操作；</p>
-<p>kill用法，某个进程杀不掉的原因（僵死进程；进入内核态，忽略kill信号）；</p>
-<p>系统管理命令（如查看内存使用、网络情况）；</p>
-<p>find命令、awk使用；</p>
-<p>Linux下排查某个死循环的线程；</p>
-<p>八、网络相关</p>
-<p>数据链路层是做什么的?</p>
-<p>数据链路层的流量控制？</p>
-<p>网络模型的分层、IP和Mac地址在那个层、TCP和HTTP分别在那个层；</p>
-<p>TCP滑动窗口；</p>
-<p>TCP为什么可靠；</p>
-<p>TCP的同传，拆包与组装包是什么意思；</p>
-<p>Https和Http有什么区别；</p>
-<p>Http 为什么是无状态的；</p>
-<p>TCP三次握手，为什么不是三次，为什么不是四次；</p>
-<p>TCP的拥塞控制、流量控制详细说明？</p>
-<p>Http1.0和Http2.0的区别；</p>
-<p>两个不同ip地址的计算机之间如何通信；</p>
-<p>地址解析协议ARP；</p>
-<p>OSI七层模型分别对应着五层模型的哪一部分；</p>
-<p>TCP三次握手数据丢失了怎么办？那如果后面又找到了呢？</p>
-<p>九、分布式相关</p>
-<p>消息队列使用的场景介绍和作用（应用耦合、异步消息、流量削锋等）；</p>
-<p>如何解决消息队列丢失消息和重复消费问题；</p>
-<p>Kafka使用过吗，什么是幂等性？怎么保证一致性，持久化怎么做，分区partition的理解，LEO是什么意思，如何保证多个partition之间数据一致性的（ISR机制），为什么Kafka可以这么快（基于磁盘的顺序读写）；</p>
-<p>异步队列怎么实现；</p>
-<p>你项目的并发是多少？怎么解决高并发问题？单机情况下Tomcat的并发大概是多少，MySQL的并发大致是多少？</p>
-<p>什么是C10K问题；</p>
-<p>高并发情况下怎么办；</p>
-<p>分布式理论，什么是CAP理论，什么是Base理论，什么是Paxos理论；</p>
-<p>分布式协议的选举算法；</p>
-<p>说一下你对微服务的理解，与SOA的区别；</p>
-<p>Dubbo的基本原理，RPC，支持哪些通信方式，服务的调用过程；</p>
-<p>Dubbo如果有一个服务挂掉了怎么办；</p>
-<p>分布式事务，操作两个表不在一个库，如何保证一致性。</p>
-<p>分布式系统中，每台机器如何产生一个唯一的随机值；</p>
-<p>系统的量级、pv、uv等；</p>
-<p>什么是Hash一致性算法？分布式缓存的一致性，服务器如何扩容（哈希环）；</p>
-<p>正向代理、反向代理；</p>
-<p>什么是客户端负载均衡策略、什么是服务器端负载均衡策略；</p>
-<p>如何优化Tomcat，常见的优化方式有哪些；</p>
-<p>Nginx的Master和Worker，Nginx是如何处理请求的；</p>
-<p>十、系统设计相关</p>
-<p>如何防止表单重复提交（Token令牌环等方式）；</p>
-<p>有一个url白名单，需要使用正则表达式进行过滤，但是url量级很大，大概亿级，那么如何优化正则表达式？如何优化亿级的url匹配呢？</p>
-<p>常见的Nginx负载均衡策略；已有两台Nginx服务器了，倘若这时候再增加一台服务器，采用什么负载均衡算法比较好？</p>
-<p>扫描二维码登录的过程解析；</p>
-<p>如何设计一个生成唯一UUID的算法？</p>
-<p>实现一个负载均衡的算法，服务器资源分配为70%、20%、10%；</p>
-<p>有三个线程T1 T2 T3，如何保证他们按顺序执行；</p>
-<p>三个线程循环输出ABCABCABC….</p>
-<p>十一、安全相关</p>
-<p>什么是XSS攻击，XSS攻击的一般表现形式有哪些？如何防止XSS攻击；</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>为什么要使用spring?</title>
     <url>/2019/08/07/%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<blockquote>
@@ -1414,19 +1530,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>阿里云常用文档</title>
-    <url>/2019/08/07/%E9%98%BF%E9%87%8C%E4%BA%91%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
-<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
-]]></content>
-      <categories>
-        <category>阿里云</category>
-      </categories>
-      <tags>
-        <tag>阿里云文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows/mac下图床神器</title>
     <url>/2019/08/07/%E5%9B%BE%E5%BA%8A%E7%A5%9E%E5%99%A8/</url>
     <content><![CDATA[<h2 id="windows下图床神器"><a href="#windows下图床神器" class="headerlink" title="windows下图床神器"></a>windows下图床神器</h2><p>价格: <code>免费</code><br>平台: <code>WINDOW</code><br>官网: <a href="http://mpic.lzhaofu.cn/" target="_blank" rel="noopener">图床神器MPIC</a></p>
@@ -1438,6 +1541,19 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>图床神器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云常用文档</title>
+    <url>/2019/08/07/%E9%98%BF%E9%87%8C%E4%BA%91%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
+<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
+]]></content>
+      <categories>
+        <category>阿里云</category>
+      </categories>
+      <tags>
+        <tag>阿里云文档</tag>
       </tags>
   </entry>
   <entry>
@@ -1515,6 +1631,18 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title>乡愁</title>
+    <url>/2019/08/07/%E4%B9%A1%E6%84%81/</url>
+    <content><![CDATA[<p>有家的地方没有工作，有工作的地方没有家，他乡容不了灵魂，故乡安置不了肉身。从此便有了漂泊，有了远方,有了乡愁,有了无尽的牵挂</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>乡愁</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>阿里FastJson如何处理返回值中nulll值问题</title>
     <url>/2019/08/07/%E4%BD%BF%E7%94%A8FastJson%E5%85%A8%E5%B1%80%E5%A4%84%E7%90%86%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%ADnulll%E5%80%BC%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<ol>
@@ -1534,15 +1662,25 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>乡愁</title>
-    <url>/2019/08/07/%E4%B9%A1%E6%84%81/</url>
-    <content><![CDATA[<p>有家的地方没有工作，有工作的地方没有家，他乡容不了灵魂，故乡安置不了肉身。从此便有了漂泊，有了远方,有了乡愁,有了无尽的牵挂</p>
+    <title>windows基于NGINX配置HTTPS证书</title>
+    <url>/2019/08/07/windows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6/</url>
+    <content><![CDATA[<ol>
+<li><p>下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官方下载链接</a>具体</p>
+</li>
+<li><p>从阿里云获取那个免费的HTTPS证书</p>
+</li>
+<li><p>Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是<strong>**</strong>.key和 ***.pem</p>
+</li>
+<li><p>修改配置文件如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 443;</span><br><span class="line">	server_name localhost;</span><br><span class="line">	ssl on;</span><br><span class="line">	ssl_certificate  	cert/2195340_www.baidu.com.pem;    #替换为自己的证书文件</span><br><span class="line">	ssl_certificate_key 	cert/2195340_www.baidu.com.key;#替换为自己的证书文件</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"></span><br><span class="line">   location / &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		root   D:/nginx-1.12.2/html;</span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">		try_files $uri $uri/ @router;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">   location /admin &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> server &#123;</span><br><span class="line">   	listen   80;</span><br><span class="line">	server_name www.nilaile.com  nilaile.com;   #这里改为自己的域名,多个域名空格分开</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>随笔</category>
+        <category>windows</category>
       </categories>
       <tags>
-        <tag>乡愁</tag>
+        <tag>NGINX</tag>
       </tags>
   </entry>
   <entry>
@@ -1674,28 +1812,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>windows基于NGINX配置HTTPS证书</title>
-    <url>/2019/08/07/windows%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6/</url>
-    <content><![CDATA[<ol>
-<li><p>下载解压nginx的windows版本 （笔者使用的版本是nginx-1.12.2版)<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官方下载链接</a>具体</p>
-</li>
-<li><p>从阿里云获取那个免费的HTTPS证书</p>
-</li>
-<li><p>Nginx的config路径下创建cert文件夹，将证书解压到该目录下，证书一般是两个文件，分别是<strong>**</strong>.key和 ***.pem</p>
-</li>
-<li><p>修改配置文件如下</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 443;</span><br><span class="line">	server_name localhost;</span><br><span class="line">	ssl on;</span><br><span class="line">	ssl_certificate  	cert/2195340_www.baidu.com.pem;    #替换为自己的证书文件</span><br><span class="line">	ssl_certificate_key 	cert/2195340_www.baidu.com.key;#替换为自己的证书文件</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"></span><br><span class="line">   location / &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		root   D:/nginx-1.12.2/html;</span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">		try_files $uri $uri/ @router;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">   location /admin &#123;</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> server &#123;</span><br><span class="line">   	listen   80;</span><br><span class="line">	server_name www.nilaile.com  nilaile.com;   #这里改为自己的域名,多个域名空格分开</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>windows</category>
-      </categories>
-      <tags>
-        <tag>NGINX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2019/08/07/swaggr%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<p>/**</p>
@@ -1802,19 +1918,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 ]]></content>
   </entry>
   <entry>
-    <title>springboot以jar包启动,打包到测试服务器,中文乱码,数据库乱码</title>
-    <url>/2019/08/07/jar%E5%8C%85%E5%90%AF%E5%8A%A8%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>原因<br>windows启动的jar的时候给Java虚拟机设置编码默认不是utf-8, 所以乱码,同时连接插入到数据库的很多数据也是乱码, linux系统的服务器编码默认是utf-8，对于是windows的服务器默认不是utf-8。所以在启动的时候需要设置编码方式。</p>
-<p>解决方案: 启动jar包时设置编码<br>如下所示：java -Dfile.encoding=utf=8 -<br><code>java -Dfile.encoding=utf-8 -jar rr-api.jar</code></p>
-]]></content>
-      <categories>
-        <category>springboot</category>
-      </categories>
-      <tags>
-        <tag>中文乱码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jenkins配置部署启动springboot项目</title>
     <url>/2019/08/07/jenkins%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8springboot%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h3 id="1-jenkins连接远程ssh服务器需要安装一个ssh-plugin插件"><a href="#1-jenkins连接远程ssh服务器需要安装一个ssh-plugin插件" class="headerlink" title="1. jenkins连接远程ssh服务器需要安装一个ssh plugin插件"></a>1. jenkins连接远程ssh服务器需要安装一个ssh plugin插件</h3><p><img src="http://blog.nilaile.cn/blog/20190611/sNQOB7HX5xgK.png" alt="mark"></p>
@@ -1877,6 +1980,19 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot以jar包启动,打包到测试服务器,中文乱码,数据库乱码</title>
+    <url>/2019/08/07/jar%E5%8C%85%E5%90%AF%E5%8A%A8%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>原因<br>windows启动的jar的时候给Java虚拟机设置编码默认不是utf-8, 所以乱码,同时连接插入到数据库的很多数据也是乱码, linux系统的服务器编码默认是utf-8，对于是windows的服务器默认不是utf-8。所以在启动的时候需要设置编码方式。</p>
+<p>解决方案: 启动jar包时设置编码<br>如下所示：java -Dfile.encoding=utf=8 -<br><code>java -Dfile.encoding=utf-8 -jar rr-api.jar</code></p>
+]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>中文乱码</tag>
       </tags>
   </entry>
   <entry>
@@ -2008,27 +2124,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>centOS ssh连接 一段时间无操作连接自动断开问题</title>
-    <url>/2019/08/07/centOS-ssh%E8%BF%9E%E6%8E%A5-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E6%97%A0%E6%93%8D%E4%BD%9C%E8%BF%9E%E6%8E%A5%E8%87%AA%E5%8A%A8%E6%96%AD%E5%BC%80%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>解决方法：</p>
-<p>1 修改  /etc/ssh/sshd_config 文件<br>执行命令：vi /etc/ssh/sshd_config</p>
-<p>中间部分有：</p>
-<h4 id="ClientAliveInterval-0"><a href="#ClientAliveInterval-0" class="headerlink" title="ClientAliveInterval 0"></a>ClientAliveInterval 0</h4><h4 id="ClientAliveCountMax-3"><a href="#ClientAliveCountMax-3" class="headerlink" title="ClientAliveCountMax 3"></a>ClientAliveCountMax 3</h4><p>改为：</p>
-<p>ClientAliveInterval 60</p>
-<p>ClientAliveCountMax 60</p>
-<p>修改后如下用图：</p>
-<p>ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送.而ClientAliveInterval 60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了</p>
-<p>ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开 。</p>
-<p>2重启sshd （必须的否则无效）<br>执行命令：/bin/systemctl restart  sshd.service<br>我有在网上找这个问题的解决方法，有的只改参数，没有讲重启sshd。有的说了但是呢在我的机子上命令不能用，例如：/etc/init.d/sshdstart   /etc/rc.d/init.d/sshd restart</p>
-]]></content>
-      <categories>
-        <category>centos</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>cron表达式详解</title>
     <url>/2019/08/07/cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>　<br>　　　Cron表达式是一个字符串，字符串以5或6个空格隔开，分为6或7个域，每一个域代表一个含义，Cron有如下两种语法格式：<br>　　（1） Seconds Minutes Hours DayofMonth Month DayofWeek Year<br>　　（2） Seconds Minutes Hours DayofMonth Month DayofWeek</p>
@@ -2130,6 +2225,33 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       <tags>
         <tag>定时任务</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>centOS ssh连接 一段时间无操作连接自动断开问题</title>
+    <url>/2019/08/07/centOS-ssh%E8%BF%9E%E6%8E%A5-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E6%97%A0%E6%93%8D%E4%BD%9C%E8%BF%9E%E6%8E%A5%E8%87%AA%E5%8A%A8%E6%96%AD%E5%BC%80%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>解决方法：</p>
+<p>1 修改  /etc/ssh/sshd_config 文件<br>执行命令：vi /etc/ssh/sshd_config</p>
+<p>中间部分有：</p>
+<h4 id="ClientAliveInterval-0"><a href="#ClientAliveInterval-0" class="headerlink" title="ClientAliveInterval 0"></a>ClientAliveInterval 0</h4><h4 id="ClientAliveCountMax-3"><a href="#ClientAliveCountMax-3" class="headerlink" title="ClientAliveCountMax 3"></a>ClientAliveCountMax 3</h4><p>改为：</p>
+<p>ClientAliveInterval 60</p>
+<p>ClientAliveCountMax 60</p>
+<p>修改后如下用图：</p>
+<p>ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送.而ClientAliveInterval 60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了</p>
+<p>ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开 。</p>
+<p>2重启sshd （必须的否则无效）<br>执行命令：/bin/systemctl restart  sshd.service<br>我有在网上找这个问题的解决方法，有的只改参数，没有讲重启sshd。有的说了但是呢在我的机子上命令不能用，例如：/etc/init.d/sshdstart   /etc/rc.d/init.d/sshd restart</p>
+]]></content>
+      <categories>
+        <category>centos</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2019/08/07/cenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/</url>
+    <content><![CDATA[<h3 id="cenos7-5下载地址"><a href="#cenos7-5下载地址" class="headerlink" title="cenos7.5下载地址"></a>cenos7.5下载地址</h3><p><a href="http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/" target="_blank" rel="noopener">http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/</a></p>
+]]></content>
   </entry>
   <entry>
     <title>android版本API对应关系</title>
@@ -2267,30 +2389,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2019/08/07/cenos7.5%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/</url>
-    <content><![CDATA[<h3 id="cenos7-5下载地址"><a href="#cenos7-5下载地址" class="headerlink" title="cenos7.5下载地址"></a>cenos7.5下载地址</h3><p><a href="http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/" target="_blank" rel="noopener">http://archive.kernel.org/centos-vault/7.5.1804/isos/x86_64/</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Nginx配置Https证书后,API项目访问时POST请求变为GET请求</title>
-    <url>/2019/08/07/Nginx%E9%85%8D%E7%BD%AEHttps%E8%AF%81%E4%B9%A6%E5%90%8E,API%E9%A1%B9%E7%9B%AE%E8%AE%BF%E9%97%AE%E6%97%B6POST%E8%AF%B7%E6%B1%82%E5%8F%98%E4%B8%BAGET%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<p>Nginx下配置Https证书，之前的博客是: <a href="http://nilaile.win/2019/05/13/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener">Nginx配置Https证书</a></p>
-<p>Https证书配置完成后 admin模块可以正常跳转到HTTPS, API模块部署后,后台请求登录遇到异常,查看Nginx日志后发现从http跳转到https时,请求的api方法从POST变为了GET请求，日志如下:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;POST /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 301 185 &quot;-&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br><span class="line"></span><br><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;GET /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 200 65 &quot;http://www.sjjtcloud.com:80/ylzhy-api/api/wechat/user/login&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br></pre></td></tr></table></figure>
-<p>查找相关资料后, 发现是由于 301引起的。换成307问题解决</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;   </span><br><span class="line">	server &#123;</span><br><span class="line">		listen 443;</span><br><span class="line">		server_name www.sjjtcloud.com;</span><br><span class="line">		ssl on;</span><br><span class="line">		ssl_certificate  	cert/2195340_www.sjjtcloud.com.pem;</span><br><span class="line">		ssl_certificate_key 	cert/2195340_www.sjjtcloud.com.key;</span><br><span class="line">		ssl_session_timeout 5m;</span><br><span class="line">		ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">		ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">		ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			root   D:/nginx-1.12.2/html;</span><br><span class="line">			index  index.html index.htm;</span><br><span class="line">			try_files $uri $uri/ @router;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		location /api/ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		location /admin &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	 server &#123;</span><br><span class="line">    	listen   80;</span><br><span class="line">		server_name www.sjjtcloud.com sjjtcloud.com;  </span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		#rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; #这种写法是错误的</span><br><span class="line">		return 307 https://$server_name$request_uri; ###改为307</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>301 Moved Permanently<br>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一</p>
-<p>307 Temporary Redirect<br>请求的资源现在临时从不同的URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求 </p>
-]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>https</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mysql存储emoji表情错误问题</title>
     <url>/2019/08/07/Mysql%E5%AD%98%E5%82%A8emoji%E8%A1%A8%E6%83%85%E9%94%99%E8%AF%AF%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>问题: 插入emoji表情字符串时,数据库抛出下面的异常信息:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Incorrect string value: &apos;\xF0\x9F\x98\x81&apos; for column &apos;job&apos; at row 23</span><br></pre></td></tr></table></figure></p>
@@ -2321,6 +2419,24 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
+    <title>Nginx配置Https证书后,API项目访问时POST请求变为GET请求</title>
+    <url>/2019/08/07/Nginx%E9%85%8D%E7%BD%AEHttps%E8%AF%81%E4%B9%A6%E5%90%8E,API%E9%A1%B9%E7%9B%AE%E8%AE%BF%E9%97%AE%E6%97%B6POST%E8%AF%B7%E6%B1%82%E5%8F%98%E4%B8%BAGET%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<p>Nginx下配置Https证书，之前的博客是: <a href="http://nilaile.win/2019/05/13/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener">Nginx配置Https证书</a></p>
+<p>Https证书配置完成后 admin模块可以正常跳转到HTTPS, API模块部署后,后台请求登录遇到异常,查看Nginx日志后发现从http跳转到https时,请求的api方法从POST变为了GET请求，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;POST /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 301 185 &quot;-&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br><span class="line"></span><br><span class="line">123.52.42.83 - - [05/Jun/2019:15:51:46 +0800] &quot;GET /ylzhy-api/api/wechat/user/login HTTP/1.1&quot; 200 65 &quot;http://www.sjjtcloud.com:80/ylzhy-api/api/wechat/user/login&quot; &quot;PostmanRuntime/7.13.0&quot;</span><br></pre></td></tr></table></figure>
+<p>查找相关资料后, 发现是由于 301引起的。换成307问题解决</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;   </span><br><span class="line">	server &#123;</span><br><span class="line">		listen 443;</span><br><span class="line">		server_name www.sjjtcloud.com;</span><br><span class="line">		ssl on;</span><br><span class="line">		ssl_certificate  	cert/2195340_www.sjjtcloud.com.pem;</span><br><span class="line">		ssl_certificate_key 	cert/2195340_www.sjjtcloud.com.key;</span><br><span class="line">		ssl_session_timeout 5m;</span><br><span class="line">		ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">		ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">		ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			root   D:/nginx-1.12.2/html;</span><br><span class="line">			index  index.html index.htm;</span><br><span class="line">			try_files $uri $uri/ @router;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		location /api/ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		location /admin &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8083/admin;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	 server &#123;</span><br><span class="line">    	listen   80;</span><br><span class="line">		server_name www.sjjtcloud.com sjjtcloud.com;  </span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">		#rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent; #这种写法是错误的</span><br><span class="line">		return 307 https://$server_name$request_uri; ###改为307</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>301 Moved Permanently<br>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一</p>
+<p>307 Temporary Redirect<br>请求的资源现在临时从不同的URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求 </p>
+]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx匹配规则说明以及匹配的优先级</title>
     <url>/2019/08/07/Nginx%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/</url>
     <content><![CDATA[<p>location 匹配规则<br>语法规则<br>location [=|~|~*|^~] /uri/ { … }</p>
@@ -2342,6 +2458,15 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       <tags>
         <tag>NGINX</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2019/08/07/MybatisPlus%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>###MybatisPlus总结</p>
+<ol>
+<li>mybatisPlus中使用updateById和update 都不能更新某个字段为””问题<br>解决方法： 修改mybatis-plus配置文件，如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;</span><br><span class="line">field-strategy: 1</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>Mysql主从复制原理及步骤</title>
@@ -2383,15 +2508,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
         <tag>Mysql</tag>
         <tag>主从复制</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2019/08/07/MybatisPlus%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>###MybatisPlus总结</p>
-<ol>
-<li>mybatisPlus中使用updateById和update 都不能更新某个字段为””问题<br>解决方法： 修改mybatis-plus配置文件，如下：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;</span><br><span class="line">field-strategy: 1</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>JAVA IO总结</title>
@@ -3276,19 +3392,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>Centos7.5使用NGINX配置https证书</title>
-    <url>/2019/08/07/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/</url>
-    <content><![CDATA[<h3 id="1-下载安装NGINX"><a href="#1-下载安装NGINX" class="headerlink" title="1. 下载安装NGINX"></a>1. 下载安装NGINX</h3><h3 id="2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf"><a href="#2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf" class="headerlink" title="2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf"></a>2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim /etc/nginx/config.d/defualt.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#负载均衡配置</span><br><span class="line">upstream webservers_api &#123;</span><br><span class="line">        #weigth</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 127.0.0.1:8086 max_fails=1  fail_timeout=10s;</span><br><span class="line">        #server 127.0.0.1:8081 max_fails=1  fail_timeout=3600s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate  /usr/local/TencentCloud/httpsCert/www.baidu.com.pem;</span><br><span class="line">    ssl_certificate_key /usr/local/TencentCloud/httpsCert/www.baidu.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    access_log /usr/local/web/nginxLogs;</span><br><span class="line"></span><br><span class="line">   #静态文件</span><br><span class="line">   location / &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        root   /usr/local/web/dist;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files $uri $uri/ @router;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #下载文件时把下载文件放在该目录下</span><br><span class="line">    location ~* \.(exe|apk|zip)$ &#123;</span><br><span class="line">        root /usr/local/web/download;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @router &#123;</span><br><span class="line">            rewrite ^.*$ /index.html last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   location /hlwyy/api/ &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_pass http://webservers_api; #跳转到api的负载均衡服务器</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.nilaie.com nilaie.com; #多个域名以空格隔开（替换为自己的域名）</span><br><span class="line">    rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    #access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LINUX</category>
-      </categories>
-      <tags>
-        <tag>HTTPS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker安装Mysql</title>
     <url>/2019/08/07/Docker%E5%AE%89%E8%A3%85Mysql/</url>
     <content><![CDATA[<h3 id="方法一、docker-pull-mysql"><a href="#方法一、docker-pull-mysql" class="headerlink" title="方法一、docker pull mysql"></a>方法一、docker pull mysql</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">runoob@runoob:/mysql$ docker search mysql</span><br></pre></td></tr></table></figure>
@@ -3331,33 +3434,16 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </tags>
   </entry>
   <entry>
-    <title>Centos7.5安装RocketMq</title>
-    <url>/2019/08/07/Centos7.5%E5%AE%89%E8%A3%85RocketMq/</url>
-    <content><![CDATA[<h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
-<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
-<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
-<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
-<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
-<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
-<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
-<p>查看进程：jps</p>
-<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
-<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
-<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
-<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
-<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
-<p>bin目录：</p>
-<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
-<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
-<p>参考文章</p>
-<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
+    <title>Centos7.5使用NGINX配置https证书</title>
+    <url>/2019/08/07/Centos7.5%E9%85%8D%E7%BD%AEHTTPS%E8%AF%81%E4%B9%A6/</url>
+    <content><![CDATA[<h3 id="1-下载安装NGINX"><a href="#1-下载安装NGINX" class="headerlink" title="1. 下载安装NGINX"></a>1. 下载安装NGINX</h3><h3 id="2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf"><a href="#2-修改配置文件（nginx一般安装在-etc-nginx下-配置文件一般会有两个，一个是-etc-nginx-nginx-conf-另一个是-etc-nginx-config-d-default-conf-nginx-conf中包含了default-conf）-通常我们通过修改default-conf" class="headerlink" title="2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf"></a>2. 修改配置文件（nginx一般安装在/etc/nginx下,配置文件一般会有两个，一个是/etc/nginx/nginx.conf 另一个是/etc/nginx/config.d/default.conf,nginx.conf中包含了default.conf）,通常我们通过修改default.conf</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim /etc/nginx/config.d/defualt.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#负载均衡配置</span><br><span class="line">upstream webservers_api &#123;</span><br><span class="line">        #weigth</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 127.0.0.1:8086 max_fails=1  fail_timeout=10s;</span><br><span class="line">        #server 127.0.0.1:8081 max_fails=1  fail_timeout=3600s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate  /usr/local/TencentCloud/httpsCert/www.baidu.com.pem;</span><br><span class="line">    ssl_certificate_key /usr/local/TencentCloud/httpsCert/www.baidu.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    access_log /usr/local/web/nginxLogs;</span><br><span class="line"></span><br><span class="line">   #静态文件</span><br><span class="line">   location / &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        root   /usr/local/web/dist;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files $uri $uri/ @router;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #下载文件时把下载文件放在该目录下</span><br><span class="line">    location ~* \.(exe|apk|zip)$ &#123;</span><br><span class="line">        root /usr/local/web/download;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @router &#123;</span><br><span class="line">            rewrite ^.*$ /index.html last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   location /hlwyy/api/ &#123;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_pass http://webservers_api; #跳转到api的负载均衡服务器</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.nilaie.com nilaie.com; #多个域名以空格隔开（替换为自己的域名）</span><br><span class="line">    rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    #access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    rewrite ^(.*)$  https://$&#123;server_name&#125;$1 permanent;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>RocketMq</category>
+        <category>LINUX</category>
       </categories>
       <tags>
-        <tag>RocketMq</tag>
+        <tag>HTTPS</tag>
       </tags>
   </entry>
   <entry>
@@ -3447,6 +3533,36 @@ service是由web容器来调用的，我们无需对service具体内容做任何
       </categories>
       <tags>
         <tag>swap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos7.5安装RocketMq</title>
+    <url>/2019/08/07/Centos7.5%E5%AE%89%E8%A3%85RocketMq/</url>
+    <content><![CDATA[<h3 id="1、下载apache最新rocketmq二进制压缩文件"><a href="#1、下载apache最新rocketmq二进制压缩文件" class="headerlink" title="1、下载apache最新rocketmq二进制压缩文件"></a>1、下载apache最新rocketmq二进制压缩文件</h3><p>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<p>下载命令：wget <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip</a></p>
+<h3 id="2、解压安装"><a href="#2、解压安装" class="headerlink" title="2、解压安装"></a>2、解压安装</h3><p>解压命令：unzip -d /dirname rocketmq-all-4.2.0-bin-release.zip</p>
+<h3 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h3><p>nameserver环境变量：vi /etc/profile</p>
+<p>添加：export NAMESRV_ADDR=127.0.0.1:9876</p>
+<h4 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h4><p>bin目录，启动nameserver和broker：</p>
+<p>nohup sh mqnamesrv &gt;mqname.log &amp;</p>
+<p>nohup sh mqbroker -n localhost:9876 &gt;mqbroker.log &amp;</p>
+<p>查看进程：jps</p>
+<p>启动broker时会卡顿，因为虚拟机内存和broker配置内存跟不上。</p>
+<p>设置：给虚拟机预留1g的内存，这样启动时不太会卡：虚拟机设2g，nameserver和broker共用1g</p>
+<h4 id="5、启动失败"><a href="#5、启动失败" class="headerlink" title="5、启动失败"></a>5、启动失败</h4><p>查看启动日志：cat nohup.out</p>
+<p>启动失败： Native memory allocation (malloc) failed to allocate 8589934592 bytes for committing reserved memory.</p>
+<p>因为nameserver和broker的默认配置内存超过虚拟机的内存，需根据宿主机配置调整虚拟机内存，并调整nameserver和broker的默认内存配置。</p>
+<p>bin目录：</p>
+<p>vi runserver.sh<br><img src="http://blog.nilaile.cn/blog/20190613/Ym57z2V1GoSG.png" alt="mark"></p>
+<p>vi runbroker.sh<br><img src="http://blog.nilaile.cn/blog/20190613/MAdIT4CchpyP.png" alt="mark"></p>
+<p>参考文章</p>
+<p>[<a href="https://www.jianshu.com/p/04a98ba770a4]" target="_blank" rel="noopener">https://www.jianshu.com/p/04a98ba770a4]</a><br>[<a href="https://blog.csdn.net/paincupid/article/details/81333138]" target="_blank" rel="noopener">https://blog.csdn.net/paincupid/article/details/81333138]</a></p>
+]]></content>
+      <categories>
+        <category>RocketMq</category>
+      </categories>
+      <tags>
+        <tag>RocketMq</tag>
       </tags>
   </entry>
   <entry>

@@ -295,6 +295,966 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/20/windows根据端口号杀进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/20/windows根据端口号杀进程/" itemprop="url">Windows运维脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T08:52:19+08:00">
+                2019-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="windows根据端口号-查杀进程"><a href="#windows根据端口号-查杀进程" class="headerlink" title="windows根据端口号,查杀进程"></a>windows根据端口号,查杀进程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@echo off</span><br><span class="line">for /f &quot;tokens=5&quot; %%i in (&apos;netstat -aon ^| findstr &quot;:8086&quot;&apos;) do (</span><br><span class="line">    set n=%%i</span><br><span class="line">)</span><br><span class="line">taskkill /f /pid %n%</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/NUC启动盘制作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/19/NUC启动盘制作/" itemprop="url">NUC启动U盘制作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T15:37:42+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/启动U盘/" itemprop="url" rel="index">
+                    <span itemprop="name">启动U盘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="U盘制作步骤及镜像复制"><a href="#U盘制作步骤及镜像复制" class="headerlink" title="U盘制作步骤及镜像复制"></a>U盘制作步骤及镜像复制</h3><ol>
+<li>CMD-&gt;diskpart</li>
+<li><p>DISKPART&gt; list disk</p>
+<p>磁盘 ###  状态           大小     可用     Dyn  Gpt</p>
+<hr>
+<p>磁盘 0    联机              931 GB  1024 KB        <em><br>磁盘 1    联机              119 GB      0 B        </em><br>磁盘 2    联机               14 GB      0 B</p>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/19/NUC启动盘制作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/19/java线程池/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/19/java线程池/" itemprop="url">线程池-ThreadPoolExecutor详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T09:41:23+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="ThreadPoolExecutor构造方法"><a href="#ThreadPoolExecutor构造方法" class="headerlink" title="ThreadPoolExecutor构造方法"></a>ThreadPoolExecutor构造方法</h3><p><img src="http://blog.sjjtcloud.com/blog/20190819/voP4iKK3jVUw.png?imageslim" alt="mark"></p>
+<p>我们以最后一个构造方法（参数最多的那个），对其参数进行解释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize, // 1</span><br><span class="line">                             int maximumPoolSize,  // 2</span><br><span class="line">                             long keepAliveTime,  // 3</span><br><span class="line">                             TimeUnit unit,  // 4</span><br><span class="line">                             BlockingQueue&lt;Runnable&gt; workQueue, // 5</span><br><span class="line">                             ThreadFactory threadFactory,  // 6</span><br><span class="line">                             RejectedExecutionHandler handler ) &#123; //7</span><br><span class="line">       if (corePoolSize &lt; 0 ||</span><br><span class="line">           maximumPoolSize &lt;= 0 ||</span><br><span class="line">           maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">           keepAliveTime &lt; 0)</span><br><span class="line">           throw new IllegalArgumentException();</span><br><span class="line">       if (workQueue == null || threadFactory == null || handler == null)</span><br><span class="line">           throw new NullPointerException();</span><br><span class="line">       this.corePoolSize = corePoolSize;</span><br><span class="line">       this.maximumPoolSize = maximumPoolSize;</span><br><span class="line">       this.workQueue = workQueue;</span><br><span class="line">       this.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">       this.threadFactory = threadFactory;</span><br><span class="line">       this.handler = handler;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/19/java线程池/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/" itemprop="url">CenOS7.5使用crontab定时备份数据库脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:25:05+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index">
+                    <span itemprop="name">LINUX</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-编写备份脚本mysqlBackup-sh"><a href="#1-编写备份脚本mysqlBackup-sh" class="headerlink" title="1.编写备份脚本mysqlBackup.sh"></a>1.编写备份脚本mysqlBackup.sh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">DB_IP=localhost</span><br><span class="line">DB_PORT=3306</span><br><span class="line">DB_USER=root</span><br><span class="line">#密码 #＆这些需要转义加＼</span><br><span class="line">DB_PASSWORD=l\#cxhd3\&amp;0vx</span><br><span class="line">DB_NAME=business</span><br><span class="line">DB_BACKUP_DIR=/home/backup/mysql</span><br><span class="line"></span><br><span class="line">#切换目录</span><br><span class="line">cd $DB_BACKUP_DIR</span><br><span class="line">day=`date +%Y%m%d`</span><br><span class="line"></span><br><span class="line">#删除</span><br><span class="line">rm -rf $day</span><br><span class="line">mkdir $day</span><br><span class="line">cd $day</span><br><span class="line"></span><br><span class="line">echo &quot;================  开始备份..  =================&quot;</span><br><span class="line">tables=(tb_user tb_dept)</span><br><span class="line">for table in $&#123;tables[@]&#125;;</span><br><span class="line">do</span><br><span class="line"> backup_file_name=&quot;$&#123;table&#125;.sql&quot;</span><br><span class="line"> mysqldump -h$&#123;DB_IP&#125; -u$&#123;DB_USER&#125; -p$&#123;DB_PASSWORD&#125; -P$&#123;DB_PORT&#125; $DB_NAME $table&gt;$backup_file_name</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;================  结束备份..  =================&quot;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/07/CenOS7.5使用crontab定时备份数据库脚本/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/CentOs定时任务Crontab的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/CentOs定时任务Crontab的使用/" itemprop="url">CentOs定时任务Crontab的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T11:22:22+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LINUX/" itemprop="url" rel="index">
+                    <span itemprop="name">LINUX</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p> Linux 下通过crontab来执行定时任务,当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。</p>
+</blockquote>
+<h2 id="linux任务调度的工作主要分为以下两类："><a href="#linux任务调度的工作主要分为以下两类：" class="headerlink" title="linux任务调度的工作主要分为以下两类："></a>linux任务调度的工作主要分为以下两类：</h2><ul>
+<li>1、系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存</li>
+<li>2、个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>crontab [ -u user ] file<br>或<br>crontab [ -u user ] { -l | -r | -e }</p>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><ul>
+<li><p>-u user：用来设定某个用户的crontab服务,这个前提是你必须要有其权限(比如说是 root)才能够指定他人的时程表。如果不使用 -u user 的话，就是表示设定自己的时程表。</p>
+</li>
+<li><p>file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab</p>
+</li>
+<li><p>-e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。</p>
+</li>
+<li><p>-l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。</p>
+</li>
+<li><p>-r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件.</p>
+</li>
+</ul>
+<h2 id="crontab的文件格式"><a href="#crontab的文件格式" class="headerlink" title="crontab的文件格式"></a>crontab的文件格式</h2><p><img src="http://blog.sjjtcloud.com/blog/20190806/6dVEtGXqD2FO.png?imageslim" alt="mark"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/07/CentOs定时任务Crontab的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/07/面试3/" itemprop="url">java面试系列问题(3)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、基础题</p>
+<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
+<p>写出一个必然会产生死锁的伪代码；</p>
+<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
+<p>toString()方法什么情况下需要重写；</p>
+<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
+<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
+<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
+<p>Java 8流式迭代的好处？</p>
+<p>项目中用到的JDK的哪些特性？</p>
+<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
+<p>Spring的bean的创建时机？依赖注入的时机？</p>
+<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
+<p>CopyOnWriteArrayList是什么；</p>
+<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
+<p>如何调试多线程的程序；</p>
+<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
+<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
+<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
+<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
+<p>二、网络基础</p>
+<p>HTTP、TCP、UDP的区别和联系；</p>
+<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
+<p>TCP和UDP各用了底层什么协议；</p>
+<p>单个UDP报文最大容量；</p>
+<p>单个TCP报文最大容量；</p>
+<p>TCP报头格式、UDP报头格式；</p>
+<p>Server遭遇SYN Flood应当怎么处理；</p>
+<p>Web开发中如何防范XSS？</p>
+<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
+<p>三、操作系统</p>
+<p>为什么要内存对齐；</p>
+<p>为什么会有大端小端，htol这一类函数的作用；</p>
+<p>top显示出来的系统信息都是什么含义；（重要！）</p>
+<p>Linux地址空间，怎么样进行寻址的；</p>
+<p>Linux如何查找目录或者文件的；</p>
+<p>四、分布式其他</p>
+<p>分库与分表带来的分布式困境与应对之策；</p>
+<p>Solr如何实现全天24小时索引更新；</p>
+<p>五、Redis</p>
+<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
+<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
+<p>Redis复制的过程;</p>
+<p>Redis队列应用场景；</p>
+<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
+<p>六、系统设计开放性题目</p>
+<p>秒杀系统设计，超卖怎么搞;</p>
+<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
+<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
+<p>基于数组实现一个循环阻塞队列；</p>
+<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
+<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
+<p>七、大数据量问题（后边会有专题单独讨论）</p>
+<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
+<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
+<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
+<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
+<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
+<p>八、逻辑思维题</p>
+<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
+<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
+<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
+<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -501,7 +1461,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试3/">
+    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -520,7 +1480,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/07/面试3/" itemprop="url">java面试系列问题(3)</a></h1>
+                <a class="post-title-link" href="/2019/08/07/面试2/" itemprop="url">java面试系列问题(2)</a></h1>
         
 
         <div class="post-meta">
@@ -594,70 +1554,141 @@
       
         
           
-            <p>一、基础题</p>
-<p>怎么解决Hash冲突；（开放地址法、链地址法、再哈希法、建立公共溢出区等）</p>
-<p>写出一个必然会产生死锁的伪代码；</p>
-<p>Spring IoC涉及到的设计模式；（工厂模式、单利模式。。）</p>
-<p>toString()方法什么情况下需要重写；</p>
-<p>判断对象相等时，什么情况下只需要重写 equals()，什么情况下需要重写 equals(),hashcode()？</p>
-<p>Set内存放的元素为什么不可以重复，内部是如何保证和实现的？</p>
-<p>如何保证分布式缓存的一致性(分布式缓存一致性hash算法?)？分布式session实现？</p>
-<p>Java 8流式迭代的好处？</p>
-<p>项目中用到的JDK的哪些特性？</p>
-<p>说一下TreeMap的实现原理？红黑树的性质？红黑树遍历方式有哪些？如果key冲突如何解决？setColor()方法在什么时候用？什么时候会进行旋转和颜色转换？</p>
-<p>Spring的bean的创建时机？依赖注入的时机？</p>
-<p>ArrayList和LinkList的删除一个元素的时间复杂度；（ArrayList是O(N)，LinkList是O(1)）；</p>
-<p>CopyOnWriteArrayList是什么；</p>
-<p>序列化和反序列化底层如何实现的（ObjectOutputStream 、ObjectInputStream、 readObject  writeObject）；</p>
-<p>如何调试多线程的程序；</p>
-<p>一个线程连着调用start两次会出现什么情况？（由于状态只有就绪、阻塞、执行，状态是无法由执行转化为执行的，所以会报不合法的状态！）</p>
-<p>HashMap在什么时候时间复杂度是O（1），什么时候是O（n），什么时候又是O（logn）；</p>
-<p>wait方法能不能被重写？（wait是final类型的，不可以被重写，不仅如此，notify和notifyall都是final类型的），wait能不能被中断；</p>
-<p>一个Controller调用两个Service，这两Service又都分别调用两个Dao，问其中用到了几个数据库连接池的连接？</p>
-<p>二、网络基础</p>
-<p>HTTP、TCP、UDP的区别和联系；</p>
-<p>TCP和UDP各自的优势，知道哪些使用UDP协议的成功案例；</p>
-<p>TCP和UDP各用了底层什么协议；</p>
-<p>单个UDP报文最大容量；</p>
-<p>单个TCP报文最大容量；</p>
-<p>TCP报头格式、UDP报头格式；</p>
-<p>Server遭遇SYN Flood应当怎么处理；</p>
-<p>Web开发中如何防范XSS？</p>
-<p>拆包和粘包的问题，如何解决，如果我们的包没有固定长度的话，我们的应用程序应该如何解决；</p>
-<p>三、操作系统</p>
-<p>为什么要内存对齐；</p>
-<p>为什么会有大端小端，htol这一类函数的作用；</p>
-<p>top显示出来的系统信息都是什么含义；（重要！）</p>
-<p>Linux地址空间，怎么样进行寻址的；</p>
-<p>Linux如何查找目录或者文件的；</p>
-<p>四、分布式其他</p>
-<p>分库与分表带来的分布式困境与应对之策；</p>
-<p>Solr如何实现全天24小时索引更新；</p>
-<p>五、Redis</p>
-<p>Redis插槽的分配（key的有效部分使用CRC16算法计算出哈希值，再将哈希值对16384取余，得到插槽值）;</p>
-<p>Redis主从是怎么选取的（一种是主动切换，另一种是使用sentinel自动方式）;</p>
-<p>Redis复制的过程;</p>
-<p>Redis队列应用场景；</p>
-<p>Redis主节点宕机了怎么办，还有没有同步的数据怎么办;</p>
-<p>六、系统设计开放性题目</p>
-<p>秒杀系统设计，超卖怎么搞;</p>
-<p>你们的图片时怎么存储的，对应在数据库中时如何保存图片的信息的？</p>
-<p>假如成都没有一座消防站，现在问你要建立几座消防站，每个消防站要配多少名消防官兵，多少辆消防车，请你拿出一个方案；</p>
-<p>基于数组实现一个循环阻塞队列；</p>
-<p>常见的ipv4地址的展现形式如“168.0.0.1”，请实现ip地址和int类型的相互转换。（使用位移的方式）</p>
-<p>现网某个服务部署在多台Liunx服务器上，其中一台突然出现CPU 100%的情况，而其他服务器正常，请列举可能导致这种情况发生的原因？如果您遇到这样的情况，应如何定位？内存？CPU？发布？debug？请求量？</p>
-<p>七、大数据量问题（后边会有专题单独讨论）</p>
-<p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？</p>
-<p>海量日志数据，提取出某日访问百度次数最多的那个IP；</p>
-<p>一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。</p>
-<p>此话题后边会有专门的文章探讨，如果有等不及的小伙伴，可以移步参考：</p>
-<p>1、<a href="https://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/6279498</a></p>
-<p>2、<a href="https://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7382693</a></p>
-<p>八、逻辑思维题</p>
-<p>有两根粗细均匀的香（烧香拜佛的香），每一根烧完都花一个小时，怎么样能够得到15min？</p>
-<p>假定你有8个撞球，其中有1个球比其他的球稍重,如果只能利用天平来断定哪一个球重,要找到较重的球,要称几次?（2次）；</p>
-<p>实验室里有1000个一模一样的瓶子，但是其中的一瓶有毒。可以用实验室的小白鼠来测试哪一瓶是毒药。如果小白鼠喝掉毒药的话，会在一个星期的时候死去，其他瓶子里的药水没有任何副作用。请问最少用多少只小白鼠可以在一个星期以内查出哪瓶是毒药；（答案是10只）</p>
-<p>假设有一个池塘，里面有无穷多的水。现有2个空水壶，容积分别为5升和6升。问题是如何只用这2个水壶从池塘里取得3升的水；</p>
+            <p>一、Java相关</p>
+<p>Arraylist与LinkedList默认空间是多少；</p>
+<p>Arraylist与LinkedList区别与各自的优势List 和 Map 区别；</p>
+<p>谈谈HashMap，哈希表解决hash冲突的方法；</p>
+<p>为什么要重写hashcode()和equals()以及他们之间的区别与关系；</p>
+<p>Object的hashcode()是怎么计算的？</p>
+<p>若hashcode方法永远返回1或者一个常量会产生什么结果？</p>
+<p>Java Collections和Arrays的sort方法默认的排序方法是什么；</p>
+<p>引用计数法与GC Root可达性分析法区别；</p>
+<p>浅拷贝和深拷贝的区别；</p>
+<p>String s=”abc”和String s=new String(“abc”)区别；</p>
+<p>HashSet方法里面的hashcode存在哪，如果重写equals不重写hashcode会怎么样？</p>
+<p>反射的作用与实现原理；</p>
+<p>Java中的回调机制；</p>
+<p>模板方法模式；</p>
+<p>开闭原则说一下；</p>
+<p>发布/订阅使用场景；</p>
+<p>KMP算法（一种改进的字符串匹配算法）；</p>
+<p>JMM里边的原子性、可见性、有序性是如何体现出来的，JMM中内存屏障是什么意思，</p>
+<p>二、多线程</p>
+<p>AtomicInteger底层实现原理；</p>
+<p>synchronized与ReentraLock哪个是公平锁；</p>
+<p>CAS机制会出现什么问题；</p>
+<p>用过并发包下边的哪些类；</p>
+<p>一个线程连着调用start两次会出现什么情况？</p>
+<p>wait方法能不能被重写，wait能不能被中断；</p>
+<p>线程池的实现？四种线程池？重要参数及原理？任务拒接策略有哪几种？</p>
+<p>线程状态以及API怎么操作会发生这种转换；</p>
+<p>常用的避免死锁方法；</p>
+<p>三、JVM</p>
+<p>Minor GC与Full GC分别在什么时候发生？什么时候触发Full GC;</p>
+<p>GC收集器有哪些？CMS收集器与G1收集器的特点。</p>
+<p>Java在什么时候会出现内存泄漏；</p>
+<p>Java中的大对象如何进行存储；</p>
+<p>rt.jar被什么类加载器加载，什么时间加载；</p>
+<p>自己写的类被什么加载，什么时间加载；</p>
+<p>自己写的两个不同的类是被同一个类加载器加载的吗？为什么？</p>
+<p>为什么新生代内存需要有两个Survivor区？</p>
+<p>几种常用的内存调试工具：jmap、jstack、jconsole；</p>
+<p>类加载的五个过程：加载、验证、准备、解析、初始化；</p>
+<p>G1停顿吗，CMS回收步骤，CMS为什么会停顿，停顿时间；</p>
+<p>栈主要存的数据是什么，堆呢？</p>
+<p>堆分为哪几块，比如说新生代老生代，那么新生代又分为什么？</p>
+<p>软引用和弱引用的使用场景（软引用可以实现缓存，弱引用可以用来在回调函数中防止内存泄露）；</p>
+<p>四、数据库</p>
+<p>数据库索引，什么是全文索引，全文索引中的倒排索引是什么原理；</p>
+<p>数据库最佳左前缀原则是什么？</p>
+<p>数据库的三大范式；</p>
+<p>悲观锁和乐观锁的原理和应用场景；</p>
+<p>左连接、右连接、内连接、外连接、交叉连接、笛卡儿积等；</p>
+<p>一般情况下数据库宕机了如何进行恢复（什么是Write Ahead Log机制，什么是Double Write机制，什么是Check Point）；</p>
+<p>什么是redo日志、什么是undo日志；</p>
+<p>数据库中的隔离性是怎样实现的；原子性、一致性、持久性又是如何实现的；</p>
+<p>什么是组合索引，组合索引什么时候会失效；</p>
+<p>关系型数据库和非关系型数据库区别；</p>
+<p>数据库死锁如何解决；</p>
+<p>MySQL并发情况下怎么解决（通过事务、隔离级别、锁）；</p>
+<p>MySQL中的MVCC机制是什么意思，根据具体场景，MVCC是否有问题；</p>
+<p>MySQL数据库的隔离级别，以及如何解决幻读；</p>
+<p>五、缓存服务器</p>
+<p>Redis中zSet跳跃表问题；</p>
+<p>Redis的set的应用场合？</p>
+<p>Redis高级特性了解吗？</p>
+<p>Redis的pipeline有什么用处？</p>
+<p>Redis集群宕机如何处理，怎么样进行数据的迁移；</p>
+<p>Redis的集群方案；</p>
+<p>Redis原子操作怎么用比较好；</p>
+<p>Redis过期策略是怎么实现的呢？</p>
+<p>六、SSM相关</p>
+<p>Spring中@Autowired和@Resource注解的区别？</p>
+<p>Spring声明一个 bean 如何对其进行个性化定制；</p>
+<p>MyBatis有什么优势；</p>
+<p>MyBatis如何做事务管理；</p>
+<p>七、操作系统</p>
+<p>Linux静态链接和动态链接；</p>
+<p>什么是IO多路复用模型（select、poll、epoll）；</p>
+<p>Linux中的grep管道用处？Linux的常用命令？</p>
+<p>操作系统中虚拟地址、逻辑地址、线性地址、物理地址的概念及区别；</p>
+<p>内存的页面置换算法；</p>
+<p>内存的页面置换算法；</p>
+<p>进程调度算法，操作系统是如何调度进程的；</p>
+<p>父子进程、孤儿进程、僵死进程等概念；</p>
+<p>fork进程时的操作；</p>
+<p>kill用法，某个进程杀不掉的原因（僵死进程；进入内核态，忽略kill信号）；</p>
+<p>系统管理命令（如查看内存使用、网络情况）；</p>
+<p>find命令、awk使用；</p>
+<p>Linux下排查某个死循环的线程；</p>
+<p>八、网络相关</p>
+<p>数据链路层是做什么的?</p>
+<p>数据链路层的流量控制？</p>
+<p>网络模型的分层、IP和Mac地址在那个层、TCP和HTTP分别在那个层；</p>
+<p>TCP滑动窗口；</p>
+<p>TCP为什么可靠；</p>
+<p>TCP的同传，拆包与组装包是什么意思；</p>
+<p>Https和Http有什么区别；</p>
+<p>Http 为什么是无状态的；</p>
+<p>TCP三次握手，为什么不是三次，为什么不是四次；</p>
+<p>TCP的拥塞控制、流量控制详细说明？</p>
+<p>Http1.0和Http2.0的区别；</p>
+<p>两个不同ip地址的计算机之间如何通信；</p>
+<p>地址解析协议ARP；</p>
+<p>OSI七层模型分别对应着五层模型的哪一部分；</p>
+<p>TCP三次握手数据丢失了怎么办？那如果后面又找到了呢？</p>
+<p>九、分布式相关</p>
+<p>消息队列使用的场景介绍和作用（应用耦合、异步消息、流量削锋等）；</p>
+<p>如何解决消息队列丢失消息和重复消费问题；</p>
+<p>Kafka使用过吗，什么是幂等性？怎么保证一致性，持久化怎么做，分区partition的理解，LEO是什么意思，如何保证多个partition之间数据一致性的（ISR机制），为什么Kafka可以这么快（基于磁盘的顺序读写）；</p>
+<p>异步队列怎么实现；</p>
+<p>你项目的并发是多少？怎么解决高并发问题？单机情况下Tomcat的并发大概是多少，MySQL的并发大致是多少？</p>
+<p>什么是C10K问题；</p>
+<p>高并发情况下怎么办；</p>
+<p>分布式理论，什么是CAP理论，什么是Base理论，什么是Paxos理论；</p>
+<p>分布式协议的选举算法；</p>
+<p>说一下你对微服务的理解，与SOA的区别；</p>
+<p>Dubbo的基本原理，RPC，支持哪些通信方式，服务的调用过程；</p>
+<p>Dubbo如果有一个服务挂掉了怎么办；</p>
+<p>分布式事务，操作两个表不在一个库，如何保证一致性。</p>
+<p>分布式系统中，每台机器如何产生一个唯一的随机值；</p>
+<p>系统的量级、pv、uv等；</p>
+<p>什么是Hash一致性算法？分布式缓存的一致性，服务器如何扩容（哈希环）；</p>
+<p>正向代理、反向代理；</p>
+<p>什么是客户端负载均衡策略、什么是服务器端负载均衡策略；</p>
+<p>如何优化Tomcat，常见的优化方式有哪些；</p>
+<p>Nginx的Master和Worker，Nginx是如何处理请求的；</p>
+<p>十、系统设计相关</p>
+<p>如何防止表单重复提交（Token令牌环等方式）；</p>
+<p>有一个url白名单，需要使用正则表达式进行过滤，但是url量级很大，大概亿级，那么如何优化正则表达式？如何优化亿级的url匹配呢？</p>
+<p>常见的Nginx负载均衡策略；已有两台Nginx服务器了，倘若这时候再增加一台服务器，采用什么负载均衡算法比较好？</p>
+<p>扫描二维码登录的过程解析；</p>
+<p>如何设计一个生成唯一UUID的算法？</p>
+<p>实现一个负载均衡的算法，服务器资源分配为70%、20%、10%；</p>
+<p>有三个线程T1 T2 T3，如何保证他们按顺序执行；</p>
+<p>三个线程循环输出ABCABCABC….</p>
+<p>十一、安全相关</p>
+<p>什么是XSS攻击，XSS攻击的一般表现形式有哪些？如何防止XSS攻击；</p>
 
           
         
@@ -1100,282 +2131,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/面试2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/面试2/" itemprop="url">java面试系列问题(2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、Java相关</p>
-<p>Arraylist与LinkedList默认空间是多少；</p>
-<p>Arraylist与LinkedList区别与各自的优势List 和 Map 区别；</p>
-<p>谈谈HashMap，哈希表解决hash冲突的方法；</p>
-<p>为什么要重写hashcode()和equals()以及他们之间的区别与关系；</p>
-<p>Object的hashcode()是怎么计算的？</p>
-<p>若hashcode方法永远返回1或者一个常量会产生什么结果？</p>
-<p>Java Collections和Arrays的sort方法默认的排序方法是什么；</p>
-<p>引用计数法与GC Root可达性分析法区别；</p>
-<p>浅拷贝和深拷贝的区别；</p>
-<p>String s=”abc”和String s=new String(“abc”)区别；</p>
-<p>HashSet方法里面的hashcode存在哪，如果重写equals不重写hashcode会怎么样？</p>
-<p>反射的作用与实现原理；</p>
-<p>Java中的回调机制；</p>
-<p>模板方法模式；</p>
-<p>开闭原则说一下；</p>
-<p>发布/订阅使用场景；</p>
-<p>KMP算法（一种改进的字符串匹配算法）；</p>
-<p>JMM里边的原子性、可见性、有序性是如何体现出来的，JMM中内存屏障是什么意思，</p>
-<p>二、多线程</p>
-<p>AtomicInteger底层实现原理；</p>
-<p>synchronized与ReentraLock哪个是公平锁；</p>
-<p>CAS机制会出现什么问题；</p>
-<p>用过并发包下边的哪些类；</p>
-<p>一个线程连着调用start两次会出现什么情况？</p>
-<p>wait方法能不能被重写，wait能不能被中断；</p>
-<p>线程池的实现？四种线程池？重要参数及原理？任务拒接策略有哪几种？</p>
-<p>线程状态以及API怎么操作会发生这种转换；</p>
-<p>常用的避免死锁方法；</p>
-<p>三、JVM</p>
-<p>Minor GC与Full GC分别在什么时候发生？什么时候触发Full GC;</p>
-<p>GC收集器有哪些？CMS收集器与G1收集器的特点。</p>
-<p>Java在什么时候会出现内存泄漏；</p>
-<p>Java中的大对象如何进行存储；</p>
-<p>rt.jar被什么类加载器加载，什么时间加载；</p>
-<p>自己写的类被什么加载，什么时间加载；</p>
-<p>自己写的两个不同的类是被同一个类加载器加载的吗？为什么？</p>
-<p>为什么新生代内存需要有两个Survivor区？</p>
-<p>几种常用的内存调试工具：jmap、jstack、jconsole；</p>
-<p>类加载的五个过程：加载、验证、准备、解析、初始化；</p>
-<p>G1停顿吗，CMS回收步骤，CMS为什么会停顿，停顿时间；</p>
-<p>栈主要存的数据是什么，堆呢？</p>
-<p>堆分为哪几块，比如说新生代老生代，那么新生代又分为什么？</p>
-<p>软引用和弱引用的使用场景（软引用可以实现缓存，弱引用可以用来在回调函数中防止内存泄露）；</p>
-<p>四、数据库</p>
-<p>数据库索引，什么是全文索引，全文索引中的倒排索引是什么原理；</p>
-<p>数据库最佳左前缀原则是什么？</p>
-<p>数据库的三大范式；</p>
-<p>悲观锁和乐观锁的原理和应用场景；</p>
-<p>左连接、右连接、内连接、外连接、交叉连接、笛卡儿积等；</p>
-<p>一般情况下数据库宕机了如何进行恢复（什么是Write Ahead Log机制，什么是Double Write机制，什么是Check Point）；</p>
-<p>什么是redo日志、什么是undo日志；</p>
-<p>数据库中的隔离性是怎样实现的；原子性、一致性、持久性又是如何实现的；</p>
-<p>什么是组合索引，组合索引什么时候会失效；</p>
-<p>关系型数据库和非关系型数据库区别；</p>
-<p>数据库死锁如何解决；</p>
-<p>MySQL并发情况下怎么解决（通过事务、隔离级别、锁）；</p>
-<p>MySQL中的MVCC机制是什么意思，根据具体场景，MVCC是否有问题；</p>
-<p>MySQL数据库的隔离级别，以及如何解决幻读；</p>
-<p>五、缓存服务器</p>
-<p>Redis中zSet跳跃表问题；</p>
-<p>Redis的set的应用场合？</p>
-<p>Redis高级特性了解吗？</p>
-<p>Redis的pipeline有什么用处？</p>
-<p>Redis集群宕机如何处理，怎么样进行数据的迁移；</p>
-<p>Redis的集群方案；</p>
-<p>Redis原子操作怎么用比较好；</p>
-<p>Redis过期策略是怎么实现的呢？</p>
-<p>六、SSM相关</p>
-<p>Spring中@Autowired和@Resource注解的区别？</p>
-<p>Spring声明一个 bean 如何对其进行个性化定制；</p>
-<p>MyBatis有什么优势；</p>
-<p>MyBatis如何做事务管理；</p>
-<p>七、操作系统</p>
-<p>Linux静态链接和动态链接；</p>
-<p>什么是IO多路复用模型（select、poll、epoll）；</p>
-<p>Linux中的grep管道用处？Linux的常用命令？</p>
-<p>操作系统中虚拟地址、逻辑地址、线性地址、物理地址的概念及区别；</p>
-<p>内存的页面置换算法；</p>
-<p>内存的页面置换算法；</p>
-<p>进程调度算法，操作系统是如何调度进程的；</p>
-<p>父子进程、孤儿进程、僵死进程等概念；</p>
-<p>fork进程时的操作；</p>
-<p>kill用法，某个进程杀不掉的原因（僵死进程；进入内核态，忽略kill信号）；</p>
-<p>系统管理命令（如查看内存使用、网络情况）；</p>
-<p>find命令、awk使用；</p>
-<p>Linux下排查某个死循环的线程；</p>
-<p>八、网络相关</p>
-<p>数据链路层是做什么的?</p>
-<p>数据链路层的流量控制？</p>
-<p>网络模型的分层、IP和Mac地址在那个层、TCP和HTTP分别在那个层；</p>
-<p>TCP滑动窗口；</p>
-<p>TCP为什么可靠；</p>
-<p>TCP的同传，拆包与组装包是什么意思；</p>
-<p>Https和Http有什么区别；</p>
-<p>Http 为什么是无状态的；</p>
-<p>TCP三次握手，为什么不是三次，为什么不是四次；</p>
-<p>TCP的拥塞控制、流量控制详细说明？</p>
-<p>Http1.0和Http2.0的区别；</p>
-<p>两个不同ip地址的计算机之间如何通信；</p>
-<p>地址解析协议ARP；</p>
-<p>OSI七层模型分别对应着五层模型的哪一部分；</p>
-<p>TCP三次握手数据丢失了怎么办？那如果后面又找到了呢？</p>
-<p>九、分布式相关</p>
-<p>消息队列使用的场景介绍和作用（应用耦合、异步消息、流量削锋等）；</p>
-<p>如何解决消息队列丢失消息和重复消费问题；</p>
-<p>Kafka使用过吗，什么是幂等性？怎么保证一致性，持久化怎么做，分区partition的理解，LEO是什么意思，如何保证多个partition之间数据一致性的（ISR机制），为什么Kafka可以这么快（基于磁盘的顺序读写）；</p>
-<p>异步队列怎么实现；</p>
-<p>你项目的并发是多少？怎么解决高并发问题？单机情况下Tomcat的并发大概是多少，MySQL的并发大致是多少？</p>
-<p>什么是C10K问题；</p>
-<p>高并发情况下怎么办；</p>
-<p>分布式理论，什么是CAP理论，什么是Base理论，什么是Paxos理论；</p>
-<p>分布式协议的选举算法；</p>
-<p>说一下你对微服务的理解，与SOA的区别；</p>
-<p>Dubbo的基本原理，RPC，支持哪些通信方式，服务的调用过程；</p>
-<p>Dubbo如果有一个服务挂掉了怎么办；</p>
-<p>分布式事务，操作两个表不在一个库，如何保证一致性。</p>
-<p>分布式系统中，每台机器如何产生一个唯一的随机值；</p>
-<p>系统的量级、pv、uv等；</p>
-<p>什么是Hash一致性算法？分布式缓存的一致性，服务器如何扩容（哈希环）；</p>
-<p>正向代理、反向代理；</p>
-<p>什么是客户端负载均衡策略、什么是服务器端负载均衡策略；</p>
-<p>如何优化Tomcat，常见的优化方式有哪些；</p>
-<p>Nginx的Master和Worker，Nginx是如何处理请求的；</p>
-<p>十、系统设计相关</p>
-<p>如何防止表单重复提交（Token令牌环等方式）；</p>
-<p>有一个url白名单，需要使用正则表达式进行过滤，但是url量级很大，大概亿级，那么如何优化正则表达式？如何优化亿级的url匹配呢？</p>
-<p>常见的Nginx负载均衡策略；已有两台Nginx服务器了，倘若这时候再增加一台服务器，采用什么负载均衡算法比较好？</p>
-<p>扫描二维码登录的过程解析；</p>
-<p>如何设计一个生成唯一UUID的算法？</p>
-<p>实现一个负载均衡的算法，服务器资源分配为70%、20%、10%；</p>
-<p>有三个线程T1 T2 T3，如何保证他们按顺序执行；</p>
-<p>三个线程循环输出ABCABCABC….</p>
-<p>十一、安全相关</p>
-<p>什么是XSS攻击，XSS攻击的一般表现形式有哪些？如何防止XSS攻击；</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/第一章spring概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1516,756 +2271,6 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/阿里云常用文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/阿里云常用文档/" itemprop="url">阿里云常用文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/阿里云/" itemprop="url" rel="index">
-                    <span itemprop="name">阿里云</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="$appres/images/night.jpg" alt="Nulla euismod, vitae aliquet orci eleifend."></p>
-<h1 id="阿里云常用文档"><a href="#阿里云常用文档" class="headerlink" title="阿里云常用文档"></a>阿里云常用文档</h1><h4 id="升级云盘后扩展分区"><a href="#升级云盘后扩展分区" class="headerlink" title="升级云盘后扩展分区"></a>升级云盘后扩展分区</h4><p>阿里云升级云盘后,升级云盘后，默认是没有挂载的,需要进行一些配置才能够生效,针对windows和linux有不同的操作方式<br>文档地址(<a href="https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/111738.html?spm=a2c4g.11186623.6.768.64ba216c45ccBV</a>)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/图床神器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/图床神器/" itemprop="url">windows/mac下图床神器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="windows下图床神器"><a href="#windows下图床神器" class="headerlink" title="windows下图床神器"></a>windows下图床神器</h2><p>价格: <code>免费</code><br>平台: <code>WINDOW</code><br>官网: <a href="http://mpic.lzhaofu.cn/" target="_blank" rel="noopener">图床神器MPIC</a></p>
-<h2 id="MAC下图床神器"><a href="#MAC下图床神器" class="headerlink" title="MAC下图床神器"></a>MAC下图床神器</h2><p>价格: <code>免费</code>(自定义图床需要购买高级版，RMB 58/年)<br>平台: <code>Mac</code><br>官网: <a href="https://link.jianshu.com/?t=https://toolinbox.net/iPic/" target="_blank" rel="noopener">图床神器 iPic | Toolinbox</a><br>下载: <a href="https://link.jianshu.com/?t=https://itunes.apple.com/cn/app/id1101244278?mt=12" target="_blank" rel="noopener">AppStore</a></p>
-<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><p>官网写得很详细了，<a href="https://link.jianshu.com/?t=https://toolinbox.net/iPic/" target="_blank" rel="noopener">点击这里</a> 去官网看吧~</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/前后端工程师的目标/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/前后端工程师的目标/" itemprop="url">前后端工程师的目标</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/全栈/" itemprop="url" rel="index">
-                    <span itemprop="name">全栈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精"><a href="#术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精" class="headerlink" title="术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精."></a>术业有专攻，前后端的发展都越来越高深，你想什么都会，那你毕竟什么都不精.</h2><hr>
-<h3 id="JAVA后端工程师"><a href="#JAVA后端工程师" class="headerlink" title="JAVA后端工程师"></a>JAVA后端工程师</h3><ul>
-<li><p>把精力放在java基础，设计模式，jvm原理，spring+springmvc原理及源码，linux，mysql事务隔离与锁机制，mongodb，http/tcp，多线程，分布式架构（dubbo，dubbox，spring cloud），弹性计算架构，微服务架构（springboot+zookeeper+docker+jenkins），java性能优化，以及相关的项目管理</p>
-</li>
-<li><p>后端追求的是：三高（高并发，高可用，高性能），安全，存储，业务等等 *</p>
-</li>
-</ul>
-<h3 id="前端工程师"><a href="#前端工程师" class="headerlink" title="前端工程师"></a>前端工程师</h3><ul>
-<li><p>把精力放在html5，css3，jquery，angularjs，bootstrap，reactjs，vuejs，webpack，less/sass，gulp，nodejs，Google V8引擎，javascript多线程，模块化，面向切面编程，设计模式，浏览器兼容性，性能优化等等。</p>
-</li>
-<li><p>前端追求的是：页面表现，速度流畅，兼容性，用户体验等等。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/几个内网端口映射服务网站/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/几个内网端口映射服务网站/" itemprop="url">内网穿透端口映射网站</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>目前在使用的 <a href="http://ngrok.io/" target="_blank" rel="noopener">http://ngrok.io</a> == <a href="http://ngrok.com/" target="_blank" rel="noopener">http://ngrok.com</a></li>
-<li><a href="http://natapp.cn/" target="_blank" rel="noopener">http://natapp.cn/</a></li>
-<li><a href="http://ngrok.2bdata.com/" target="_blank" rel="noopener">http://ngrok.2bdata.com/</a></li>
-<li><a href="http://www.ngrok.cc/" target="_blank" rel="noopener">http://www.ngrok.cc/</a></li>
-<li><a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a></li>
-<li>路由侠 <a href="http://www.luyouxia.com/" target="_blank" rel="noopener">http://www.luyouxia.com/</a></li>
-<li>WeNAT <a href="https://www.wezoz.com/" target="_blank" rel="noopener">https://www.wezoz.com/</a></li>
-</ul>
-<h2 id="目前使用的ngrok的穿透工具-（http-ngrok-io）"><a href="#目前使用的ngrok的穿透工具-（http-ngrok-io）" class="headerlink" title="目前使用的ngrok的穿透工具 （http://ngrok.io）"></a>目前使用的ngrok的穿透工具 （<a href="http://ngrok.io）" target="_blank" rel="noopener">http://ngrok.io）</a></h2><p>登录账户: <a href="mailto:blog.nilaile.cn@gmail.com" target="_blank" rel="noopener">blog.nilaile.cn@gmail.com</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h3><ol>
-<li>解压ngrok安装程序</li>
-<li>命令行进入ngrok目录,执行 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ngrok authtoken 你的token(注册账号成功后再access)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://blog.nilaile.cn/blog/20190620/X8hi37QWJdYb.png" alt="mark"></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
-<li>命令行进入ngrok目录,执行以下命令即可<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ngrok http 8086(你要绑定的本地端口号)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://blog.nilaile.cn/blog/20190620/AVYDzWYdp4Da.png" alt="mark">   </p>
-<ol start="2">
-<li>ngrok还提供了了一个web统计页面访问 <code>http://127.0.0.1:4041</code><br><img src="http://blog.nilaile.cn/blog/20190620/O8SdOI5aOtDh.png" alt="mark"></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godloveyou.github.io/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="David's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/使用nginx做反代时遇到413-Request-Entity-Too-Large的解决方法/" itemprop="url">使用nginx做反代时遇到413 Request Entity Too Large的解决方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:26:40+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong><a href="https://www.cnblogs.com/jiaoyiping/p/5638096.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiaoyiping/p/5638096.html</a></strong></p>
-<p><a href="https://blog.csdn.net/qq_36949907/article/details/79182363" target="_blank" rel="noopener">https://blog.csdn.net/qq_36949907/article/details/79182363</a></p>
-<p><a href="https://www.cnblogs.com/wanghx-0713/p/8080571.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghx-0713/p/8080571.html</a><br>Mysql时间差函数<br>SELECT TIMESTAMPDIFF(MONTH,’2009-10-01’,’2009-09-01’);<br>interval可是：<br>SECOND 秒 SECONDS<br>MINUTE 分钟 MINUTES<br>HOUR 时间 HOURS<br>DAY 天 DAYS<br>MONTH 月 MONTHS<br>YEAR 年 YEARS</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2318,7 +2323,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2329,7 +2334,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2340,7 +2345,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2393,7 +2398,7 @@ service是由web容器来调用的，我们无需对service具体内容做任何
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
