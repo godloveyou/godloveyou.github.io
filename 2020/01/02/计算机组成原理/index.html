@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="David&#39;s Blog">
 <meta property="og:description" content="无符号数1.寄存器的位数  反映了无符号数的表示范围 有符号数1.机器数：保存在计算机中的数据， 符号数字化的数2.真值：数据真实的值，带符号的数 原码转补码原码除符号位 按位取反, 末尾加112原码: 1010 0101补码: 1101 1011 补码转原码将补码 除符号位 按位取反,末尾加1 12补码: 1101 1011原码: 1010 0101 已知 y(补) 求 (-y)补？将y(补)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-07T09:53:33.793Z">
+<meta property="og:updated_time" content="2020-01-18T02:40:14.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理-数据">
 <meta name="twitter:description" content="无符号数1.寄存器的位数  反映了无符号数的表示范围 有符号数1.机器数：保存在计算机中的数据， 符号数字化的数2.真值：数据真实的值，带符号的数 原码转补码原码除符号位 按位取反, 末尾加112原码: 1010 0101补码: 1101 1011 补码转原码将补码 除符号位 按位取反,末尾加1 12补码: 1101 1011原码: 1010 0101 已知 y(补) 求 (-y)补？将y(补)">
@@ -396,6 +396,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">补码: 1101 1011</span><br><span class="line">原码: 1010 0101</span><br></pre></td></tr></table></figure>
 <h2 id="已知-y-补-求-y-补？"><a href="#已知-y-补-求-y-补？" class="headerlink" title="已知 y(补) 求 (-y)补？"></a>已知 y(补) 求 (-y)补？</h2><p>将y(补) 连同 符号位在内，每位取反,末位加1,即得(-y)补</p>
 <p>为什么要引入移码？<br>补码无法直观的比较大小，移码一般用于表示浮点数的阶码</p>
+<h2 id="定点运算–乘法运算"><a href="#定点运算–乘法运算" class="headerlink" title="定点运算–乘法运算"></a>定点运算–乘法运算</h2><p>原码乘法运算</p>
 
       
     </div>
@@ -593,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无符号数"><span class="nav-number">1.</span> <span class="nav-text">无符号数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有符号数"><span class="nav-number">2.</span> <span class="nav-text">有符号数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原码转补码"><span class="nav-number">3.</span> <span class="nav-text">原码转补码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补码转原码"><span class="nav-number">4.</span> <span class="nav-text">补码转原码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知-y-补-求-y-补？"><span class="nav-number">5.</span> <span class="nav-text">已知 y(补) 求 (-y)补？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无符号数"><span class="nav-number">1.</span> <span class="nav-text">无符号数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有符号数"><span class="nav-number">2.</span> <span class="nav-text">有符号数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原码转补码"><span class="nav-number">3.</span> <span class="nav-text">原码转补码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补码转原码"><span class="nav-number">4.</span> <span class="nav-text">补码转原码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知-y-补-求-y-补？"><span class="nav-number">5.</span> <span class="nav-text">已知 y(补) 求 (-y)补？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定点运算–乘法运算"><span class="nav-number">6.</span> <span class="nav-text">定点运算–乘法运算</span></a></li></ol></div>
             
 
           </div>
@@ -649,6 +650,13 @@
 
 
 
+<div>
+<!-- 填写你的友盟代码 -->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1278584387'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1278584387%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- 你的友盟代码 end -->
+</div>
 
         
       </div>

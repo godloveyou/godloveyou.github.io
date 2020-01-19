@@ -30,6 +30,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">补码: 1101 1011</span><br><span class="line">原码: 1010 0101</span><br></pre></td></tr></table></figure>
 <h2 id="已知-y-补-求-y-补？"><a href="#已知-y-补-求-y-补？" class="headerlink" title="已知 y(补) 求 (-y)补？"></a>已知 y(补) 求 (-y)补？</h2><p>将y(补) 连同 符号位在内，每位取反,末位加1,即得(-y)补</p>
 <p>为什么要引入移码？<br>补码无法直观的比较大小，移码一般用于表示浮点数的阶码</p>
+<h2 id="定点运算–乘法运算"><a href="#定点运算–乘法运算" class="headerlink" title="定点运算–乘法运算"></a>定点运算–乘法运算</h2><p>原码乘法运算</p>
 ]]></content>
       <categories>
         <category>计算机组成原理</category>
